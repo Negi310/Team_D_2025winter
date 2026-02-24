@@ -5,5 +5,5 @@
 public interface IBreedingCalculator
 {
     // 両親のデータを受け取り、新しい個体を返す
-    SalmonData GenerateChild(SalmonData playerSalmon, SalmonData mateSalmon);
+    SalmonData GenerateChild(SalmonData playerSalmon, SalmonData mateSalmon, float BreedRate);
 }

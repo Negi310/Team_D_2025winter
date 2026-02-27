@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RiverState : MonoBehaviour
+public class RiverStatus : MonoBehaviour
 {
     //現在のターン
     [SerializeField]private int seaTurn;

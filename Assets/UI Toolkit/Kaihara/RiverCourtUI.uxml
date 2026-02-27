@@ -1,0 +1,37 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Kaihara/RiverCourtUI.uss?fileID=7433441132597879392&amp;guid=11fe9aac0e996804482ab968744492b4&amp;type=3#RiverCourtUI"/>
+    <ui:VisualElement name="base" style="flex-grow: 1; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0;">
+        <ui:VisualElement name="playerstatus" class="main-salmon-status"/>
+        <ui:Label text="Label" name="courttimes" class="remaining-court-times"/>
+        <ui:VisualElement name="partner" class="partner-information" style="top: 349px; left: 681px;">
+            <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
+            <ui:Image name="icon" picking-mode="Ignore" class="a"/>
+            <ui:VisualElement name="status" picking-mode="Ignore" class="partner-information_status"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="partner" class="partner-information" style="top: 333px; left: 1455px;">
+            <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
+            <ui:Image name="icon" picking-mode="Ignore" class="a"/>
+            <ui:VisualElement name="status" picking-mode="Ignore" class="partner-information_status"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="partner" class="partner-information" style="top: 831px; left: 787px;">
+            <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
+            <ui:Image name="icon" picking-mode="Ignore" class="a"/>
+            <ui:VisualElement name="status" picking-mode="Ignore" class="partner-information_status"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="partner" class="partner-information" style="top: 861px; left: 1458px;">
+            <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
+            <ui:VisualElement name="status" picking-mode="Ignore" class="partner-information_status"/>
+            <ui:Image name="icon" picking-mode="Ignore" class="a"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="partner" class="partner-information" style="top: 582px; left: 1109px;">
+            <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
+            <ui:VisualElement name="status" picking-mode="Ignore" class="partner-information_status"/>
+            <ui:Image name="icon" picking-mode="Ignore" class="a"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="nextriverstatus" class="next-river-information">
+            <ui:VisualElement name="riverstatus" style="flex-grow: 1;"/>
+            <ui:Button text="&gt;" name="riverstatusbutton"/>
+            <ui:Label text="Label" name="rivername"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

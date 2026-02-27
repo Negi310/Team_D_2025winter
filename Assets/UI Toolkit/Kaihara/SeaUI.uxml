@@ -1,11 +1,11 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/Kaihara/states.uss?fileID=7433441132597879392&amp;guid=1ef4e93601e848d458abaaf02abadaef&amp;type=3#states"/>
+    <Style src="project://database/Assets/UI%20Toolkit/Kaihara/SeaUI.uss?fileID=7433441132597879392&amp;guid=1ef4e93601e848d458abaaf02abadaef&amp;type=3#SeaUI"/>
     <ui:VisualElement name="base" style="flex-grow: 1;">
-        <ui:VisualElement name="statesbar" class="main-salmon-statesbar"/>
+        <ui:VisualElement name="statesbar" class="main-salmon-statusbar"/>
         <ui:Button text="トレーニング" name="trainingbutton" class="training-button"/>
         <ui:Button text="ランダム&#10;イベント" name="randomeventbutton" selectable="false" focusable="true" enable-rich-text="true" class="random-event-button"/>
         <ui:Label text="Label" name="turn" class="turn-ui"/>
-        <ui:VisualElement name="nextriver" class="next-river-information is-open">
+        <ui:VisualElement name="nextriver" class="next-river-information">
             <ui:VisualElement name="riverdata" class="data" style="scale: 1 1 0.5;">
                 <ui:Label text="Label"/>
             </ui:VisualElement>

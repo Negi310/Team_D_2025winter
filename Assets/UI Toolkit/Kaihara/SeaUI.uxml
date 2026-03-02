@@ -9,7 +9,7 @@
             <ui:VisualElement name="riverdata" class="data" style="scale: 1 1 0.5;">
                 <ui:Label text="Label"/>
             </ui:VisualElement>
-            <ui:Button text="&gt;" name="rivertoggle" style="padding-top: 0; padding-left: 0; padding-right: 0; padding-bottom: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; background-color: rgb(168, 168, 168);"/>
+            <ui:Button text="&gt;" name="rivertoggle"/>
             <ui:Label text="Label" name="rivername"/>
         </ui:VisualElement>
     </ui:VisualElement>

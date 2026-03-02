@@ -266,6 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 771971579}
   - component: {fileID: 771971578}
+  - component: {fileID: 771971580}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -285,9 +286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69dff4f314b15d4a9965d50ccee2a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
-  uiDocument: {fileID: 1672513330}
-  fishState: {fileID: 1535093351}
-  riverState: {fileID: 1915664972}
 --- !u!4 &771971579
 Transform:
   m_ObjectHideFlags: 0
@@ -303,7 +301,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1535093350
+--- !u!114 &771971580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771971577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce967d4066e139c48948d66a5f19856a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CourtingUIManager
+--- !u!1 &963254540
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,144 +321,66 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1535093352}
-  - component: {fileID: 1535093351}
+  - component: {fileID: 963254542}
+  - component: {fileID: 963254541}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1535093351
+--- !u!114 &963254541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1535093350}
+  m_GameObject: {fileID: 963254540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f487ba3ce63af9429e0b8d2eba89c42, type: 3}
+  m_Script: {fileID: 11500000, guid: 4848205314d5dc946aa441f29cb84219, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FishState
-  jump: 2000
-  riskhedging: 0
-  stamina: 0
-  power: 0
-  color: "\u8D64"
-  size: "\u5927\u304D\u3044"
---- !u!4 &1535093352
+  m_EditorClassIdentifier: Assembly-CSharp::UITest
+  seaUIManager: {fileID: 771971578}
+  courtingUIManager: {fileID: 771971580}
+  seaUIPrefab: {fileID: 9188481965167549524, guid: 772caf95d30b54f4f87da2fdf899f4f6, type: 3}
+  courtingUIPrefab: {fileID: 2895327841860826039, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
+  playerJump: 0
+  playerPower: 0
+  playerRiskhedging: 0
+  playerStamina: 0
+  playerColor: 0
+  playerSize: 0
+  playerShape: 0
+  weakestCom: 1
+  weakestPer: "\u3086\u3046\u304B\u3093"
+  weakestSuc: 1
+  weakCom: 2
+  weakPer: "\u304A\u304F\u3073\u3087\u3046"
+  weakSuc: 2
+  normalCom: 3
+  normalPer: "\u3088\u3046\u304D"
+  normalSuc: 3
+  strongCom: 4
+  strongPer: "\u3072\u304B\u3048\u3081"
+  strongSuc: 4
+  strongestCom: 5
+  strongestPer: "\u3044\u3058\u3063\u3071\u308A"
+  strongestSuc: 5
+  seaTurn: 1
+  riverName: "\u5DDD"
+  CourtingTimes: 3
+--- !u!4 &963254542
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1535093350}
+  m_GameObject: {fileID: 963254540}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1672513329
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1672513331}
-  - component: {fileID: 1672513330}
-  m_Layer: 5
-  m_Name: UIDocument
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1672513330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1672513329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
-  m_PanelSettings: {fileID: 11400000, guid: 95f7242470def1243bd3fcc8a2d4d289, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 7dd384047dc9e484ca5d26c14d9b6763, type: 3}
-  m_SortingOrder: 0
-  m_Position: 0
-  m_WorldSpaceSizeMode: 1
-  m_WorldSpaceWidth: 1920
-  m_WorldSpaceHeight: 1080
-  m_PivotReferenceSize: 0
-  m_Pivot: 0
-  m_WorldSpaceCollider: {fileID: 0}
---- !u!4 &1672513331
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1672513329}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1915664971
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1915664973}
-  - component: {fileID: 1915664972}
-  m_Layer: 0
-  m_Name: River
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1915664972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915664971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74fe52e7777d34641bf223a266af91d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RiverState
-  seaTurn: 6
-  riverName: "\u30AD\u30E5\u30A6\u30EA\u30E5\u30A6\u5DDD"
---- !u!4 &1915664973
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915664971}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.5772, y: 0.05365, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -459,7 +391,5 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 105268974}
-  - {fileID: 1672513331}
-  - {fileID: 1535093352}
   - {fileID: 771971579}
-  - {fileID: 1915664973}
+  - {fileID: 963254542}

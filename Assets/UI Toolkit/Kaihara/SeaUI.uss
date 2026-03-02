@@ -1,17 +1,36 @@
 :root {
 }
 
-.main-salmon-status {
-    width: 16%;
+.main-salmon-statusbar > VisualElement {
     height: 100%;
     flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.main-salmon-statusbar {
+    flex-grow: 0;
+    flex-direction: row;
+    width: 80%;
+    height: 20%;
+    flex-shrink: 0;
+    top: 50%;
+    left: 10%;
+    position: absolute;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
 }
 
 .main-salmon-status_name--swim {
     background-color: rgb(59, 95, 195);
     width: 100%;
     height: 35%;
-    font-size: 45px;
+    font-size: 35px;
     color: rgb(255, 255, 255);
     -unity-text-align: middle-center;
     margin-top: 0;
@@ -40,7 +59,7 @@
     background-color: rgb(218, 82, 167);
     width: 100%;
     height: 35%;
-    font-size: 45px;
+    font-size: 35px;
     color: rgb(255, 255, 255);
     -unity-text-align: middle-center;
     margin-top: 0;
@@ -94,7 +113,7 @@
     width: 130%;
     height: 75%;
     top: -75%;
-    left:10%;
+    left: 10%;
     opacity: 0;
     transition-property: opacity;
     transition-timing-function: ease-out;
@@ -110,27 +129,8 @@
     background-color: rgb(190, 254, 255);
 }
 
-.main-salmon-status:hover > .main-salmon-status_status-information {
+.main-salmon-statusbar > VisualElement:hover > .main-salmon-status_status-information {
     opacity: 1;
-}
-
-.main-salmon-statusbar {
-    flex-grow: 0;
-    flex-direction: row;
-    width: 80%;
-    height: 20%;
-    flex-shrink: 0;
-    top: 50%;
-    left: 10%;
-    position: absolute;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
-    border-top-width: 4px;
-    border-right-width: 4px;
-    border-bottom-width: 4px;
-    border-left-width: 4px;
 }
 
 .random-event-button {
@@ -303,14 +303,6 @@
 
 .next-river-information > Button {
     flex-grow: 1;
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
     translate: 0 0%;
     transition-duration: 0.1s;
     transition-timing-function: ease-out;
@@ -325,6 +317,15 @@
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    background-color: rgb(168, 168, 168);
 }
 
 .next-river-information > VisualElement {
@@ -359,5 +360,3 @@
 .next-river-information > Button:active {
     scale: 0.97 0.97;
 }
-
-

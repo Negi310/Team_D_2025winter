@@ -313,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce967d4066e139c48948d66a5f19856a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CourtingUIManager
+  uiDocument: {fileID: 1028607453}
 --- !u!1 &963254540
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,31 +347,26 @@ MonoBehaviour:
   courtingUIManager: {fileID: 771971580}
   seaUIPrefab: {fileID: 9188481965167549524, guid: 772caf95d30b54f4f87da2fdf899f4f6, type: 3}
   courtingUIPrefab: {fileID: 2895327841860826039, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
-  playerJump: 0
-  playerPower: 0
-  playerRiskhedging: 0
-  playerStamina: 0
+  playerJump: 15
+  playerPower: 3
+  playerRiskhedging: 20
+  playerStamina: 7
   playerColor: 0
   playerSize: 0
   playerShape: 0
-  weakestCom: 1
-  weakestPer: "\u3086\u3046\u304B\u3093"
-  weakestSuc: 1
-  weakCom: 2
-  weakPer: "\u304A\u304F\u3073\u3087\u3046"
-  weakSuc: 2
-  normalCom: 3
-  normalPer: "\u3088\u3046\u304D"
-  normalSuc: 3
-  strongCom: 4
-  strongPer: "\u3072\u304B\u3048\u3081"
-  strongSuc: 4
-  strongestCom: 5
-  strongestPer: "\u3044\u3058\u3063\u3071\u308A"
-  strongestSuc: 5
+  weakestPer: "\u5F37\u6C17"
+  weakestSuc: 90
+  weakPer: "\u5F37\u6C17"
+  weakSuc: 70
+  normalPer: "\u5F37\u6C17"
+  normalSuc: 50
+  strongPer: "\u5F37\u6C17"
+  strongSuc: 30
+  strongestPer: "\u5F37\u6C17"
+  strongestSuc: 10
   seaTurn: 1
-  riverName: "\u5DDD"
-  CourtingTimes: 3
+  riverName: "\u30AD\u30E5\u30A6\u30EA\u30E5\u30A6\u5DDD"
+  courtingTimes: 3
 --- !u!4 &963254542
 Transform:
   m_ObjectHideFlags: 0
@@ -386,6 +382,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1028607453 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1867987342696353814, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
+  m_PrefabInstance: {fileID: 1613517724}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+--- !u!1001 &1613517724
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2895327841860826039, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
+      propertyPath: m_Name
+      value: RiverCourtUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439542415575129417, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.5772
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439542415575129417, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.05365
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439542415575129417, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439542415575129417, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439542415575129417, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439542415575129417, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439542415575129417, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439542415575129417, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439542415575129417, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439542415575129417, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4b6386b2cac2de14ba72ac59fb09939f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -393,3 +457,4 @@ SceneRoots:
   - {fileID: 105268974}
   - {fileID: 771971579}
   - {fileID: 963254542}
+  - {fileID: 1613517724}

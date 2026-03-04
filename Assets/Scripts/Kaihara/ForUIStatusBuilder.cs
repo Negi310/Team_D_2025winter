@@ -3,36 +3,36 @@ using System.Collections.Generic;
 public class ForUIStatusBuilder
 {
     //プレイヤーのステータスの値をリストにまとめて返す(UIManagerへの受け渡し用)
-    public List<(string name, string value, bool toSwim)> PlayerStatusTapleListBuild(float jump, float power, float riskhedging, float stamina, float size, float color, float shape)
+    public List<string> PlayerStatusListBuild(string jump, string power, string riskhedging, string stamina, string size, string color, string shape)
     {
-        //UIに渡すステータス一式を、各ステータスごとに名前(string)・値(string)・用途(bool)のタプルにして、それらをまとめてリストにする
-        var uiStatuses =  new List<(string name, string value, bool toSwim)>
+        //UIに渡すステータス一式をリストにする
+        var uiStatuses =  new List<string>
         {
-            ("ジャンプ",jump.ToString(),true),
-            ("パワー",power.ToString(),true),
-            ("リスクヘッジ",riskhedging.ToString(),true),
-            ("スタミナ",stamina.ToString(),true),
-            ("カラー",color.ToString(),false),
-            ("サイズ",size.ToString(),false),
-            ("シェイプ",shape.ToString(),false)
+            jump,power,riskhedging,stamina,size,color,shape
         };
         //↑のリストを返す
         return uiStatuses;
     }
     //パートナーの情報をリストにまとめて返す(UIManagerへの受け渡し用)
-    //パートナーのデータの保存形式不明のため一旦パートナーの相性・性格・成功率を個別に引数で渡す形に(3種類*5体の計15個)
+    //↓でまとめたやつをさらにまとめる
     //弱い->ちょっと弱い->普通->ちょっと強い->強いの順
-    //もともとまとめられている場合は不要
-    public List<List<(string name,string value)>> PartnerInformationListBuild(string weakestCompatibility, string weakestPersonality, string weakestSuccessRate,string weakCompatibility, string weakPersonality, string weakSuccessRate,string normalCompatibility, string normalPersonality, string normalSuccessRate,string strongCompatibility, string strongPersonality, string strongSuccessRate,string strongestCompatibility, string strongestPersonality, string strongestSuccessRate)
+    public List<(string personality,string successRate)> PartnersListBuild(string weakestPer,string weakestSuc,string weakPer,string weakSuc,string normalPer,string normalSuc,string strongPer,string strongSuc,string strongestPer,string strongestSuc)
     {
-        var partnerStatusList = new List<List<(string name,string value)>>
+        var weakest = PartnerInfomationTapleBuild(weakestPer,weakestSuc);
+        var weak = PartnerInfomationTapleBuild(weakPer,weakSuc);
+        var normal = PartnerInfomationTapleBuild(normalPer,normalSuc);
+        var strong = PartnerInfomationTapleBuild(strongPer,strongSuc);
+        var strongest = PartnerInfomationTapleBuild(strongestPer,strongestSuc);
+        var partnerStatusList = new List<(string personality,string successRate)>
         {
-            new List<(string name,string value)>{("相性",weakestCompatibility),("性格",weakestPersonality),("成功率",weakestSuccessRate)},
-            new List<(string name,string value)>{("相性",weakCompatibility),("性格",weakPersonality),("成功率",weakSuccessRate)},
-            new List<(string name,string value)>{("相性",normalCompatibility),("性格",normalPersonality),("成功率",normalSuccessRate)},
-            new List<(string name,string value)>{("相性",strongCompatibility),("性格",strongPersonality),("成功率",strongSuccessRate)},
-            new List<(string name,string value)>{("相性",strongestCompatibility),("性格",strongestPersonality),("成功率",strongestSuccessRate)}
+            weakest,weak,normal,strong,strongest
         };
         return partnerStatusList;
+    }
+    //一体分のデータをタプルにまとめる
+    private (string personality,string successRate) PartnerInfomationTapleBuild(string Personality,string SuccessRate)
+    {
+        (string personality,string successRate) partnerTaple = (Personality,SuccessRate);
+        return partnerTaple;
     }
 }

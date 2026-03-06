@@ -74,7 +74,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="nextriverstatus" class="next-river-information">
             <ui:VisualElement name="riverstatus" style="flex-grow: 1;">
-                <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                <ui:VisualElement class="next-river-informationa">
                     <ui:Label text="Label" class="next-river-information_status_name"/>
                     <ui:VisualElement class="next-river-information_status_value"/>
                 </ui:VisualElement>
@@ -105,31 +105,31 @@
         <ui:VisualElement name="playerstatus" class="main-salmon-status">
             <ui:VisualElement style="flex-grow: 1;">
                 <ui:Label text="ジャンプ" class="main-salmon-status_name--swim"/>
-                <ui:VisualElement class="main-salmon-status_value"/>
+                <ui:VisualElement class="main-salmon-status_value main-salmon-status_value--swim"/>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1;">
                 <ui:Label text="パワー" class="main-salmon-status_name--swim"/>
-                <ui:VisualElement class="main-salmon-status_value"/>
+                <ui:VisualElement class="main-salmon-status_value main-salmon-status_value--swim"/>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1;">
                 <ui:Label text="リスクヘッジ" class="main-salmon-status_name--swim"/>
-                <ui:VisualElement class="main-salmon-status_value"/>
+                <ui:VisualElement class="main-salmon-status_value main-salmon-status_value--swim"/>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1;">
                 <ui:Label text="スタミナ" class="main-salmon-status_name--swim"/>
-                <ui:VisualElement class="main-salmon-status_value"/>
+                <ui:VisualElement class="main-salmon-status_value main-salmon-status_value--swim"/>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1;">
                 <ui:Label text="カラー" class="main-salmon-status_name--court"/>
-                <ui:VisualElement class="main-salmon-status_value"/>
+                <ui:Label text="Label" class="main-salmon-status_value--court"/>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1;">
                 <ui:Label text="サイズ" class="main-salmon-status_name--court"/>
-                <ui:VisualElement class="main-salmon-status_value"/>
+                <ui:Label text="Label" class="main-salmon-status_value--court"/>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1;">
                 <ui:Label text="形" class="main-salmon-status_name--court"/>
-                <ui:VisualElement class="main-salmon-status_value"/>
+                <ui:Label text="Label" class="main-salmon-status_value--court"/>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

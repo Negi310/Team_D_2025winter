@@ -2,50 +2,73 @@
     <Style src="project://database/Assets/UI%20Toolkit/Kaihara/SeaUI.uss?fileID=7433441132597879392&amp;guid=1ef4e93601e848d458abaaf02abadaef&amp;type=3#SeaUI"/>
     <ui:VisualElement name="base" style="flex-grow: 1;">
         <ui:VisualElement name="statesbar" class="main-salmon-statusbar">
-            <ui:VisualElement style="flex-grow: 1;">
+            <ui:VisualElement>
                 <ui:Label text="ジャンプ" class="main-salmon-status_name--swim"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
-                <ui:Label text="Label" class="main-salmon-status_status-information"/>
+                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
-            <ui:VisualElement style="flex-grow: 1;">
+            <ui:VisualElement>
                 <ui:Label text="パワー" class="main-salmon-status_name--swim"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
-                <ui:Label text="Label" class="main-salmon-status_status-information"/>
+                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
-            <ui:VisualElement style="flex-grow: 1;">
+            <ui:VisualElement>
                 <ui:Label text="リスクヘッジ" class="main-salmon-status_name--swim"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
-                <ui:Label text="Label" class="main-salmon-status_status-information"/>
+                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
-            <ui:VisualElement style="flex-grow: 1;">
+            <ui:VisualElement>
                 <ui:Label text="スタミナ" class="main-salmon-status_name--swim"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
-                <ui:Label text="Label" class="main-salmon-status_status-information"/>
+                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
-            <ui:VisualElement style="flex-grow: 1;">
+            <ui:VisualElement>
                 <ui:Label text="カラー" class="main-salmon-status_name--court"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
-                <ui:Label text="Label" class="main-salmon-status_status-information"/>
+                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
-            <ui:VisualElement style="flex-grow: 1;">
+            <ui:VisualElement>
                 <ui:Label text="サイズ" class="main-salmon-status_name--court"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
-                <ui:Label text="Label" class="main-salmon-status_status-information"/>
+                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
-            <ui:VisualElement style="flex-grow: 1;">
+            <ui:VisualElement>
                 <ui:Label text="形" class="main-salmon-status_name--court"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
-                <ui:Label text="Label" class="main-salmon-status_status-information"/>
+                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:Button text="トレーニング" name="trainingbutton" class="training-button"/>
         <ui:Button text="ランダム&#10;イベント" name="randomeventbutton" selectable="false" focusable="true" enable-rich-text="true" class="random-event-button"/>
         <ui:Label text="Label" name="turn" class="turn-ui"/>
-        <ui:VisualElement name="nextriver" class="next-river-information">
-            <ui:VisualElement name="riverdata" class="data" style="scale: 1 1 0.5;">
-                <ui:Label text="Label"/>
+        <ui:VisualElement name="riverinformation" class="next-river-information" style="flex-grow: 1;">
+            <ui:VisualElement name="riverstatus" style="flex-grow: 1;">
+                <ui:VisualElement style="flex-grow: 1;">
+                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:VisualElement class="next-river-information_status_value" style="flex-grow: 1;"/>
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1;">
+                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:VisualElement class="next-river-information_status_value" style="flex-grow: 1;"/>
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1;">
+                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:VisualElement class="next-river-information_status_value" style="flex-grow: 1;"/>
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1;">
+                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:VisualElement class="next-river-information_status_value" style="flex-grow: 1;"/>
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1;">
+                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:VisualElement class="next-river-information_status_value" style="flex-grow: 1;"/>
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1;">
+                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:VisualElement class="next-river-information_status_value" style="flex-grow: 1;"/>
+                </ui:VisualElement>
             </ui:VisualElement>
-            <ui:Button text="&gt;" name="rivertoggle"/>
+            <ui:Button text="&gt;" name="riverbutton"/>
             <ui:Label text="Label" name="rivername"/>
         </ui:VisualElement>
     </ui:VisualElement>

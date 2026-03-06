@@ -201,6 +201,11 @@
     border-bottom-color: rgb(0, 0, 0);
 }
 
+.next-river-information > VisualElement > VisualElement {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
 .partner-information {
     flex-grow: 1;
     position: absolute;
@@ -391,7 +396,7 @@
     width: 32%;
 }
 
-.main-salmon-status_value {
+.main-salmon-status_value--swim {
     flex-shrink: 0;
     padding-top: 0;
     padding-right: 0;
@@ -412,6 +417,12 @@
     margin-bottom: 1%;
     margin-left: 1%;
     flex-grow: 0;
+    width: 65%;
+}
+
+.main-salmon-status_value--court {
+    -unity-text-align: middle-center;
+    font-size: 25px;
     width: 65%;
 }
 

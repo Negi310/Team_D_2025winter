@@ -4,7 +4,7 @@
 .main-salmon-statusbar > VisualElement {
     height: 100%;
     flex-grow: 1;
-    flex-shrink: 1;
+    flex-shrink: 0;
 }
 
 .main-salmon-statusbar {
@@ -359,4 +359,48 @@
 
 .next-river-information > Button:active {
     scale: 0.97 0.97;
+}
+
+.next-river-information > VisualElement > VisualElement {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+.next-river-information_status_name {
+    margin-top: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-text-align: middle-center;
+    width: 27%;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    font-size: 25px;
+}
+
+.next-river-information_status_value {
+    flex-grow: 1;
+    margin-top: 1%;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+    background-color: rgb(40, 47, 120);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
 }

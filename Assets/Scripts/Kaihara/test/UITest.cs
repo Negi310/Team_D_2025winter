@@ -8,10 +8,6 @@ public class UITest : MonoBehaviour
     [SerializeField] private SeaUIManager seaUIManager;
     //求愛UI
     [SerializeField] private CourtingUIManager courtingUIManager;
-    //海UIプレファブ
-    [SerializeField] private GameObject seaUIPrefab;
-    //求愛UIプレファブ
-    [SerializeField] private GameObject courtingUIPrefab;
     //プレイヤーのステータス
     [SerializeField] private string playerJump;
     [SerializeField] private string playerPower;
@@ -51,7 +47,19 @@ public class UITest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //jキーでSeaUI表示
+        if (Keyboard.current.jKey.wasPressedThisFrame)
+        {
+            seaUIManager.Show();
+            var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerJump,playerPower,playerRiskhedging,playerStamina,playerColor,playerSize,playerShape);
+            seaUIManager.SetUpUI(playerStatusList,seaTurn,riverName);
+        }
+        //kキーでSeaUI非表示
+        if (Keyboard.current.kKey.wasPressedThisFrame)
+        {
+            seaUIManager.Hide();
+        }
+
         //uキーでCourtingUI表示
         if (Keyboard.current.uKey.wasPressedThisFrame)
         {

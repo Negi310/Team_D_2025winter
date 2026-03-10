@@ -52,7 +52,7 @@ public class CourtingUIManager : MonoBehaviour
         });
     }
 
-    //UI生成(引数は求愛UIのプレファブ,プレイヤーのステータスのリスト,パートナーの情報のリスト,残り求愛回数,川の名前)
+    //UI表示
     public void Show()
     {
         root.style.display = DisplayStyle.Flex;

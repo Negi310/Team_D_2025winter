@@ -37,7 +37,7 @@ public class SeaUIManager : MonoBehaviour
             Hide();
         });
     }
-    //UIの表示(引数:SeaUIのプレファブ,ForUIStatusBuilderで用意したプレイヤーのステータスのリスト,ターン,川の名前)
+    //UIの表示
     public void Show()
     {
         root.style.display = DisplayStyle.Flex;

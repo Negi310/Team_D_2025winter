@@ -8,6 +8,8 @@ public class UITest : MonoBehaviour
     [SerializeField] private SeaUIManager seaUIManager;
     //求愛UI
     [SerializeField] private CourtingUIManager courtingUIManager;
+    //命名UI
+    [SerializeField] private NamingUIManager namingUIManager;
     //プレイヤーのステータス
     [SerializeField] private string playerJump;
     [SerializeField] private string playerPower;
@@ -72,6 +74,18 @@ public class UITest : MonoBehaviour
         if (Keyboard.current.iKey.wasPressedThisFrame)
         {
             courtingUIManager.Hide();
+        }
+        //nキーでNamingUI表示
+        if (Keyboard.current.nKey.wasPressedThisFrame)
+        {
+            namingUIManager.Show();
+            var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerJump,playerPower,playerRiskhedging,playerStamina,playerColor,playerSize,playerShape);
+            namingUIManager.SetUpUI(playerStatusList);
+        }
+        //mキーでNamingUI非表示
+        if (Keyboard.current.mKey.wasPressedThisFrame)
+        {
+            namingUIManager.Hide();
         }
     }
 }

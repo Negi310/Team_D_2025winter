@@ -1,0 +1,39 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Kaihara/NamingUI.uss?fileID=7433441132597879392&amp;guid=77b49f8b10c3a37468a835b5927fb134&amp;type=3#NamingUI"/>
+    <ui:VisualElement name="base" class="base">
+        <ui:VisualElement name="naming" class="naming-text-field">
+            <ui:TextField label="" placeholder-text="名前を入力" readonly="false" name="TextField" enabled="true" max-length="10" class="a"/>
+            <ui:Button text="Button" class="b"/>
+        </ui:VisualElement>
+        <ui:VisualElement class="main-salmon-status" style="flex-grow: 1;">
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="ジャンプ" class="main-salmon-status_name--swim"/>
+                <ui:VisualElement class="main-salmon-status_value--swim"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="パワー" class="main-salmon-status_name--swim"/>
+                <ui:VisualElement class="main-salmon-status_value--swim"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="リスクヘッジ" class="main-salmon-status_name--swim"/>
+                <ui:VisualElement class="main-salmon-status_value--swim"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="スタミナ" class="main-salmon-status_name--swim"/>
+                <ui:VisualElement class="main-salmon-status_value--swim"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="カラー" class="main-salmon-status_name--court"/>
+                <ui:Label text="Label" class="main-salmon-status_value--court"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="サイズ" class="main-salmon-status_name--court"/>
+                <ui:Label text="Label" class="main-salmon-status_value--court"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="形" class="main-salmon-status_name--court"/>
+                <ui:Label text="Label" class="main-salmon-status_value--court"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

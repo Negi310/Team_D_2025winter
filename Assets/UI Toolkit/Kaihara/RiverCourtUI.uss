@@ -1,27 +1,7 @@
 :root {
 }
 
-.main-salmon-status {
-    flex-grow: 1;
-    position: absolute;
-    top: 45%;
-    left: 5%;
-    width: 25%;
-    height: 30%;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    background-color: rgb(190, 254, 255);
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
-}
+
 
 .remaining-court-times {
     background-color: rgb(190, 254, 255);
@@ -339,6 +319,28 @@
 
 .partner-information_status > VisualElement {
     flex-grow: 1;
+}
+
+.main-salmon-status {
+    flex-grow: 1;
+    position: absolute;
+    top: 45%;
+    left: 5%;
+    width: 25%;
+    height: 30%;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: rgb(190, 254, 255);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
 }
 
 .main-salmon-status > VisualElement {

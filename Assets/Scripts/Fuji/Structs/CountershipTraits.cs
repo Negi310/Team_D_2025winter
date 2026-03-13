@@ -6,4 +6,10 @@ public struct CourtshipTraits
     // 比較計算を行うなら数値ベース、相性判定ならEnumやフラグベースが適しています。
     public float ColorValue; 
     public float ShapeValue; 
+    public CourtshipTraits(float size, float colorValue, float shapeValue)
+    {
+        Size = size;
+        ColorValue = colorValue;
+        ShapeValue = shapeValue;
+    }
 }

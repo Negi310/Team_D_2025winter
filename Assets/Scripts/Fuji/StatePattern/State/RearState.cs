@@ -1,6 +1,6 @@
 public class RearState : GameState
 {
-    public void TransitionCheck(bool isSuccess)
+    public void TransitionCheck(float score, bool isSuccess)
     {
         
     }

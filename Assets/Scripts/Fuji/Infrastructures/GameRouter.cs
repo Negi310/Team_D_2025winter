@@ -3,11 +3,11 @@ using System;
 public class GameRouter : IDisposable
 {
     private readonly GameStateMachine _stateMachine;
-    private readonly PresentersFactory _factory;
+    private readonly StateCompositeFactory _factory;
 
     private IDisposable _currentPresenters;
 
-    public GameRouter(GameStateMachine stateMachine, PresentersFactory factory)
+    public GameRouter(GameStateMachine stateMachine, StateCompositeFactory factory)
     {
         _stateMachine = stateMachine;
         _factory = factory;

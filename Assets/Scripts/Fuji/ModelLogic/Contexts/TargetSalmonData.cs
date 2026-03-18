@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class TargetSalmonData
+public class TargetSalmonData //: SalmonData
 {
     
 }

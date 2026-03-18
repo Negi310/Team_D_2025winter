@@ -19,16 +19,16 @@ public class CourtshipPresenter : IDisposable
 
     private void HandleExited()
     {
-        
+
     }
 
     private void HandleDecided()
     {
         //bool isSuccess = _model.EvaluateCourtship();
-        
+
         //_state.TransitionCheck(isSuccess);
     }
-    
+
     public void Dispose()
     {
         // Routerによって殺される時の最終的な後始末

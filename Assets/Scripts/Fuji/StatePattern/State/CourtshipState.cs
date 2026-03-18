@@ -7,6 +7,5 @@ public class CourtshipState : GameState
     public void TransitionCheck(bool isSuccess)
     {
         if (isSuccess) RequestTransition<RearState>();
-        else return;
     }
 }

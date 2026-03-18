@@ -1,19 +1,21 @@
 using System;
 using System.Collections.Generic;
 
-public class PresentersFactory
+public class StateCompositeFactory
 {
     // 内部の辞書はベースクラス（GameState）を扱うが、外からは絶対に見せない
     private readonly Dictionary<Type, Func<GameState, IDisposable>> _registry = new();
-    
-    public PresentersFactory()
+
+    public StateCompositeFactory(
+        SessionContext context,
+        ConversationModel conversationModel, ConversationView conversationView)
     {
         // ジェネリクスのおかげで、引数の state は最初から「CourtshipState」として確定している！
         Register<CourtshipState>(state =>
         {
             var composite = new CompositeDisposable();
             
-            //composite.Add(new CourtshipMenuPresenter(state)); 
+            //composite.Add(new CourtshipMenuPresenter(state));
             //composite.Add(new PlayerStatsPresenter(state));
             //...
 
@@ -25,6 +27,28 @@ public class PresentersFactory
             var composite = new CompositeDisposable();
             
             //composite.Add(new NurturingActionPresenter(state));
+            //...
+            
+            return composite;
+        });
+        
+        Register<ConversationState>(state =>
+        {
+            var composite = new CompositeDisposable();
+            var conversationContext = new ConversationContext();
+            composite.Add(new ConversationPresenter(state, conversationModel, conversationContext, conversationView));
+            //composite.Add(new OtherStateSpecificPresenter(state));
+            //...
+            
+            return composite;
+        });
+        
+        Register<UpstreamState>(state =>
+        {
+            var composite = new CompositeDisposable();
+            //var upstreamContext = new UpstreamContext();
+            //composite.Add(new UpstreamPresenter(state, context));
+            //composite.Add(new OtherStateSpecificPresenter(state));
             //...
             
             return composite;

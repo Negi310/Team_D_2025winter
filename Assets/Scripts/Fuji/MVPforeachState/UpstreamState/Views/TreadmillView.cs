@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RiverView : MonoBehaviour
+public class TreadmillView : MonoBehaviour
 {
     private ChunkPoolManager _poolManager;
     private readonly Dictionary<string, GameObject> _spawnedChunks = new();

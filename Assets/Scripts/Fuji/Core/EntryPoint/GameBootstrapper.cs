@@ -4,6 +4,8 @@ using UnityEngine;
 public class GameBootstrapper : MonoBehaviour
 {
     [SerializeField] private ConversationView conversationView;
+    [SerializeField] private TreadmillView treadmillView;
+    [SerializeField] private TickProvider tickProvider;
     
     private GameStateMachine _stateMachine;
     private GameRouter _router;
@@ -30,6 +32,8 @@ public class GameBootstrapper : MonoBehaviour
         // ModelとViewとContextの参照を渡す
         _stateMachine = new GameStateMachine();
         _router = new GameRouter(_stateMachine, presentersFactory);
+        
+        ((IStateChangable)_stateMachine).ChangeState<ConversationState>();
     }
 
     private void OnDestroy()

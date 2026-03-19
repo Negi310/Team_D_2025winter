@@ -11,7 +11,6 @@ public class GameStateMachine : IStateChangable
     public GameStateMachine()
     {
         _factory = new GameStateFactory();
-        ((IStateChangable)this).ChangeState<RearState>();
     }
 
     void IStateChangable.ChangeState<T>()

@@ -5,14 +5,14 @@ public class TreadmillPresenter: IDisposable, ITickable
 {
     private readonly UpstreamState _state;
     private readonly RiverTreadmillModel _model;
-    private readonly RiverView _view;
+    private readonly TreadmillView _view;
     private readonly Transform _playerTransform;
     private readonly TickProvider _tickProvider;
 
     public TreadmillPresenter(
         UpstreamState state,
         RiverTreadmillModel model, 
-        RiverView view, 
+        TreadmillView view, 
         Transform playerTransform, 
         TickProvider tickProvider)
     {

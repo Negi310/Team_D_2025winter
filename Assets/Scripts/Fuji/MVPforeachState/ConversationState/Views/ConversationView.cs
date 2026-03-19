@@ -8,7 +8,7 @@ using DG.Tweening; // DOTweenを使用
 public class ConversationView : MonoBehaviour
 {
     [SerializeField] private UIDocument _uiDocument;
-    [SerializeField] private Animator _characterAnimator;
+    //[SerializeField] private Animator _characterAnimator;
 
     // Presenterへ通知するイベント
     public event Action OnNextButtonClicked;
@@ -84,9 +84,9 @@ public class ConversationView : MonoBehaviour
 
     private async UniTaskVoid PlayIntroAnimationAsync(string triggerName)
     {
-        if (!string.IsNullOrEmpty(triggerName) && _characterAnimator != null)
+        if (!string.IsNullOrEmpty(triggerName))
         {
-            _characterAnimator.SetTrigger(triggerName);
+            //_characterAnimator.SetTrigger(triggerName);
             // 登場アニメーションの尺分待機（本来はAnimation Event推奨）
             await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
         }

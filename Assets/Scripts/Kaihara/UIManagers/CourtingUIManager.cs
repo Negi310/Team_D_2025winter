@@ -29,6 +29,8 @@ public class CourtingUIManager : MonoBehaviour
 
     //プレイヤーのステータスの最大値(いったん20)
     private const float playerStatusMax = 20;
+    //川のステータスの最大値
+    private const float riverStatusMax = 20;
     void Awake()
     {
         //uiDocumentのrootVE取得
@@ -119,7 +121,7 @@ public class CourtingUIManager : MonoBehaviour
         //label(1)を保存
         riverNameLabel = parentVE.Children().OfType<Label>().First();
         //孫VEリストを一時保存
-        var groundchildrenList = parentVE.Q<VisualElement>().Query<VisualElement>().ToList();
+        var groundchildrenList = parentVE.Children().OfType<VisualElement>().First().Children().OfType<VisualElement>().ToList();
         //ひ孫VEのリストを生成
         foreach(VisualElement groundchildVE in groundchildrenList)
         {
@@ -159,14 +161,14 @@ public class CourtingUIManager : MonoBehaviour
         
     }
     //表示内容更新
-    public void SetUpUI(List<string> playerStatusList,List<(string personality,string successRate)> partnerStatusList,int courtTimes,string riverName)
+    public void SetUpUI(List<string> playerStatusList,List<(string personality,string successRate)> partnerStatusList,List<string> riverStatus ,int courtTimes,string riverName)
     {
         //パートナーUIの内容更新
         SetUpPartnerUI(partnerStatusList);
         //プレイヤーUIの内容更新
         SetUpPlayerUI(playerStatusList);
         //川UIの内容更新
-        SetUpRiverUI(courtTimes,riverName);
+        SetUpRiverUI(courtTimes,riverName,riverStatus);
     }
 
 
@@ -219,7 +221,7 @@ public class CourtingUIManager : MonoBehaviour
     }
 
     //川の情報のUI
-    void SetUpRiverUI(int courtTimes,string riverName)
+    void SetUpRiverUI(int courtTimes,string riverName,List<string> riverStatus)
     {
 
         //川の情報の処理
@@ -238,7 +240,12 @@ public class CourtingUIManager : MonoBehaviour
 
         //川の名前表示
         riverNameLabel.text = "NEXT>" + riverName;
-
+        //ひ孫VEの内容を更新
+        for(int i = 0; i < riverStatus.Count; i++)
+        {
+            Debug.Log(defaultRiverStatusValueWidth * float.Parse(riverStatus[i]) / riverStatusMax);
+            riverUIList[i].style.width = new Length(defaultRiverStatusValueWidth * float.Parse(riverStatus[i]) / riverStatusMax, LengthUnit.Percent);
+        }
         
     }
 }

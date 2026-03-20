@@ -3,12 +3,12 @@ using System.Collections.Generic;
 public class ForUIStatusBuilder
 {
     //プレイヤーのステータスの値をリストにまとめて返す(UIManagerへの受け渡し用)
-    public List<string> PlayerStatusListBuild(string jump, string power, string riskhedging, string stamina, string size, string color, string shape)
+    public List<string> PlayerStatusListBuild(string speed, string jump, string stamina, string attack, string intelligence, string size, string color, string shape)
     {
         //UIに渡すステータス一式をリストにする
         var uiStatuses =  new List<string>
         {
-            jump,power,riskhedging,stamina,size,color,shape
+            speed,jump,stamina,attack,intelligence,size,color,shape
         };
         //↑のリストを返す
         return uiStatuses;
@@ -34,5 +34,15 @@ public class ForUIStatusBuilder
     {
         (string personality,string successRate) partnerTaple = (Personality,SuccessRate);
         return partnerTaple;
+    }
+
+    //川のデータをリストにまとめる
+    public List<string> RiverInformatinListBuild(string a,string b,string c,string d, string e)
+    {
+        List<string> riverList = new List<string>
+        {
+            a ,b ,c ,d ,e
+        };
+        return riverList;
     }
 }

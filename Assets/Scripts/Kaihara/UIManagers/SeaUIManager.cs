@@ -20,6 +20,8 @@ public class SeaUIManager : MonoBehaviour
     private Label riverNameLabel;
     //ターン数のlabel
     private Label turnUILabel;
+    //川のステータスの最大値
+    private const float riverStatusMax = 20;
 
     void Awake()
     {
@@ -91,7 +93,7 @@ public class SeaUIManager : MonoBehaviour
         //label(1)を保存
         riverNameLabel = parentVE.Children().OfType<Label>().First();
         //孫VEリストを一時保存
-        var groundchildrenList = parentVE.Q<VisualElement>().Query<VisualElement>().ToList();
+        var groundchildrenList = parentVE.Children().OfType<VisualElement>().First().Children().OfType<VisualElement>().ToList();
         //ひ孫VEのリストを生成
         foreach(VisualElement groundchildVE in groundchildrenList)
         {
@@ -110,10 +112,10 @@ public class SeaUIManager : MonoBehaviour
     }
 
     //内容更新
-    public void SetUpUI(List<string> playerStatusList,int turn,string riverName)
+    public void SetUpUI(List<string> playerStatusList,List<string> riverStatusList,int turn,string riverName)
     {
         SetUpStatusUI(playerStatusList);
-        SetUpRiverUI(turn,riverName);
+        SetUpRiverUI(turn,riverName,riverStatusList);
     }
     //ステータス表示の設定
     void SetUpStatusUI(List<string> playerStatusList)
@@ -132,7 +134,7 @@ public class SeaUIManager : MonoBehaviour
             playerUIList[i].text = playerStatusList[i];
         }
     }
-    void SetUpRiverUI(int turn,string riverName)
+    void SetUpRiverUI(int turn,string riverName,List<string> riverStatus)
     {
         //川の情報の処理
         //直接関係はないがターン数のlabel(class:turn-ui)も川の処理で一緒に処理する
@@ -149,6 +151,12 @@ public class SeaUIManager : MonoBehaviour
         turnUILabel.text = "ターン\n" + turn;
         //川の名前表示
         riverNameLabel.text = "NEXT>" + riverName;
+        //ひ孫VEの内容を更新
+        for(int i = 0; i < riverStatus.Count; i++)
+        {
+            Debug.Log(defaultRiverStatusValueWidth * float.Parse(riverStatus[i]) / riverStatusMax);
+            riverUIList[i].style.width = new Length(defaultRiverStatusValueWidth * float.Parse(riverStatus[i]) / riverStatusMax, LengthUnit.Percent);
+        }
     }
 
 

@@ -11,13 +11,20 @@ public class UITest : MonoBehaviour
     //命名UI
     [SerializeField] private NamingUIManager namingUIManager;
     //プレイヤーのステータス
+    [SerializeField] private string playerSpeed;
     [SerializeField] private string playerJump;
-    [SerializeField] private string playerPower;
-    [SerializeField] private string playerRiskhedging;
     [SerializeField] private string playerStamina;
+    [SerializeField] private string playerAttack;
+    [SerializeField] private string playerIntelligence;
     [SerializeField] private string playerColor;
     [SerializeField] private string playerSize;
     [SerializeField] private string playerShape;
+    //川のステータス
+    [SerializeField] private string a;
+    [SerializeField] private string b;
+    [SerializeField] private string c;
+    [SerializeField] private string d;
+    [SerializeField] private string e;
     //パートナーのステータス
     [SerializeField] private string weakestPer;
     [SerializeField] private string weakestSuc;
@@ -53,8 +60,9 @@ public class UITest : MonoBehaviour
         if (Keyboard.current.jKey.wasPressedThisFrame)
         {
             seaUIManager.Show();
-            var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerJump,playerPower,playerRiskhedging,playerStamina,playerColor,playerSize,playerShape);
-            seaUIManager.SetUpUI(playerStatusList,seaTurn,riverName);
+            var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerSpeed,playerJump,playerStamina,playerAttack,playerIntelligence,playerColor,playerSize,playerShape);
+            var riverStatusList = forUIStatusBuilder.RiverInformatinListBuild(a,b,c,d,e);
+            seaUIManager.SetUpUI(playerStatusList,riverStatusList,seaTurn,riverName);
         }
         //kキーでSeaUI非表示
         if (Keyboard.current.kKey.wasPressedThisFrame)
@@ -66,9 +74,10 @@ public class UITest : MonoBehaviour
         if (Keyboard.current.uKey.wasPressedThisFrame)
         {
             courtingUIManager.Show();
-            var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerJump,playerPower,playerRiskhedging,playerStamina,playerColor,playerSize,playerShape);
+            var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerSpeed,playerJump,playerStamina,playerAttack,playerIntelligence,playerColor,playerSize,playerShape);
             var partnerStatusList = forUIStatusBuilder.PartnersListBuild(weakestPer,weakestSuc,weakPer,weakSuc,normalPer,normalSuc,strongPer,strongSuc,strongestPer,strongestSuc);
-            courtingUIManager.SetUpUI(playerStatusList,partnerStatusList,courtingTimes,riverName);
+            var riverStatusList = forUIStatusBuilder.RiverInformatinListBuild(a,b,c,d,e);
+            courtingUIManager.SetUpUI(playerStatusList,partnerStatusList,riverStatusList,courtingTimes,riverName);
         }
         //iキーでCourtingUI非表示
         if (Keyboard.current.iKey.wasPressedThisFrame)
@@ -79,7 +88,7 @@ public class UITest : MonoBehaviour
         if (Keyboard.current.nKey.wasPressedThisFrame)
         {
             namingUIManager.Show();
-            var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerJump,playerPower,playerRiskhedging,playerStamina,playerColor,playerSize,playerShape);
+            var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerSpeed,playerJump,playerStamina,playerAttack,playerIntelligence,playerColor,playerSize,playerShape);
             namingUIManager.SetUpUI(playerStatusList);
         }
         //mキーでNamingUI非表示

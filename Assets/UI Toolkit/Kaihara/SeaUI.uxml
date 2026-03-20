@@ -1,24 +1,29 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Kaihara/SeaUI.uss?fileID=7433441132597879392&amp;guid=1ef4e93601e848d458abaaf02abadaef&amp;type=3#SeaUI"/>
-    <ui:VisualElement name="base" style="flex-grow: 1;">
+    <ui:VisualElement name="base" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Textures/%E6%B5%B7%E8%83%8C%E6%99%AF.png?fileID=2800000&amp;guid=84672250071a2d24b8df1a352e39d405&amp;type=3#海背景&quot;);">
         <ui:VisualElement name="statesbar" class="main-salmon-statusbar">
             <ui:VisualElement>
-                <ui:Label text="ジャンプ" class="main-salmon-status_name--swim"/>
+                <ui:Label text="推進力" class="main-salmon-status_name--swim"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
                 <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
             <ui:VisualElement>
-                <ui:Label text="パワー" class="main-salmon-status_name--swim"/>
+                <ui:Label text="跳躍力" class="main-salmon-status_name--swim"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
                 <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
             <ui:VisualElement>
-                <ui:Label text="リスクヘッジ" class="main-salmon-status_name--swim"/>
+                <ui:Label text="持久力" class="main-salmon-status_name--swim"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
                 <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
             <ui:VisualElement>
-                <ui:Label text="スタミナ" class="main-salmon-status_name--swim"/>
+                <ui:Label text="攻撃力" class="main-salmon-status_name--swim"/>
+                <ui:Label text="Label" class="main-salmon-status_value"/>
+                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
+            </ui:VisualElement>
+            <ui:VisualElement>
+                <ui:Label text="知力" class="main-salmon-status_name--swim"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
                 <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
@@ -45,27 +50,23 @@
             <ui:VisualElement name="riverstatus" style="flex-grow: 1;">
                 <ui:VisualElement style="flex-grow: 1;">
                     <ui:Label text="Label" class="next-river-information_status_name"/>
-                    <ui:VisualElement class="next-river-information_status_value" style="flex-grow: 1;"/>
+                    <ui:VisualElement class="next-river-information_status_value"/>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1;">
                     <ui:Label text="Label" class="next-river-information_status_name"/>
-                    <ui:VisualElement class="next-river-information_status_value" style="flex-grow: 1;"/>
+                    <ui:VisualElement class="next-river-information_status_value"/>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1;">
                     <ui:Label text="Label" class="next-river-information_status_name"/>
-                    <ui:VisualElement class="next-river-information_status_value" style="flex-grow: 1;"/>
+                    <ui:VisualElement class="next-river-information_status_value"/>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1;">
                     <ui:Label text="Label" class="next-river-information_status_name"/>
-                    <ui:VisualElement class="next-river-information_status_value" style="flex-grow: 1;"/>
+                    <ui:VisualElement class="next-river-information_status_value"/>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1;">
                     <ui:Label text="Label" class="next-river-information_status_name"/>
-                    <ui:VisualElement class="next-river-information_status_value" style="flex-grow: 1;"/>
-                </ui:VisualElement>
-                <ui:VisualElement style="flex-grow: 1;">
-                    <ui:Label text="Label" class="next-river-information_status_name"/>
-                    <ui:VisualElement class="next-river-information_status_value" style="flex-grow: 1;"/>
+                    <ui:VisualElement class="next-river-information_status_value"/>
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:Button text="&gt;" name="riverbutton"/>

@@ -7,19 +7,23 @@
         </ui:VisualElement>
         <ui:VisualElement class="main-salmon-status" style="flex-grow: 1;">
             <ui:VisualElement style="flex-grow: 1;">
-                <ui:Label text="ジャンプ" class="main-salmon-status_name--swim"/>
+                <ui:Label text="機動力" class="main-salmon-status_name--swim"/>
                 <ui:VisualElement class="main-salmon-status_value--swim"/>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1;">
-                <ui:Label text="パワー" class="main-salmon-status_name--swim"/>
+                <ui:Label text="跳躍力" class="main-salmon-status_name--swim"/>
                 <ui:VisualElement class="main-salmon-status_value--swim"/>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1;">
-                <ui:Label text="リスクヘッジ" class="main-salmon-status_name--swim"/>
+                <ui:Label text="持久力" class="main-salmon-status_name--swim"/>
                 <ui:VisualElement class="main-salmon-status_value--swim"/>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1;">
-                <ui:Label text="スタミナ" class="main-salmon-status_name--swim"/>
+                <ui:Label text="攻撃力" class="main-salmon-status_name--swim" style="height: 41px;"/>
+                <ui:VisualElement class="main-salmon-status_value--swim"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="知力" class="main-salmon-status_name--swim"/>
                 <ui:VisualElement class="main-salmon-status_value--swim"/>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1;">

@@ -141,6 +141,8 @@
     border-top-color: rgb(38, 37, 114);
     border-bottom-color: rgb(38, 37, 114);
     background-color: rgb(190, 254, 255);
+    -unity-text-align: middle-center;
+    font-size: 35px;
 }
 
 .main-salmon-statusbar > VisualElement:hover > .main-salmon-status_status-information {

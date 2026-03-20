@@ -5,37 +5,37 @@
             <ui:VisualElement>
                 <ui:Label text="推進力" class="main-salmon-status_name--swim"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
-                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
+                <ui:Label text="動きやすくなって&#10;疲れにくくなる" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
             <ui:VisualElement>
                 <ui:Label text="跳躍力" class="main-salmon-status_name--swim"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
-                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
+                <ui:Label text="ジャンプで&#10;疲れにくくなる" picking-mode="Ignore" class="main-salmon-status_status-information" style="-unity-text-align: middle-center;"/>
             </ui:VisualElement>
             <ui:VisualElement>
                 <ui:Label text="持久力" class="main-salmon-status_name--swim"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
-                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
+                <ui:Label text="スタミナが&#10;たくさんもてる" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
             <ui:VisualElement>
                 <ui:Label text="攻撃力" class="main-salmon-status_name--swim"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
-                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
+                <ui:Label text="小魚などに&#10;よりダメージが&#10;与えられる" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
             <ui:VisualElement>
                 <ui:Label text="知力" class="main-salmon-status_name--swim"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
-                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
+                <ui:Label text="育成中に&#10;強くなりやすい" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
             <ui:VisualElement>
                 <ui:Label text="カラー" class="main-salmon-status_name--court"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
-                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
+                <ui:Label text="体色が変わる" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
             <ui:VisualElement>
                 <ui:Label text="サイズ" class="main-salmon-status_name--court"/>
                 <ui:Label text="Label" class="main-salmon-status_value"/>
-                <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
+                <ui:Label text="大きさが変わる" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
             <ui:VisualElement>
                 <ui:Label text="形" class="main-salmon-status_name--court"/>

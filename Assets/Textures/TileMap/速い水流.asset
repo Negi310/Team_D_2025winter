@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
-  m_Name: New Animated Tile
+  m_Name: "\u901F\u3044\u6C34\u6D41"
   m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.Tilemaps.AnimatedTile
   m_AnimatedSprites:
-  - {fileID: 8136597788868972110, guid: fad55f6f6fe0a39469f9605b51e549cc, type: 3}
-  - {fileID: 8312099489279698733, guid: 854a4a50bc7212342acbc720d2ba6242, type: 3}
-  - {fileID: 4004043901446615601, guid: 4fefaaf14ec4bab44aa1aa58246360ce, type: 3}
+  - {fileID: -9169862703634118396, guid: 66dea5666e26a7a46858f327a2abd896, type: 3}
+  - {fileID: -1927757818700990482, guid: 7da171382f96e924e90acde8cf1b14ff, type: 3}
+  - {fileID: 5904596434547236392, guid: 3b948f91f12963c448de930469498cb7, type: 3}
   m_MinSpeed: 4
   m_MaxSpeed: 4
   m_AnimationStartTime: 0

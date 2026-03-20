@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class StateCompositeFactory
 {
     // 内部の辞書はベースクラス（GameState）を扱うが、外からは絶対に見せない
-    private readonly Dictionary<Type, Func<GameState, object, IDisposable>> _registry = new();
+    private readonly Dictionary<Type, Func<GameState, IPayload, IDisposable>> _registry = new();
 
     public StateCompositeFactory(
         SessionContext context, LogicInstaller logic,
@@ -68,18 +68,18 @@ public class StateCompositeFactory
         });
     }
     
-    private void Register<TState>(Func<TState, object, IDisposable> factoryMethod) where TState : GameState
+    private void Register<TState>(Func<TState, IPayload, IDisposable> factoryMethod) where TState : GameState
     {
         // 辞書に登録する際、内部で自動的にキャストをラップする。
         // TState で登録されているため、ここに違う型の State が渡ってくることは構造上あり得ない
-        _registry[typeof(TState)] = (GameState state, object payload) => 
+        _registry[typeof(TState)] = (GameState state, IPayload payload) => 
         {
             return factoryMethod.Invoke((TState)state, payload);
         };
     }
 
     // ルーターから呼ばれるメソッド（ここは実行時なのでベースクラスを受け取る）
-    public IDisposable CreatePresentersFor(GameState state, object payload)
+    public IDisposable CreatePresentersFor(GameState state, IPayload payload)
     {
         Type stateType = state.GetType();
 

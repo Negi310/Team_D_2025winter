@@ -20,7 +20,7 @@ public class GameRouter : IDisposable
         _stateMachine.OnStateChanged += HandleStateChanged;
     }
 
-    private void HandleStateChanged(GameState newState, object payload)
+    private void HandleStateChanged(GameState newState, IPayload payload)
     {
         // 前のフェーズのPresenterを確実に破棄（UIの隠蔽とメモリ解放）
         _currentPresenters?.Dispose();

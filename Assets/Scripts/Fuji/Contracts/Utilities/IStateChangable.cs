@@ -1,4 +1,4 @@
 public interface IStateChangable
 {
-    void ChangeState<TState>(object payload = null) where TState : GameState;
+    void ChangeState<TState>(IPayload payload = null) where TState : GameState;
 }

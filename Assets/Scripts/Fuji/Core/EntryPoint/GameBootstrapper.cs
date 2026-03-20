@@ -6,34 +6,36 @@ public class GameBootstrapper : MonoBehaviour
     [SerializeField] private ConversationView conversationView;
     [SerializeField] private TreadmillView treadmillView;
     [SerializeField] private TickProvider tickProvider;
+    [SerializeField] private Transform playerTransform; // 鮭のTransform
+
+    [Header("Master Data")]
+    [SerializeField] private ConversationEvent conversationEvent; // テスト用の会話データ
+    [SerializeField] private ChunkLevelData chunkLevelData;
     
-    private GameStateMachine _stateMachine;
     private GameRouter _router;
 
     private void Awake()
     {
         var saveDataResister = new SaveDataResister();
-        SaveData saveData;
-        if (saveDataResister.TryLoad(out saveData))
+        if (!saveDataResister.TryLoad(out SaveData saveData))
         {
-
+            saveData = saveDataResister.CreateInitialData();
+            saveDataResister.Save(saveData); 
         }
-        else
-        {
-            //saveData = masterData.CreateInitialSaveData();
-        }
-
+        
         var sessionContext = new SessionContext(saveData);
 
         // ロジックを計算するModelの生成
         var logicInstaller = new LogicInstaller();
 
-        var presentersFactory = new StateCompositeFactory(sessionContext, logicInstaller.ConversationModel, conversationView);
+        var stateCompositeFactory = new StateCompositeFactory(sessionContext, logicInstaller,
+            conversationView, treadmillView,
+            conversationEvent, chunkLevelData);
         // ModelとViewとContextの参照を渡す
-        _stateMachine = new GameStateMachine();
-        _router = new GameRouter(_stateMachine, presentersFactory);
+        var stateMachine = new GameStateMachine();
+        _router = new GameRouter(stateMachine, stateCompositeFactory, sessionContext, saveDataResister);
         
-        ((IStateChangable)_stateMachine).ChangeState<ConversationState>();
+        saveDataResister.ResumeState(stateMachine, saveData.LastSavedStateName);
     }
 
     private void OnDestroy()

@@ -6,15 +6,20 @@ public abstract class GameState
     public event Action OnEnter;
     public event Action OnExit;
     
-    protected readonly IStateChangable _stateMachine;
+    private IStateChangable _stateMachine;
+    
+    public void Init(IStateChangable stateMachine)
+    {
+        _stateMachine = stateMachine;
+    }
 
     public virtual void Enter() => OnEnter?.Invoke();
 
     public virtual void Exit() => OnExit?.Invoke();
 
     // サブクラス（具象State）が遷移したい時に呼ぶメソッド
-    protected void RequestTransition<T>() where T : GameState
+    protected void RequestTransition<TState>(object payload = null) where TState : GameState
     {
-        _stateMachine.ChangeState<T>();
+        _stateMachine.ChangeState<TState>(payload);
     }
 }

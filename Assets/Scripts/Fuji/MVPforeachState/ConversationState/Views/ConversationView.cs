@@ -32,10 +32,10 @@ public class ConversationView : MonoBehaviour
         // 1. UI Toolkitの要素を取得 (Query)
         var root = _uiDocument.rootVisualElement;
         _rootContainer = root.Q<VisualElement>("ConversationContainer"); // ウィンドウ全体
-        _speakerNameLabel = root.Q<Label>("SpeakerName");
+        _speakerNameLabel = root.Q<Label>("Speaker");
         _dialogueLabel = root.Q<Label>("DialogueText");
-        _backgroundElement = root.Q<VisualElement>("Background");
-        _nextButton = root.Q<Button>("NextButton");
+        _backgroundElement = root.Q<VisualElement>("BackGround");
+        _nextButton = root.Q<VisualElement>("NextButton").Q<Button>();
 
         // ボタンのクリックイベントをPresenterへ横流しする
         _nextButton.clicked += () => OnNextButtonClicked?.Invoke();

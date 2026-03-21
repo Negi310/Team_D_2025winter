@@ -1,44 +1,37 @@
 using System.Collections.Generic;
 
-public class RiverTreadmillModel
+public class TreadmillModel
 {
     private readonly RiverDirector _director;
 
-    private float _currentTopY = 0f;       // 全プリセットの長さの合計地点（次に生成する場所）
-    private float _spawnTriggerY = 0f; // ひとつ前のプリセットの長さの合計地点（生成タイミング）
-    
-    private readonly float _spawnDistance = 20f; // 画面下から消えるまでの猶予
-
-    private readonly LinkedList<RuntimeChunkData> _activeChunks = new();
-
-    public RiverTreadmillModel(RiverDirector director)
+    public TreadmillModel(RiverDirector director)
     {
         _director = director;
     }
 
-    public TreadmillUpdateResult UpdatePlayerPosition(float playerY)
+    public TreadmillUpdateResult UpdatePlayerPosition(TreadmillContext context, IReadOnlyList<ChunkPreset> presets, float playerY)
     {
         var result = new TreadmillUpdateResult();
         
-        if (playerY >= _spawnTriggerY + _spawnDistance)
+        if (playerY >= context.SpawnTriggerY + context.SpawnDistance)
         {
-            var oldestChunk = _activeChunks.First.Value;
-            _activeChunks.RemoveFirst();
+            var oldestChunk = context.ActiveChunks.First.Value;
+            context.ActiveChunks.RemoveFirst();
             result.DespawnedChunk = oldestChunk;
-            result.SpawnedChunk = SpawnNextChunk();
+            result.SpawnedChunk = SpawnNextChunk(context, presets);
         }
         return result;
     }
 
     // 生成処理を1つのメソッドにまとめる
-    public RuntimeChunkData SpawnNextChunk()
+    public RuntimeChunkData SpawnNextChunk(TreadmillContext context, IReadOnlyList<ChunkPreset> presets)
     {
-        var preset = _director.GetNextChunkPreset();
-        var chunkData = new RuntimeChunkData(preset, _currentTopY);
+        var preset = _director.GetNextChunkPreset(presets);
+        var chunkData = new RuntimeChunkData(preset, context.CurrentTopY);
         
-        _activeChunks.AddLast(chunkData);
-        _spawnTriggerY = _currentTopY; 
-        _currentTopY += preset.ChunkHeight;
+        context.ActiveChunks.AddLast(chunkData);
+        context.SpawnTriggerY = context.CurrentTopY; 
+        context.CurrentTopY += preset.ChunkHeight;
         
         return chunkData;
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class StateCompositeFactory
 {
@@ -9,7 +10,8 @@ public class StateCompositeFactory
     public StateCompositeFactory(
         SessionContext context, LogicInstaller logic,
         ConversationView conversationView, TreadmillView treadmillView,
-        ConversationEvent conversationEvent, ChunkLevelData chunkLevelData)
+        ConversationEvent conversationEvent, ChunkLevelData chunkLevelData,
+        Transform playerTransform, TickProvider tickProvider)
     {
         // ジェネリクスのおかげで、引数の state は最初から「CourtshipState」として確定している！
         Register<CourtshipState>((state, payload) =>
@@ -59,8 +61,8 @@ public class StateCompositeFactory
         Register<UpstreamState>((state, payload) =>
         {
             var composite = new CompositeDisposable();
-            //var upstreamContext = new UpstreamContext();
-            //composite.Add(new UpstreamPresenter(state, context));
+            var treadmillContext = new TreadmillContext();
+            composite.Add(new TreadmillPresenter(state, logic.TreadmillModel, treadmillView, treadmillContext, playerTransform, tickProvider, chunkLevelData));
             //composite.Add(new OtherStateSpecificPresenter(state));
             //...
             

@@ -30,7 +30,8 @@ public class GameBootstrapper : MonoBehaviour
 
         var stateCompositeFactory = new StateCompositeFactory(sessionContext, logicInstaller,
             conversationView, treadmillView,
-            conversationEvent, chunkLevelData);
+            conversationEvent, chunkLevelData,
+            playerTransform, tickProvider);
         // ModelとViewとContextの参照を渡す
         var stateMachine = new GameStateMachine();
         _router = new GameRouter(stateMachine, stateCompositeFactory, sessionContext, saveDataResister);

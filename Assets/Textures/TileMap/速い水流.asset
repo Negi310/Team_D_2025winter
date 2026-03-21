@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: "\u901F\u3044\u6C34\u6D41"
+  m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.Tilemaps.AnimatedTile
+  m_AnimatedSprites:
+  - {fileID: -9169862703634118396, guid: 66dea5666e26a7a46858f327a2abd896, type: 3}
+  - {fileID: -1927757818700990482, guid: 7da171382f96e924e90acde8cf1b14ff, type: 3}
+  - {fileID: 5904596434547236392, guid: 3b948f91f12963c448de930469498cb7, type: 3}
+  m_MinSpeed: 4
+  m_MaxSpeed: 4
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0

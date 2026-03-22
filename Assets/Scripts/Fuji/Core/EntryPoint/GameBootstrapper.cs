@@ -5,12 +5,16 @@ public class GameBootstrapper : MonoBehaviour
 {
     [SerializeField] private ConversationView conversationView;
     [SerializeField] private TreadmillView treadmillView;
+    [SerializeField] private CourtingUIManager courtingUIManager;
+    [SerializeField] private NamingUIManager namingUIManager;
+    [SerializeField] private SeaUIManager seaUIManager;
     [SerializeField] private TickProvider tickProvider;
     [SerializeField] private Transform playerTransform; // 鮭のTransform
 
     [Header("Master Data")]
     [SerializeField] private ConversationEvent conversationEvent; // テスト用の会話データ
     [SerializeField] private ChunkLevelData chunkLevelData;
+    [SerializeField] private EventPool eventPool;
     
     private GameRouter _router;
 
@@ -30,8 +34,8 @@ public class GameBootstrapper : MonoBehaviour
 
         var stateCompositeFactory = new StateCompositeFactory(sessionContext, logicInstaller,
             conversationView, treadmillView,
-            conversationEvent, chunkLevelData,
-            playerTransform, tickProvider);
+            courtingUIManager,namingUIManager, seaUIManager,
+            eventPool, chunkLevelData, playerTransform, tickProvider);
         // ModelとViewとContextの参照を渡す
         var stateMachine = new GameStateMachine();
         _router = new GameRouter(stateMachine, stateCompositeFactory, sessionContext, saveDataResister);

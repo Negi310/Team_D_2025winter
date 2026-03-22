@@ -10,7 +10,9 @@ public class StateCompositeFactory
     public StateCompositeFactory(
         SessionContext context, LogicInstaller logic,
         ConversationView conversationView, TreadmillView treadmillView,
-        ConversationEvent conversationEvent, ChunkLevelData chunkLevelData,
+        CourtingUIManager courtingUIManager, NamingUIManager namingUIManager,
+        SeaUIManager seaUIManager,
+        EventPool eventPool, ChunkLevelData chunkLevelData,
         Transform playerTransform, TickProvider tickProvider)
     {
         // ジェネリクスのおかげで、引数の state は最初から「CourtshipState」として確定している！
@@ -29,7 +31,7 @@ public class StateCompositeFactory
         {
             var composite = new CompositeDisposable();
             
-            //composite.Add(new NurturingActionPresenter(state));
+            composite.Add(new RearPresenter(state, logic.RearModel, context, seaUIManager, eventPool));
             //...
             
             return composite;
@@ -39,8 +41,8 @@ public class StateCompositeFactory
         {
             var composite = new CompositeDisposable();
             var conversationContext = new ConversationContext();
-            conversationContext.MasterData = conversationEvent; // 会話イベントのマスターデータをContextにセット
-            composite.Add(new ConversationPresenter(state, logic.ConversationModel, conversationContext, conversationView));
+            //conversationContext.MasterData = conversationEvent; // 会話イベントのマスターデータをContextにセット
+            composite.Add(new ConversationPresenter(state, logic.ConversationModel, conversationContext, conversationView, payload));
             //composite.Add(new OtherStateSpecificPresenter(state));
             //...
             
@@ -50,8 +52,7 @@ public class StateCompositeFactory
         Register<NameState>((state, payload) =>
         {
             var composite = new CompositeDisposable();
-            //var conversationContext = new ConversationContext();
-            //composite.Add(new ConversationPresenter(state, conversationModel, conversationContext, conversationView));
+            composite.Add(new NamePresenter(state, logic.NameModel, logic.ForUIStatusBuilder, namingUIManager, context));
             //composite.Add(new OtherStateSpecificPresenter(state));
             //...
             

@@ -42,6 +42,7 @@ public class ConversationView : MonoBehaviour
 
         // 初期状態は透明にしておく
         _rootContainer.style.opacity = 0f;
+        root.style.display = DisplayStyle.None;
     }
 
     public void SetupEnvironment(Sprite bg)

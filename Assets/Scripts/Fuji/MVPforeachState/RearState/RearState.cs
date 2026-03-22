@@ -1,7 +1,12 @@
 public class RearState : GameState
 {
-    public void TransitionCheck(float score, bool isSuccess)
+    public void TransitionCheck(IPayload payload)
     {
-        
+        RequestTransition<ConversationState>(payload);
+    }
+    
+    public void TransitionCheck()
+    {
+        RequestTransition<UpstreamState>();
     }
 }

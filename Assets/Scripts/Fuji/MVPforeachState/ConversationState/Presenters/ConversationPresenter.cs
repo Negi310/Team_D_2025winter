@@ -6,17 +6,20 @@ public class ConversationPresenter : IDisposable
     private readonly ConversationModel _model;      // ロジック
     private readonly ConversationContext _context;        // 変数
     private readonly ConversationView _view;        // 画面描画と非同期のUI処理
+    private readonly IPayload _payload;
 
     public ConversationPresenter(
         ConversationState state, 
         ConversationModel model, 
         ConversationContext context, 
-        ConversationView view)
+        ConversationView view,
+        IPayload payload)
     {
         _state = state;
         _model = model;
         _context = context;
         _view = view;
+        _payload = payload;
 
         // State(ステートマシン)のイベントを購読
         _state.OnEnter += HandleEntered;

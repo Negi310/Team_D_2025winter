@@ -82,6 +82,7 @@ public class SaveDataResister
         if (stateName == nameof(UpstreamState)) sm.ChangeState<UpstreamState>();
         else if (stateName == nameof(CourtshipState)) sm.ChangeState<CourtshipState>();
         else if (stateName == nameof(RearState)) sm.ChangeState<RearState>();
-        else sm.ChangeState<ConversationState>();
+        //else sm.ChangeState<NameState>();
+        else sm.ChangeState<UpstreamState>(); // デフォルトは遡上状態にする
     }
 }

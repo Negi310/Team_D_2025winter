@@ -4,17 +4,15 @@ using System.Collections.Generic;
 public class EventData
 {
     public string Title { get; }
-    public string Description { get; }
-    public bool IsSelectionEvent { get; } // 選択肢か、ランダム(強制)か
+    public StatModifier BaseModifier { get; }
+    public StatModifier BonusModifier { get; }
+    public ConversationEvent LinkedConversation { get; } // 決定後に流す会話
 
-    // このイベントが実行された時、どのステータスがどれくらい変動するかの定義
-    public IReadOnlyList<StatModifier> Modifiers { get; }
-
-    public EventData(string title, string description, bool isSelection, List<StatModifier> modifiers)
+    public EventData(string title, StatModifier baseModifier, StatModifier bonusModifier, ConversationEvent linkedConversation)
     {
         Title = title;
-        Description = description;
-        IsSelectionEvent = isSelection;
-        Modifiers = modifiers;
+        BaseModifier = baseModifier;
+        BonusModifier = bonusModifier;
+        LinkedConversation = linkedConversation;
     }
 }

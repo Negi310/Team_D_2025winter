@@ -10,6 +10,7 @@ public class LogicInstaller
     public CourtshipEvaluator CourtshipEvaluator { get; }
     public NameModel NameModel { get; }
     public RearModel RearModel { get; }
+    public RiverPath RiverPath { get; }
 
     public LogicInstaller()
     {
@@ -21,5 +22,6 @@ public class LogicInstaller
         CourtshipEvaluator = new CourtshipEvaluator();
         NameModel = new NameModel();
         RearModel = new RearModel();
+        RiverPath = new RiverPath();
     }
 }

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ChunkLevelData
   m_EditorClassIdentifier: Assembly-CSharp::ChunkLevelData
   AvailableChunkPresets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 475c7b61122cf9748bfbe25f33484867, type: 2}
+  - {fileID: 11400000, guid: 475c7b61122cf9748bfbe25f33484867, type: 2}
+  - {fileID: 11400000, guid: 475c7b61122cf9748bfbe25f33484867, type: 2}
+  - {fileID: 11400000, guid: 475c7b61122cf9748bfbe25f33484867, type: 2}
+  - {fileID: 11400000, guid: 475c7b61122cf9748bfbe25f33484867, type: 2}

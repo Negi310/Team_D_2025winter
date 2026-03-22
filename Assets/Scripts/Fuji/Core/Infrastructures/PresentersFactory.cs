@@ -63,7 +63,7 @@ public class StateCompositeFactory
         {
             var composite = new CompositeDisposable();
             var treadmillContext = new TreadmillContext();
-            composite.Add(new TreadmillPresenter(state, logic.TreadmillModel, treadmillView, treadmillContext, playerTransform, tickProvider, chunkLevelData));
+            composite.Add(new TreadmillPresenter(state, logic.TreadmillModel, logic.ChunkPoolManager, logic.RiverPath, treadmillView, treadmillContext, playerTransform, tickProvider, chunkLevelData));
             //composite.Add(new OtherStateSpecificPresenter(state));
             //...
             

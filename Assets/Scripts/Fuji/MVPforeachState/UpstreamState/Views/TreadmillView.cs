@@ -16,6 +16,7 @@ public class TreadmillView : MonoBehaviour
         // Presetに登録されたPrefabをPoolから取得して配置
         Vector3 spawnPos = new Vector3(0, data.Position, 0);
         GameObject instance = _poolManager.GetChunk(data.Preset.ChunkPrefab, spawnPos);
+        instance.transform.position = new Vector3(0f, data.Position, 0f);
         _spawnedChunks.Add(data.Id, instance);
     }
 

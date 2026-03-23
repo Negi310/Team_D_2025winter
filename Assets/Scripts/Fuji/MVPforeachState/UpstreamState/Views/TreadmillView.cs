@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class TreadmillView : MonoBehaviour
 {
-    private ChunkPoolManager _poolManager;
+    private PoolManager _poolManager;
     private readonly Dictionary<string, GameObject> _spawnedChunks = new();
     
-    public void Init(ChunkPoolManager poolManager)
+    public void Init(PoolManager poolManager)
     {
         _poolManager = poolManager;
     }
@@ -14,8 +14,7 @@ public class TreadmillView : MonoBehaviour
     public void SpawnChunkVisually(RuntimeChunkData data)
     {
         // Presetに登録されたPrefabをPoolから取得して配置
-        Vector3 spawnPos = new Vector3(0, data.Position, 0);
-        GameObject instance = _poolManager.GetChunk(data.Preset.ChunkPrefab, spawnPos);
+        GameObject instance = _poolManager.Get(data.Preset.ChunkPrefab);
         instance.transform.position = new Vector3(0f, data.Position, 0f);
         _spawnedChunks.Add(data.Id, instance);
     }
@@ -24,7 +23,7 @@ public class TreadmillView : MonoBehaviour
     {
         if (_spawnedChunks.TryGetValue(data.Id, out GameObject instance))
         {
-            _poolManager.ReleaseChunk(instance);
+            _poolManager.Release(instance);
             _spawnedChunks.Remove(data.Id);
         }
     }

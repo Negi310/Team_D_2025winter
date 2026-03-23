@@ -3,7 +3,7 @@ using UnityEngine;
 public class LogicInstaller
 {
     public ConversationModel ConversationModel { get; }
-    public ChunkPoolManager ChunkPoolManager { get; }
+    public PoolManager PoolManager { get; }
     public TreadmillModel TreadmillModel { get; }
     public RiverDirector RiverDirector { get; }
     public ForUIStatusBuilder ForUIStatusBuilder { get; }
@@ -15,7 +15,7 @@ public class LogicInstaller
     public LogicInstaller()
     {
         ConversationModel = new ConversationModel();
-        ChunkPoolManager = new ChunkPoolManager(new GameObject("PoolRoot").transform);
+        PoolManager = new PoolManager(new GameObject("PoolRoot").transform);
         RiverDirector = new RiverDirector();
         TreadmillModel = new TreadmillModel(RiverDirector);
         ForUIStatusBuilder = new ForUIStatusBuilder();

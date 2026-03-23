@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using Object = UnityEngine.Object;
 
-public class ChunkPoolManager : IDisposable
+public class PoolManager : IDisposable
 {
     // ① プール本体（実家）
     private readonly Dictionary<GameObject, ObjectPool<GameObject>> _pools = new();
@@ -15,51 +15,44 @@ public class ChunkPoolManager : IDisposable
 
     private readonly Transform _poolRoot;
 
-    public ChunkPoolManager(Transform poolRoot)
+    public PoolManager(Transform poolRoot)
     {
         _poolRoot = poolRoot;
     }
 
-    public GameObject GetChunk(GameObject prefab, Vector3 spawnPosition)
+    public GameObject Get(GameObject prefab)
     {
         if (!_pools.ContainsKey(prefab))
         {
+            // 初めて要求されたプレハブなら、専用のプールを自動生成する（遅延初期化）
             _pools[prefab] = new ObjectPool<GameObject>(
-                createFunc: () => Object.Instantiate(prefab, _poolRoot), // ★名札(AddComponent)を貼らなくてよくなる！
-                actionOnGet: obj => {
-                    obj.transform.position = spawnPosition;
-                    obj.gameObject.SetActive(true);
-                },
+                createFunc: () => Object.Instantiate(prefab, _poolRoot),
+                actionOnGet: obj => obj.gameObject.SetActive(true),
                 actionOnRelease: obj => obj.gameObject.SetActive(false),
                 actionOnDestroy: obj => Object.Destroy(obj)
             );
         }
 
-        // プールから出す
         GameObject instance = _pools[prefab].Get();
-
-        // ★ 台帳に記録する「このクローンは、このプレハブから出ましたよ」
-        _spawnedInstancesMap[instance] = prefab;
+        _spawnedInstancesMap[instance] = prefab; // 台帳に記録
 
         return instance;
     }
 
-    public void ReleaseChunk(GameObject instance)
+    // ★ 変更点: 名前を汎用的な Release に変更
+    public void Release(GameObject instance)
     {
-        // ★ GetComponent（名札の確認）が不要になる！
-        // 台帳を調べて、実家（OriginalPrefab）を割り出す
         if (_spawnedInstancesMap.TryGetValue(instance, out GameObject originalPrefab))
         {
             if (_pools.ContainsKey(originalPrefab))
             {
                 _pools[originalPrefab].Release(instance);
             }
-            // 台帳から消す
             _spawnedInstancesMap.Remove(instance);
         }
         else
         {
-            // 台帳にない謎のオブジェクトなら普通に壊す
+            // 台帳にない謎のオブジェクト（手動で置かれたもの等）なら普通に壊す
             Object.Destroy(instance);
         }
     }
@@ -68,7 +61,7 @@ public class ChunkPoolManager : IDisposable
     {
         foreach (var pool in _pools.Values) pool.Dispose();
         _pools.Clear();
-        _spawnedInstancesMap.Clear(); // 台帳も破棄
+        _spawnedInstancesMap.Clear();
 
         if (_poolRoot != null) Object.Destroy(_poolRoot.gameObject);
     }

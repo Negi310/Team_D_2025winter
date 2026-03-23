@@ -6,7 +6,7 @@ public class TreadmillPresenter: IDisposable, ITickable
 {
     private readonly UpstreamState _state;
     private readonly TreadmillModel _model;
-    private readonly ChunkPoolManager _chunkPoolManager;
+    private readonly PoolManager _poolManager;
     private readonly RiverPath _path;
     private readonly TreadmillView _view;
     private readonly TreadmillContext _context;
@@ -17,7 +17,7 @@ public class TreadmillPresenter: IDisposable, ITickable
     public TreadmillPresenter(
         UpstreamState state,
         TreadmillModel model,
-        ChunkPoolManager chunkPoolManager,
+        PoolManager poolManager,
         RiverPath path,
         TreadmillView view,
         TreadmillContext context,
@@ -27,7 +27,7 @@ public class TreadmillPresenter: IDisposable, ITickable
     {
         _state = state;
         _model = model;
-        _chunkPoolManager = chunkPoolManager;
+        _poolManager = poolManager;
         _path = path;
         _view = view;
         _context = context;
@@ -55,7 +55,7 @@ public class TreadmillPresenter: IDisposable, ITickable
     {
         // 郵便屋に自分を登録し、毎フレームTickを呼んでもらう
         _tickProvider.Register(this);
-        _view.Init(_chunkPoolManager);
+        _view.Init(_poolManager);
         for (int i = 0; i < 2; i++)
         {
             var chunk = _model.SpawnNextChunk(_context, _availablePresets);

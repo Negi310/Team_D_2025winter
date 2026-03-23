@@ -2,9 +2,16 @@ using UnityEngine;
 
 public class SalmonMove : MonoBehaviour
 {
-    public float speed = 5f;
+    public SalmonData salmonData;
+
+    float speed;
+    //public float speed = 5f;
     Vector2 move;
 
+    void Start()
+    {
+        speed = salmonData.UpstreamStats.Power * 0.5f;
+    }
     void Update()
     {
         move.x = Input.GetAxis("Horizontal");

@@ -1,10 +1,14 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Linq;
 using System.Collections.Generic;
 
+
 public class NamingUIManager : MonoBehaviour
 {
+    public event Action<string> OnDecideButtonClicked;
+    
     //uiDocument
     [SerializeField]private UIDocument uiDocument;
     //rootVisualElement
@@ -15,6 +19,10 @@ public class NamingUIManager : MonoBehaviour
     private List<Label> playerCourtUIList = new List<Label>();
     //プレイヤーのUIの孫VEのデフォルトの横幅を保存
     private float defaultPlayerStatusValueWidth;
+    // 名前入力欄
+    private TextField _nameInputField; 
+    // 決定ボタン
+    private Button _decideButton;     
 
     //プレイヤーのステータスの最大値(いったん20)
     private const float playerStatusMax = 20;
@@ -22,15 +30,20 @@ public class NamingUIManager : MonoBehaviour
     {
         //uiDocumentのrootVE取得
         root = uiDocument.rootVisualElement;
+        _nameInputField = root.Q<TextField>("TextField");
+        _decideButton = root.Q<Button>("Button");
+
+        //ボタンが押されたら、入力欄のテキストを取り出してPresenterへ叫ぶ
+        _decideButton.clicked += () => OnDecideButtonClicked?.Invoke(_nameInputField.value);
         //UIの初期設定
         InitPlayerUI();
+        //非表示
+        Hide();
         //VEの横幅取得のためレイアウト確定後に実行
         root.RegisterCallbackOnce<GeometryChangedEvent>(evt =>
         {
             //プレイヤーUIの孫VEの横幅取得
             defaultPlayerStatusValueWidth = Mathf.Floor(playerSwimUIList[0].resolvedStyle.width / playerSwimUIList[0].parent.resolvedStyle.width * 100);
-            //非表示
-            Hide();
         });
     }
 

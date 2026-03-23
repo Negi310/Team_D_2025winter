@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 
 public class SeaUIManager : MonoBehaviour
 {
+    public Action<EventData> OnEventSelected;
+    
     //uiDocument
     [SerializeField]private UIDocument uiDocument;
     //root
@@ -30,13 +32,13 @@ public class SeaUIManager : MonoBehaviour
         //初期設定
         InitPlayerUI();
         InitRiverUI();
+        //非表示
+        Hide();
         //VEの横幅取得のためレイアウト確定後に実行
         root.RegisterCallbackOnce<GeometryChangedEvent>(evt =>
         {
             //川UIのひ孫VEの横幅取得
             defaultRiverStatusValueWidth = Mathf.Floor(riverUIList[0].resolvedStyle.width / riverUIList[0].parent.resolvedStyle.width * 100);
-            //非表示
-            Hide();
         });
     }
     //UIの表示

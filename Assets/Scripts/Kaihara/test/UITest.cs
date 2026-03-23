@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class UITest : MonoBehaviour
 {
     //UI動作テスト用
+    #region UI
     //海UI
     [SerializeField] private SeaUIManager seaUIManager;
     //求愛UI
@@ -49,6 +51,25 @@ public class UITest : MonoBehaviour
     //求愛残り回数
     [SerializeField] private int courtingTimes;
     private ForUIStatusBuilder forUIStatusBuilder;
+    #endregion
+    //Animatorテスト用
+    #region Animation
+    //アニメーションとか管理するクラス
+    [SerializeField] SalmonAnimationController salmonAnimationController;
+    //鮭の画像のベース
+    [SerializeField] GameObject salmonBase;
+    //鮭の髪の画像
+    [SerializeField] GameObject salmonHair1;
+    //鮭の髪の画像(塗り)
+    [SerializeField] GameObject salmonHair2;
+    //鮭の体1
+    [SerializeField] GameObject salmonBody1;
+    //鮭の体2
+    [SerializeField] GameObject salmonBody2;
+    //鮭の色
+    [SerializeField] SalmonColor salmonColor;
+    private int colorTest = 0;
+    #endregion
     void Start()
     {
         forUIStatusBuilder = new ForUIStatusBuilder();
@@ -95,6 +116,43 @@ public class UITest : MonoBehaviour
         if (Keyboard.current.mKey.wasPressedThisFrame)
         {
             namingUIManager.Hide();
+        }
+        //spaceキーでジャンプアニメーション再生
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            salmonAnimationController.JumpAnimation(salmonBase.GetComponent<Animator>(),salmonBody1.GetComponent<Animator>(),salmonBody2.GetComponent<Animator>());
+        }
+        //enterキーでダメージ時アニメーション再生
+        if (Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            salmonAnimationController.DamageAnimation(salmonBase);
+        }
+        //1キーで髪型ロング
+        if (Keyboard.current[Key.Digit1].wasPressedThisFrame)
+        {
+            salmonAnimationController.HairStyleSet(HairStyle.Long,salmonHair1.GetComponent<SpriteRenderer>(),salmonHair2.GetComponent<SpriteRenderer>());
+        }
+        //2キーで髪型普通
+        if (Keyboard.current[Key.Digit2].wasPressedThisFrame)
+        {
+            salmonAnimationController.HairStyleSet(HairStyle.Normal,salmonHair1.GetComponent<SpriteRenderer>(),salmonHair2.GetComponent<SpriteRenderer>());
+        }
+        //3キーで髪型ショート
+        if (Keyboard.current[Key.Digit3].wasPressedThisFrame)
+        {
+            salmonAnimationController.HairStyleSet(HairStyle.Short,salmonHair1.GetComponent<SpriteRenderer>(),salmonHair2.GetComponent<SpriteRenderer>());
+        }
+        //4キーで色変更
+        if (Keyboard.current[Key.Digit4].wasPressedThisFrame)
+        {
+            salmonAnimationController.ColorSet(salmonColor,salmonHair2.GetComponent<SpriteRenderer>(),salmonBody2.GetComponent<SpriteRenderer>());
+        }
+        //5キーで色順番に変更
+        if (Keyboard.current[Key.Digit5].wasPressedThisFrame)
+        {
+            salmonAnimationController.ColorSet((SalmonColor)colorTest,salmonHair2.GetComponent<SpriteRenderer>(),salmonBody2.GetComponent<SpriteRenderer>());
+            colorTest += 1;
+            if(colorTest >= 9) colorTest = 0;
         }
     }
 }

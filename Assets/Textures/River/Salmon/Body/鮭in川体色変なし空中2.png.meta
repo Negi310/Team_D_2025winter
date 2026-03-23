@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: aca7e5dda3af113429a46f0ef97212fb
+guid: 47560056ef73255428ca6bb3c844ee88
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3106950762318620247
-    second: "\u9BADin\u5DDD2_0"
+      213: -5594249648148918958
+    second: "\u9BADin\u5DDD\u4F53\u8272\u5909\u306A\u3057\u7A7A\u4E2D2_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u9BADin\u5DDD2_0"
+      name: "\u9BADin\u5DDD\u4F53\u8272\u5909\u306A\u3057\u7A7A\u4E2D2_0"
       rect:
         serializedVersion: 2
         x: 7
         y: 0
         width: 272
-        height: 374
+        height: 345
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 75661aac14b1e1b20800000000000000
-      internalID: 3106950762318620247
+      spriteID: 25dca39a59b3d52b0800000000000000
+      internalID: -5594249648148918958
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u9BADin\u5DDD2_0": 3106950762318620247
+      "\u9BADin\u5DDD\u4F53\u8272\u5909\u306A\u3057\u7A7A\u4E2D2_0": -5594249648148918958
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

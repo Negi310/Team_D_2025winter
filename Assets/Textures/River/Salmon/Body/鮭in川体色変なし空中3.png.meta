@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: a5d3cb4d8596fa642826a1865e3b49a0
+guid: cfe0caff45287e94cbdec84cb29ac06c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6786670714948127717
-    second: "\u9BADin\u5DDD3_0"
-  - first:
-      213: 7579208699939113922
-    second: "\u9BADin\u5DDD3_1"
+      213: 4747860919223963739
+    second: "\u9BADin\u5DDD\u4F53\u8272\u5909\u306A\u3057\u7A7A\u4E2D3_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u9BADin\u5DDD3_0"
+      name: "\u9BADin\u5DDD\u4F53\u8272\u5909\u306A\u3057\u7A7A\u4E2D3_0"
       rect:
         serializedVersion: 2
         x: 5
         y: 31
         width: 278
-        height: 343
+        height: 314
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5eb8704de091f2e50800000000000000
-      internalID: 6786670714948127717
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u9BADin\u5DDD3_1"
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 8
-        width: 89
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2cbcb6ef722ce2960800000000000000
-      internalID: 7579208699939113922
+      spriteID: b50dd4dc95ac3e140800000000000000
+      internalID: 4747860919223963739
       vertices: []
       indices: 
       edges: []
@@ -173,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u9BADin\u5DDD3_0": 6786670714948127717
-      "\u9BADin\u5DDD3_1": 7579208699939113922
+      "\u9BADin\u5DDD\u4F53\u8272\u5909\u306A\u3057\u7A7A\u4E2D3_0": 4747860919223963739
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

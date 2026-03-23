@@ -6,7 +6,7 @@ public class RayManager : MonoBehaviour
 {
     public float rayDistance = 10f;
 
-    public float stamina = 100f;
+    public float stamina = 100f; //あとで鮭のスタミナを参照するようにする
     public float baseDrain = 1f;
 
     public float minWidth = 2f;
@@ -21,6 +21,8 @@ public class RayManager : MonoBehaviour
     bool isNearRockNext;
     public float flowPenalty = 1.5f;
 
+    public LayerMask wallLayer;
+
     void Update()
     {
         MeasureWidth();
@@ -33,7 +35,7 @@ public class RayManager : MonoBehaviour
         RaycastHit hit;
 
         // 左
-        if (Physics.Raycast(transform.position, -transform.right, out hit, rayDistance))
+        if (Physics.Raycast(transform.position, -transform.right, out hit, rayDistance,wallLayer))
         {
             leftDistance = hit.distance;
         }
@@ -43,7 +45,7 @@ public class RayManager : MonoBehaviour
         }
 
         // 右
-        if (Physics.Raycast(transform.position, transform.right, out hit, rayDistance))
+        if (Physics.Raycast(transform.position, transform.right, out hit, rayDistance,wallLayer))
         {
             rightDistance = hit.distance;
         }
@@ -57,30 +59,20 @@ public class RayManager : MonoBehaviour
     {
         RaycastHit hit;
 
+        isNearRock = false;
+        isNearRockNext = false;
+
         if (Physics.Raycast(transform.position, transform.forward, out hit, forwardRayDistance)) //Rayの長さで近さを判定してるから別のものも判定したいなら個別に近さを設定しないといけない
         {
             if (hit.collider.CompareTag("Rock"))
             {
                 isNearRock = true;
             }
-            else
-            {
-                isNearRock = false;
-            }
 
             if (hit.collider.CompareTag("RockNext"))
             {
                 isNearRockNext = true;
             }
-            else
-            {
-                isNearRockNext = false;
-            }
-        }
-        else
-        {
-            isNearRock = false;
-            isNearRockNext = false;
         }
     }
 
@@ -90,7 +82,12 @@ public class RayManager : MonoBehaviour
 
         float t = Mathf.InverseLerp(maxWidth, minWidth, width); //幅の正規化
 
+        /*float offset = Mathf.Abs(rightDistance - leftDistance) / width;
+        float centerFactor = 1f - offset;*/
+
         float drain = baseDrain * (1f + t * 2f); //スタミナ消費量
+
+        //drain *= (1f + centerFactor); 中央に近いほどスタミナ消費増
 
         if (isNearRock)
         {

@@ -8,6 +8,7 @@ public class GameBootstrapper : MonoBehaviour
     [SerializeField] private CourtingUIManager courtingUIManager;
     [SerializeField] private NamingUIManager namingUIManager;
     [SerializeField] private SeaUIManager seaUIManager;
+    [SerializeField] private ObstaclesView obstaclesView;
     [SerializeField] private TickProvider tickProvider;
     [SerializeField] private Transform playerTransform; // 鮭のTransform
 
@@ -33,7 +34,7 @@ public class GameBootstrapper : MonoBehaviour
         var logicInstaller = new LogicInstaller();
 
         var stateCompositeFactory = new StateCompositeFactory(sessionContext, logicInstaller,
-            conversationView, treadmillView,
+            conversationView, treadmillView, obstaclesView,
             courtingUIManager,namingUIManager, seaUIManager,
             eventPool, chunkLevelData, playerTransform, tickProvider);
         // ModelとViewとContextの参照を渡す

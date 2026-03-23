@@ -10,6 +10,7 @@ public class StateCompositeFactory
     public StateCompositeFactory(
         SessionContext context, LogicInstaller logic,
         ConversationView conversationView, TreadmillView treadmillView,
+        ObstaclesView obstaclesView,
         CourtingUIManager courtingUIManager, NamingUIManager namingUIManager,
         SeaUIManager seaUIManager,
         EventPool eventPool, ChunkLevelData chunkLevelData,
@@ -63,7 +64,8 @@ public class StateCompositeFactory
         {
             var composite = new CompositeDisposable();
             var treadmillContext = new TreadmillContext();
-            composite.Add(new TreadmillPresenter(state, logic.TreadmillModel, logic.PoolManager, logic.RiverPath, treadmillView, treadmillContext, playerTransform, tickProvider, chunkLevelData));
+            var obstacleContext = new ObstacleContext();
+            composite.Add(new TreadmillPresenter(state, logic.TreadmillModel, logic.PoolManager, logic.RiverPath, logic.ObstacleModel, treadmillView, obstaclesView, treadmillContext, obstacleContext, playerTransform, tickProvider, chunkLevelData));
             //composite.Add(new OtherStateSpecificPresenter(state));
             //...
             

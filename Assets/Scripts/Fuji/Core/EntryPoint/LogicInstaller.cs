@@ -11,6 +11,8 @@ public class LogicInstaller
     public NameModel NameModel { get; }
     public RearModel RearModel { get; }
     public RiverPath RiverPath { get; }
+    public ObstacleModel ObstacleModel { get; }
+    public SplineMathModel SplineMathModel { get; }
 
     public LogicInstaller()
     {
@@ -23,5 +25,7 @@ public class LogicInstaller
         NameModel = new NameModel();
         RearModel = new RearModel();
         RiverPath = new RiverPath();
+        SplineMathModel = new SplineMathModel();
+        ObstacleModel = new ObstacleModel(SplineMathModel);
     }
 }

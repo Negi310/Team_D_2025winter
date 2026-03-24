@@ -45,4 +45,5 @@ public class ForUIStatusBuilder
         };
         return riverList;
     }
+    //各トレーニングのステータスの増減量をリストに
 }

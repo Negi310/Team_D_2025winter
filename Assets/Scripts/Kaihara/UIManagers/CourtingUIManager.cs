@@ -31,6 +31,10 @@ public class CourtingUIManager : MonoBehaviour
     private const float playerStatusMax = 20;
     //川のステータスの最大値
     private const float riverStatusMax = 20;
+    
+    public event Action<int> OnPartnerHovered; // 何番目のパートナーにホバーしたか
+    public event Action<int> OnPartnerClicked; // 何番目のパートナーをクリック（求愛）したか
+    public event Action OnAnimationCompleted;  // 結果演出が終わった時の通知
     void Awake()
     {
         //uiDocumentのrootVE取得
@@ -81,22 +85,35 @@ public class CourtingUIManager : MonoBehaviour
         //親VEのリスト生成
         var parentVEList =  root.Query<VisualElement>(className:"partner-information").ToList();
         //パートナー候補の数だけ実行し子VE(2)とimageのリストを生成
-        foreach (VisualElement parentVE in parentVEList)
+        for (int i = 0; i < parentVEList.Count; i++)
         {
-            //孫VEを一旦リストに保存
-            var groundChildVEList = parentVE.Q<VisualElement>(className:"partner-information_status").Children().ToList();
-            //変更箇所をタプルにまとめる
-            (Label personalityLabel,Label successLabel,Image image) partnerTaple = (groundChildVEList[0].Q<Label>(className:"partner-information_status_value"),groundChildVEList[1].Q<Label>(className:"partner-information_status_value"),parentVE.Q<Image>());
-            // リストに追加していく
-            partnerUIList.Add(partnerTaple);
-            //ホバー時のイベント設定
+            var parentVE = parentVEList[i];
+            var groundChildVEList = parentVE.Q<VisualElement>(className: "partner-information_status").Children().ToList();
+            
+            var partnerTuple = (
+                groundChildVEList[0].Q<Label>(className: "partner-information_status_value"),
+                groundChildVEList[1].Q<Label>(className: "partner-information_status_value"),
+                parentVE.Q<Image>()
+            );
+            partnerUIList.Add(partnerTuple);
+
+            int index = i; // クロージャ用ローカル変数
+
+            // ホバー時のイベント
             parentVE.RegisterCallback<MouseEnterEvent>(evt =>
             {
-                //ホバー時に最前列に
                 parentVE.BringToFront();
-                //川の情報の方が前になるように
-                root.Q<VisualElement>(className:"next-river-information").BringToFront();
-                
+                var nextRiverInfo = root.Q<VisualElement>(className: "next-river-information");
+                if (nextRiverInfo != null) nextRiverInfo.BringToFront();
+
+                // ★追加：Presenterに「○番目がホバーされたよ」と通知
+                OnPartnerHovered?.Invoke(index);
+            });
+
+            // ★追加：クリック時（決定）のイベント
+            parentVE.RegisterCallback<ClickEvent>(evt =>
+            {
+                OnPartnerClicked?.Invoke(index);
             });
         }
     }
@@ -247,5 +264,13 @@ public class CourtingUIManager : MonoBehaviour
             riverUIList[i].style.width = new Length(defaultRiverStatusValueWidth * float.Parse(riverStatus[i]) / riverStatusMax, LengthUnit.Percent);
         }
         
+    }
+    
+    public void SetUpPartnerSuccessRate(int index, string successRate)
+    {
+        if (index >= 0 && index < partnerUIList.Count)
+        {
+            partnerUIList[index].successLabel.text = successRate + "%";
+        }
     }
 }

@@ -67,10 +67,10 @@ public class RearModel
         {
             switch (mod.TargetStatName)
             {
-                case "Power": newStats.Power += mod.Value; break;
+                case "Speed": newStats.Speed += mod.Value; break;
                 case "Jump": newStats.Jump += mod.Value; break;
-                case "Cautiousness": newStats.Cautiousness += mod.Value; break;
                 case "Stamina": newStats.Stamina += mod.Value; break;
+                case "Attack": newStats.Attack += mod.Value; break;
             }
         }
 

@@ -1,9 +1,9 @@
 // 【Local Model】求愛フェーズ中のみ存在するコンテキスト
-public class CourtshipPhaseContext
+public class CourtshipContext
 {
     // 場に出た5体の候補
-    public SalmonData[] Candidates { get; }
-    
+    public SalmonData[] Candidates { get; set; }
+
     // 現在UIで選択されている相手（まだ決定していない）
     public SalmonData SelectedMate { get; set; }
     
@@ -11,9 +11,4 @@ public class CourtshipPhaseContext
     public float CurrentSuccessRate { get; set; }
     
     public float LastRunScore { get; set; }
-
-    public CourtshipPhaseContext(SalmonData[] candidates)
-    {
-        Candidates = candidates;
-    }
 }

@@ -806,10 +806,11 @@ MonoBehaviour:
   salmonData:
     Name: aaa
     UpstreamStats:
-      Power: 15
+      Speed: 0
       Jump: 5
-      Cautiousness: 5
       Stamina: 5
+      Attack: 0
+      Intelligence: 0
     CourtshipTraits:
       Size: 0
       ColorValue: 0
@@ -1059,6 +1060,7 @@ MonoBehaviour:
   conversationEvent: {fileID: 11400000, guid: 7486babf88c584f408247aa9db9bb10e, type: 2}
   chunkLevelData: {fileID: 11400000, guid: d3a2e5ac25e85ca429eb27550d9fc49f, type: 2}
   eventPool: {fileID: 11400000, guid: 6d1349ed7c756544eb659314c255d824, type: 2}
+  mateSetting: {fileID: 11400000, guid: 75c61d2ea599a464d9cd8e50ddf4cf15, type: 2}
 --- !u!4 &1349831011
 Transform:
   m_ObjectHideFlags: 0

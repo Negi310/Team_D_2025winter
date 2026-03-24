@@ -14,6 +14,7 @@ public class StateCompositeFactory
         CourtingUIManager courtingUIManager, NamingUIManager namingUIManager,
         SeaUIManager seaUIManager,
         EventPool eventPool, ChunkLevelData chunkLevelData,
+        MateGenerationSettingsSO _mateSetting,
         Transform playerTransform, TickProvider tickProvider)
     {
         // ジェネリクスのおかげで、引数の state は最初から「CourtshipState」として確定している！
@@ -21,7 +22,9 @@ public class StateCompositeFactory
         {
             var composite = new CompositeDisposable();
             
-            //composite.Add(new CourtshipMenuPresenter(state));
+            var courtshipContext = new CourtshipContext();
+            composite.Add(new CourtshipPresenter(state, logic.BreedingCalculator, logic.CourtshipEvaluator,
+                logic.MateGeneratable, logic.ForUIStatusBuilder, context, courtshipContext, courtingUIManager, payload, _mateSetting));
             //composite.Add(new PlayerStatsPresenter(state));
             //...
 

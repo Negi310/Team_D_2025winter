@@ -50,7 +50,7 @@ public class SaveDataResister
     
     public SaveData CreateInitialData()
     {
-        var defaultStats = new UpstreamStats(power: 10f, jump: 5f, cautiousness: 5f, stamina: 100f);
+        var defaultStats = new UpstreamStats(speed: 10f, jump: 5f, stamina: 100f, attack: 5f, intelligence: 5f);
         var defaultTraits = new CourtshipTraits(size: 1.0f, colorValue: 0.5f, shapeValue: 0.5f);
         var initialSalmon = new SalmonData(defaultStats, defaultTraits) { Name = "初代" };
 
@@ -85,6 +85,6 @@ public class SaveDataResister
         else if (stateName == nameof(NameState)) sm.ChangeState<NameState>();
         else if (stateName == nameof(UpstreamState)) sm.ChangeState<UpstreamState>();
         else if (stateName == nameof(ConversationState)) sm.ChangeState<ConversationState>();
-        else sm.ChangeState<UpstreamState>();
+        else sm.ChangeState<CourtshipState>();
     }
 }

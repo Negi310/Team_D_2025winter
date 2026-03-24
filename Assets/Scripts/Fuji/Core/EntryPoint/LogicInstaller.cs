@@ -7,7 +7,9 @@ public class LogicInstaller
     public TreadmillModel TreadmillModel { get; }
     public RiverDirector RiverDirector { get; }
     public ForUIStatusBuilder ForUIStatusBuilder { get; }
-    public CourtshipEvaluator CourtshipEvaluator { get; }
+    public ICourtshipEvaluatable CourtshipEvaluator { get; }
+    public IBreedingCalculator BreedingCalculator { get; }
+    public IMateGeneratable MateGeneratable { get; }
     public NameModel NameModel { get; }
     public RearModel RearModel { get; }
     public RiverPath RiverPath { get; }
@@ -22,6 +24,8 @@ public class LogicInstaller
         TreadmillModel = new TreadmillModel(RiverDirector);
         ForUIStatusBuilder = new ForUIStatusBuilder();
         CourtshipEvaluator = new CourtshipEvaluator();
+        BreedingCalculator = new BreedCalculatable();
+        MateGeneratable = new MateGeneratable();
         NameModel = new NameModel();
         RearModel = new RearModel();
         RiverPath = new RiverPath();

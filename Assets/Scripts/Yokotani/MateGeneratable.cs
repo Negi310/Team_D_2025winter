@@ -37,6 +37,7 @@ public class MateGeneratable : IMateGeneratable
             Random.Range(1f, 5f) * finalMultiplier,
             Random.Range(1f, 5f) * finalMultiplier,
             Random.Range(1f, 5f) * finalMultiplier,
+            Random.Range(1f, 5f) * finalMultiplier,
             Random.Range(1f, 5f) * finalMultiplier
         );
 

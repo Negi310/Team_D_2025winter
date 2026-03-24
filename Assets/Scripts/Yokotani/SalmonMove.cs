@@ -10,7 +10,7 @@ public class SalmonMove : MonoBehaviour
 
     void Start()
     {
-        speed = salmonData.UpstreamStats.Power * 0.5f;
+        speed = salmonData.UpstreamStats.Speed * 0.5f;
     }
     void Update()
     {

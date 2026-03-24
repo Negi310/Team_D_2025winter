@@ -3,7 +3,7 @@
     <ui:VisualElement name="base" class="base">
         <ui:VisualElement name="naming" class="naming-text-field">
             <ui:TextField label="" placeholder-text="名前を入力" readonly="false" name="TextField" enabled="true" max-length="10" class="a"/>
-            <ui:Button text="Button" class="b"/>
+            <ui:Button text="Button" name="Button" class="b"/>
         </ui:VisualElement>
         <ui:VisualElement class="main-salmon-status" style="flex-grow: 1;">
             <ui:VisualElement style="flex-grow: 1;">

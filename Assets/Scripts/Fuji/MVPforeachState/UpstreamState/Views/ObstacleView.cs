@@ -1,0 +1,59 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ObstaclesView : MonoBehaviour
+{
+    private PoolManager _poolManager;
+
+    [Header("Prefabs")]
+    [SerializeField] private GameObject _rockPrefab;
+    [SerializeField] private GameObject _treePrefab;
+    [SerializeField] private GameObject _drifterPrefab;
+
+    private readonly Dictionary<FixedObstacleData, GameObject> _fixedObs = new();
+    private readonly Dictionary<DrifterData, GameObject> _drifters = new();
+
+    public void Init(PoolManager poolManager) => _poolManager = poolManager;
+
+    public void SpawnFixedObstacle(FixedObstacleData data)
+    {
+        GameObject prefab = data.Type == FixedObstacleType.Rock ? _rockPrefab : _treePrefab;
+        GameObject obj = _poolManager.Get(prefab);
+        obj.transform.position = new Vector3(data.Position.x, data.Position.y, 0f);
+        _fixedObs.Add(data, obj);
+    }
+
+    public void SpawnDrifter(DrifterData data)
+    {
+        GameObject obj = _poolManager.Get(_drifterPrefab);
+        obj.transform.position = new Vector3(data.Position.x, data.Position.y, 0f);
+        _drifters.Add(data, obj);
+    }
+
+    // 毎フレームPresenterから呼ばれる
+    public void UpdateDrifterTransforms()
+    {
+        foreach (var kvp in _drifters)
+        {
+            kvp.Value.transform.position = new Vector3(kvp.Key.Position.x, kvp.Key.Position.y, 0f);
+        }
+    }
+
+    public void DespawnFixedObstacle(FixedObstacleData data)
+    {
+        if (_fixedObs.TryGetValue(data, out GameObject obj))
+        {
+            _poolManager.Release(obj);
+            _fixedObs.Remove(data);
+        }
+    }
+
+    public void DespawnDrifter(DrifterData data)
+    {
+        if (_drifters.TryGetValue(data, out GameObject obj))
+        {
+            _poolManager.Release(obj);
+            _drifters.Remove(data);
+        }
+    }
+}

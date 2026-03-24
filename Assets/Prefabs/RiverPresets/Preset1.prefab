@@ -46,6 +46,138 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!1 &2755462444551797448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1237533729030314904}
+  - component: {fileID: 6983093755944005162}
+  m_Layer: 0
+  m_Name: Spline (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1237533729030314904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2755462444551797448}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7903874354215207051}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6983093755944005162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2755462444551797448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineContainer
+  m_Spline:
+    m_EditModeType: 1
+    m_Knots: []
+    m_MetaData: []
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  m_Splines:
+  - m_EditModeType: 1
+    m_Knots:
+    - Position:
+        x: -0.742124
+        y: 0.1155939
+        z: 0
+      TangentIn:
+        x: -0
+        y: -0
+        z: -0.72305375
+      TangentOut:
+        x: 0
+        y: 0
+        z: 0.72305375
+      Rotation:
+        value:
+          x: -0.6148623
+          y: 0.34920534
+          z: 0.6148623
+          w: 0.34920534
+    - Position:
+        x: -4.445769
+        y: 6.325561
+        z: 0
+      TangentIn:
+        x: 0
+        y: 0
+        z: -0.88383424
+      TangentOut:
+        x: 0
+        y: 0
+        z: 0.88383424
+      Rotation:
+        value:
+          x: 0.4962068
+          y: 0.5037645
+          z: 0.49620703
+          w: -0.50376457
+    - Position:
+        x: -0.992124
+        y: 9.948309
+        z: 0
+      TangentIn:
+        x: -0
+        y: -0
+        z: -0.5005194
+      TangentOut:
+        x: 0
+        y: 0
+        z: 0.5005194
+      Rotation:
+        value:
+          x: 0.65000236
+          y: 0.27838275
+          z: 0.65000236
+          w: -0.27838275
+    m_MetaData:
+    - Mode: 0
+      Tension: 0.5
+    - Mode: 2
+      Tension: 0.5
+    - Mode: 0
+      Tension: 0.5
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  m_Knots:
+    m_KnotsLink: []
 --- !u!1 &3543134061011952664
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,149 +239,149 @@ MonoBehaviour:
   - m_EditModeType: 1
     m_Knots:
     - Position:
-        x: 0
+        x: -3.42
         y: 0
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.089190766
+        z: -0.11087581
       TangentOut:
         x: 0
         y: 0
-        z: 0.089190766
+        z: 0.11087581
       Rotation:
         value:
-          x: 0.705424
-          y: 0.048753794
-          z: -0.048753805
-          w: -0.7054241
+          x: 0.67021865
+          y: -0.22540395
+          z: 0.225404
+          w: -0.6702187
     - Position:
-        x: -0.12269831
+        x: -2.75
         y: 0.8834276
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.33449927
+        z: -0.4078974
       TangentOut:
         x: 0
         y: 0
-        z: 0.46223587
+        z: 0.5024068
       Rotation:
         value:
-          x: -0.69404656
-          y: -0.13527551
-          z: 0.1352755
-          w: 0.69404644
+          x: 0.67212224
+          y: -0.21966252
+          z: 0.21966256
+          w: -0.67212224
     - Position:
-        x: -1.128824
+        x: -1.78
         y: 2.2576485
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.6189786
+        z: -0.5283373
       TangentOut:
         x: 0
         y: 0
-        z: 0.74300605
+        z: 0.5635765
       Rotation:
         value:
-          x: -0.66782707
-          y: -0.23239405
-          z: 0.23239405
-          w: 0.667827
+          x: 0.703782
+          y: -0.06848935
+          z: 0.06848944
+          w: -0.703782
     - Position:
-        x: -2.7239017
+        x: -2.21
         y: 4.1226625
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.7715134
+        z: -0.6710495
       TangentOut:
         x: 0
         y: 0
-        z: 0.71555096
+        z: 0.7979869
       Rotation:
         value:
-          x: -0.684482
-          y: -0.17743844
-          z: 0.17743841
-          w: 0.684482
+          x: -0.68687606
+          y: -0.16793256
+          z: 0.16793251
+          w: 0.68687594
     - Position:
-        x: -3.3619328
+        x: -4.02
         y: 6.1349144
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.63620543
+        z: -0.72369194
       TangentOut:
         x: 0
         y: 0
-        z: 0.54042965
+        z: 0.5426214
       Rotation:
         value:
-          x: -0.70562845
-          y: -0.04569962
-          z: 0.045699596
-          w: 0.70562845
+          x: -0.6948556
+          y: -0.13105632
+          z: 0.13105623
+          w: 0.6948556
     - Position:
-        x: -3.2883139
+        x: -4.04
         y: 7.656373
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.4517937
+        z: -0.4453442
       TangentOut:
         x: 0
         y: 0
-        z: 0.38675028
+        z: 0.348997
       Rotation:
         value:
-          x: 0.69834757
-          y: -0.110953815
-          z: 0.110953875
-          w: -0.69834757
+          x: -0.7070491
+          y: 0.009034935
+          z: -0.009034493
+          w: 0.7070491
     - Position:
-        x: -2.6748223
+        x: -3.98
         y: 8.588881
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.3657987
+        z: -0.33520225
       TangentOut:
         x: 0
         y: 0
-        z: 0.35837075
+        z: 0.39078298
       Rotation:
         value:
-          x: -0.6879736
-          y: 0.16337806
-          z: -0.163378
-          w: 0.6879735
+          x: -0.7063698
+          y: 0.0322753
+          z: -0.03227523
+          w: 0.7063698
     - Position:
-        x: -2.306728
-        y: 9.595006
+        x: -3.83
+        y: 9.85
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.10713458
+        z: -0.12700091
       TangentOut:
         x: 0
         y: 0
-        z: 0.10713458
+        z: 0.12700091
       Rotation:
         value:
-          x: 0.696262
-          y: -0.123366386
-          z: 0.12336643
-          w: -0.696262
+          x: 0.70586836
+          y: -0.041831266
+          z: 0.041831266
+          w: -0.7058684
     m_MetaData:
     - Mode: 0
       Tension: 0.5
@@ -339,149 +471,149 @@ MonoBehaviour:
   - m_EditModeType: 1
     m_Knots:
     - Position:
-        x: 0
+        x: -2.11
         y: 0
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.14131095
+        z: -0.13325165
       TangentOut:
         x: 0
         y: 0
-        z: 0.14131095
+        z: 0.13325165
       Rotation:
         value:
-          x: 0.6960152
-          y: 0.124751
-          z: -0.12475101
-          w: -0.6960153
+          x: 0.7061277
+          y: -0.03719728
+          z: 0.03719738
+          w: -0.70612776
     - Position:
-        x: -0.49079323
+        x: -1.97
         y: 1.3251417
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.466947
+        z: -0.42092973
       TangentOut:
         x: 0
         y: 0
-        z: 0.46986416
+        z: 0.4051697
       Rotation:
         value:
-          x: 0.68440026
-          y: 0.17775339
-          z: -0.17775355
-          w: -0.6844002
+          x: 0.7049609
+          y: 0.055046864
+          z: -0.055047024
+          w: -0.7049609
     - Position:
-        x: -1.37
+        x: -2.47
         y: 2.453966
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.47322503
+        z: -0.39419436
       TangentOut:
         x: 0
         y: 0
-        z: 0.46999672
+        z: 0.36253518
       Rotation:
         value:
-          x: -0.65726966
-          y: -0.26076162
-          z: 0.26076123
-          w: 0.6572698
+          x: -0.6899159
+          y: -0.15497132
+          z: 0.15497085
+          w: 0.68991596
     - Position:
-        x: -2.4294257
+        x: -2.94
         y: 3.386473
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.4682082
+        z: -0.3363865
       TangentOut:
         x: 0
         y: 0
-        z: 0.46553776
+        z: 0.3149108
       Rotation:
         value:
-          x: 0.63500583
-          y: 0.31107467
-          z: -0.31107503
-          w: -0.6350058
+          x: 0.6848531
+          y: 0.17600068
+          z: -0.17600071
+          w: -0.6848531
     - Position:
-        x: -3.5827894
+        x: -3.41
         y: 4.171742
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.46783972
+        z: -0.2991904
       TangentOut:
         x: 0
         y: 0
-        z: 0.47376773
+        z: 0.2879275
       Rotation:
         value:
-          x: 0.620255
-          y: 0.3395346
-          z: -0.3395347
-          w: -0.62025493
+          x: 0.6825262
+          y: 0.18481907
+          z: -0.18481925
+          w: -0.6825261
     - Position:
-        x: -4.8097725
+        x: -3.83
         y: 4.907932
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.44128236
+        z: -0.30472192
       TangentOut:
         x: 0
         y: 0
-        z: 0.40106007
+        z: 0.35669237
       Rotation:
         value:
-          x: 0.6524661
-          y: 0.272558
-          z: -0.27255812
-          w: -0.6524661
+          x: 0.6832779
+          y: 0.18202023
+          z: -0.18202029
+          w: -0.6832779
     - Position:
-        x: -5.43
+        x: -4.41
         y: 5.9140577
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.38717675
+        z: -0.41038644
       TangentOut:
         x: 0
         y: 0
-        z: 0.43746537
+        z: 0.47079667
       Rotation:
         value:
-          x: 0.70467335
-          y: 0.058612753
-          z: -0.05861277
-          w: -0.70467335
+          x: -0.6932036
+          y: -0.13953063
+          z: 0.13953055
+          w: 0.6932036
     - Position:
-        x: -5.1
+        x: -4.82
         y: 7.3864374
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.46995598
+        z: -0.45542005
       TangentOut:
         x: 0
         y: 0
-        z: 0.41587856
+        z: 0.3860264
       Rotation:
         value:
-          x: -0.698109
-          y: 0.11244477
-          z: -0.11244472
-          w: 0.698109
+          x: -0.70693403
+          y: -0.015630703
+          z: 0.015630674
+          w: 0.706934
     - Position:
         x: -4.62
         y: 8.466182
@@ -489,17 +621,17 @@ MonoBehaviour:
       TangentIn:
         x: -0
         y: -0
-        z: -0.4059772
+        z: -0.37953347
       TangentOut:
         x: 0
         y: 0
-        z: 0.43241575
+        z: 0.41934115
       Rotation:
         value:
-          x: -0.6886459
-          y: 0.16052042
-          z: -0.16052024
-          w: 0.6886459
+          x: -0.6968877
+          y: 0.11978111
+          z: -0.11978097
+          w: 0.6968877
     - Position:
         x: -3.98
         y: 9.644086
@@ -592,46 +724,6 @@ Tilemap:
   m_GameObject: {fileID: 5986366125013898400}
   m_Enabled: 1
   m_Tiles:
-  - first: {x: -5, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 0
-  - first: {x: -4, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 0
-  - first: {x: -3, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 0
-  - first: {x: -2, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 0
   - first: {x: -1, y: -5, z: 0}
     second:
       serializedVersion: 2
@@ -1333,46 +1425,6 @@ Tilemap:
       dummyAlignment: 0
       m_AllTileFlags: 0
   m_AnimatedTiles:
-  - first: {x: -5, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_AnimatedSprites:
-      - {fileID: 8136597788868972110, guid: fad55f6f6fe0a39469f9605b51e549cc, type: 3}
-      - {fileID: 8312099489279698733, guid: 854a4a50bc7212342acbc720d2ba6242, type: 3}
-      - {fileID: 4004043901446615601, guid: 4fefaaf14ec4bab44aa1aa58246360ce, type: 3}
-      m_AnimationSpeed: 4
-      m_AnimationTimeOffset: 0
-      m_Flags: 0
-  - first: {x: -4, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_AnimatedSprites:
-      - {fileID: 8136597788868972110, guid: fad55f6f6fe0a39469f9605b51e549cc, type: 3}
-      - {fileID: 8312099489279698733, guid: 854a4a50bc7212342acbc720d2ba6242, type: 3}
-      - {fileID: 4004043901446615601, guid: 4fefaaf14ec4bab44aa1aa58246360ce, type: 3}
-      m_AnimationSpeed: 4
-      m_AnimationTimeOffset: 0
-      m_Flags: 0
-  - first: {x: -3, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_AnimatedSprites:
-      - {fileID: -7312321359291398570, guid: a26da414ff152a545bdfde0894e351d2, type: 3}
-      - {fileID: -6108666174019460645, guid: 8127a7ab2390ded418a37221010020d8, type: 3}
-      - {fileID: 1050101506829516908, guid: 80c351f1cbe6a1c4fade24c4fb39686f, type: 3}
-      m_AnimationSpeed: 4
-      m_AnimationTimeOffset: 0
-      m_Flags: 0
-  - first: {x: -2, y: -5, z: 0}
-    second:
-      serializedVersion: 2
-      m_AnimatedSprites:
-      - {fileID: -7312321359291398570, guid: a26da414ff152a545bdfde0894e351d2, type: 3}
-      - {fileID: -6108666174019460645, guid: 8127a7ab2390ded418a37221010020d8, type: 3}
-      - {fileID: 1050101506829516908, guid: 80c351f1cbe6a1c4fade24c4fb39686f, type: 3}
-      m_AnimationSpeed: 4
-      m_AnimationTimeOffset: 0
-      m_Flags: 0
   - first: {x: -1, y: -5, z: 0}
     second:
       serializedVersion: 2
@@ -2074,11 +2126,11 @@ Tilemap:
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
-  - m_RefCount: 25
+  - m_RefCount: 23
     m_Data: {fileID: 11400000, guid: 7af8b5f719f8ff14785fc55bd6adffb0, type: 2}
   - m_RefCount: 20
     m_Data: {fileID: 11400000, guid: 010274e26080cfe4cb5bf3a7d493f0bc, type: 2}
-  - m_RefCount: 29
+  - m_RefCount: 27
     m_Data: {fileID: 11400000, guid: 518ff54426cd6934b892a3d9e5ed3d81, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -2087,11 +2139,11 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileSpriteArray:
-  - m_RefCount: 25
+  - m_RefCount: 23
     m_Data: {fileID: 4004043901446615601, guid: 4fefaaf14ec4bab44aa1aa58246360ce, type: 3}
   - m_RefCount: 20
     m_Data: {fileID: 5904596434547236392, guid: 3b948f91f12963c448de930469498cb7, type: 3}
-  - m_RefCount: 29
+  - m_RefCount: 27
     m_Data: {fileID: 1050101506829516908, guid: 80c351f1cbe6a1c4fade24c4fb39686f, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -2100,7 +2152,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileMatrixArray:
-  - m_RefCount: 74
+  - m_RefCount: 70
     m_Data:
       e00: 1
       e01: 0
@@ -2119,7 +2171,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 74
+  - m_RefCount: 70
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -2212,6 +2264,7 @@ GameObject:
   - component: {fileID: 2479740689634188506}
   - component: {fileID: 5734976392431247120}
   - component: {fileID: 2765342905696697378}
+  - component: {fileID: 3073971385536489366}
   m_Layer: 0
   m_Name: Tilemap (1)
   m_TagString: Untagged
@@ -2246,8 +2299,48 @@ Tilemap:
   - first: {x: -6, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 7
+      m_TileSpriteIndex: 7
+      m_TileMatrixIndex: 4
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -5, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -4, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -3, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -2, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 9
+      m_TileSpriteIndex: 9
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2266,13 +2359,53 @@ Tilemap:
   - first: {x: -6, y: 1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -5, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -4, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -3, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 7
+      m_TileSpriteIndex: 7
+      m_TileMatrixIndex: 2
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -2, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 8
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 1
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 0
   - first: {x: 5, y: 1, z: 0}
     second:
       serializedVersion: 2
@@ -2286,13 +2419,43 @@ Tilemap:
   - first: {x: -6, y: 2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -5, y: 2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -4, y: 2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 7
+      m_TileSpriteIndex: 7
+      m_TileMatrixIndex: 3
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -3, y: 2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 8
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 1
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 0
   - first: {x: 5, y: 2, z: 0}
     second:
       serializedVersion: 2
@@ -2306,13 +2469,33 @@ Tilemap:
   - first: {x: -6, y: 3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -5, y: 3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 7
+      m_TileSpriteIndex: 7
+      m_TileMatrixIndex: 2
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -4, y: 3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 8
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 1
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 0
   - first: {x: 5, y: 3, z: 0}
     second:
       serializedVersion: 2
@@ -2326,13 +2509,23 @@ Tilemap:
   - first: {x: -6, y: 4, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
+      m_TileIndex: 10
+      m_TileSpriteIndex: 10
+      m_TileMatrixIndex: 1
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -5, y: 4, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 8
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 1
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 0
   - first: {x: 5, y: 4, z: 0}
     second:
       serializedVersion: 2
@@ -2377,7 +2570,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 2
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 8
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2603,47 +2796,95 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  m_AnimatedTiles: {}
+  m_AnimatedTiles:
+  - first: {x: -2, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_AnimatedSprites:
+      - {fileID: 21300000, guid: 75947c5688404b24289f46ff6dd2fcdc, type: 3}
+      - {fileID: 21300000, guid: 4727cb54c6defd74fa98e79b9507c2c7, type: 3}
+      - {fileID: 21300000, guid: 687af2e86c9a5ae4ea84010f1add1001, type: 3}
+      m_AnimationSpeed: 4
+      m_AnimationTimeOffset: 0
+      m_Flags: 0
+  - first: {x: -3, y: 2, z: 0}
+    second:
+      serializedVersion: 2
+      m_AnimatedSprites:
+      - {fileID: 21300000, guid: 75947c5688404b24289f46ff6dd2fcdc, type: 3}
+      - {fileID: 21300000, guid: 4727cb54c6defd74fa98e79b9507c2c7, type: 3}
+      - {fileID: 21300000, guid: 687af2e86c9a5ae4ea84010f1add1001, type: 3}
+      m_AnimationSpeed: 4
+      m_AnimationTimeOffset: 0
+      m_Flags: 0
+  - first: {x: -4, y: 3, z: 0}
+    second:
+      serializedVersion: 2
+      m_AnimatedSprites:
+      - {fileID: 21300000, guid: 75947c5688404b24289f46ff6dd2fcdc, type: 3}
+      - {fileID: 21300000, guid: 4727cb54c6defd74fa98e79b9507c2c7, type: 3}
+      - {fileID: 21300000, guid: 687af2e86c9a5ae4ea84010f1add1001, type: 3}
+      m_AnimationSpeed: 4
+      m_AnimationTimeOffset: 0
+      m_Flags: 0
+  - first: {x: -5, y: 4, z: 0}
+    second:
+      serializedVersion: 2
+      m_AnimatedSprites:
+      - {fileID: 21300000, guid: 75947c5688404b24289f46ff6dd2fcdc, type: 3}
+      - {fileID: 21300000, guid: 4727cb54c6defd74fa98e79b9507c2c7, type: 3}
+      - {fileID: 21300000, guid: 687af2e86c9a5ae4ea84010f1add1001, type: 3}
+      m_AnimationSpeed: 4
+      m_AnimationTimeOffset: 0
+      m_Flags: 0
   m_TileAssetArray:
-  - m_RefCount: 10
+  - m_RefCount: 5
     m_Data: {fileID: 11400000, guid: a3594063f91f16e46b16335feffab4b7, type: 2}
   - m_RefCount: 8
     m_Data: {fileID: 11400000, guid: 1c68acb6329ef184498456fa9724c873, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 0a02aa118e46cee4397be45dc3519c06, type: 2}
-  - m_RefCount: 3
+  - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: 78faadd927c48074592215cfb0c38a96, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: a9d79d49964b3e740818fb7888f776f7, type: 2}
-  - m_RefCount: 9
+  - m_RefCount: 15
     m_Data: {fileID: 11400000, guid: 7ddb7bb9c0884a942a8117dd3c29232c, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: c291340f8a57c1345859bd2a6ff8fed1, type: 2}
-  - m_RefCount: 1
+  - m_RefCount: 5
     m_Data: {fileID: 11400000, guid: d1b9b66943a567448acf822a90b7e692, type: 2}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 4
+    m_Data: {fileID: 11400000, guid: 510a45c4d06472b49b2ae12573b3b3f5, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: c833dcb12900b3740b7339952751a175, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: d4ac3dfd6dd2dda49b502902db7d70f4, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 10
+  - m_RefCount: 5
     m_Data: {fileID: 21300000, guid: c3bb92737617be145a564ac027ef4127, type: 3}
   - m_RefCount: 8
     m_Data: {fileID: 21300000, guid: b21c35c4c2a981a4192ec2c77796cc7d, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300000, guid: 050fa30b6df8c944dae59777a22bba02, type: 3}
-  - m_RefCount: 3
+  - m_RefCount: 4
+    m_Data: {fileID: 21300000, guid: 687af2e86c9a5ae4ea84010f1add1001, type: 3}
+  - m_RefCount: 6
     m_Data: {fileID: 21300000, guid: f55aa69f1844c744c97918f5150f9116, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 21300000, guid: 23652f4492259a84c88cbde166329908, type: 3}
-  - m_RefCount: 9
+  - m_RefCount: 15
     m_Data: {fileID: 21300000, guid: c61f291f10629e348aec9d7569264905, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 4a24f890298a25742941a468501fe966, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 5
     m_Data: {fileID: 21300000, guid: 4534082b312b8f1449b1fcfd0d528b9b, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 050fa30b6df8c944dae59777a22bba02, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 3c216cefe6abffe45a56c5768a66955f, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 9ae9125b684f65e45988b87b74f5f71c, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 36
+  - m_RefCount: 41
     m_Data:
       e00: 1
       e01: 0
@@ -2661,26 +2902,80 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 0
+  - m_RefCount: 5
     m_Data:
-      e00: -1.5032435e+10
+      e00: 1
       e01: 0
-      e02: -1.6963392e-12
-      e03: -1.5032402e+10
-      e10: 5.73e-43
-      e11: 0
-      e12: 9.4e-44
-      e13: 5.73e-43
-      e20: -5219760
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: -1
+      e12: 0
+      e13: 0
+      e20: 0
       e21: 0
-      e22: 2.2590641e+21
-      e23: 0.0000000011211769
-      e30: 4.5907e-41
+      e22: 1
+      e23: 0
+      e30: 0
       e31: 0
-      e32: 5.8e-43
-      e33: 5.75e-43
+      e32: 0
+      e33: 1
+  - m_RefCount: 2
+    m_Data:
+      e00: -1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: -1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - m_RefCount: 1
+    m_Data:
+      e00: 0
+      e01: -1
+      e02: 0
+      e03: 0
+      e10: -1
+      e11: 0
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - m_RefCount: 1
+    m_Data:
+      e00: -1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_TileColorArray:
-  - m_RefCount: 36
+  - m_RefCount: 50
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -2751,8 +3046,8 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -825483695
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -2762,6 +3057,44 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
+--- !u!19719996 &3073971385536489366
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7489092743278957300}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1 &8552240408929365924
 GameObject:
   m_ObjectHideFlags: 0
@@ -2771,6 +3104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7903874354215207051}
+  - component: {fileID: 2902875277014062599}
   m_Layer: 0
   m_Name: Preset1
   m_TagString: Untagged
@@ -2795,8 +3129,26 @@ Transform:
   - {fileID: 1761700393324178286}
   - {fileID: 423313102123976933}
   - {fileID: 3846822767970856040}
+  - {fileID: 1237533729030314904}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2902875277014062599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8552240408929365924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639d5d2c30dfa7f4aa7a8f8685fc3a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChunkSplineBaker
+  _leftBankSpline: {fileID: 8742453333479193551}
+  _rightBankSpline: {fileID: 7812259177583547749}
+  _centerSpline: {fileID: 2409276316170420787}
+  _targetPreset: {fileID: 11400000, guid: 475c7b61122cf9748bfbe25f33484867, type: 2}
+  _resolution: 11
 --- !u!1 &9160666363490892786
 GameObject:
   m_ObjectHideFlags: 0
@@ -2858,131 +3210,131 @@ MonoBehaviour:
   - m_EditModeType: 1
     m_Knots:
     - Position:
-        x: 0
+        x: -1.63
         y: 0
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.13464889
+        z: -0.13272579
       TangentOut:
         x: 0
         y: 0
-        z: 0.13464889
+        z: 0.13272579
       Rotation:
         value:
-          x: 0.70445335
-          y: 0.061200574
-          z: -0.06120058
-          w: -0.70445335
+          x: -0.70698136
+          y: -0.013321327
+          z: 0.013321261
+          w: 0.7069813
     - Position:
-        x: -0.23220444
+        x: -1.68
         y: 1.3263156
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.43184292
+        z: -0.4208624
       TangentOut:
         x: 0
         y: 0
-        z: 0.43057758
+        z: 0.45092753
       Rotation:
         value:
-          x: -0.6897474
-          y: -0.15571943
-          z: 0.15571943
-          w: 0.6897474
+          x: 0.689947
+          y: 0.15483291
+          z: -0.15483302
+          w: -0.68994695
     - Position:
-        x: -1.1096625
+        x: -2.82
         y: 2.3372278
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.47158998
+        z: -0.46077687
       TangentOut:
         x: 0
         y: 0
-        z: 0.562301
+        z: 0.38255805
       Rotation:
         value:
-          x: -0.62825036
-          y: -0.324502
-          z: 0.3245019
-          w: 0.62825036
+          x: -0.6454795
+          y: -0.2887147
+          z: 0.28871468
+          w: 0.6454795
     - Position:
-        x: -2.8780322
+        x: -3.6
         y: 3.0405567
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.58611953
+        z: -0.35319096
       TangentOut:
         x: 0
         y: 0
-        z: 0.5132574
+        z: 0.36369187
       Rotation:
         value:
-          x: -0.6123404
-          y: -0.35360888
-          z: 0.35360888
-          w: 0.6123404
+          x: 0.6605079
+          y: 0.25244644
+          z: -0.2524472
+          w: -0.6605077
     - Position:
-        x: -4.023453
+        x: -4.25
         y: 3.9448366
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.4571865
+        z: -0.3942169
       TangentOut:
         x: 0
         y: 0
-        z: 0.4245022
+        z: 0.44648647
       Rotation:
         value:
-          x: 0.6662646
-          y: 0.2368364
-          z: -0.23683645
-          w: -0.6662646
+          x: -0.6708261
+          y: -0.22358984
+          z: 0.22358975
+          w: 0.67082614
     - Position:
-        x: -4.586117
+        x: -5.13
         y: 5.070163
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.41338378
+        z: -0.44729072
       TangentOut:
         x: 0
         y: 0
-        z: 0.41560674
+        z: 0.4231852
       Rotation:
         value:
-          x: 0.70022297
-          y: 0.09842673
-          z: -0.098426774
-          w: -0.70022297
+          x: 0.6928391
+          y: 0.14132921
+          z: -0.14132932
+          w: -0.6928392
     - Position:
-        x: -4.7066875
+        x: -5.31
         y: 6.336155
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.43547
+        z: -0.42977363
       TangentOut:
         x: 0
         y: 0
-        z: 0.47709137
+        z: 0.50844824
       Rotation:
         value:
-          x: -0.7063494
-          y: 0.032719642
-          z: -0.032719642
-          w: 0.7063494
+          x: -0.7022564
+          y: 0.08268018
+          z: -0.082680136
+          w: 0.7022563
     - Position:
         x: -4.28469
         y: 7.803098
@@ -2990,53 +3342,53 @@ MonoBehaviour:
       TangentIn:
         x: -0
         y: -0
-        z: -0.47330996
+        z: -0.5924899
       TangentOut:
         x: 0
         y: 0
-        z: 0.4121044
+        z: 0.6005843
       Rotation:
         value:
-          x: 0.6982207
-          y: -0.11174935
-          z: 0.11174937
-          w: -0.6982207
+          x: -0.65470254
+          y: 0.26714143
+          z: -0.26714125
+          w: 0.6547026
     - Position:
-        x: -3.8827868
+        x: -2.8
         y: 8.888245
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.37919965
+        z: -0.56015456
       TangentOut:
         x: 0
         y: 0
-        z: 0.36960605
+        z: 0.47430575
       Rotation:
         value:
-          x: -0.68959814
-          y: 0.15637907
-          z: -0.15637907
-          w: 0.689598
+          x: -0.6433306
+          y: 0.29347193
+          z: -0.29347193
+          w: 0.6433306
     - Position:
-        x: -3.3201237
+        x: -1.88
         y: 9.832715
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.10993699
+        z: -0.13184932
       TangentOut:
         x: 0
         y: 0
-        z: 0.10993699
+        z: 0.13184932
       Rotation:
         value:
-          x: -0.6817444
-          y: 0.18768218
-          z: -0.18768217
-          w: 0.68174434
+          x: -0.655043
+          y: 0.26630557
+          z: -0.26630542
+          w: 0.65504307
     m_MetaData:
     - Mode: 0
       Tension: 0.5

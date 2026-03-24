@@ -18,14 +18,17 @@ public class GameBootstrapper : MonoBehaviour
     [SerializeField] private EventPool eventPool;
     
     private GameRouter _router;
+    private GameStateMachine _stateMachine;
+    private SaveDataResister _saveDataResister;
+    private SaveData _saveData;
 
     private void Awake()
     {
-        var saveDataResister = new SaveDataResister();
-        if (!saveDataResister.TryLoad(out SaveData saveData))
+        _saveDataResister = new SaveDataResister();
+        if (!_saveDataResister.TryLoad(out SaveData saveData))
         {
-            saveData = saveDataResister.CreateInitialData();
-            saveDataResister.Save(saveData); 
+            saveData = _saveDataResister.CreateInitialData();
+            _saveDataResister.Save(saveData);
         }
         
         var sessionContext = new SessionContext(saveData);
@@ -38,10 +41,14 @@ public class GameBootstrapper : MonoBehaviour
             courtingUIManager,namingUIManager, seaUIManager,
             eventPool, chunkLevelData, playerTransform, tickProvider);
         // ModelとViewとContextの参照を渡す
-        var stateMachine = new GameStateMachine();
-        _router = new GameRouter(stateMachine, stateCompositeFactory, sessionContext, saveDataResister);
-        
-        saveDataResister.ResumeState(stateMachine, saveData.LastSavedStateName);
+        _stateMachine = new GameStateMachine();
+        _router = new GameRouter(_stateMachine, stateCompositeFactory, sessionContext, _saveDataResister);
+        _saveData = saveData;
+    }
+    
+    private void Start()
+    {
+        _saveDataResister.ResumeState(_stateMachine, _saveData.LastSavedStateName);
     }
 
     private void OnDestroy()

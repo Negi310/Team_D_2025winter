@@ -75,7 +75,7 @@ public class CourtingUIManager : MonoBehaviour
     void InitPartnerUI()
     {
         //パートナー候補のUI
-        //親VE(class:partner-information)(パートナー一体につき一つ)
+        //親Button(class:partner-information)(パートナー一体につき一つ)
         //|--子VE(1)(class:partner-information_background)(ホバー時に拡大してホバー対象をわかりやすくする)
         //|--子VE(2)(class:female-illustration_base)(パートナーのイラスト表示用)
         //|--子VE(3)(class:partner-information_status)(相性などの情報表示用　ホバー時にのみ見える)
@@ -84,27 +84,29 @@ public class CourtingUIManager : MonoBehaviour
         //      |--label(2)(class:partner-information_status_value)(項目の値の表示)
 
         //親VEのリスト生成
-        var parentVEList =  root.Query<VisualElement>(className:"partner-information").ToList();
+        var parentList =  root.Query<Button>(className:"partner-information").ToList();
 
-        foreach (VisualElement parentVE in parentVEList)
+        foreach (Button parent in parentList)
         {
             //孫VEを一旦リストに保存
-            var groundChildVEList = parentVE.Q<VisualElement>(className:"partner-information_status").Children().ToList();
+            var groundChildVEList = parent.Q<VisualElement>(className:"partner-information_status").Children().ToList();
             //変更箇所をタプルにまとめる
-            (Label personalityLabel,Label successLabel,VisualElement illust) partnerTaple = (groundChildVEList[0].Q<Label>(className:"partner-information_status_value"),groundChildVEList[1].Q<Label>(className:"partner-information_status_value"),parentVE.Q<VisualElement>(className:"female-illustration_base"));
+            (Label personalityLabel,Label successLabel,VisualElement illust) partnerTaple = (groundChildVEList[0].Q<Label>(className:"partner-information_status_value"),groundChildVEList[1].Q<Label>(className:"partner-information_status_value"),parent.Q<VisualElement>(className:"female-illustration_base"));
             // リストに追加していく
             partnerUIList.Add(partnerTaple);
             //子VE(2)の初期設定
             femaleIllust.InitIllust(partnerTaple.illust);
             //ホバー時のイベント設定
-            parentVE.RegisterCallback<MouseEnterEvent>(evt =>
+            parent.RegisterCallback<MouseEnterEvent>(evt =>
             {
                 //ホバー時に最前列に
-                parentVE.BringToFront();
+                parent.BringToFront();
                 //川の情報の方が前になるように
                 root.Q<VisualElement>(className:"next-river-information").BringToFront();
                 
             });
+            //クリック時のイベント
+            parent.clicked += () =>{};
         }
     }
     //川の情報のUIの初期設定

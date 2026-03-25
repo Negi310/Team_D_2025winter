@@ -5,7 +5,7 @@
     <Style src="project://database/Assets/UI%20Toolkit/Kaihara/RiverCourt/RiverCourtLayout.uss?fileID=7433441132597879392&amp;guid=718b5c7cbd31b8d43832f4aa90c2483a&amp;type=3#RiverCourtLayout"/>
     <Style src="project://database/Assets/UI%20Toolkit/Kaihara/FemaleIllust.uss?fileID=7433441132597879392&amp;guid=f7bc04b5ee6f8e7459476765afe4d04c&amp;type=3#FemaleIllust"/>
     <ui:VisualElement name="base" class="base">
-        <ui:VisualElement name="partner" class="partner-information" style="top: 185px; left: 642px;">
+        <ui:Button text="" name="partner" class="partner-information" style="top: 127px; left: 630px;">
             <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
             <ui:VisualElement picking-mode="Ignore" class="female-illustration_base female-salmon">
                 <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-paint" style="flex-grow: 1;"/>
@@ -27,8 +27,8 @@
                     <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
                 </ui:VisualElement>
             </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="partner" class="partner-information" style="top: 606px; left: 866px;">
+        </ui:Button>
+        <ui:Button text="" name="partner" class="partner-information" style="top: 605px; left: 830px;">
             <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
             <ui:VisualElement picking-mode="Ignore" class="female-illustration_base female-salmon">
                 <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-paint" style="flex-grow: 1;"/>
@@ -50,8 +50,8 @@
                     <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
                 </ui:VisualElement>
             </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="partner" class="partner-information" style="top: 262px; left: 1046px;">
+        </ui:Button>
+        <ui:Button text="" name="partner" class="partner-information" style="top: 148px; left: 1079px;">
             <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
             <ui:VisualElement picking-mode="Ignore" class="female-illustration_base female-salmon">
                 <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-paint" style="flex-grow: 1;"/>
@@ -73,8 +73,8 @@
                     <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
                 </ui:VisualElement>
             </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="partner" class="partner-information" style="top: 637px; left: 1263px;">
+        </ui:Button>
+        <ui:Button text="" name="partner" class="partner-information" style="top: 617px; left: 1264px;">
             <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
             <ui:VisualElement picking-mode="Ignore" class="female-illustration_base female-salmon">
                 <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-paint" style="flex-grow: 1;"/>
@@ -96,8 +96,8 @@
                     <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
                 </ui:VisualElement>
             </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="partner" class="partner-information" style="top: 256px; left: 1503px;">
+        </ui:Button>
+        <ui:Button text="" name="partner" class="partner-information" style="top: 185px; left: 1490px;">
             <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
             <ui:VisualElement picking-mode="Ignore" class="female-illustration_base female-salmon">
                 <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-paint" style="flex-grow: 1;"/>
@@ -119,8 +119,8 @@
                     <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
                 </ui:VisualElement>
             </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Textures/%E5%B7%9D%E8%83%8C%E6%99%AF.png?fileID=2800000&amp;guid=3b4029759ce30bf43af2ea92a076460a&amp;type=3#川背景&quot;); -unity-background-image-tint-color: rgba(255, 255, 255, 0.12);"/>
+        </ui:Button>
+        <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Textures/%E5%B7%9D%E8%83%8C%E6%99%AF.png?fileID=2800000&amp;guid=3b4029759ce30bf43af2ea92a076460a&amp;type=3#川背景&quot;); -unity-background-image-tint-color: rgba(255, 255, 255, 0.12);"/>
         <ui:VisualElement name="nextriverstatus" class="next-river-information next-river">
             <ui:VisualElement name="riverstatus" style="flex-grow: 1;">
                 <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
@@ -181,6 +181,6 @@
                 <ui:Label text="Label" class="main-salmon-status_value--court"/>
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:Label text="Label" name="courttimes" class="remaining-court-times"/>
     </ui:VisualElement>
-    <ui:Label text="Label" name="courttimes" class="remaining-court-times"/>
 </ui:UXML>

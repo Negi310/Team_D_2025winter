@@ -20,6 +20,8 @@ public class SeaUIManager : MonoBehaviour
     private List<Label> statusIncreaceUIList = new List<Label>();
     //トレーニングのbutton1のリスト
     private List<Button> trainingButtonList = new List<Button>();
+    //ランダムイベントのbutton1のリスト
+    private List<Button> randomEventButtonList = new List<Button>();
 
      //川のステータスのひ孫VEのリスト
     private List<VisualElement> riverUIList = new List<VisualElement>();
@@ -151,6 +153,7 @@ public class SeaUIManager : MonoBehaviour
         };
         //button1のリスト保存
         trainingButtonList = parentVE.Query<Button>(className:"training-tab_training-button").ToList();
+        
         //button2に非表示イベント設定
         var trainingCancelButon = parentVE.Q<Button>(className:"training-tab_cancel-button");
         trainingCancelButon.clicked += () =>
@@ -173,13 +176,39 @@ public class SeaUIManager : MonoBehaviour
                 ui.RemoveFromClassList("is-open");
             });
         }
+
+        //ランダムイベント　大体上と一緒
+        //親VEを取得
+        var parentVE2 = root.Q<VisualElement>(className:"random-event-tab");
+        
+        //トレーニングの表示のボタンにイベント設定
+        var randomEventTabOpenButton = root.Q<Button>(className:"random-event-button");
+        randomEventTabOpenButton.clicked += () =>
+        {
+            parentVE2.AddToClassList("is-open");
+        };
+        //button1のリスト保存
+        randomEventButtonList = parentVE2.Query<Button>(className:"random-event-tab_random-event-button").ToList();
+        
+        //button2に非表示イベント設定
+        var randomEventCancelButon = parentVE2.Q<Button>(className:"random-event-tab_cancel-button");
+        randomEventCancelButon.clicked += () =>
+        {
+            parentVE2.RemoveFromClassList("is-open");
+        };
     }
 
     //内容更新
-    public void SetUpUI(List<string> playerStatusList,List<string> riverStatusList,List<string> statusincereace,int turn,string riverName,SalmonHair hair,SalmonColor color, SalmonEyeMale eye, SalmonEyebrowMale eyebrow, SalmonMouthMale mouth,bool isPale)
+    public void SetUpUI(List<string> playerStatusList,List<string> riverStatusList,List<string> statusincereace,int turn,string riverName,SalmonHair hair,SalmonColor color, SalmonEyeMale eye, SalmonEyebrowMale eyebrow, SalmonMouthMale mouth,bool isPale,List<string> randomEventNameList)
     {
         SetUpStatusUI(playerStatusList,statusincereace);
         SetUpRiverUI(turn,riverName,riverStatusList);
+
+        for(int i = 0; i < 3; i++)
+        {
+            randomEventButtonList[i].text = randomEventNameList[i];
+        }
+
         maleIllust.SetUpIllust(playerIllust,hair,eye,color,eyebrow,mouth,isPale);
     }
     //ステータス表示の設定

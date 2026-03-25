@@ -288,8 +288,6 @@
     border-bottom-left-radius: 30px;
 }
 
-
-
 .training-tab {
     flex-grow: 0;
     position: absolute;
@@ -385,3 +383,97 @@
     transition-duration: 0.05s;
 }
 
+.random-event-tab {
+    flex-grow: 0;
+    position: absolute;
+    flex-shrink: 0;
+    flex-direction: row;
+    width: 70%;
+    height: 20%;
+    top: 75%;
+    left: 15%;
+    background-color: rgb(219, 253, 255);
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-left-color: rgb(38, 37, 114);
+    border-right-color: rgb(38, 37, 114);
+    border-top-color: rgb(38, 37, 114);
+    border-bottom-color: rgb(38, 37, 114);
+    opacity: 1;
+    scale: 0 1;
+}
+
+.random-event-tab.is-open {
+    scale: 1 1;
+}
+
+.random-event-tab_random-event-button {
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    flex-grow: 0;
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(161, 161, 161);
+    flex-shrink: 0;
+    width: 29%;
+    transition-timing-function: ease-out;
+    transition-duration: 0.1s;
+}
+
+.random-event-tab_random-event-button:hover {
+    background-color: rgb(199, 199, 199);
+    scale: 1.1 1.1;
+}
+
+.random-event-tab_random-event-button:active {
+    background-color: rgb(124, 124, 124);
+    scale: 0.95 0.95;
+    transition-timing-function: ease-out;
+    transition-duration: 0.05s;
+}
+
+.random-event-tab_cancel-button {
+    position: absolute;
+    width: 8%;
+    height: 35%;
+    right: -4%;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    top: -20%;
+    font-size: 55px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    -unity-font-style: bold;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+}
+
+.random-event-tab_cancel-button:hover {
+    scale: 1.05 1.05;
+    background-color: rgb(199, 199, 199);
+}
+
+.random-event-tab_cancel-button:active {
+    scale: 0.95 0.9;
+    background-color: rgb(125, 125, 125);
+    transition-timing-function: ease-out;
+    transition-duration: 0.05s;
+}

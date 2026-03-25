@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class UITest : MonoBehaviour
 {
@@ -125,7 +126,7 @@ public class UITest : MonoBehaviour
             var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerSpeed,playerJump,playerStamina,playerAttack,playerIntelligence,playerColor,playerSize,playerShape);
             var riverStatusList = forUIStatusBuilder.RiverInformatinListBuild(a,b,c,d,e);
             var increaseStatusList = forUIStatusBuilder.TrainingStatuIcreaceList(increaseSpeed,increaseJump,increaseStamina,increaseAttack,increaseIntelligence);
-            seaUIManager.SetUpUI(playerStatusList,riverStatusList,increaseStatusList,seaTurn,riverName,salmonHair,salmonColor,salmonEye,salmonEyebrow,salmonMouth,isPale);
+            seaUIManager.SetUpUI(playerStatusList,riverStatusList,increaseStatusList,seaTurn,riverName,salmonHair,salmonColor,salmonEye,salmonEyebrow,salmonMouth,isPale,new List<string>{"A","B","C"});
         }
         //kキーでSeaUI非表示
         if (Keyboard.current.kKey.wasPressedThisFrame)

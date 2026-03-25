@@ -63,4 +63,10 @@ public class ForUIStatusBuilder
         (SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth) strongest = (strongestHair,strongestEye,strongestColor,strongestEyebrow,strongestMouth);
         return new List<(SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth)>{weakest,weak,normal,strong,strongest};
     }
+
+    //ランダムイベントの名前をリストに
+    public List<string> RandomEventNameList(string eventName1,string eventName2,string eventName3)
+    {
+        return new List<string>{eventName1,eventName2,eventName3};
+    }
 }

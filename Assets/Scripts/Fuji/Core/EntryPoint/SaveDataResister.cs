@@ -85,6 +85,6 @@ public class SaveDataResister
         else if (stateName == nameof(NameState)) sm.ChangeState<NameState>();
         else if (stateName == nameof(UpstreamState)) sm.ChangeState<UpstreamState>();
         else if (stateName == nameof(ConversationState)) sm.ChangeState<ConversationState>();
-        else sm.ChangeState<CourtshipState>();
+        else sm.ChangeState<UpstreamState>();
     }
 }

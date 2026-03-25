@@ -37,13 +37,14 @@ public class NamingUIManager : MonoBehaviour
         _decideButton.clicked += () => OnDecideButtonClicked?.Invoke(_nameInputField.value);
         //UIの初期設定
         InitPlayerUI();
-        //非表示
-        Hide();
+        
         //VEの横幅取得のためレイアウト確定後に実行
         root.RegisterCallbackOnce<GeometryChangedEvent>(evt =>
         {
             //プレイヤーUIの孫VEの横幅取得
             defaultPlayerStatusValueWidth = Mathf.Floor(playerSwimUIList[0].resolvedStyle.width / playerSwimUIList[0].parent.resolvedStyle.width * 100);
+            //非表示
+            Hide();
         });
     }
 

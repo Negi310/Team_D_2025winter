@@ -10,12 +10,13 @@ public class StateCompositeFactory
     public StateCompositeFactory(
         SessionContext context, LogicInstaller logic,
         ConversationView conversationView, TreadmillView treadmillView,
-        ObstaclesView obstaclesView,
+        ObstaclesView obstaclesView, SalmonMove salmonMove,
+        UpstreamView upstreamView,
         CourtingUIManager courtingUIManager, NamingUIManager namingUIManager,
         SeaUIManager seaUIManager,
         EventPool eventPool, ChunkLevelData chunkLevelData,
         MateGenerationSettingsSO _mateSetting,
-        Transform playerTransform, TickProvider tickProvider)
+        TickProvider tickProvider)
     {
         // ジェネリクスのおかげで、引数の state は最初から「CourtshipState」として確定している！
         Register<CourtshipState>((state, payload) =>
@@ -66,9 +67,15 @@ public class StateCompositeFactory
         Register<UpstreamState>((state, payload) =>
         {
             var composite = new CompositeDisposable();
+            var playerContext = new UpstreamPlayerContext();
             var treadmillContext = new TreadmillContext();
             var obstacleContext = new ObstacleContext();
-            composite.Add(new TreadmillPresenter(state, logic.TreadmillModel, logic.PoolManager, logic.RiverPath, logic.ObstacleModel, treadmillView, obstaclesView, treadmillContext, obstacleContext, playerTransform, tickProvider, chunkLevelData));
+            var salmonPlayer = new SalmonPlayer(salmonMove, logic.UpstreamGameModel);
+            composite.Add(new TreadmillPresenter(state, logic.TreadmillModel, logic.PoolManager, logic.RiverPath,
+                logic.ObstacleModel, treadmillView, obstaclesView, playerContext, treadmillContext, obstacleContext,
+                tickProvider, chunkLevelData));
+            composite.Add(salmonPlayer);
+            composite.Add(new UpstreamPresenter(state, salmonPlayer, upstreamView, playerContext, context, tickProvider));
             //composite.Add(new OtherStateSpecificPresenter(state));
             //...
             

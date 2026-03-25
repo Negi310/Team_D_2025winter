@@ -46,8 +46,7 @@ public class CourtingUIManager : MonoBehaviour
         InitPlayerUI();
         //川UIの初期設定
         InitRiverUI();
-        //非表示
-        Hide();
+        
         //VEの横幅取得のためレイアウト確定後に実行
         root.RegisterCallbackOnce<GeometryChangedEvent>(evt =>
         {
@@ -55,6 +54,8 @@ public class CourtingUIManager : MonoBehaviour
             defaultPlayerStatusValueWidth = Mathf.Floor(playerSwimUIList[0].resolvedStyle.width / playerSwimUIList[0].parent.resolvedStyle.width * 100);
             //川UIのひ孫VEの横幅取得
             defaultRiverStatusValueWidth = Mathf.Floor(riverUIList[0].resolvedStyle.width / riverUIList[0].parent.resolvedStyle.width * 100);
+            //非表示
+            Hide();
         });
     }
 

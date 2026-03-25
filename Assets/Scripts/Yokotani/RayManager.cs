@@ -14,65 +14,76 @@ public class RayManager : MonoBehaviour
 
     float leftDistance;
     float rightDistance;
+    float rockDistance;
+    float nextRockDistance;
+    float salmonDistance;
 
     public float forwardRayDistance = 5f;
     public float rockReduceRate = 0.5f;
-    bool isNearRock;
-    bool isNearRockNext;
     public float flowPenalty = 1.5f;
 
     public LayerMask wallLayer;
+    public LayerMask rockLayer;
+    public LayerMask nextRockLayer;
+    public LayerMask salmonLayer;
 
-    void Update()
+    public RayData MeasureEnvironment()
     {
-        MeasureWidth();
-        ConsumeStamina();
-        CheckForwardRock();
-    }
+        var data = new RayData
+        {
+            LeftDistance = rayDistance, RightDistance = rayDistance,
+            ForwardRockDistance = forwardRayDistance, ForwardNextRockDistance = forwardRayDistance, ForwardSalmonDistance = forwardRayDistance
+        };
+        
+        MeasureWidth(data);
+        //ConsumeStamina(data);
+        CheckForwardRock(data);
 
-    void MeasureWidth()
+        return data;
+    }
+    
+    void MeasureWidth(RayData data)
     {
         RaycastHit hit;
 
         // 左
         if (Physics.Raycast(transform.position, -transform.right, out hit, rayDistance,wallLayer))
         {
-            leftDistance = hit.distance;
+            data.LeftDistance = hit.distance;
         }
         else
         {
-            leftDistance = rayDistance;
+            data.LeftDistance = rayDistance;
         }
 
         // 右
         if (Physics.Raycast(transform.position, transform.right, out hit, rayDistance,wallLayer))
         {
-            rightDistance = hit.distance;
+            data.RightDistance = hit.distance;
         }
         else
         {
-            rightDistance = rayDistance;
+            data.RightDistance = rayDistance;
         }
     }
 
-    void CheckForwardRock()
+    void CheckForwardRock(RayData data)
     {
         RaycastHit hit;
 
-        isNearRock = false;
-        isNearRockNext = false;
-
-        if (Physics.Raycast(transform.position, transform.forward, out hit, forwardRayDistance)) //Rayの長さで近さを判定してるから別のものも判定したいなら個別に近さを設定しないといけない
+        if (Physics.Raycast(transform.position, transform.forward, out hit, forwardRayDistance, rockLayer)) //Rayの長さで近さを判定してるから別のものも判定したいなら個別に近さを設定しないといけない
         {
-            if (hit.collider.CompareTag("Rock"))
-            {
-                isNearRock = true;
-            }
-
-            if (hit.collider.CompareTag("RockNext"))
-            {
-                isNearRockNext = true;
-            }
+            data.ForwardRockDistance = hit.distance;
+        }
+        
+        if (Physics.Raycast(transform.position, transform.forward, out hit, forwardRayDistance, nextRockLayer))
+        {
+            data.ForwardNextRockDistance = hit.distance;
+        }
+        
+        if (Physics.Raycast(transform.position, transform.forward, out hit, forwardRayDistance, salmonLayer))
+        {
+            data.ForwardSalmonDistance = hit.distance;
         }
     }
 
@@ -89,15 +100,18 @@ public class RayManager : MonoBehaviour
 
         //drain *= (1f + centerFactor); 中央に近いほどスタミナ消費増
 
-        if (isNearRock)
+        if (rockDistance < forwardRayDistance)
         {
-            drain *= rockReduceRate;
+            drain *= rockReduceRate; //岩が近いほどスタミナ消費減
         }
-
-        if (isNearRockNext)
-    {
-        drain *= flowPenalty;
-    }
+        else if (nextRockDistance < forwardRayDistance)
+        {
+            drain *= rockReduceRate * 0.5f; //次の岩が近いほどスタミナ消費さらに減
+        }
+        else if (salmonDistance < forwardRayDistance)
+        {
+            drain *= flowPenalty; //鮭が近いほどスタミナ消費増
+        }
 
         stamina -= drain * Time.deltaTime;
 

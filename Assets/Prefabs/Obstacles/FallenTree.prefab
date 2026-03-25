@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1288074418749932693}
   - component: {fileID: 8052964192865259235}
   - component: {fileID: 7115489589047478420}
+  - component: {fileID: -7614173408056314773}
   m_Layer: 0
   m_Name: FallenTree
   m_TagString: Untagged
@@ -107,6 +108,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-7614173408056314773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5339918066787797995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2617a7f7bf6c6854eaa49b674bc70668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FixedObstacleView
 --- !u!1 &7947352156692342812
 GameObject:
   m_ObjectHideFlags: 0

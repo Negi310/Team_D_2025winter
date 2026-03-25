@@ -6,7 +6,7 @@ public class MateGeneratable : IMateGeneratable
     {
     
     
-    SalmonData[] candidates = new SalmonData[5];
+        SalmonData[] candidates = new SalmonData[5];
 
         MateGenerationSettingsSO.TierSetting[] tiers =
         {

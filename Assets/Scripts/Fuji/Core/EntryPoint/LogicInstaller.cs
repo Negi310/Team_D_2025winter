@@ -15,6 +15,7 @@ public class LogicInstaller
     public RiverPath RiverPath { get; }
     public ObstacleModel ObstacleModel { get; }
     public SplineMathModel SplineMathModel { get; }
+    public UpstreamGameModel UpstreamGameModel { get; }
 
     public LogicInstaller()
     {
@@ -31,5 +32,6 @@ public class LogicInstaller
         RiverPath = new RiverPath();
         SplineMathModel = new SplineMathModel();
         ObstacleModel = new ObstacleModel(SplineMathModel);
+        UpstreamGameModel = new UpstreamGameModel();
     }
 }

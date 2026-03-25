@@ -338,6 +338,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 772caf95d30b54f4f87da2fdf899f4f6, type: 3}
+--- !u!1 &619350446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 619350447}
+  - component: {fileID: 619350448}
+  m_Layer: 0
+  m_Name: UpstreamView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &619350447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619350446}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1265874164}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &619350448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619350446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ea3e16e3fe63f42a70c2a4143c663b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpstreamView
+  _uiDocument: {fileID: 829010444}
 --- !u!1 &697233560
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +498,7 @@ Transform:
   m_GameObject: {fileID: 789884264}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.76, z: 0}
+  m_LocalPosition: {x: 0, y: 0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -705,7 +750,7 @@ Transform:
   m_GameObject: {fileID: 996070356}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.4699993, z: -9}
+  m_LocalPosition: {x: 0, y: 3.64, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -765,6 +810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1069907185}
   - component: {fileID: 1069907186}
+  - component: {fileID: 1069907189}
   - component: {fileID: 1069907188}
   - component: {fileID: 1069907187}
   m_Layer: 3
@@ -803,18 +849,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807d406d74db4984eb714a181d7d2ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SalmonMove
-  salmonData:
-    Name: aaa
-    UpstreamStats:
-      Speed: 0
-      Jump: 5
-      Stamina: 5
-      Attack: 0
-      Intelligence: 0
-    CourtshipTraits:
-      Size: 0
-      ColorValue: 0
-      ShapeValue: 0
+  _renderer: {fileID: 789884266}
+  _visualTransform: {fileID: 1069907185}
 --- !u!50 &1069907187
 Rigidbody2D:
   serializedVersion: 5
@@ -823,7 +859,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069907184}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -876,8 +912,40 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 1.78}
+  m_Offset: {x: 0, y: -0}
   m_Radius: 0.25
+--- !u!114 &1069907189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069907184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 110a5b8fba9f36f4795d89d55dd25543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RayManager
+  rayDistance: 10
+  stamina: 100
+  baseDrain: 1
+  minWidth: 2
+  maxWidth: 10
+  forwardRayDistance: 5
+  rockReduceRate: 0.5
+  flowPenalty: 1.5
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  rockLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  nextRockLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  salmonLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1001 &1078316728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -974,6 +1042,7 @@ Transform:
   - {fileID: 178118714}
   - {fileID: 1339327187}
   - {fileID: 1912308053}
+  - {fileID: 619350447}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1339327186
@@ -1055,8 +1124,9 @@ MonoBehaviour:
   namingUIManager: {fileID: 145115424}
   seaUIManager: {fileID: 178118715}
   obstaclesView: {fileID: 1912308054}
+  salmonMove: {fileID: 1069907186}
+  upstreamView: {fileID: 619350448}
   tickProvider: {fileID: 1714146700}
-  playerTransform: {fileID: 1069907185}
   conversationEvent: {fileID: 11400000, guid: 7486babf88c584f408247aa9db9bb10e, type: 2}
   chunkLevelData: {fileID: 11400000, guid: d3a2e5ac25e85ca429eb27550d9fc49f, type: 2}
   eventPool: {fileID: 11400000, guid: 6d1349ed7c756544eb659314c255d824, type: 2}

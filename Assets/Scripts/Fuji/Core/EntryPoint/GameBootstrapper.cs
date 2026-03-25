@@ -9,8 +9,9 @@ public class GameBootstrapper : MonoBehaviour
     [SerializeField] private NamingUIManager namingUIManager;
     [SerializeField] private SeaUIManager seaUIManager;
     [SerializeField] private ObstaclesView obstaclesView;
+    [SerializeField] private SalmonMove salmonMove;
+    [SerializeField] private UpstreamView upstreamView;
     [SerializeField] private TickProvider tickProvider;
-    [SerializeField] private Transform playerTransform; // 鮭のTransform
 
     [Header("Master Data")]
     [SerializeField] private ConversationEvent conversationEvent; // テスト用の会話データ
@@ -38,9 +39,9 @@ public class GameBootstrapper : MonoBehaviour
         var logicInstaller = new LogicInstaller();
 
         var stateCompositeFactory = new StateCompositeFactory(sessionContext, logicInstaller,
-            conversationView, treadmillView, obstaclesView,
+            conversationView, treadmillView, obstaclesView, salmonMove, upstreamView,
             courtingUIManager,namingUIManager, seaUIManager,
-            eventPool, chunkLevelData, mateSetting, playerTransform, tickProvider);
+            eventPool, chunkLevelData, mateSetting, tickProvider);
         // ModelとViewとContextの参照を渡す
         _stateMachine = new GameStateMachine();
         _router = new GameRouter(_stateMachine, stateCompositeFactory, sessionContext, _saveDataResister);

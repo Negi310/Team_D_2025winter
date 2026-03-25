@@ -32,19 +32,22 @@ public class SeaUIManager : MonoBehaviour
         //初期設定
         InitPlayerUI();
         InitRiverUI();
-        //非表示
-        Hide();
+        
         //VEの横幅取得のためレイアウト確定後に実行
         root.RegisterCallbackOnce<GeometryChangedEvent>(evt =>
         {
             //川UIのひ孫VEの横幅取得
             defaultRiverStatusValueWidth = Mathf.Floor(riverUIList[0].resolvedStyle.width / riverUIList[0].parent.resolvedStyle.width * 100);
+            //非表示
+            Hide();
+            Debug.Log("Hide");
         });
     }
     //UIの表示
     public void Show()
     {
         root.style.display = DisplayStyle.Flex;
+        Debug.Log("Show");
     }
     //UIの非表示
     public void Hide()

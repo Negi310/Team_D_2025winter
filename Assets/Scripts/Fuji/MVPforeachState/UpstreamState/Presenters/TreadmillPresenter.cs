@@ -11,9 +11,9 @@ public class TreadmillPresenter: IDisposable, ITickable
     private readonly ObstacleModel _obstacleModel;
     private readonly TreadmillView _treadmillView;
     private readonly ObstaclesView _obstaclesView;
+    private readonly UpstreamPlayerContext _playerContext;
     private readonly TreadmillContext _treadmillContext;
     private readonly ObstacleContext _obstacleContext;
-    private readonly Transform _playerTransform;
     private readonly TickProvider _tickProvider;
     private readonly IReadOnlyList<ChunkPreset> _availablePresets;
 
@@ -25,9 +25,9 @@ public class TreadmillPresenter: IDisposable, ITickable
         ObstacleModel obstacleModel,
         TreadmillView treadmillView,
         ObstaclesView obstaclesView,
+        UpstreamPlayerContext playerContext,
         TreadmillContext treadmillContext,
         ObstacleContext obstacleContext,
-        Transform playerTransform, 
         TickProvider tickProvider,
         ChunkLevelData data)
     {
@@ -38,9 +38,9 @@ public class TreadmillPresenter: IDisposable, ITickable
         _obstacleModel = obstacleModel;
         _treadmillView = treadmillView;
         _obstaclesView = obstaclesView;
+        _playerContext = playerContext;
         _treadmillContext = treadmillContext;
         _obstacleContext = obstacleContext;
-        _playerTransform = playerTransform;
         _tickProvider = tickProvider;
         _availablePresets = data.AvailableChunkPresets;
         
@@ -51,8 +51,8 @@ public class TreadmillPresenter: IDisposable, ITickable
     // Dispatcherから毎フレーム呼ばれる
     public void Tick(float deltaTime)
     {
-        float playerY = _playerTransform.position.y;
-        var result = _model.UpdatePlayerPosition(_treadmillContext, _availablePresets, _playerTransform.position.y);
+        float playerY = _playerContext.Position.y;
+        var result = _model.UpdatePlayerPosition(_treadmillContext, _availablePresets, playerY);
         if (result.SpawnedChunk != null || result.DespawnedChunk != null)
         {
             _treadmillView.SpawnChunkVisually(result.SpawnedChunk);

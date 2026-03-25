@@ -14,6 +14,13 @@ public class SessionContext
         CurrentGeneration = data.Generation;
         CurrentTurn = data.Turn;
         CurrentSalmon = data.Salmon;
+        CurrentSalmon.UpstreamStats = new UpstreamStats(
+            20,
+            10,
+            100,
+            10,
+            10
+        );
     }
 
     // 次の世代へ引き継ぐメソッド（カプセル化により不正な上書きを防ぐ）

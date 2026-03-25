@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 3809130314619020771}
   - component: {fileID: 4020747041262136395}
   - component: {fileID: 700170243874487371}
+  - component: {fileID: 1132310669997219619}
   m_Layer: 6
   m_Name: Rock
   m_TagString: Rock
@@ -198,3 +199,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1132310669997219619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413684384566482171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2617a7f7bf6c6854eaa49b674bc70668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FixedObstacleView

@@ -21,6 +21,12 @@ public class UITest : MonoBehaviour
     [SerializeField] private string playerColor;
     [SerializeField] private string playerSize;
     [SerializeField] private string playerShape;
+    //各トレーニングでのステータスの変化量
+    [SerializeField] private string increaseSpeed;
+    [SerializeField] private string increaseJump;
+    [SerializeField] private string increaseStamina;
+    [SerializeField] private string increaseAttack;
+    [SerializeField] private string increaseIntelligence;
     //川のステータス
     [SerializeField] private string a;
     [SerializeField] private string b;
@@ -54,6 +60,41 @@ public class UITest : MonoBehaviour
     #endregion
     //Animatorテスト用
     #region Animation
+    //立ち絵テスト用
+    #region 
+    [SerializeField] private SalmonHair salmonHair;
+    [SerializeField] private SalmonEyeMale salmonEye;
+    [SerializeField] private SalmonEyebrowMale salmonEyebrow;
+    [SerializeField] private SalmonMouthMale salmonMouth;
+    [SerializeField] private bool isPale;
+    #region メス5名
+    [SerializeField] private SalmonColor weakestColor;
+    [SerializeField] private SalmonColor weakColor;
+    [SerializeField] private SalmonColor normalColor;
+    [SerializeField] private SalmonColor strongColor;
+    [SerializeField] private SalmonColor strongestColor;
+    [SerializeField] private SalmonHair weakestHair;
+    [SerializeField] private SalmonHair weakHair;
+    [SerializeField] private SalmonHair normalHair;
+    [SerializeField] private SalmonHair strongHair;
+    [SerializeField] private SalmonHair strongestHair;
+    [SerializeField] private SalmonEyeFemale weakestEye;
+    [SerializeField] private SalmonEyeFemale weakEye;
+    [SerializeField] private SalmonEyeFemale normalEye;
+    [SerializeField] private SalmonEyeFemale strongEye;
+    [SerializeField] private SalmonEyeFemale strongestEye;
+    [SerializeField] private SalmonEyebrowFemale weakestEyebrow;
+    [SerializeField] private SalmonEyebrowFemale weakEyebrow;
+    [SerializeField] private SalmonEyebrowFemale normalEyebrow;
+    [SerializeField] private SalmonEyebrowFemale strongEyebrow;
+    [SerializeField] private SalmonEyebrowFemale strongestEyebrow;
+    [SerializeField] private SalmonMouthFemale weakestMouth;
+    [SerializeField] private SalmonMouthFemale weakMouth;
+    [SerializeField] private SalmonMouthFemale normalMouth;
+    [SerializeField] private SalmonMouthFemale strongMouth;
+    [SerializeField] private SalmonMouthFemale strongestMouth;
+    #endregion
+    #endregion
     //アニメーションとか管理するクラス
     [SerializeField] SalmonAnimationController salmonAnimationController;
     //鮭の画像のベース
@@ -83,7 +124,8 @@ public class UITest : MonoBehaviour
             seaUIManager.Show();
             var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerSpeed,playerJump,playerStamina,playerAttack,playerIntelligence,playerColor,playerSize,playerShape);
             var riverStatusList = forUIStatusBuilder.RiverInformatinListBuild(a,b,c,d,e);
-            seaUIManager.SetUpUI(playerStatusList,riverStatusList,seaTurn,riverName);
+            var increaseStatusList = forUIStatusBuilder.TrainingStatuIcreaceList(increaseSpeed,increaseJump,increaseStamina,increaseAttack,increaseIntelligence);
+            seaUIManager.SetUpUI(playerStatusList,riverStatusList,increaseStatusList,seaTurn,riverName,salmonHair,salmonColor,salmonEye,salmonEyebrow,salmonMouth,isPale);
         }
         //kキーでSeaUI非表示
         if (Keyboard.current.kKey.wasPressedThisFrame)
@@ -98,7 +140,8 @@ public class UITest : MonoBehaviour
             var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerSpeed,playerJump,playerStamina,playerAttack,playerIntelligence,playerColor,playerSize,playerShape);
             var partnerStatusList = forUIStatusBuilder.PartnersListBuild(weakestPer,weakestSuc,weakPer,weakSuc,normalPer,normalSuc,strongPer,strongSuc,strongestPer,strongestSuc);
             var riverStatusList = forUIStatusBuilder.RiverInformatinListBuild(a,b,c,d,e);
-            courtingUIManager.SetUpUI(playerStatusList,partnerStatusList,riverStatusList,courtingTimes,riverName);
+            var femaleIllustList = forUIStatusBuilder.FemaleIllustList(weakestHair,weakestEye,weakestColor,weakestEyebrow,weakestMouth,weakHair,weakEye,weakColor,weakEyebrow,weakMouth,normalHair,normalEye,normalColor,normalEyebrow,normalMouth,strongHair,strongEye,strongColor,strongEyebrow,strongMouth,strongestHair,strongestEye,strongestColor,strongestEyebrow,strongestMouth);
+            courtingUIManager.SetUpUI(playerStatusList,partnerStatusList,femaleIllustList,riverStatusList,courtingTimes,riverName);
         }
         //iキーでCourtingUI非表示
         if (Keyboard.current.iKey.wasPressedThisFrame)
@@ -110,7 +153,7 @@ public class UITest : MonoBehaviour
         {
             namingUIManager.Show();
             var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerSpeed,playerJump,playerStamina,playerAttack,playerIntelligence,playerColor,playerSize,playerShape);
-            namingUIManager.SetUpUI(playerStatusList);
+            namingUIManager.SetUpUI(playerStatusList,salmonHair,salmonEye,salmonColor,salmonEyebrow,salmonMouth,isPale);
         }
         //mキーでNamingUI非表示
         if (Keyboard.current.mKey.wasPressedThisFrame)
@@ -130,17 +173,17 @@ public class UITest : MonoBehaviour
         //1キーで髪型ロング
         if (Keyboard.current[Key.Digit1].wasPressedThisFrame)
         {
-            salmonAnimationController.HairStyleSet(HairStyle.Long,salmonHair1.GetComponent<SpriteRenderer>(),salmonHair2.GetComponent<SpriteRenderer>());
+            salmonAnimationController.HairStyleSet(SalmonHair.Long,salmonHair1.GetComponent<SpriteRenderer>(),salmonHair2.GetComponent<SpriteRenderer>());
         }
         //2キーで髪型普通
         if (Keyboard.current[Key.Digit2].wasPressedThisFrame)
         {
-            salmonAnimationController.HairStyleSet(HairStyle.Normal,salmonHair1.GetComponent<SpriteRenderer>(),salmonHair2.GetComponent<SpriteRenderer>());
+            salmonAnimationController.HairStyleSet(SalmonHair.Normal,salmonHair1.GetComponent<SpriteRenderer>(),salmonHair2.GetComponent<SpriteRenderer>());
         }
         //3キーで髪型ショート
         if (Keyboard.current[Key.Digit3].wasPressedThisFrame)
         {
-            salmonAnimationController.HairStyleSet(HairStyle.Short,salmonHair1.GetComponent<SpriteRenderer>(),salmonHair2.GetComponent<SpriteRenderer>());
+            salmonAnimationController.HairStyleSet(SalmonHair.Short,salmonHair1.GetComponent<SpriteRenderer>(),salmonHair2.GetComponent<SpriteRenderer>());
         }
         //4キーで色変更
         if (Keyboard.current[Key.Digit4].wasPressedThisFrame)

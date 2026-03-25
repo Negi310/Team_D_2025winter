@@ -3,7 +3,7 @@ Shader "Custom/Color"
     Properties
     {
         [MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
-        [MainTexture] _BaseMap("Base Map", 2D) = "white" {}
+        [MainTexture] _MainTex("Base Map", 2D) = "white" {}
         _FlashAlpha("Flash Alpha", Float) = 1
     }
 
@@ -35,12 +35,11 @@ Shader "Custom/Color"
                 float2 uv : TEXCOORD0;
             };
 
-            TEXTURE2D(_BaseMap);
-            SAMPLER(sampler_BaseMap);
+            TEXTURE2D(_MainTex);
+            SAMPLER(sampler_MainTex);
 
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor;
-                float4 _BaseMap_ST;
                 float _FlashAlpha;
             CBUFFER_END
             
@@ -59,7 +58,7 @@ Shader "Custom/Color"
             {
                 Varyings OUT;
                 OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
-                OUT.uv = TRANSFORM_TEX(IN.uv, _BaseMap);
+                OUT.uv = IN.uv;
                 return OUT;
             }
             float3 HSVtoRGB(float3 c)
@@ -78,10 +77,10 @@ Shader "Custom/Color"
             }
             half4 frag(Varyings IN) : SV_Target
 {
-    half4 tex = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, IN.uv);
+    half4 tex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv);
 
     // 透明部分はそのまま返す
-    if (tex.a == 0) return tex;
+    if (tex.a <= 0.001) return float4(0,0,0,0);;
 
     // ★ sRGB → Linear
     float3 rgb = SRGBToLinear(tex.rgb);
@@ -101,7 +100,8 @@ Shader "Custom/Color"
     // ★ Linear → sRGB
     result = LinearToSRGB(result);
 
-    return float4(result, tex.a*_FlashAlpha);
+    float a = tex.a * _FlashAlpha;
+    return float4(result , a);
 }
             ENDHLSL
         }

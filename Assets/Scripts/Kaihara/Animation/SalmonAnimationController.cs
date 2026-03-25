@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class SalmonAnimationController : MonoBehaviour
 {
-    //鮭の画像関連のオブジェクト構造(親の下にこの順番で)
-    //鮭画像全体用(全体のサイズ調整など)
+    //鮭の画像関連のオブジェクト構造
+    //鮭画像全体用(全体のサイズ調整など)<-これをprefabにしてますのでこれを挙動部分の下に
     //|--髪1(SpriteRenderer付き)
     //|--髪2(SpriteRenderer付き)
     //|--体1(色変更なし)(SpriteRenderer,Animator付き)
     //|--体2(色変更あり)(SpriteRenderer,Animator付き)
 
     //key髪型　値画像とした辞書
-    private Dictionary<HairStyle,(Sprite hair1,Sprite hair2)> hairDic;
+    private Dictionary<SalmonHair,(Sprite hair1,Sprite hair2)> hairDic;
     //髪型の画像
     #region
     [SerializeField] private Sprite hair1Long;
@@ -23,18 +23,8 @@ public class SalmonAnimationController : MonoBehaviour
     [SerializeField] private Sprite hair1Short;
     [SerializeField] private Sprite hair2Short;
     #endregion
-    //髪色
-    #region 
-    [SerializeField] Color hairOrange;
-    [SerializeField] Color hairRed;
-    [SerializeField] Color hairBlue;
-    [SerializeField] Color hairYellow;
-    [SerializeField] Color hairGreen;
-    [SerializeField] Color hairPink;
-    [SerializeField] Color hairPurple;
-    [SerializeField] Color hairSkyBlue;
-    [SerializeField] Color hairYellowGreen;
-    #endregion
+    //色SO
+    [SerializeField] private SalmonColorSO salmonColorSO;
 
     //key色(enum)　値色(Color)とした辞書
     private Dictionary<SalmonColor,Color> colorDic;
@@ -45,31 +35,31 @@ public class SalmonAnimationController : MonoBehaviour
     private void Awake()
     {
         //髪の画像を辞書に
-        hairDic = new Dictionary<HairStyle,(Sprite hair1,Sprite hair2)>()
+        hairDic = new Dictionary<SalmonHair,(Sprite hair1,Sprite hair2)>()
         {
-            {HairStyle.Long, (hair1Long,hair2Long)},
-            {HairStyle.Normal, (hair1Normal,hair2Normal)},
-            {HairStyle.Short, (hair1Short,hair2Short)}
+            {SalmonHair.Long, (hair1Long,hair2Long)},
+            {SalmonHair.Normal, (hair1Normal,hair2Normal)},
+            {SalmonHair.Short, (hair1Short,hair2Short)}
         };
         //enumと色の対応を辞書に
         colorDic = new Dictionary<SalmonColor,Color>()
         {
-            {SalmonColor.Orange,hairOrange},
-            {SalmonColor.Red,hairRed},
-            {SalmonColor.Blue,hairBlue},
-            {SalmonColor.Yellow,hairYellow},
-            {SalmonColor.Green,hairGreen},
-            {SalmonColor.Pink,hairPink},
-            {SalmonColor.Purple,hairPurple},
-            {SalmonColor.SkyBlue,hairSkyBlue},
-            {SalmonColor.YellowGreen,hairYellowGreen}
+            {SalmonColor.Orange,salmonColorSO.HairOrange},
+            {SalmonColor.Red,salmonColorSO.HairRed},
+            {SalmonColor.Blue,salmonColorSO.HairBlue},
+            {SalmonColor.Yellow,salmonColorSO.HairYellow},
+            {SalmonColor.Green,salmonColorSO.HairGreen},
+            {SalmonColor.Pink,salmonColorSO.HairPink},
+            {SalmonColor.Purple,salmonColorSO.HairPurple},
+            {SalmonColor.SkyBlue,salmonColorSO.HairSkyBlue},
+            {SalmonColor.YellowGreen,salmonColorSO.HairYellowGreen}
         };
 
         //mpb 
         mpb = new MaterialPropertyBlock();
     }
     //髪型変更 髪1・2のSpriteRenderを引数に
-    public void HairStyleSet(HairStyle hairStyle,SpriteRenderer hair1Renderer,SpriteRenderer hair2Renderer)
+    public void HairStyleSet(SalmonHair hairStyle,SpriteRenderer hair1Renderer,SpriteRenderer hair2Renderer)
     {
         //画像切り替え
         hair1Renderer.sprite = hairDic[hairStyle].hair1;

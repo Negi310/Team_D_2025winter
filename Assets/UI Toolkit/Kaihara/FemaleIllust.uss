@@ -1,0 +1,54 @@
+.female-illustration_base {
+    flex-grow: 0;
+    position: absolute;
+    flex-shrink: 0;
+}
+
+.female-illustration_eyebrow {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.female-illustration_hair-line {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.female-illustration_hair-paint {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.female-illustration_eye-line {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.female-illustration_eye-paint {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.female-illustration_mouth {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.female-illustration_body-base {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.female-illustration_body-paint {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}

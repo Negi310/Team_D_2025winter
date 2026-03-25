@@ -1,0 +1,186 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Kaihara/RiverCourt/RiverCourtUI.uss?fileID=7433441132597879392&amp;guid=11fe9aac0e996804482ab968744492b4&amp;type=3#RiverCourtUI"/>
+    <Style src="project://database/Assets/UI%20Toolkit/Kaihara/RiverStatusUI.uss?fileID=7433441132597879392&amp;guid=77c93fea1c9574e428efb117af51f4f4&amp;type=3#RiverStatusUI"/>
+    <Style src="project://database/Assets/UI%20Toolkit/Kaihara/PlayerStatusBar.uss?fileID=7433441132597879392&amp;guid=7fd0783cafb10274da6b7d02d310a484&amp;type=3#PlayerStatusBar"/>
+    <Style src="project://database/Assets/UI%20Toolkit/Kaihara/RiverCourt/RiverCourtLayout.uss?fileID=7433441132597879392&amp;guid=718b5c7cbd31b8d43832f4aa90c2483a&amp;type=3#RiverCourtLayout"/>
+    <Style src="project://database/Assets/UI%20Toolkit/Kaihara/FemaleIllust.uss?fileID=7433441132597879392&amp;guid=f7bc04b5ee6f8e7459476765afe4d04c&amp;type=3#FemaleIllust"/>
+    <ui:VisualElement name="base" class="base">
+        <ui:VisualElement name="partner" class="partner-information" style="top: 185px; left: 642px;">
+            <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
+            <ui:VisualElement picking-mode="Ignore" class="female-illustration_base female-salmon">
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-base" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_mouth" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eye-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eye-line" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_hair-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_hair-line" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eyebrow" style="flex-grow: 1;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="status" picking-mode="Ignore" class="partner-information_status">
+                <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
+                    <ui:Label text="性格" picking-mode="Ignore" class="partner-information_status_name"/>
+                    <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
+                    <ui:Label text="成功率" picking-mode="Ignore" class="partner-information_status_name"/>
+                    <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="partner" class="partner-information" style="top: 606px; left: 866px;">
+            <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
+            <ui:VisualElement picking-mode="Ignore" class="female-illustration_base female-salmon">
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-base" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_mouth" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eye-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eye-line" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_hair-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_hair-line" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eyebrow" style="flex-grow: 1;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="status" picking-mode="Ignore" class="partner-information_status">
+                <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
+                    <ui:Label text="性格" picking-mode="Ignore" class="partner-information_status_name"/>
+                    <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
+                    <ui:Label text="成功率" picking-mode="Ignore" class="partner-information_status_name"/>
+                    <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="partner" class="partner-information" style="top: 262px; left: 1046px;">
+            <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
+            <ui:VisualElement picking-mode="Ignore" class="female-illustration_base female-salmon">
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-base" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_mouth" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eye-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eye-line" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_hair-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_hair-line" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eyebrow" style="flex-grow: 1;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="status" picking-mode="Ignore" class="partner-information_status">
+                <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
+                    <ui:Label text="性格" picking-mode="Ignore" class="partner-information_status_name"/>
+                    <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
+                    <ui:Label text="成功率" picking-mode="Ignore" class="partner-information_status_name"/>
+                    <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="partner" class="partner-information" style="top: 637px; left: 1263px;">
+            <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
+            <ui:VisualElement picking-mode="Ignore" class="female-illustration_base female-salmon">
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-base" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_mouth" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eye-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eye-line" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_hair-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_hair-line" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eyebrow" style="flex-grow: 1;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="status" picking-mode="Ignore" class="partner-information_status">
+                <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
+                    <ui:Label text="性格" picking-mode="Ignore" class="partner-information_status_name"/>
+                    <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
+                    <ui:Label text="成功率" picking-mode="Ignore" class="partner-information_status_name"/>
+                    <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="partner" class="partner-information" style="top: 256px; left: 1503px;">
+            <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
+            <ui:VisualElement picking-mode="Ignore" class="female-illustration_base female-salmon">
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_body-base" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_mouth" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eye-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eye-line" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_hair-paint" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_hair-line" style="flex-grow: 1;"/>
+                <ui:VisualElement picking-mode="Ignore" class="female-illustration_eyebrow" style="flex-grow: 1;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="status" picking-mode="Ignore" class="partner-information_status">
+                <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
+                    <ui:Label text="性格" picking-mode="Ignore" class="partner-information_status_name"/>
+                    <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
+                    <ui:Label text="成功率" picking-mode="Ignore" class="partner-information_status_name"/>
+                    <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Textures/%E5%B7%9D%E8%83%8C%E6%99%AF.png?fileID=2800000&amp;guid=3b4029759ce30bf43af2ea92a076460a&amp;type=3#川背景&quot;); -unity-background-image-tint-color: rgba(255, 255, 255, 0.12);"/>
+        <ui:VisualElement name="nextriverstatus" class="next-river-information next-river">
+            <ui:VisualElement name="riverstatus" style="flex-grow: 1;">
+                <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:VisualElement class="next-river-information_status_value"/>
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:VisualElement class="next-river-information_status_value"/>
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:VisualElement class="next-river-information_status_value"/>
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:VisualElement class="next-river-information_status_value"/>
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:VisualElement class="next-river-information_status_value"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Button text="&gt;" name="riverstatusbutton"/>
+            <ui:Label text="Label" name="rivername"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="playerstatus" class="main-salmon-status main-salmon">
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="機動力" class="main-salmon-status_name--swim"/>
+                <ui:VisualElement class="main-salmon-status_value main-salmon-status_value--swim"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="跳躍力" class="main-salmon-status_name--swim"/>
+                <ui:VisualElement class="main-salmon-status_value main-salmon-status_value--swim"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="持久力" class="main-salmon-status_name--swim"/>
+                <ui:VisualElement class="main-salmon-status_value main-salmon-status_value--swim"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="攻撃力" class="main-salmon-status_name--swim"/>
+                <ui:VisualElement class="main-salmon-status_value main-salmon-status_value--swim"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="知力" class="main-salmon-status_name--swim"/>
+                <ui:VisualElement class="main-salmon-status_value main-salmon-status_value--swim"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="カラー" class="main-salmon-status_name--court"/>
+                <ui:Label text="Label" class="main-salmon-status_value--court"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="サイズ" class="main-salmon-status_name--court"/>
+                <ui:Label text="Label" class="main-salmon-status_value--court"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label text="形" class="main-salmon-status_name--court"/>
+                <ui:Label text="Label" class="main-salmon-status_value--court"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:Label text="Label" name="courttimes" class="remaining-court-times"/>
+</ui:UXML>

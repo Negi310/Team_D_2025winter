@@ -582,6 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   uiDocument: {fileID: 488203742}
+  maleIllust: {fileID: 864225774}
 --- !u!4 &771971579
 Transform:
   m_ObjectHideFlags: 0
@@ -610,6 +611,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CourtingUIManager
   uiDocument: {fileID: 1028607453}
+  maleIllust: {fileID: 864225774}
+  femaleIllust: {fileID: 864225773}
 --- !u!114 &771971581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,6 +626,127 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NamingUIManager
   uiDocument: {fileID: 1110477960}
+  maleIllust: {fileID: 864225774}
+--- !u!1 &864225772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 864225775}
+  - component: {fileID: 864225774}
+  - component: {fileID: 864225773}
+  m_Layer: 0
+  m_Name: CharacterIllustrationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &864225773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864225772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a61d0795dfda6340b4f401abd554857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FemaleIlluslationManager
+  hairLineList:
+  - {fileID: 2800000, guid: d26af5e086ecfa949bea56d1b4635780, type: 3}
+  - {fileID: 2800000, guid: 29492b9f981684e46a22b72f79f05911, type: 3}
+  - {fileID: 2800000, guid: d1754d3323eec3f419acb9ff2e6b2a63, type: 3}
+  hairPaintList:
+  - {fileID: 2800000, guid: b8d4be672849cb34bb71312e3ae0021a, type: 3}
+  - {fileID: 2800000, guid: a7074c7d97c064349b74e5312659a903, type: 3}
+  - {fileID: 2800000, guid: a5160ae5d728c2c46b238104c3d0d3d9, type: 3}
+  eyebrowList:
+  - {fileID: 2800000, guid: 653cd0b59a4e5ba48a4f3663b5635935, type: 3}
+  - {fileID: 2800000, guid: 8e1e969b8d15c054fa12a33f2a03fd3d, type: 3}
+  - {fileID: 2800000, guid: 338d22a4d7e9f524d9c1764588e02304, type: 3}
+  - {fileID: 2800000, guid: 081a6290f3e98b147a92e5bfefb7d301, type: 3}
+  eyeLineList:
+  - {fileID: 2800000, guid: 6d0f6d831813cb0438f5807e2f9f8b81, type: 3}
+  - {fileID: 2800000, guid: 97d627c414aa9914da849a0ca1ab8e67, type: 3}
+  - {fileID: 2800000, guid: 5a4a871840cf5e245af12ac061697028, type: 3}
+  eyePaintList:
+  - {fileID: 2800000, guid: 2561987367817634f96da644ee19fb66, type: 3}
+  - {fileID: 2800000, guid: a249d3b831fc9164d8dab11a740dbbe1, type: 3}
+  - {fileID: 0}
+  mouthList:
+  - {fileID: 2800000, guid: f61350e6df3a7594a9a06baf54f8809a, type: 3}
+  - {fileID: 2800000, guid: eaf4b492a2ecad544889de74740a4144, type: 3}
+  - {fileID: 2800000, guid: b28e92f2434bcc9499271c1835669741, type: 3}
+  otherTextureList:
+  - {fileID: 2800000, guid: 0c034c0df46676f4bbf049cbda08353c, type: 3}
+  - {fileID: 2800000, guid: 76df5ed9246996647a56c0498f06fb55, type: 3}
+  salmonColorSO: {fileID: 11400000, guid: 366a3f5a931806048b3fb0cb7094b3f1, type: 2}
+--- !u!114 &864225774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864225772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 365de721883fc6d4bb356b2b6ecb23be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MaleIlluslationManager
+  hairLineList:
+  - {fileID: 2800000, guid: e926bf0543f66ea49ad7e16b24b54fe0, type: 3}
+  - {fileID: 2800000, guid: 3790b70bdf6e8fd43bf86444e75b8a64, type: 3}
+  - {fileID: 2800000, guid: aa2743ba0615a3d449d2863e86258b9c, type: 3}
+  hairPaintList:
+  - {fileID: 2800000, guid: a63b466d18ad6544a8ee234ead737eeb, type: 3}
+  - {fileID: 2800000, guid: 8c8b633bb0a10644d98272597881195b, type: 3}
+  - {fileID: 2800000, guid: d8c1aa892809efe40bc44fe602ef60fd, type: 3}
+  eyebrowList:
+  - {fileID: 2800000, guid: 9d3f49b99713bc246bbada2f2d428ec6, type: 3}
+  - {fileID: 2800000, guid: 1087c69ddad242d4e96cb4c9c834bf7b, type: 3}
+  - {fileID: 2800000, guid: 999f2ebb43ae95f44a79d4b0b0ef09db, type: 3}
+  - {fileID: 2800000, guid: 0f5c0762b7607e646951defd116f9b52, type: 3}
+  eyeLineList:
+  - {fileID: 2800000, guid: 35dcff3583511e545a0241109852dfe7, type: 3}
+  - {fileID: 2800000, guid: 0e7270657414c9641b768ded493714a5, type: 3}
+  - {fileID: 2800000, guid: e01d0a50e81ecab458d6ea2599e7aca5, type: 3}
+  - {fileID: 2800000, guid: c682e87dcba11f7428cf876e69a768cf, type: 3}
+  - {fileID: 2800000, guid: 8efa13e7a7469c946b68cda73bd4734e, type: 3}
+  eyePaintList:
+  - {fileID: 2800000, guid: da2c9937803e5a84e9decc657c09807d, type: 3}
+  - {fileID: 0}
+  - {fileID: 2800000, guid: d7e4851cd41813b40b5558248968715d, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  mouthList:
+  - {fileID: 2800000, guid: f7994f9de91694141a227d4286925acc, type: 3}
+  - {fileID: 2800000, guid: f55c6e3094328bc4881e97057c611761, type: 3}
+  - {fileID: 2800000, guid: be057326fc025ce4b94b2f62e66e691c, type: 3}
+  otherTextureList:
+  - {fileID: 2800000, guid: 9b86327b33c5965438c321605304799e, type: 3}
+  - {fileID: 2800000, guid: 914aeb0c2b01d3f4faa51ced15aa503e, type: 3}
+  - {fileID: 2800000, guid: 918876285767ee6438209c21db3df2c1, type: 3}
+  salmonColorSO: {fileID: 11400000, guid: 366a3f5a931806048b3fb0cb7094b3f1, type: 2}
+--- !u!4 &864225775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864225772}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.8457, y: -1.06288, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963254540
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,6 +787,11 @@ MonoBehaviour:
   playerColor: "\u8D64"
   playerSize: "\u5927\u304D\u3044"
   playerShape: 0
+  increaseSpeed: 1
+  increaseJump: -10000
+  increaseStamina: 5
+  increaseAttack: 14
+  increaseIntelligence: 1
   a: 2
   b: 3
   c: 4
@@ -681,13 +810,43 @@ MonoBehaviour:
   seaTurn: 1
   riverName: "\u30AD\u30E5\u30A6\u30EA\u30E5\u30A6\u5DDD"
   courtingTimes: 3
+  salmonHair: 0
+  salmonEye: 0
+  salmonEyebrow: 0
+  salmonMouth: 0
+  isPale: 0
+  weakestColor: 1
+  weakColor: 0
+  normalColor: 2
+  strongColor: 6
+  strongestColor: 7
+  weakestHair: 1
+  weakHair: 0
+  normalHair: 0
+  strongHair: 2
+  strongestHair: 1
+  weakestEye: 0
+  weakEye: 0
+  normalEye: 0
+  strongEye: 0
+  strongestEye: 0
+  weakestEyebrow: 0
+  weakEyebrow: 0
+  normalEyebrow: 0
+  strongEyebrow: 0
+  strongestEyebrow: 0
+  weakestMouth: 0
+  weakMouth: 0
+  normalMouth: 0
+  strongMouth: 0
+  strongestMouth: 0
   salmonAnimationController: {fileID: 1350426066}
   salmonBase: {fileID: 460783030}
   salmonHair1: {fileID: 2081973605}
   salmonHair2: {fileID: 1739114204}
   salmonBody1: {fileID: 1936912416}
   salmonBody2: {fileID: 1747652008}
-  salmonColor: 0
+  salmonColor: 1
 --- !u!4 &963254542
 Transform:
   m_ObjectHideFlags: 0
@@ -2750,15 +2909,7 @@ MonoBehaviour:
   hair2Normal: {fileID: 21300000, guid: 9791165eb361d1c45b2652ca7bdc00e0, type: 3}
   hair1Short: {fileID: 21300000, guid: 235ce1126787fa549835689d033c1373, type: 3}
   hair2Short: {fileID: 21300000, guid: 6e809246a4be12745a26a3b27ff1fcba, type: 3}
-  hairOrange: {r: 0.8901961, g: 0.5921569, b: 0.4117647, a: 1}
-  hairRed: {r: 0.9764706, g: 0.44705883, b: 0.4509804, a: 1}
-  hairBlue: {r: 0.44705883, g: 0.46666667, b: 0.9764706, a: 0}
-  hairYellow: {r: 0.9607843, g: 0.9764706, b: 0.44705883, a: 0}
-  hairGreen: {r: 0.44705883, g: 0.9764706, b: 0.45882353, a: 0}
-  hairPink: {r: 0.9764706, g: 0.44705883, b: 0.80784315, a: 0}
-  hairPurple: {r: 0.78431374, g: 0.44705883, b: 0.9764706, a: 0}
-  hairSkyBlue: {r: 0.44705883, g: 0.96862745, b: 0.9764706, a: 0}
-  hairYellowGreen: {r: 0.7882353, g: 0.9764706, b: 0.44705883, a: 0}
+  salmonColorSO: {fileID: 11400000, guid: 366a3f5a931806048b3fb0cb7094b3f1, type: 2}
 --- !u!1001 &1506529072
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3164,3 +3315,4 @@ SceneRoots:
   - {fileID: 627970302}
   - {fileID: 1057859883}
   - {fileID: 1350426065}
+  - {fileID: 864225775}

@@ -46,4 +46,21 @@ public class ForUIStatusBuilder
         return riverList;
     }
     //各トレーニングのステータスの増減量をリストに
+    public List<string> TrainingStatuIcreaceList(string speed, string jump, string stamina, string attack, string intelligence)
+    {
+        return new List<string>
+        {
+            speed,jump,stamina,attack,intelligence
+        };
+    }
+    //メスの立ち絵のパーツの情報とかをリストに
+    public List<(SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth)> FemaleIllustList(SalmonHair weakestHair,SalmonEyeFemale weakestEye, SalmonColor weakestColor,SalmonEyebrowFemale weakestEyebrow,SalmonMouthFemale weakestMouth,SalmonHair weakHair,SalmonEyeFemale weakEye, SalmonColor weakColor,SalmonEyebrowFemale weakEyebrow,SalmonMouthFemale weakMouth,SalmonHair normalHair,SalmonEyeFemale normalEye, SalmonColor normalColor,SalmonEyebrowFemale normalEyebrow,SalmonMouthFemale normalMouth,SalmonHair strongHair,SalmonEyeFemale strongEye, SalmonColor strongColor,SalmonEyebrowFemale strongEyebrow,SalmonMouthFemale strongMouth,SalmonHair strongestHair,SalmonEyeFemale strongestEye, SalmonColor strongestColor,SalmonEyebrowFemale strongestEyebrow,SalmonMouthFemale strongestMouth)
+    {
+        (SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth) weakest = (weakestHair,weakestEye,weakestColor,weakestEyebrow,weakestMouth);
+        (SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth) weak = (weakHair,weakEye,weakColor,weakEyebrow,weakMouth);
+        (SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth) normal = (normalHair,normalEye,normalColor,normalEyebrow,normalMouth);
+        (SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth) strong = (strongHair,strongEye,strongColor,strongEyebrow,strongMouth);
+        (SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth) strongest = (strongestHair,strongestEye,strongestColor,strongestEyebrow,strongestMouth);
+        return new List<(SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth)>{weakest,weak,normal,strong,strongest};
+    }
 }

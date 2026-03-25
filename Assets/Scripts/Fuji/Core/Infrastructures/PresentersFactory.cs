@@ -13,11 +13,22 @@ public class StateCompositeFactory
         ObstaclesView obstaclesView, SalmonMove salmonMove,
         UpstreamView upstreamView,
         CourtingUIManager courtingUIManager, NamingUIManager namingUIManager,
-        SeaUIManager seaUIManager,
+        SeaUIManager seaUIManager, TitleView titleView,
         EventPool eventPool, ChunkLevelData chunkLevelData,
         MateGenerationSettingsSO _mateSetting,
-        TickProvider tickProvider)
+        TickProvider tickProvider, string initialStateName)
     {
+        Register<TitleState>((state, payload) =>
+        {
+            var composite = new CompositeDisposable();
+            
+            composite.Add(new TitlePresenter(state, titleView, initialStateName));
+            //composite.Add(new PlayerStatsPresenter(state));
+            //...
+
+            return composite;
+        });
+        
         // ジェネリクスのおかげで、引数の state は最初から「CourtshipState」として確定している！
         Register<CourtshipState>((state, payload) =>
         {
@@ -97,7 +108,7 @@ public class StateCompositeFactory
     public IDisposable CreatePresentersFor(GameState state, IPayload payload)
     {
         Type stateType = state.GetType();
-
+        
         if (_registry.TryGetValue(stateType, out var factoryMethod))
         {
             return factoryMethod.Invoke(state, payload) as IDisposable;

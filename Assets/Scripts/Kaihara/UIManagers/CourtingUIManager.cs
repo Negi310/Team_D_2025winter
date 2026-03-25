@@ -40,6 +40,8 @@ public class CourtingUIManager : MonoBehaviour
     public event Action<int> OnPartnerHovered; // 何番目のパートナーにホバーしたか
     public event Action<int> OnPartnerClicked; // 何番目のパートナーをクリック（求愛）したか
     public event Action OnAnimationCompleted;  // 結果演出が終わった時の通知
+    
+    private Button riverstatusButton;
     void Awake()
     {
         //uiDocumentのrootVE取得
@@ -73,6 +75,7 @@ public class CourtingUIManager : MonoBehaviour
     public void Hide()
     {
         root.style.display = DisplayStyle.None;
+        ResetUIState();
     }
 
     //パートナー候補UIの初期設定
@@ -140,7 +143,7 @@ public class CourtingUIManager : MonoBehaviour
             riverUIList.Add(groundchildVE.Q<VisualElement>(className:"next-river-information_status_value"));
         }
         //Buttonのイベント設定
-        var riverstatusButton = root.Q<VisualElement>(className:"next-river-information").Q<Button>();
+        riverstatusButton = root.Q<VisualElement>(className:"next-river-information").Q<Button>();
         riverstatusButton.clicked += () =>
         {
             //クラス変更で革のステータスの表示状況を切り替え
@@ -268,5 +271,11 @@ public class CourtingUIManager : MonoBehaviour
         {
             partnerUIList[index].successLabel.text = successRate + "%";
         }
+    }
+    
+    private void ResetUIState()
+    {
+        riverstatusButton.parent.RemoveFromClassList("is-open");
+        riverstatusButton.text = ">"; // ボタンの矢印の向きを初期状態に戻す
     }
 }

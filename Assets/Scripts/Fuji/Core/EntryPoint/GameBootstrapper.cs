@@ -11,6 +11,7 @@ public class GameBootstrapper : MonoBehaviour
     [SerializeField] private ObstaclesView obstaclesView;
     [SerializeField] private SalmonMove salmonMove;
     [SerializeField] private UpstreamView upstreamView;
+    [SerializeField] private TitleView titleView;
     [SerializeField] private TickProvider tickProvider;
 
     [Header("Master Data")]
@@ -20,19 +21,18 @@ public class GameBootstrapper : MonoBehaviour
     [SerializeField] private MateGenerationSettingsSO mateSetting;
     
     private GameRouter _router;
-    private GameStateMachine _stateMachine;
-    private SaveDataResister _saveDataResister;
     private SaveData _saveData;
 
     private void Awake()
     {
-        _saveDataResister = new SaveDataResister();
-        if (!_saveDataResister.TryLoad(out SaveData saveData))
+        var saveDataResister = new SaveDataResister();
+        if (!saveDataResister.TryLoad(out SaveData saveData))
         {
-            saveData = _saveDataResister.CreateInitialData();
-            _saveDataResister.Save(saveData);
+            saveData = saveDataResister.CreateInitialData();
+            saveDataResister.Save(saveData);
         }
         
+        _saveData = saveData;
         var sessionContext = new SessionContext(saveData);
 
         // ロジックを計算するModelの生成
@@ -40,17 +40,12 @@ public class GameBootstrapper : MonoBehaviour
 
         var stateCompositeFactory = new StateCompositeFactory(sessionContext, logicInstaller,
             conversationView, treadmillView, obstaclesView, salmonMove, upstreamView,
-            courtingUIManager,namingUIManager, seaUIManager,
-            eventPool, chunkLevelData, mateSetting, tickProvider);
+            courtingUIManager,namingUIManager, seaUIManager, titleView,
+            eventPool, chunkLevelData, mateSetting, tickProvider, _saveData.LastSavedStateName);
         // ModelとViewとContextの参照を渡す
-        _stateMachine = new GameStateMachine();
-        _router = new GameRouter(_stateMachine, stateCompositeFactory, sessionContext, _saveDataResister);
-        _saveData = saveData;
-    }
-    
-    private void Start()
-    {
-        _saveDataResister.ResumeState(_stateMachine, _saveData.LastSavedStateName);
+        var stateMachine = new GameStateMachine();
+        _router = new GameRouter(stateMachine, stateCompositeFactory, sessionContext, saveDataResister);
+        ((IStateChangable)stateMachine).ChangeState<TitleState>();
     }
 
     private void OnDestroy()

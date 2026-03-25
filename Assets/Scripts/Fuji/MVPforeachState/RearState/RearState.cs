@@ -5,8 +5,8 @@ public class RearState : GameState
         RequestTransition<ConversationState>(payload);
     }
     
-    public void TransitionCheck()
+    public void TransitionCheck(int currentTurn)
     {
-        RequestTransition<UpstreamState>();
+        if (currentTurn == 10) RequestTransition<UpstreamState>();
     }
 }

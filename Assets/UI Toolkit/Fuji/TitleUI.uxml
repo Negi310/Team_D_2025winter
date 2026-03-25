@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; justify-content: space-around; align-items: center; background-color: rgb(255, 255, 255);">
+        <ui:Button text="" name="start-button" style="height: 124px; width: 345px; -unity-text-align: middle-left; flex-direction: column; right: 130px; left: 0; bottom: 216px; top: 102px; white-space: normal;"/>
+    </ui:VisualElement>
+</ui:UXML>

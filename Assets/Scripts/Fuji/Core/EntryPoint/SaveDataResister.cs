@@ -50,10 +50,10 @@ public class SaveDataResister
     
     public SaveData CreateInitialData()
     {
-        var defaultStats = new UpstreamStats(speed: 10f, jump: 5f, stamina: 100f, attack: 5f, intelligence: 5f);
+        var defaultStats = new UpstreamStats(speed: 100f, jump: 5f, stamina: 10f, attack: 5f, intelligence: 5f);
         var defaultTraits = new CourtshipTraits(size: 1.0f, colorValue: 0.5f, shapeValue: 0.5f);
         var initialSalmon = new SalmonData(defaultStats, defaultTraits) { Name = "初代" };
-
+        
         return new SaveData
         {
             Generation = 1,
@@ -73,18 +73,5 @@ public class SaveDataResister
             Salmon = context.CurrentSalmon,
             LastSavedStateName = currentStateName
         };
-    }
-    
-    public void ResumeState(GameStateMachine stateMachine, string stateName)
-    {
-        var sm = (IStateChangable)stateMachine;
-        
-        if (stateName == nameof(UpstreamState)) sm.ChangeState<UpstreamState>();
-        else if (stateName == nameof(CourtshipState)) sm.ChangeState<CourtshipState>();
-        else if (stateName == nameof(RearState)) sm.ChangeState<RearState>();
-        else if (stateName == nameof(NameState)) sm.ChangeState<NameState>();
-        else if (stateName == nameof(UpstreamState)) sm.ChangeState<UpstreamState>();
-        else if (stateName == nameof(ConversationState)) sm.ChangeState<ConversationState>();
-        else sm.ChangeState<UpstreamState>();
     }
 }

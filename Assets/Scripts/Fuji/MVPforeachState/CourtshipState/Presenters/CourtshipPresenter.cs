@@ -80,7 +80,7 @@ public class CourtshipPresenter : IDisposable
         string riverName = "激流の川"; 
 
         // 5. Viewへ全データを流し込み、表示させる（ホバー時の表示/非表示はUSSに任せる）
-        _view.SetUpUI(playerStatusList, partnerStatusList, riverStatusList, remainTimes, riverName);
+        //_view.SetUpUI(playerStatusList, partnerStatusList, riverStatusList, 
         _view.Show();
     }
 

@@ -66,7 +66,7 @@ public class SalmonMove : MonoBehaviour
 
         // ★自動で前に進む（縦入力でわずかに加減速できるようにする）
         float inputY = Input.GetAxis("Vertical");
-        float finalSpeedY = _speedY + (inputY * 1.5f); // ※完全自動が良い場合は _speedY だけにする
+        float finalSpeedY = _speedY + (inputY * 0f); // ※完全自動が良い場合は _speedY だけにする
 
         // Rigidbodyのvelocityに代入（※Time.deltaTimeは不要です）
         Vector2 velocity = new Vector2(inputX * _speedX, finalSpeedY);

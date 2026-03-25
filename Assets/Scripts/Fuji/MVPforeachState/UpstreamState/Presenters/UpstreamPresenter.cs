@@ -34,7 +34,12 @@ public class UpstreamPresenter : ITickable, IDisposable
 
         _player.OnStaminaChanged += (st) => _view.UpdateStamina(st, _playerCtx.MaxStamina);
         _player.OnComboChanged += _view.UpdateCombo;
-        _player.OnDied += () => _state.TransitionCheck(); 
+        _player.OnDied += () =>
+        {
+            _playerCtx.IsDead = true;
+            CourtshipInitPayload payload = new CourtshipInitPayload { DistanceTraveled = _playerCtx.Position.y };
+            _state.TransitionCheck(payload, _playerCtx.IsDead);
+        };
 
         _player.Init(_playerCtx, _sessionCtx.CurrentSalmon);
     }
@@ -50,7 +55,8 @@ public class UpstreamPresenter : ITickable, IDisposable
 
         _view.UpdateDistance(_playerCtx.Position.y);
         
-        if (_playerCtx.Position.y >= 1000f) _state.TransitionCheck();
+        CourtshipInitPayload payload = new CourtshipInitPayload { DistanceTraveled = _playerCtx.Position.y };
+        _state.TransitionCheck(payload, _playerCtx.IsDead);
     }
 
     private void HandleExited() => _view.Hide();

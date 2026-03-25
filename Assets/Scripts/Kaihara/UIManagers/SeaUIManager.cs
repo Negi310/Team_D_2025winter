@@ -10,10 +10,19 @@ public class SeaUIManager : MonoBehaviour
     
     //uiDocument
     [SerializeField]private UIDocument uiDocument;
+    //立ち絵設定
+    [SerializeField] private MaleIllustrationManager maleIllust;
     //root
     private VisualElement root;
     //プレイヤーのUIのlabel(3)のリスト
     private List<Label> playerUIList = new List<Label>(); 
+    //プレイヤーのUIのlabel(4)のリスト
+    private List<Label> statusIncreaceUIList = new List<Label>();
+    //トレーニングのbutton1のリスト
+    private List<Button> trainingButtonList = new List<Button>();
+    //ランダムイベントのbutton1のリスト
+    private List<Button> randomEventButtonList = new List<Button>();
+
      //川のステータスのひ孫VEのリスト
     private List<VisualElement> riverUIList = new List<VisualElement>();
     //川のステータスのひ孫VEのデフォルトの横幅を保存
@@ -22,6 +31,8 @@ public class SeaUIManager : MonoBehaviour
     private Label riverNameLabel;
     //ターン数のlabel
     private Label turnUILabel;
+    //プレイヤー立ち絵のVE
+    private VisualElement playerIllust;
     //川のステータスの最大値
     private const float riverStatusMax = 20;
 
@@ -32,13 +43,16 @@ public class SeaUIManager : MonoBehaviour
         //初期設定
         InitPlayerUI();
         InitRiverUI();
-        //非表示
-        Hide();
+        InitTrainingButton();
+        playerIllust = root.Q<VisualElement>(className:"male-illustration_base");
+        maleIllust.InitIllust(playerIllust);
         //VEの横幅取得のためレイアウト確定後に実行
         root.RegisterCallbackOnce<GeometryChangedEvent>(evt =>
         {
             //川UIのひ孫VEの横幅取得
             defaultRiverStatusValueWidth = Mathf.Floor(riverUIList[0].resolvedStyle.width / riverUIList[0].parent.resolvedStyle.width * 100);
+            //上記横幅取得が非表示の時できないためここで非表示 
+            Hide();
         });
     }
     //UIの表示
@@ -58,17 +72,22 @@ public class SeaUIManager : MonoBehaviour
         //VEとかの構造
         //親VE(class:main-salmon-statusbar)
         //|--子VE(クラスなし)(ステータスごとに一つ存在)
-        //|  |--label(1)(class:main-salmon-status_)(ステータスについての解説)
+        //|  |--label(1)(class:main-salmon-status_status-information)(ステータスについての解説)
         //|  |--label(2)(class:main-salmon-status_name--swim)(ステータスの名前を表示　求愛用の場合はswim->courtで色変更)
         //|  |--label(3)(class:main-salmon-status_value)(ステータスの値を表示)
+        //|  |--label(4)(class:main-salmon-status_increace)(ステータスの上昇値を表示)
         //:
         
         //いったん子VEのリストを生成
         var childVEList = root.Q<VisualElement>(className:"main-salmon-statusbar").Children().ToList();
+        
         foreach(VisualElement childVE in childVEList)
         {
             //label(3)のリストに追加
             playerUIList.Add(childVE.Q<Label>(className:"main-salmon-status_value"));
+            //label(4)のリストに追加
+            var label4 = childVE.Q<Label>(className:"main-salmon-status_increace");
+            if(label4 != null) statusIncreaceUIList.Add(label4);
             //子VEの数に応じて最小サイズを決定(子VEがn個なら100/n*0.9%)
             childVE.style.minWidth = new Length(100 / childVEList.Count * 0.9f , LengthUnit.Percent);
         }
@@ -105,29 +124,103 @@ public class SeaUIManager : MonoBehaviour
         var riverstatusButton = root.Q<VisualElement>(className:"next-river-information").Q<Button>();
         riverstatusButton.clicked += () =>
         {
-            //クラス変更で革のステータスの表示状況を切り替え
+            //クラス変更で川のステータスの表示状況を切り替え
             riverstatusButton.parent.EnableInClassList("is-open",!riverstatusButton.parent.ClassListContains("is-open"));
             //ボタンの文字切り替え
             if(riverstatusButton.text == ">") riverstatusButton.text = "v";
             else riverstatusButton.text = ">";
         };
     }
+    void InitTrainingButton()
+    {
+        //トレーニングを選択するタブの処理
+        //VE構造
+        //親VE(class:training-tab)(training-buttonで表示)
+        //|--button1(class:training-tab_training-button)(ステータスごとに一つ クリックで対応するステータスのトレーニングのイベントに移行)
+        //:
+        //|--button2(class:training-tab_cancel-button)(タブの非表示)
+
+        //Button(class:training-button)(上のタブの表示用ボタン)
+
+        //親VEを取得
+        var parentVE = root.Q<VisualElement>(className:"training-tab");
+
+        //トレーニングの表示のボタンにイベント設定
+        var trainingTabOpenButton = root.Q<Button>(className:"training-button");
+        trainingTabOpenButton.clicked += () =>
+        {
+            parentVE.AddToClassList("is-open");
+        };
+        //button1のリスト保存
+        trainingButtonList = parentVE.Query<Button>(className:"training-tab_training-button").ToList();
+        
+        //button2に非表示イベント設定
+        var trainingCancelButon = parentVE.Q<Button>(className:"training-tab_cancel-button");
+        trainingCancelButon.clicked += () =>
+        {
+            parentVE.RemoveFromClassList("is-open");
+        };
+
+        //ホバー時のイベント設定
+        for(int i = 0;i<trainingButtonList.Count; i++)
+        {
+            var button = trainingButtonList[i];
+            var ui = statusIncreaceUIList[i];
+            button.RegisterCallback<PointerEnterEvent>(evt =>
+            {
+                ui.AddToClassList("is-open");
+                
+            });
+            button.RegisterCallback<PointerLeaveEvent>(evt =>
+            {
+                ui.RemoveFromClassList("is-open");
+            });
+        }
+
+        //ランダムイベント　大体上と一緒
+        //親VEを取得
+        var parentVE2 = root.Q<VisualElement>(className:"random-event-tab");
+        
+        //トレーニングの表示のボタンにイベント設定
+        var randomEventTabOpenButton = root.Q<Button>(className:"random-event-button");
+        randomEventTabOpenButton.clicked += () =>
+        {
+            parentVE2.AddToClassList("is-open");
+        };
+        //button1のリスト保存
+        randomEventButtonList = parentVE2.Query<Button>(className:"random-event-tab_random-event-button").ToList();
+        
+        //button2に非表示イベント設定
+        var randomEventCancelButon = parentVE2.Q<Button>(className:"random-event-tab_cancel-button");
+        randomEventCancelButon.clicked += () =>
+        {
+            parentVE2.RemoveFromClassList("is-open");
+        };
+    }
 
     //内容更新
-    public void SetUpUI(List<string> playerStatusList,List<string> riverStatusList,int turn,string riverName)
+    public void SetUpUI(List<string> playerStatusList,List<string> riverStatusList,List<string> statusincereace,int turn,string riverName,SalmonHair hair,SalmonColor color, SalmonEyeMale eye, SalmonEyebrowMale eyebrow, SalmonMouthMale mouth,bool isPale,List<string> randomEventNameList)
     {
-        SetUpStatusUI(playerStatusList);
+        SetUpStatusUI(playerStatusList,statusincereace);
         SetUpRiverUI(turn,riverName,riverStatusList);
+
+        for(int i = 0; i < 3; i++)
+        {
+            randomEventButtonList[i].text = randomEventNameList[i];
+        }
+
+        maleIllust.SetUpIllust(playerIllust,hair,eye,color,eyebrow,mouth,isPale);
     }
     //ステータス表示の設定
-    void SetUpStatusUI(List<string> playerStatusList)
+    void SetUpStatusUI(List<string> playerStatusList,List<string> statusincereace)
     {
         //VEとかの構造
         //親VE(class:main-salmon-statusbar)
         //|--子VE(クラスなし)(ステータスごとに一つ存在)
-        //|  |--label(1)(class:main-salmon-status_)(ステータスについての解説)
+        //|  |--label(1)(class:main-salmon-status_status-information)(ステータスについての解説)
         //|  |--label(2)(class:main-salmon-status_name--swim)(ステータスの名前を表示　求愛用の場合はswim->courtで色変更)
         //|  |--label(3)(class:main-salmon-status_value)(ステータスの値を表示)
+        //|  |--label(4)(class:main-salmon-status_increace)(ステータスの上昇値を表示)
         //:
 
         //label(3)の表示内容を更新
@@ -135,6 +228,23 @@ public class SeaUIManager : MonoBehaviour
         {
             playerUIList[i].text = playerStatusList[i];
         }
+        //label(4)の表示内容を更新
+        for(int i = 0; i < statusincereace.Count; i++)
+        {
+            if(int.Parse(statusincereace[i]) == 0) statusIncreaceUIList[i].text = null;
+            else if(int.Parse(statusincereace[i]) > 0)
+            {
+                statusIncreaceUIList[i].text = "+" + statusincereace[i];
+                statusIncreaceUIList[i].style.color = Color.green;
+            }
+            else
+            {
+                statusIncreaceUIList[i].text = statusincereace[i];
+                statusIncreaceUIList[i].style.color = Color.red;
+            }
+            
+        }
+
     }
     void SetUpRiverUI(int turn,string riverName,List<string> riverStatus)
     {
@@ -156,10 +266,8 @@ public class SeaUIManager : MonoBehaviour
         //ひ孫VEの内容を更新
         for(int i = 0; i < riverStatus.Count; i++)
         {
-            Debug.Log(defaultRiverStatusValueWidth * float.Parse(riverStatus[i]) / riverStatusMax);
             riverUIList[i].style.width = new Length(defaultRiverStatusValueWidth * float.Parse(riverStatus[i]) / riverStatusMax, LengthUnit.Percent);
         }
     }
-
 
 }

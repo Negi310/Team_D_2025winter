@@ -1,0 +1,13 @@
+.main-salmon {
+    top: 50%;
+    left: 3%;
+    width: 25%;
+    height: 30%;
+}
+
+.male-illust {
+    left: 29.357%;
+    top: 5%;
+    width: 41.25%;
+    height: 110%;
+}

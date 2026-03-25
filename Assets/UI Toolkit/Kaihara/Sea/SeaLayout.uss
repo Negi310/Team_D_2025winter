@@ -1,0 +1,13 @@
+.male-illust {
+    left: 29.357%;
+    top: 5%;
+    width: 41.25%;
+    height: 110%;
+}
+
+.next-river {
+    width: 50%;
+    height: 10%;
+    right: 0%;
+    top: 0;
+}

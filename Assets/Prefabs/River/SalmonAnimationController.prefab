@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7539347231102727853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5189244176127453570}
+  - component: {fileID: 8878069589420816917}
+  m_Layer: 0
+  m_Name: SalmonAnimationController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5189244176127453570
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7539347231102727853}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.19665, y: -1.52282, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8878069589420816917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7539347231102727853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c182cac4f1b5444bc772882ff1717e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SalmonAnimationController
+  hair1Long: {fileID: 21300000, guid: 941e923b0bb8c504b93681787b025f3b, type: 3}
+  hair2Long: {fileID: 21300000, guid: 9b07eae1b342d404e8bf8c0a45e75367, type: 3}
+  hair1Normal: {fileID: 21300000, guid: 067b6ad1420fc4f479978157834b793a, type: 3}
+  hair2Normal: {fileID: 21300000, guid: 9791165eb361d1c45b2652ca7bdc00e0, type: 3}
+  hair1Short: {fileID: 21300000, guid: 235ce1126787fa549835689d033c1373, type: 3}
+  hair2Short: {fileID: 21300000, guid: 6e809246a4be12745a26a3b27ff1fcba, type: 3}
+  salmonColorSO: {fileID: 11400000, guid: 366a3f5a931806048b3fb0cb7094b3f1, type: 2}

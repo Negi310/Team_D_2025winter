@@ -1,0 +1,62 @@
+
+
+.male-illustration_base {
+    flex-grow: 0;
+    position: absolute;
+    flex-shrink: 0;
+}
+
+.male-illustration_eyebrow {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.male-illustration_hair-line {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.male-illustration_hair-paint {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.male-illustration_eye-line {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.male-illustration_eye-paint {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.male-illustration_mouth {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.male-illustration_pale {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.male-illustration_body-base {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.male-illustration_body-paint {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}

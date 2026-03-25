@@ -27,7 +27,8 @@ public class NamePresenter : IDisposable
         // 名前入力UIの初期化
         _view.Show();
         var playerStatusList = _builder.PlayerStatusListBuild("1", "1", "1", "1", "1", "1", "1", "1");
-        _view.SetUpUI(playerStatusList);
+        //メソッドの引数追加につきエラーが出るため一旦引数を入れておきます　お手数ですが修正よろしくお願いします　貝原
+        _view.SetUpUI(playerStatusList,SalmonHair.Normal,SalmonEyeMale.Normal,SalmonColor.Orange,SalmonEyebrowMale.Normal,SalmonMouthMale.Normal,false);
     }
     
     private void HandleExited()

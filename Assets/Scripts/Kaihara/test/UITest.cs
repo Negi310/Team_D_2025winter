@@ -142,7 +142,7 @@ public class UITest : MonoBehaviour
             var partnerStatusList = forUIStatusBuilder.PartnersListBuild(weakestPer,weakestSuc,weakPer,weakSuc,normalPer,normalSuc,strongPer,strongSuc,strongestPer,strongestSuc);
             var riverStatusList = forUIStatusBuilder.RiverInformatinListBuild(a,b,c,d,e);
             var femaleIllustList = forUIStatusBuilder.FemaleIllustList(weakestHair,weakestEye,weakestColor,weakestEyebrow,weakestMouth,weakHair,weakEye,weakColor,weakEyebrow,weakMouth,normalHair,normalEye,normalColor,normalEyebrow,normalMouth,strongHair,strongEye,strongColor,strongEyebrow,strongMouth,strongestHair,strongestEye,strongestColor,strongestEyebrow,strongestMouth);
-            courtingUIManager.SetUpUI(playerStatusList,partnerStatusList,femaleIllustList,riverStatusList,courtingTimes,riverName);
+            courtingUIManager.SetUpUI(playerStatusList,partnerStatusList,femaleIllustList,SalmonHair.Long,SalmonEyeMale.Normal,SalmonColor.Orange,SalmonEyebrowMale.Normal,SalmonMouthMale.Normal,isPale,riverStatusList,courtingTimes,riverName);
         }
         //iキーでCourtingUI非表示
         if (Keyboard.current.iKey.wasPressedThisFrame)

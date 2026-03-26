@@ -23,8 +23,7 @@ public class FemaleIllustrationManager : MonoBehaviour
 
 
 
-    //立ち絵のVEなどの構造 UI Builder側はVE配置と識別用クラスの設定のみ クラスはSeaUI.ussの下の方にあるのでそれをコピペ 親VEのサイズは縦横比変えなければ変更可
-    //色変更部はRenderTexture利用してシェーダーを適用　他はそのまま画像適用
+    //立ち絵のVEなどの構造  UI Builder側はVE配置と識別用クラスの設定のみ 以下クラスはFemaleSalmonIllust.ussにある　親VEには適宜レイアウト用のussのクラスで配置と大きさを設定
     //親VE(className:"female-illustration_base")
     //|--VE(1)(className:"female-illustration_body-paint") 体の色が変わる部分
     //|--VE(2)(className:"female-illustration_body-base") 体の色が変わらない部分

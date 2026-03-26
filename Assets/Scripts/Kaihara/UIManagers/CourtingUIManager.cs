@@ -31,6 +31,8 @@ public class CourtingUIManager : MonoBehaviour
     private Label riverNameLabel;
     //残り求愛回数のlabel
     private Label courtingTimesLabel;
+    //プレイヤーの立ち絵
+    private VisualElement playerIllust;  
 
     //プレイヤーのステータスの最大値(いったん20)
     private const float playerStatusMax = 20;
@@ -53,6 +55,9 @@ public class CourtingUIManager : MonoBehaviour
         InitPlayerUI();
         //川UIの初期設定
         InitRiverUI();
+
+        playerIllust = root.Q<VisualElement>(className:"male-illustration_base");
+        maleIllust.InitIllust(playerIllust);
         //VEの横幅取得のためレイアウト確定後に実行
         root.RegisterCallbackOnce<GeometryChangedEvent>(evt =>
         {
@@ -176,7 +181,7 @@ public class CourtingUIManager : MonoBehaviour
         
     }
     //表示内容更新
-    public void SetUpUI(List<string> playerStatusList,List<(string personality,string successRate)> partnerStatusList,List<(SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth)> femaleIllustList,List<string> riverStatus ,int courtTimes,string riverName)
+    public void SetUpUI(List<string> playerStatusList,List<(string personality,string successRate)> partnerStatusList,List<(SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth)> femaleIllustList,SalmonHair maleHair,SalmonEyeMale maleEye,SalmonColor maleColor,SalmonEyebrowMale maleEyebrow,SalmonMouthMale maleMouth,bool isPale,List<string> riverStatus ,int courtTimes,string riverName)
     {
         //パートナーUIの内容更新
         SetUpPartnerUI(partnerStatusList,femaleIllustList);
@@ -184,6 +189,7 @@ public class CourtingUIManager : MonoBehaviour
         SetUpPlayerUI(playerStatusList);
         //川UIの内容更新
         SetUpRiverUI(courtTimes,riverName,riverStatus);
+        maleIllust.SetUpIllust(playerIllust,maleHair,maleEye,maleColor,maleEyebrow,maleMouth,isPale);
     }
 
 
@@ -191,7 +197,7 @@ public class CourtingUIManager : MonoBehaviour
     void SetUpPartnerUI(List<(string personality,string successRate)> partnerStatusList,List<(SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth)> femaleIllustList)
     {
         //VE構成
-        //親VE(class:partner-information)(パートナー一体につき一つ)
+        //親Button(class:partner-information)(パートナー一体につき一つ)
         //|--子VE(1)(class:partner-information_background)(ホバー時に拡大してホバー対象をわかりやすくする)
         //|--子VE(2)(class:female-illustration_base)(パートナーのイラスト表示用)
         //|--子VE(3)(class:partner-information_status)(相性などの情報表示用　ホバー時にのみ見える)

@@ -10,18 +10,33 @@ public class StateCompositeFactory
     public StateCompositeFactory(
         SessionContext context, LogicInstaller logic,
         ConversationView conversationView, TreadmillView treadmillView,
-        ObstaclesView obstaclesView,
+        ObstaclesView obstaclesView, SalmonMove salmonMove,
+        UpstreamView upstreamView,
         CourtingUIManager courtingUIManager, NamingUIManager namingUIManager,
-        SeaUIManager seaUIManager,
+        SeaUIManager seaUIManager, TitleView titleView,
         EventPool eventPool, ChunkLevelData chunkLevelData,
-        Transform playerTransform, TickProvider tickProvider)
+        MateGenerationSettingsSO _mateSetting,
+        TickProvider tickProvider, string initialStateName)
     {
+        Register<TitleState>((state, payload) =>
+        {
+            var composite = new CompositeDisposable();
+            
+            composite.Add(new TitlePresenter(state, titleView, initialStateName));
+            //composite.Add(new PlayerStatsPresenter(state));
+            //...
+
+            return composite;
+        });
+        
         // ジェネリクスのおかげで、引数の state は最初から「CourtshipState」として確定している！
         Register<CourtshipState>((state, payload) =>
         {
             var composite = new CompositeDisposable();
             
-            //composite.Add(new CourtshipMenuPresenter(state));
+            var courtshipContext = new CourtshipContext();
+            composite.Add(new CourtshipPresenter(state, logic.BreedingCalculator, logic.CourtshipEvaluator,
+                logic.MateGeneratable, logic.ForUIStatusBuilder, context, courtshipContext, courtingUIManager, payload, _mateSetting));
             //composite.Add(new PlayerStatsPresenter(state));
             //...
 
@@ -32,7 +47,7 @@ public class StateCompositeFactory
         {
             var composite = new CompositeDisposable();
             
-            composite.Add(new RearPresenter(state, logic.RearModel, context, seaUIManager, eventPool));
+            composite.Add(new RearPresenter(state, logic.RearModel, logic.ForUIStatusBuilder, context, seaUIManager, eventPool));
             //...
             
             return composite;
@@ -63,9 +78,15 @@ public class StateCompositeFactory
         Register<UpstreamState>((state, payload) =>
         {
             var composite = new CompositeDisposable();
+            var playerContext = new UpstreamPlayerContext();
             var treadmillContext = new TreadmillContext();
             var obstacleContext = new ObstacleContext();
-            composite.Add(new TreadmillPresenter(state, logic.TreadmillModel, logic.PoolManager, logic.RiverPath, logic.ObstacleModel, treadmillView, obstaclesView, treadmillContext, obstacleContext, playerTransform, tickProvider, chunkLevelData));
+            var salmonPlayer = new SalmonPlayer(salmonMove, logic.UpstreamGameModel);
+            composite.Add(new TreadmillPresenter(state, logic.TreadmillModel, logic.PoolManager, logic.RiverPath,
+                logic.ObstacleModel, treadmillView, obstaclesView, context, playerContext, treadmillContext, obstacleContext,
+                tickProvider, chunkLevelData));
+            composite.Add(salmonPlayer);
+            composite.Add(new UpstreamPresenter(state, salmonPlayer, logic.SplineMathModel, upstreamView, playerContext, treadmillContext, context, tickProvider));
             //composite.Add(new OtherStateSpecificPresenter(state));
             //...
             
@@ -87,7 +108,7 @@ public class StateCompositeFactory
     public IDisposable CreatePresentersFor(GameState state, IPayload payload)
     {
         Type stateType = state.GetType();
-
+        
         if (_registry.TryGetValue(stateType, out var factoryMethod))
         {
             return factoryMethod.Invoke(state, payload) as IDisposable;

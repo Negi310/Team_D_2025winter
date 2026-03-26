@@ -1,6 +1,6 @@
 public class ConversationContext
 {
-    public ConversationEvent MasterData { get; set; }
+    public EventData MasterData { get; set; }
     
     // 現在の進行状態
     public int CurrentIndex { get; set; } = 0;

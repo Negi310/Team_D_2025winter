@@ -16,6 +16,7 @@ public class ConversationView : MonoBehaviour
     public event Action OnTypingCompleted;
 
     // UI Toolkitの要素
+    private VisualElement _root;
     private VisualElement _rootContainer;
     private Label _speakerNameLabel;
     private Label _dialogueLabel;
@@ -30,21 +31,21 @@ public class ConversationView : MonoBehaviour
     private void Awake()
     {
         // 1. UI Toolkitの要素を取得 (Query)
-        var root = _uiDocument.rootVisualElement;
-        _rootContainer = root.Q<VisualElement>("ConversationContainer"); // ウィンドウ全体
-        _speakerNameLabel = root.Q<Label>("Speaker");
-        _dialogueLabel = root.Q<Label>("DialogueText");
-        _backgroundElement = root.Q<VisualElement>("BackGround");
-        _nextButton = root.Q<VisualElement>("NextButton").Q<Button>();
+        _root = _uiDocument.rootVisualElement;
+        _rootContainer = _root.Q<VisualElement>("ConversationContainer"); // ウィンドウ全体
+        _speakerNameLabel = _root.Q<Label>("Speaker");
+        _dialogueLabel = _root.Q<Label>("DialogueText");
+        _backgroundElement = _root.Q<VisualElement>("BackGround");
+        _nextButton = _root.Q<VisualElement>("NextButton").Q<Button>();
 
         // ボタンのクリックイベントをPresenterへ横流しする
         _nextButton.clicked += () => OnNextButtonClicked?.Invoke();
 
         // 初期状態は透明にしておく
         _rootContainer.style.opacity = 0f;
-        root.style.display = DisplayStyle.None;
+        _root.style.display = DisplayStyle.None;
     }
-
+    
     public void SetupEnvironment(Sprite bg)
     {
         if (bg != null)
@@ -54,10 +55,13 @@ public class ConversationView : MonoBehaviour
         }
         // BGMの処理は省略（AudioSource等で再生）
     }
+    
+    
 
     // --- DOTweenを使ったUI演出 ---
     public void ShowUI()
     {
+        _root.style.display = DisplayStyle.Flex;
         // UI Toolkitのopacity(透明度)をDOTweenでアニメーション
         DOTween.To(
             () => _rootContainer.style.opacity.value,
@@ -69,6 +73,7 @@ public class ConversationView : MonoBehaviour
 
     public void HideUI()
     {
+        _root.style.display = DisplayStyle.None;
         DOTween.To(
             () => _rootContainer.style.opacity.value,
             x => _rootContainer.style.opacity = x,
@@ -145,6 +150,8 @@ public class ConversationView : MonoBehaviour
         // Presenterへ文字送り完了（スキップ完了）を通知
         OnTypingCompleted?.Invoke();
     }
+    
+    public void EndTyping() => _dialogueLabel.text = "";
 
     private void OnDestroy()
     {

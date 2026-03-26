@@ -38,6 +38,12 @@ public class CourtingUIManager : MonoBehaviour
     private const float playerStatusMax = 20;
     //川のステータスの最大値
     private const float riverStatusMax = 20;
+    
+    public event Action<int> OnPartnerHovered; // 何番目のパートナーにホバーしたか
+    public event Action<int> OnPartnerClicked; // 何番目のパートナーをクリック（求愛）したか
+    public event Action OnAnimationCompleted;  // 結果演出が終わった時の通知
+    
+    private Button riverstatusButton;
     void Awake()
     {
         //uiDocumentのrootVE取得
@@ -74,6 +80,7 @@ public class CourtingUIManager : MonoBehaviour
     public void Hide()
     {
         root.style.display = DisplayStyle.None;
+        ResetUIState();
     }
 
     //パートナー候補UIの初期設定
@@ -91,8 +98,10 @@ public class CourtingUIManager : MonoBehaviour
         //親VEのリスト生成
         var parentList =  root.Query<Button>(className:"partner-information").ToList();
 
-        foreach (Button parent in parentList)
+        for (int i = 0; i < parentList.Count; i++)
         {
+            var parent = parentList[i];
+            int captureIndex = i;
             //孫VEを一旦リストに保存
             var groundChildVEList = parent.Q<VisualElement>(className:"partner-information_status").Children().ToList();
             //変更箇所をタプルにまとめる
@@ -108,10 +117,12 @@ public class CourtingUIManager : MonoBehaviour
                 parent.BringToFront();
                 //川の情報の方が前になるように
                 root.Q<VisualElement>(className:"next-river-information").BringToFront();
-                
             });
             //クリック時のイベント
-            parent.clicked += () =>{};
+            parent.clicked += () =>
+            {
+                OnPartnerClicked?.Invoke(captureIndex);
+            };
         }
     }
     //川の情報のUIの初期設定
@@ -142,7 +153,7 @@ public class CourtingUIManager : MonoBehaviour
             riverUIList.Add(groundchildVE.Q<VisualElement>(className:"next-river-information_status_value"));
         }
         //Buttonのイベント設定
-        var riverstatusButton = root.Q<VisualElement>(className:"next-river-information").Q<Button>();
+        riverstatusButton = root.Q<VisualElement>(className:"next-river-information").Q<Button>();
         riverstatusButton.clicked += () =>
         {
             //クラス変更で革のステータスの表示状況を切り替え
@@ -263,5 +274,19 @@ public class CourtingUIManager : MonoBehaviour
             riverUIList[i].style.width = new Length(defaultRiverStatusValueWidth * float.Parse(riverStatus[i]) / riverStatusMax, LengthUnit.Percent);
         }
         
+    }
+    
+    public void SetUpPartnerSuccessRate(int index, string successRate)
+    {
+        if (index >= 0 && index < partnerUIList.Count)
+        {
+            partnerUIList[index].successLabel.text = successRate + "%";
+        }
+    }
+    
+    private void ResetUIState()
+    {
+        riverstatusButton.parent.RemoveFromClassList("is-open");
+        riverstatusButton.text = ">"; // ボタンの矢印の向きを初期状態に戻す
     }
 }

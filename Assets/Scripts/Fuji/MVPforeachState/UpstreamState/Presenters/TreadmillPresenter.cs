@@ -11,9 +11,10 @@ public class TreadmillPresenter: IDisposable, ITickable
     private readonly ObstacleModel _obstacleModel;
     private readonly TreadmillView _treadmillView;
     private readonly ObstaclesView _obstaclesView;
+    private readonly SessionContext _sessionContext;
+    private readonly UpstreamPlayerContext _playerContext;
     private readonly TreadmillContext _treadmillContext;
     private readonly ObstacleContext _obstacleContext;
-    private readonly Transform _playerTransform;
     private readonly TickProvider _tickProvider;
     private readonly IReadOnlyList<ChunkPreset> _availablePresets;
 
@@ -25,9 +26,10 @@ public class TreadmillPresenter: IDisposable, ITickable
         ObstacleModel obstacleModel,
         TreadmillView treadmillView,
         ObstaclesView obstaclesView,
+        SessionContext sessionContext,
+        UpstreamPlayerContext playerContext,
         TreadmillContext treadmillContext,
         ObstacleContext obstacleContext,
-        Transform playerTransform, 
         TickProvider tickProvider,
         ChunkLevelData data)
     {
@@ -38,9 +40,10 @@ public class TreadmillPresenter: IDisposable, ITickable
         _obstacleModel = obstacleModel;
         _treadmillView = treadmillView;
         _obstaclesView = obstaclesView;
+        _sessionContext = sessionContext;
+        _playerContext = playerContext;
         _treadmillContext = treadmillContext;
         _obstacleContext = obstacleContext;
-        _playerTransform = playerTransform;
         _tickProvider = tickProvider;
         _availablePresets = data.AvailableChunkPresets;
         
@@ -51,14 +54,62 @@ public class TreadmillPresenter: IDisposable, ITickable
     // Dispatcherから毎フレーム呼ばれる
     public void Tick(float deltaTime)
     {
-        // 鮭のY座標を勝手に覗き見して、頭脳に報告する
-        var result = _model.UpdatePlayerPosition(_treadmillContext, _availablePresets, _playerTransform.position.y);
-        if (result.SpawnedChunk == null || result.DespawnedChunk == null) return;
-        _treadmillView.SpawnChunkVisually(result.SpawnedChunk);
-        _treadmillView.DespawnChunkVisually(result.DespawnedChunk);
-        _path.AddChunkSplines(_treadmillContext, result.SpawnedChunk.Preset, result.SpawnedChunk.Position);
-        _path.RemoveOldestChunkSplines(_treadmillContext);
-        SpawnObstaclesForChunk(result.SpawnedChunk);
+        float playerY = _playerContext.Position.y;
+        _model.UpdatePlayerPosition(_sessionContext, _treadmillContext, _availablePresets, playerY, out var spawnedChunks, out var despawnedChunks);
+        foreach (var chunk in spawnedChunks)
+        {
+            _treadmillView.SpawnChunkVisually(chunk);
+            _path.AddChunkSplines(_treadmillContext, chunk.Preset, chunk.Position);
+            SpawnObstaclesForChunk(chunk);
+        }
+
+        // ★修正: foreach で回して破棄
+        foreach (var chunk in despawnedChunks)
+        {
+            _treadmillView.DespawnChunkVisually(chunk);
+            _path.RemoveOldestChunkSplines(_treadmillContext);
+        }
+        
+        var driftersToRemove = new List<DrifterData>();
+        foreach (var drifter in _obstacleContext.ActiveDrifters)
+        {
+            // ★ 引数に _obstacleContext.ActiveFixedObstacles を追加して「前方の岩のリスト」を渡す
+            _obstacleModel.UpdateDrifter(drifter, deltaTime, _treadmillContext.GlobalLeftBank, _treadmillContext.GlobalRightBank, _obstacleContext.ActiveFixedObstacles);
+            
+            if (drifter.Position.y < playerY - 10f || drifter.Position.y > playerY + 40f) // (※上方向の破棄判定も忘れずに)
+            {
+                driftersToRemove.Add(drifter);
+            }
+        }
+
+        // 破棄対象の漂流物をプールに返却
+        foreach (var oldDrifter in driftersToRemove)
+        {
+            _obstaclesView.DespawnDrifter(oldDrifter);
+            _obstacleContext.ActiveDrifters.Remove(oldDrifter);
+        }
+
+        // ==========================================
+        // 3. 固定設置物の破棄（通り過ぎた岩・倒木の回収）
+        // ==========================================
+        var obsToRemove = new List<FixedObstacleData>();
+        foreach (var obs in _obstacleContext.ActiveFixedObstacles)
+        {
+            if (obs.Position.y < playerY - 10f)
+            {
+                obsToRemove.Add(obs);
+            }
+        }
+
+        foreach (var oldObs in obsToRemove)
+        {
+            _obstaclesView.DespawnFixedObstacle(oldObs);
+            _obstacleContext.ActiveFixedObstacles.Remove(oldObs);
+        }
+
+        // ==========================================
+        // 4. Viewに漂流物の「新しい座標」を一斉反映
+        // ==========================================
         _obstaclesView.UpdateDrifterTransforms();
     }
     
@@ -70,12 +121,11 @@ public class TreadmillPresenter: IDisposable, ITickable
         _obstaclesView.Init(_poolManager);
         for (int i = 0; i < 2; i++)
         {
-            var chunk = _model.SpawnNextChunk(_treadmillContext, _availablePresets);
+            var chunk = _model.SpawnNextChunk(_sessionContext, _treadmillContext, _availablePresets);
             _treadmillView.SpawnChunkVisually(chunk);
             _path.AddChunkSplines(_treadmillContext, chunk.Preset, chunk.Position);
+            SpawnObstaclesForChunk(chunk);
         }
-        //SalmonMove salmon = new SalmonMove();
-        //salmon.Init(SessionContext.CurrentSalmon.UpstreamStats);
     }
 
     private void HandleExited()
@@ -93,7 +143,7 @@ public class TreadmillPresenter: IDisposable, ITickable
     private void SpawnObstaclesForChunk(RuntimeChunkData chunk)
     {
         // 固定設置物の生成
-        var newObs = _obstacleModel.GenerateFixedObstacles(chunk, _treadmillContext.GlobalLeftBank, _treadmillContext.GlobalRightBank, 3, _obstacleContext.ActiveFixedObstacles);
+        var newObs = _obstacleModel.GenerateFixedObstacles(chunk, _treadmillContext.GlobalLeftBank, _treadmillContext.GlobalRightBank, _obstacleContext.ActiveFixedObstacles, _sessionContext.CurrentRiver);
         foreach (var obs in newObs)
         {
             _obstacleContext.ActiveFixedObstacles.Add(obs);
@@ -101,7 +151,7 @@ public class TreadmillPresenter: IDisposable, ITickable
         }
 
         // 漂流物の生成
-        var newDrifters = _obstacleModel.GenerateDrifters(chunk, _treadmillContext.GlobalLeftBank, _treadmillContext.GlobalRightBank, 2, 5.0f);
+        var newDrifters = _obstacleModel.GenerateDrifters(chunk, _treadmillContext.GlobalLeftBank, _treadmillContext.GlobalRightBank, _sessionContext.CurrentRiver);
         foreach (var drifter in newDrifters)
         {
             _obstacleContext.ActiveDrifters.Add(drifter);

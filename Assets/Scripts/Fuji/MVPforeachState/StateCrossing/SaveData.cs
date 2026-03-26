@@ -4,5 +4,6 @@ public class SaveData
     public int Generation;
     public int Turn;
     public SalmonData Salmon;
+    public RiverData River;
     public string LastSavedStateName;
 }

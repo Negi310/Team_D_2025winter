@@ -6,7 +6,7 @@ public class MateGeneratable : IMateGeneratable
     {
     
     
-    SalmonData[] candidates = new SalmonData[5];
+        SalmonData[] candidates = new SalmonData[5];
 
         MateGenerationSettingsSO.TierSetting[] tiers =
         {
@@ -34,6 +34,7 @@ public class MateGeneratable : IMateGeneratable
         float finalDifficulty = tier.baseCourtshipDifficulty * finalMultiplier;
 
         UpstreamStats uStats = new UpstreamStats(
+            Random.Range(1f, 5f) * finalMultiplier,
             Random.Range(1f, 5f) * finalMultiplier,
             Random.Range(1f, 5f) * finalMultiplier,
             Random.Range(1f, 5f) * finalMultiplier,

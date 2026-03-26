@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class SeaUIManager : MonoBehaviour
 {
-    public Action<EventData> OnEventSelected;
+    public Action<int> OnEventButtonClicked; // イベントボタンがクリックされたときのコールバック
     
     //uiDocument
     [SerializeField]private UIDocument uiDocument;
@@ -35,6 +35,14 @@ public class SeaUIManager : MonoBehaviour
     private VisualElement playerIllust;
     //川のステータスの最大値
     private const float riverStatusMax = 20;
+    //トレーニングの親VE
+    private VisualElement parentVE;
+    //ランダムイベントの親VE
+    private VisualElement parentVE2;
+    //川のステータスの表示切り替えの親VE
+    private VisualElement parentVE3;
+    
+    private Button riverstatusButton; // 川のステータスの表示切り替えボタン
 
     void Awake()
     {
@@ -64,6 +72,7 @@ public class SeaUIManager : MonoBehaviour
     public void Hide()
     {
         root.style.display = DisplayStyle.None;
+        ResetUIState();
     }
 
     //プレイヤーのステータスのUIの初期設定
@@ -108,20 +117,20 @@ public class SeaUIManager : MonoBehaviour
         //        |--ひ孫VE(class:next-river-information_status_value)(ステータスの値表示)
 
         //親VEを一時保存
-        var parentVE = root.Q<VisualElement>(className:"next-river-information");
+        parentVE3 = root.Q<VisualElement>(className:"next-river-information");
         //ターン数表示のlabel保存
         turnUILabel = root.Q<Label>(className:"turn-ui");
         //label(1)を保存
-        riverNameLabel = parentVE.Children().OfType<Label>().First();
+        riverNameLabel = parentVE3.Children().OfType<Label>().First();
         //孫VEリストを一時保存
-        var groundchildrenList = parentVE.Children().OfType<VisualElement>().First().Children().OfType<VisualElement>().ToList();
+        var groundchildrenList = parentVE3.Children().OfType<VisualElement>().First().Children().OfType<VisualElement>().ToList();
         //ひ孫VEのリストを生成
         foreach(VisualElement groundchildVE in groundchildrenList)
         {
             riverUIList.Add(groundchildVE.Q<VisualElement>(className:"next-river-information_status_value"));
         }
         //Buttonのイベント設定
-        var riverstatusButton = root.Q<VisualElement>(className:"next-river-information").Q<Button>();
+        riverstatusButton = root.Q<VisualElement>(className:"next-river-information").Q<Button>();
         riverstatusButton.clicked += () =>
         {
             //クラス変更で川のステータスの表示状況を切り替え
@@ -143,7 +152,7 @@ public class SeaUIManager : MonoBehaviour
         //Button(class:training-button)(上のタブの表示用ボタン)
 
         //親VEを取得
-        var parentVE = root.Q<VisualElement>(className:"training-tab");
+        parentVE = root.Q<VisualElement>(className:"training-tab");
 
         //トレーニングの表示のボタンにイベント設定
         var trainingTabOpenButton = root.Q<Button>(className:"training-button");
@@ -164,8 +173,10 @@ public class SeaUIManager : MonoBehaviour
         //ホバー時のイベント設定
         for(int i = 0;i<trainingButtonList.Count; i++)
         {
+            int captureIndex = i;
             var button = trainingButtonList[i];
             var ui = statusIncreaceUIList[i];
+            button.clicked += () => OnEventButtonClicked?.Invoke(captureIndex);
             button.RegisterCallback<PointerEnterEvent>(evt =>
             {
                 ui.AddToClassList("is-open");
@@ -179,7 +190,7 @@ public class SeaUIManager : MonoBehaviour
 
         //ランダムイベント　大体上と一緒
         //親VEを取得
-        var parentVE2 = root.Q<VisualElement>(className:"random-event-tab");
+        parentVE2 = root.Q<VisualElement>(className:"random-event-tab");
         
         //トレーニングの表示のボタンにイベント設定
         var randomEventTabOpenButton = root.Q<Button>(className:"random-event-button");
@@ -196,6 +207,13 @@ public class SeaUIManager : MonoBehaviour
         {
             parentVE2.RemoveFromClassList("is-open");
         };
+        
+        for(int i = 0; i < randomEventButtonList.Count; i++)
+        {
+            int captureIndex = i + 5; // ★ランダムイベントは5〜7として発火
+            var button = randomEventButtonList[i];
+            button.clicked += () => OnEventButtonClicked?.Invoke(captureIndex);
+        }
     }
 
     //内容更新
@@ -270,4 +288,17 @@ public class SeaUIManager : MonoBehaviour
         }
     }
 
+    private void ResetUIState()
+    {
+        parentVE.RemoveFromClassList("is-open");
+        riverstatusButton.text = ">"; // ボタンの矢印の向きを初期状態に戻す
+        parentVE2.RemoveFromClassList("is-open");
+        parentVE3.RemoveFromClassList("is-open");
+
+        // 4. ステータス上昇UIのホバー状態（is-open）をすべて解除
+        foreach (var ui in statusIncreaceUIList)
+        {
+            ui.RemoveFromClassList("is-open");
+        }
+    }
 }

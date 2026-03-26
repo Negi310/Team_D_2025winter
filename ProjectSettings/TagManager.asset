@@ -10,15 +10,15 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - FixedObstacle
+  - Fish
+  - Salmon
+  - Stream
+  - Terrain
+  - PlayerJumping
   - 
   - 
   - 
@@ -52,11 +52,11 @@ TagManager:
   - name: FixedObstacle
     uniqueID: 3404609747
     locked: 0
-  - name: Drifter
-    uniqueID: 3324511537
-    locked: 0
   - name: Terrain
     uniqueID: 3469483601
+    locked: 0
+  - name: Drifter
+    uniqueID: 3324511537
     locked: 0
   - name: Player
     uniqueID: 2448299451

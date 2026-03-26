@@ -14,66 +14,60 @@ public class RayManager : MonoBehaviour
 
     float leftDistance;
     float rightDistance;
+    float rockDistance;
+    float nextRockDistance;
+    float salmonDistance;
 
     public float forwardRayDistance = 5f;
     public float rockReduceRate = 0.5f;
-    bool isNearRock;
-    bool isNearRockNext;
     public float flowPenalty = 1.5f;
 
     public LayerMask wallLayer;
+    public LayerMask rockLayer;
+    public LayerMask nextRockLayer;
+    public LayerMask salmonLayer;
 
-    void Update()
+    public RayData MeasureEnvironment()
     {
-        MeasureWidth();
-        ConsumeStamina();
-        CheckForwardRock();
+        RayData data = new RayData();
+        data = MeasureWidth(data);
+        //ConsumeStamina(data);
+        data = CheckForwardRock(data);
+        //Debug.Log(data.LeftDistance + "  " + data.RightDistance + "  " + data.ForwardRockDistance + "  " + data.ForwardNextRockDistance + "  " + data.ForwardSalmonDistance);
+        return data;
+    }
+    
+    RayData MeasureWidth(RayData data)
+    {
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, -transform.right, rayDistance, wallLayer);
+        if (hitLeft.collider != null) data.LeftDistance = hitLeft.distance;
+        else data.LeftDistance = rayDistance; //壁に当たらなかった場合は最大距離を記録
+
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, transform.right, rayDistance, wallLayer);
+        if (hitRight.collider != null) data.RightDistance = hitRight.distance;
+        else data.RightDistance = rayDistance; //壁に当たらなかった場合は最大距離を記録
+        
+        return data;
     }
 
-    void MeasureWidth()
+    RayData CheckForwardRock(RayData data)
     {
-        RaycastHit hit;
+        Vector2 forwardDir = transform.up; 
 
-        // 左
-        if (Physics.Raycast(transform.position, -transform.right, out hit, rayDistance,wallLayer))
-        {
-            leftDistance = hit.distance;
-        }
-        else
-        {
-            leftDistance = rayDistance;
-        }
+        // ★ Physics2D に変更し、ぶつかったらその距離を記録
+        RaycastHit2D hitRock = Physics2D.Raycast(transform.position, forwardDir, forwardRayDistance, rockLayer);
+        if (hitRock.collider != null) data.ForwardRockDistance = hitRock.distance;
+        else data.ForwardRockDistance = forwardRayDistance;
 
-        // 右
-        if (Physics.Raycast(transform.position, transform.right, out hit, rayDistance,wallLayer))
-        {
-            rightDistance = hit.distance;
-        }
-        else
-        {
-            rightDistance = rayDistance;
-        }
-    }
+        RaycastHit2D hitNextRock = Physics2D.Raycast(transform.position, forwardDir, forwardRayDistance, nextRockLayer);
+        if (hitNextRock.collider != null) data.ForwardNextRockDistance = hitNextRock.distance;
+        else data.ForwardNextRockDistance = forwardRayDistance;
 
-    void CheckForwardRock()
-    {
-        RaycastHit hit;
-
-        isNearRock = false;
-        isNearRockNext = false;
-
-        if (Physics.Raycast(transform.position, transform.forward, out hit, forwardRayDistance)) //Rayの長さで近さを判定してるから別のものも判定したいなら個別に近さを設定しないといけない
-        {
-            if (hit.collider.CompareTag("Rock"))
-            {
-                isNearRock = true;
-            }
-
-            if (hit.collider.CompareTag("RockNext"))
-            {
-                isNearRockNext = true;
-            }
-        }
+        RaycastHit2D hitSalmon = Physics2D.Raycast(transform.position, forwardDir, forwardRayDistance, salmonLayer);
+        if (hitSalmon.collider != null) data.ForwardSalmonDistance = hitSalmon.distance;
+        else data.ForwardSalmonDistance = forwardRayDistance;
+        
+        return data;
     }
 
     void ConsumeStamina()
@@ -89,15 +83,18 @@ public class RayManager : MonoBehaviour
 
         //drain *= (1f + centerFactor); 中央に近いほどスタミナ消費増
 
-        if (isNearRock)
+        if (rockDistance < forwardRayDistance)
         {
-            drain *= rockReduceRate;
+            drain *= rockReduceRate; //岩が近いほどスタミナ消費減
         }
-
-        if (isNearRockNext)
-    {
-        drain *= flowPenalty;
-    }
+        else if (nextRockDistance < forwardRayDistance)
+        {
+            drain *= rockReduceRate * 0.5f; //次の岩が近いほどスタミナ消費さらに減
+        }
+        else if (salmonDistance < forwardRayDistance)
+        {
+            drain *= flowPenalty; //鮭が近いほどスタミナ消費増
+        }
 
         stamina -= drain * Time.deltaTime;
 
@@ -106,9 +103,21 @@ public class RayManager : MonoBehaviour
 
     void OnDrawGizmos() //Rayの可視化
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.right * rayDistance);
+        bool isHitLeft = Physics2D.Raycast(transform.position, -transform.right, rayDistance, wallLayer);
+        Gizmos.color = isHitLeft ? Color.green : Color.red;
         Gizmos.DrawRay(transform.position, -transform.right * rayDistance);
-        Debug.DrawRay(transform.position, transform.forward * forwardRayDistance, Color.blue);
+
+        // 2. 右側のRay（壁に当たったら「緑」、当たらなければ「赤」）
+        bool isHitRight = Physics2D.Raycast(transform.position, transform.right, rayDistance, wallLayer);
+        Gizmos.color = isHitRight ? Color.green : Color.red;
+        Gizmos.DrawRay(transform.position, transform.right * rayDistance);
+
+        // 3. 前方のRay（岩や鮭に当たったら「黄色」、当たらなければ「青」）
+        // 前方用のレイヤー（岩、次の岩、鮭）を |（OR演算子）で合体させてまとめてチェックします
+        LayerMask forwardMask = rockLayer | nextRockLayer | salmonLayer;
+        bool isHitForward = Physics2D.Raycast(transform.position, transform.up, forwardRayDistance, forwardMask);
+        
+        Gizmos.color = isHitForward ? Color.yellow : Color.blue;
+        Gizmos.DrawRay(transform.position, transform.up * forwardRayDistance);
     }
 }

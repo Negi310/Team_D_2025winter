@@ -12,6 +12,8 @@ public class ChunkSplineBaker : MonoBehaviour
     [SerializeField] private SplineContainer _leftBankSpline;
     [SerializeField] private SplineContainer _rightBankSpline;
     [SerializeField] private SplineContainer _centerSpline;
+    
+    //[SerializeField] private Transform 
 
     [Header("保存先のマスターデータ (ScriptableObject)")]
     [SerializeField] private ChunkPreset _targetPreset;
@@ -23,12 +25,6 @@ public class ChunkSplineBaker : MonoBehaviour
     [ContextMenu("Bake Splines to Preset (スプラインをSOに保存)")]
     public void BakeSplines()
     {
-        if (_targetPreset == null)
-        {
-            Debug.LogError("保存先の ChunkPreset が設定されていません！");
-            return;
-        }
-
         // 各スプラインから点を抽出し、配列に保存する
         if (_leftBankSpline != null)
             _targetPreset.LocalLeftBank = ExtractPoints(_leftBankSpline);
@@ -38,7 +34,7 @@ public class ChunkSplineBaker : MonoBehaviour
 
         if (_centerSpline != null)
             _targetPreset.LocalCenterLine = ExtractPoints(_centerSpline);
-
+        
         // ★最重要: Unityエディタに変更を検知させ、ディスク（ファイル）に保存させる
 #if UNITY_EDITOR
         EditorUtility.SetDirty(_targetPreset);
@@ -53,21 +49,14 @@ public class ChunkSplineBaker : MonoBehaviour
 
         for (int i = 0; i < _resolution; i++)
         {
-            // t はスプライン上の進行度 (0.0 〜 1.0)
-            // 前のチャンクの終点と重複しないよう、(i + 1) を使って 0.1 〜 1.0 の範囲を取得する
-            float t = (float)(i + 1) / _resolution;
+            // t を 0.0 (始点) 〜 1.0 (終点) になるように計算
+            // 例: resolutionが10なら、0/9, 1/9, ... 9/9 となる
+            float t = (float)i / (_resolution - 1);
 
-            // 1. スプラインコンポーネントにおけるローカル座標を取得
-            Vector3 splineLocalPos = splineContainer.EvaluatePosition(t);
-
-            // 2. その点をワールド座標に変換（スプラインが子オブジェクトにアタッチされていてもズレないようにする）
-            Vector3 worldPos = splineContainer.transform.TransformPoint(splineLocalPos);
-
-            // 3. 最後に「この川プレハブ(root)」から見たローカル座標に変換し直す
-            Vector3 chunkLocalPos = transform.InverseTransformPoint(worldPos);
-
-            // X と Y だけを Vector2 として配列に格納する
-            points[i] = new Vector2(chunkLocalPos.x, chunkLocalPos.y);
+            // インスペクターのローカル座標をそのまま取得（複雑な変換は一切しない）
+            Vector3 localPos = splineContainer.EvaluatePosition(t);
+            
+            points[i] = new Vector2(localPos.x, localPos.y);
         }
 
         return points;

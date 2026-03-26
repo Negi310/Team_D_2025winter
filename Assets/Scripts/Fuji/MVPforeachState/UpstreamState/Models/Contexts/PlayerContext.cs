@@ -1,15 +1,15 @@
+using UnityEngine;
+
 public class UpstreamPlayerContext
 {
-    public float MaxStamina { get; }
+    public float MaxStamina { get; set; }
     public float CurrentStamina { get; set; }
-    public float DistanceTraveled { get; set; }
     public bool IsDead { get; set; }
+    public int ComboCount { get; set; }
+    public Vector2 Position { get; set; }
 
-    public UpstreamPlayerContext(float initialStamina)
+    public UpstreamPlayerContext()
     {
-        MaxStamina = initialStamina;
-        CurrentStamina = initialStamina;
-        DistanceTraveled = 0f;
         IsDead = false;
     }
 }

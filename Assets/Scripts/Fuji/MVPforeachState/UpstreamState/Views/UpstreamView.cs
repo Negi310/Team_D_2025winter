@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 public class UpstreamView : MonoBehaviour
 {
     [SerializeField] private UIDocument _uiDocument;
+    [SerializeField] private CameraFollowY _cameraFollow;
     
     private VisualElement _staminaBar;
     //private ProgressBar _staminaBar;
@@ -39,6 +40,7 @@ public class UpstreamView : MonoBehaviour
         //_staminaBar.highValue = maxStamina;
         UpdateStamina(maxStamina, maxStamina);
         UpdateCombo(0);
+        _cameraFollow.ResetCamera();
     }
 
     public void UpdateStamina(float current, float max)

@@ -42,10 +42,12 @@ public class MateGeneratable : IMateGeneratable
         );
 
         CourtshipTraits cTraits = new CourtshipTraits(
-            Random.Range(1f, 5f) * finalMultiplier,
-            Random.Range(1f, 5f) * finalMultiplier,
-            Random.Range(1f, 5f) * finalMultiplier
-        
+            (SalmonSize)Random.Range(0, 3),         // Size
+            (SalmonColor)Random.Range(0, 9),        // Color
+            (SalmonHair)Random.Range(0, 3),         // Hair
+            Random.Range(0, 3),                     // Eye 
+            Random.Range(0, 4),                     // Eyebrow
+            Random.Range(0, 3)                      // Mouth
         );
 
         return new SalmonData(uStats, cTraits);

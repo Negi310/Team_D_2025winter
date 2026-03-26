@@ -1,6 +1,7 @@
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Linq;
+using System;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -14,29 +15,34 @@ public class GameStateManager : MonoBehaviour
 
     private bool _isTransitioning;
 
-    public async UniTask ChangeState(GameState nextState)
+    public async UniTask ChangeState(GameState nextState, Action executeStateChangeLogic)
     {
         if (_isTransitioning) return;
-
         _isTransitioning = true;
 
         var setting = GetSetting(nextState);
 
-        await _transition.FadeOutAsync(setting.fadeOutTime);//フェードアウト
+        await _transition.FadeOutAsync(setting.fadeOutTime);
 
-        CurrentState = nextState;
-        Debug.Log($"State : {CurrentState}");
+        // 画面が真っ暗な裏側で、MVPのステート切り替え処理を一瞬で行う
+        executeStateChangeLogic?.Invoke();
 
-       //ExecuteStateLogic(nextState);
+        Debug.Log($"State Transitioned to : {nextState.GetType().Name}");
 
-        await _transition.FadeInAsync(setting.fadeInTime);//フェードイン
+        await _transition.FadeInAsync(setting.fadeInTime);
 
         _isTransitioning = false;
     }
 
-    GameStateFadeSetting GetSetting(GameState state)
+    private GameStateFadeSetting GetSetting(GameState state)
     {
-        return _fadeSettings.First(s => s.state == state);
+        var setting = _fadeSettings.FirstOrDefault(s => s.state != null && s.state.GetType() == state.GetType());
+        
+        if (setting == null)
+        {
+            return new GameStateFadeSetting { fadeOutTime = 1f, fadeInTime = 1f };
+        }
+        return setting;
     }
 
 /*    void ExecuteStateLogic(GameState state)

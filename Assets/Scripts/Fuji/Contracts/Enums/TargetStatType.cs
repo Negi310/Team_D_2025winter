@@ -1,8 +1,9 @@
 public enum TargetStatType
 {
-    Power,
+    Speed,
     Jump,
-    Cautiousness,
+    Attack,
     Stamina,
+    Intelligence,
     Random // ランダムイベント用
 }

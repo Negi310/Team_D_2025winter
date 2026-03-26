@@ -58,7 +58,7 @@ public class StateCompositeFactory
             var composite = new CompositeDisposable();
             var conversationContext = new ConversationContext();
             //conversationContext.MasterData = conversationEvent; // 会話イベントのマスターデータをContextにセット
-            composite.Add(new ConversationPresenter(state, logic.ConversationModel, conversationContext, conversationView, payload));
+            composite.Add(new ConversationPresenter(state, logic.ConversationModel, context, conversationContext, conversationView, payload));
             //composite.Add(new OtherStateSpecificPresenter(state));
             //...
             

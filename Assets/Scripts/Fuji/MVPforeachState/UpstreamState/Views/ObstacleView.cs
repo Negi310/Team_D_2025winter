@@ -75,4 +75,19 @@ public class ObstaclesView : MonoBehaviour
             _drifters.Remove(data);
         }
     }
+    
+    public void ClearAll()
+        {
+            foreach (var obj in _fixedObs.Values)
+            {
+                if (obj != null) _poolManager.Release(obj);
+            }
+            _fixedObs.Clear();
+    
+            foreach (var obj in _drifters.Values)
+            {
+                if (obj != null) _poolManager.Release(obj);
+            }
+            _drifters.Clear();
+        }
 }

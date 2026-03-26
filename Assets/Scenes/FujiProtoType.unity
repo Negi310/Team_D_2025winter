@@ -572,6 +572,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 772caf95d30b54f4f87da2fdf899f4f6, type: 3}
+--- !u!1 &587639157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 587639160}
+  - component: {fileID: 587639159}
+  - component: {fileID: 587639158}
+  m_Layer: 0
+  m_Name: TransitionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &587639158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587639157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253d944b44e00d443a0451472b34bf2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenTransitionView
+  _fadeMaterial: {fileID: 2100000, guid: 8d65d71d16132a84aa1ac7f877f4e8bb, type: 2}
+  _fadeParamName: _Radius
+--- !u!114 &587639159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587639157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58fefaedd8e2c4745a78ae0beb901611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
+  _transition: {fileID: 587639158}
+  _fadeSettings: []
+--- !u!4 &587639160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587639157}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619350446
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpstreamView
   _uiDocument: {fileID: 829010444}
+  _cameraFollow: {fileID: 996070361}
 --- !u!4 &717194031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8096179101488502150, guid: 772caf95d30b54f4f87da2fdf899f4f6, type: 3}
@@ -733,6 +795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConversationView
   _uiDocument: {fileID: 1517229025}
+  _maleIllust: {fileID: 1649572695}
 --- !u!1 &996070356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,6 +1406,7 @@ MonoBehaviour:
   upstreamView: {fileID: 619350448}
   titleView: {fileID: 228707031}
   tickProvider: {fileID: 1714146700}
+  transitionManager: {fileID: 587639159}
   conversationEvent: {fileID: 11400000, guid: 7486babf88c584f408247aa9db9bb10e, type: 2}
   chunkLevelData: {fileID: 11400000, guid: d3a2e5ac25e85ca429eb27550d9fc49f, type: 2}
   eventPool: {fileID: 11400000, guid: 6d1349ed7c756544eb659314c255d824, type: 2}
@@ -1662,3 +1726,4 @@ SceneRoots:
   - {fileID: 27899034}
   - {fileID: 403276293}
   - {fileID: 1322430684}
+  - {fileID: 587639160}

@@ -114,4 +114,10 @@ public class SalmonMove : MonoBehaviour
                 onComplete?.Invoke();
             });
     }
+    
+    public void ResetPosition(Vector2 newPos)
+    {
+        transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);
+        if (_rb != null) _rb.linearVelocity = Vector2.zero; // 慣性もリセット
+    }
 }

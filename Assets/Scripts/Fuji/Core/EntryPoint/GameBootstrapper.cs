@@ -13,6 +13,7 @@ public class GameBootstrapper : MonoBehaviour
     [SerializeField] private UpstreamView upstreamView;
     [SerializeField] private TitleView titleView;
     [SerializeField] private TickProvider tickProvider;
+    [SerializeField] private GameStateManager transitionManager;
 
     [Header("Master Data")]
     [SerializeField] private ConversationEvent conversationEvent; // テスト用の会話データ
@@ -35,7 +36,7 @@ public class GameBootstrapper : MonoBehaviour
         _saveData = SaveData;
         saveDataResister.Save(_saveData);
         var sessionContext = new SessionContext(_saveData);
-        Debug.Log(sessionContext.CurrentTurn);
+        //Debug.Log(sessionContext.CurrentTurn);
         // ロジックを計算するModelの生成
         var logicInstaller = new LogicInstaller();
 
@@ -44,7 +45,7 @@ public class GameBootstrapper : MonoBehaviour
             courtingUIManager,namingUIManager, seaUIManager, titleView,
             eventPool, chunkLevelData, mateSetting, tickProvider, _saveData.LastSavedStateName);
         // ModelとViewとContextの参照を渡す
-        var stateMachine = new GameStateMachine();
+        var stateMachine = new GameStateMachine(transitionManager);
         _router = new GameRouter(stateMachine, stateCompositeFactory, sessionContext, saveDataResister);
         ((IStateChangable)stateMachine).ChangeState<TitleState>();
     }

@@ -32,6 +32,10 @@ public class SalmonPlayer : IDisposable
         _isPlaying = true;
         _playerCtx.MaxStamina = _salmonData.UpstreamStats.Stamina;
         _playerCtx.CurrentStamina = _playerCtx.MaxStamina;
+        _playerCtx.IsDead = false;
+        _playerCtx.ComboCount = 0;
+        
+        _view.ResetPosition(Vector2.zero);
         _view.SetPlayingState(true);
     }
 

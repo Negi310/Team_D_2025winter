@@ -27,4 +27,13 @@ public class TreadmillView : MonoBehaviour
             _spawnedChunks.Remove(data.Id);
         }
     }
+    
+    public void ClearAll()
+    {
+        foreach (var instance in _spawnedChunks.Values)
+        {
+            if (instance != null) _poolManager.Release(instance);
+        }
+        _spawnedChunks.Clear();
+    }
 }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class GameStateMachine : IStateChangable
 {
@@ -7,11 +8,13 @@ public class GameStateMachine : IStateChangable
     public event Action<GameState, IPayload> OnStateChanged;
 
     private GameState _currentState;
+    private readonly GameStateManager _transitionManager;
     private readonly GameStateFactory _factory;
 
-    public GameStateMachine()
+    public GameStateMachine(GameStateManager transitionManager)
     {
         _factory = new GameStateFactory();
+        _transitionManager = transitionManager;
     }
     
     void IStateChangable.ChangeState<T>(IPayload payload)
@@ -23,5 +26,6 @@ public class GameStateMachine : IStateChangable
         OnStateChanged?.Invoke(_currentState, payload);
         _currentState?.Enter();
         Debug.Log(nextState.ToString());
+        //_transitionManager.ChangeState(nextState).Forget();
     }
 }

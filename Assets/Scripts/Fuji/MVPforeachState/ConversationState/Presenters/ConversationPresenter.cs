@@ -4,6 +4,7 @@ public class ConversationPresenter : IDisposable
 {
     private readonly ConversationState _state; // ライフサイクルと画面遷移の窓口
     private readonly ConversationModel _model;      // ロジック
+    private readonly SessionContext _sessionContext;
     private readonly ConversationContext _context;        // 変数
     private readonly ConversationView _view;        // 画面描画と非同期のUI処理
     private readonly IPayload _payload;
@@ -13,13 +14,15 @@ public class ConversationPresenter : IDisposable
 
     public ConversationPresenter(
         ConversationState state, 
-        ConversationModel model, 
+        ConversationModel model,
+        SessionContext sessionContext,
         ConversationContext context, 
         ConversationView view,
         IPayload payload)
     {
         _state = state;
         _model = model;
+        _sessionContext = sessionContext;
         _context = context;
         _view = view;
         _payload = payload;
@@ -46,8 +49,13 @@ public class ConversationPresenter : IDisposable
             _resultMessage = _model.GenerateResultMessage(payload.EventData);
             _isShowingResult = false;
         }
+
+        var ct = _sessionContext.CurrentSalmon.CourtshipTraits;
+        var isPale = false;
+        
         _view.ShowUI();
         _view.SetupEnvironment(_context.MasterData.LinkedConversation.backgroundImage);
+        _view.SetupPlayerIllust(ct.Hair, ct.MaleEye, ct.Color, ct.MaleEyebrow, ct.MaleMouth, isPale, ct.Size);
         _view.PlayIntroAnimation(_context.MasterData.LinkedConversation.introAnimationTrigger);
     }
 

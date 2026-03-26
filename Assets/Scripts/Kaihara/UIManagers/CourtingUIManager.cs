@@ -4,6 +4,8 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 using UnityEngine.InputSystem.HID;
+using DG.Tweening;
+
 public class CourtingUIManager : MonoBehaviour
 {
     //uiDocument
@@ -74,13 +76,27 @@ public class CourtingUIManager : MonoBehaviour
     public void Show()
     {
         root.style.display = DisplayStyle.Flex;
+        DOTween.To(
+            () => root.style.opacity.value,
+            x => root.style.opacity = x,
+            1f, // 目標値 (不透明)
+            0.5f // かける秒数
+        ).SetEase(Ease.OutQuad);
     }
     
     //UIの非表示
     public void Hide()
     {
-        root.style.display = DisplayStyle.None;
-        ResetUIState();
+        DOTween.To(
+            () => root.style.opacity.value,
+            x => root.style.opacity = x,
+            0f, // 目標値 (透明)
+            0.5f
+        ).SetEase(Ease.InQuad).OnComplete(() =>
+        {
+            root.style.display = DisplayStyle.None;
+            ResetUIState();
+        });
     }
 
     //パートナー候補UIの初期設定

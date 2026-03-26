@@ -22,4 +22,14 @@ public class TreadmillContext
         GlobalRightBank = new List<Vector2>(50);
         GlobalCenterLine = new List<Vector2>(50);
     }
+    
+    public void Clear()
+    {
+        CurrentTopY = 0f;
+        SpawnTriggerY = 0f;
+        ActiveChunks.Clear();
+        GlobalLeftBank.Clear();
+        GlobalRightBank.Clear();
+        GlobalCenterLine.Clear();
+    }
 }

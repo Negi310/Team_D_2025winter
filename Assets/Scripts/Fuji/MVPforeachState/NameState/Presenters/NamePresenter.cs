@@ -25,30 +25,26 @@ public class NamePresenter : IDisposable
     
     private void HandleEntered()
     {
-        // 名前入力UIの初期化
         _view.Show();
+        
+        var us = _sessionContext.CurrentSalmon.UpstreamStats;
+        var ct = _sessionContext.CurrentSalmon.CourtshipTraits;
+
         var playerStatusList = _builder.PlayerStatusListBuild(
-            _sessionContext.CurrentSalmon.UpstreamStats.Speed.ToString("F1"),
-            _sessionContext.CurrentSalmon.UpstreamStats.Jump.ToString("F1"),
-            _sessionContext.CurrentSalmon.UpstreamStats.Stamina.ToString("F1"),
-            _sessionContext.CurrentSalmon.UpstreamStats.Attack.ToString("F1"),
-            _sessionContext.CurrentSalmon.UpstreamStats.Intelligence.ToString("F1"),
-            _sessionContext.CurrentSalmon.CourtshipTraits.Size.ToString("F1"),
-            _sessionContext.CurrentSalmon.CourtshipTraits.ColorValue.ToString("F1"),
-            _sessionContext.CurrentSalmon.CourtshipTraits.ShapeValue.ToString("F1"));
-        //メソッドの引数追加につきエラーが出るため一旦引数を入れておきます　お手数ですが修正よろしくお願いします　貝原
-        _view.SetUpUI(playerStatusList,SalmonHair.Normal,SalmonEyeMale.Normal,SalmonColor.Orange,SalmonEyebrowMale.Normal,SalmonMouthMale.Normal,false,SalmonSize.Big);
+            us.Speed.ToString("F1"), us.Jump.ToString("F1"), us.Stamina.ToString("F1"), us.Attack.ToString("F1"), us.Intelligence.ToString("F1"),
+            ct.Size.ToString(), ct.Color.ToString(), ct.GetShapeFeatureName(isMale: true));
+        
+        // ★修正: 引数の最後に ct.Size を追加
+        _view.SetUpUI(playerStatusList, ct.Hair, ct.MaleEye, ct.Color, ct.MaleEyebrow, ct.MaleMouth, false, ct.Size);
     }
     
     private void HandleExited()
     {
         _view.Hide();
-        Debug.Log(_sessionContext.CurrentTurn);
     }
 
     private void HandleDecided(string inputName)
     {
-        // 名前を適用した新しい鮭データを作成
         SalmonData namedSalmon = _model.ApplyNameToSalmon(_sessionContext.CurrentSalmon, inputName);
         _sessionContext.UpdateCurrentSalmon(namedSalmon);
         _state.TransitionCheck(true);
@@ -58,7 +54,6 @@ public class NamePresenter : IDisposable
     {
         _state.OnEnter -= HandleEntered;
         _state.OnExit -= HandleExited;
-
         _view.OnDecideButtonClicked -= HandleDecided;
     }
 }

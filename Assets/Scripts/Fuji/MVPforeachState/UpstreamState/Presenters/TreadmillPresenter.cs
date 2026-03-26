@@ -130,7 +130,11 @@ public class TreadmillPresenter: IDisposable, ITickable
 
     private void HandleExited()
     {
-
+        _treadmillView.ClearAll();
+        _obstaclesView.ClearAll();
+        
+        _treadmillContext.Clear();
+        _obstacleContext.Clear();
     }
 
     public void Dispose()

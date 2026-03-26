@@ -153,20 +153,7 @@ public class CourtshipPresenter : IDisposable
         
         string riverName = _sessionContext.CurrentRiver.RiverName;
         
-        _view.SetUpUI(
-            playerStatusList, 
-            partnerStatusList, 
-            _femaleIllustList, 
-            _maleHair, 
-            _maleEye, 
-            _maleColor, 
-            _maleEyebrow, 
-            _maleMouth, 
-            _isPale, 
-            riverStatusList, 
-            _remainTimes, 
-            riverName
-        );
+        _view.SetUpUI(playerStatusList, riverStatusList, 
     }
 
     private void HandleExited()

@@ -2,7 +2,6 @@
 }
 
 .remaining-court-times {
-    background-color: rgb(190, 254, 255);
     margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
@@ -24,6 +23,12 @@
     border-right-color: rgb(38, 37, 114);
     border-top-color: rgb(38, 37, 114);
     border-bottom-color: rgb(38, 37, 114);
+    background-color: rgb(255, 255, 255);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
 }
 
 .partner-information {
@@ -65,7 +70,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgb(190, 254, 255);
+    background-color: rgb(157, 175, 197);
     transition-duration: 0.1s;
     transition-timing-function: ease-out;
     border-top-left-radius: 8px;
@@ -76,7 +81,7 @@
 }
 
 .partner-information:hover > .partner-information_background {
-    scale: 1 1;
+    scale: 1.1 1.1;
 }
 
 .partner-information > Image {
@@ -92,7 +97,7 @@
     left: 15%;
     width: 110%;
     height: 44%;
-    background-color: rgb(190, 254, 255);
+    background-color: rgb(59, 95, 195);
     top: 50%;
     transition-property: opacity;
     transition-duration: 0.1s;
@@ -123,17 +128,20 @@
     padding-left: 0;
     flex-shrink: 1;
     flex-grow: 1;
-    border-left-color: rgb(38, 37, 114);
-    border-right-color: rgb(38, 37, 114);
-    border-top-color: rgb(38, 37, 114);
-    border-bottom-color: rgb(38, 37, 114);
+    border-left-color: rgb(59, 95, 195);
+    border-right-color: rgb(59, 95, 195);
+    border-top-color: rgb(59, 95, 195);
+    border-bottom-color: rgb(59, 95, 195);
     height: 40%;
     -unity-text-align: middle-center;
-    font-size: 50px;
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
     border-left-width: 1px;
+    background-color: rgb(59, 95, 195);
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+    font-size: 40px;
+    color: rgb(255, 255, 255);
 }
 
 .partner-information_status_value {
@@ -147,13 +155,15 @@
     padding-left: 0;
     flex-grow: 1;
     flex-shrink: 1;
-    border-left-color: rgb(38, 37, 114);
-    border-right-color: rgb(38, 37, 114);
-    border-top-color: rgb(38, 37, 114);
-    border-bottom-color: rgb(38, 37, 114);
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
     height: 60%;
     -unity-text-align: middle-center;
-    font-size: 50px;
+    background-color: rgb(255, 255, 255);
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+    font-size: 40px;
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
@@ -180,5 +190,3 @@
     border-bottom-left-radius: 0;
     background-image: url("project://database/Assets/Textures/%E5%B7%9D%E8%83%8C%E6%99%AF.png?fileID=2800000&guid=3b4029759ce30bf43af2ea92a076460a&type=3#川背景");
 }
-
-

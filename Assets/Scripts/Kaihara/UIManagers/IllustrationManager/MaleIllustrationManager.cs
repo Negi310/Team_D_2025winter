@@ -60,9 +60,25 @@ public class MaleIllustrationManager : MonoBehaviour
         playerImage.Q<VisualElement>(className:"male-illustration_body-paint").style.backgroundImage = otherTextureList[2];
     }
     //変更適用
-    public void SetUpIllust(VisualElement playerImage,SalmonHair hair, SalmonEyeMale eye, SalmonColor color, SalmonEyebrowMale eyebrow, SalmonMouthMale mouth, bool isPale)
+    public void SetUpIllust(VisualElement playerImage,SalmonHair hair, SalmonEyeMale eye, SalmonColor color, SalmonEyebrowMale eyebrow, SalmonMouthMale mouth, bool isPale,SalmonSize size)
     {
-        
+        //サイズ調整
+        if(size == SalmonSize.Big)
+        {
+            playerImage.AddToClassList("male-illust_big");
+            playerImage.RemoveFromClassList("male-illust_small");
+
+        }
+        else if(size == SalmonSize.Small)
+        {
+            playerImage.RemoveFromClassList("male-illust_big");
+            playerImage.AddToClassList("male-illust_small");
+        }
+        else
+        {
+            playerImage.RemoveFromClassList("male-illust_big");
+            playerImage.RemoveFromClassList("male-illust_small");
+        }
         //trueで青ざめon
         if(isPale)
         playerImage.Q<VisualElement>(className:"male-illustration_pale").style.opacity = 1;

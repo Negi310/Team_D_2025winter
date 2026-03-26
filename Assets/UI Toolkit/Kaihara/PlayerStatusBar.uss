@@ -9,7 +9,7 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    background-color: rgb(190, 254, 255);
+    background-color: rgb(162, 194, 234);
     border-top-width: 2px;
     border-right-width: 2px;
     border-bottom-width: 2px;
@@ -44,6 +44,7 @@
     border-right-width: 2px;
     border-bottom-width: 2px;
     border-left-width: 2px;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
 }
 
 .main-salmon-status_name--court {
@@ -69,6 +70,7 @@
     margin-bottom: 2px;
     margin-left: 2px;
     width: 32%;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
 }
 
 .main-salmon-status_value--swim {
@@ -99,4 +101,5 @@
     -unity-text-align: middle-center;
     font-size: 25px;
     width: 65%;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
 }

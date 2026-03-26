@@ -37,7 +37,7 @@ public class NamePresenter : IDisposable
             _sessionContext.CurrentSalmon.CourtshipTraits.ColorValue.ToString("F1"),
             _sessionContext.CurrentSalmon.CourtshipTraits.ShapeValue.ToString("F1"));
         //メソッドの引数追加につきエラーが出るため一旦引数を入れておきます　お手数ですが修正よろしくお願いします　貝原
-        _view.SetUpUI(playerStatusList,SalmonHair.Normal,SalmonEyeMale.Normal,SalmonColor.Orange,SalmonEyebrowMale.Normal,SalmonMouthMale.Normal,false);
+        _view.SetUpUI(playerStatusList,SalmonHair.Normal,SalmonEyeMale.Normal,SalmonColor.Orange,SalmonEyebrowMale.Normal,SalmonMouthMale.Normal,false,SalmonSize.Big);
     }
     
     private void HandleExited()

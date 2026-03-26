@@ -52,3 +52,10 @@
     width: 100%;
     height: 100%;
 }
+
+.female-illust_big{
+    scale: 1.1 1.1;
+}
+.female-illust_small{
+    scale:0.9 0.9
+}

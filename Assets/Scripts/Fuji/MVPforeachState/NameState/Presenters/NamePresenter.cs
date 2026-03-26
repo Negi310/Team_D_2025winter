@@ -28,7 +28,7 @@ public class NamePresenter : IDisposable
         _view.Show();
         var playerStatusList = _builder.PlayerStatusListBuild("1", "1", "1", "1", "1", "1", "1", "1");
         //メソッドの引数追加につきエラーが出るため一旦引数を入れておきます　お手数ですが修正よろしくお願いします　貝原
-        _view.SetUpUI(playerStatusList,SalmonHair.Normal,SalmonEyeMale.Normal,SalmonColor.Orange,SalmonEyebrowMale.Normal,SalmonMouthMale.Normal,false);
+        _view.SetUpUI(playerStatusList,SalmonHair.Normal,SalmonEyeMale.Normal,SalmonColor.Orange,SalmonEyebrowMale.Normal,SalmonMouthMale.Normal,false,SalmonSize.Big);
     }
     
     private void HandleExited()

@@ -199,7 +199,7 @@ public class SeaUIManager : MonoBehaviour
     }
 
     //内容更新
-    public void SetUpUI(List<string> playerStatusList,List<string> riverStatusList,List<string> statusincereace,int turn,string riverName,SalmonHair hair,SalmonColor color, SalmonEyeMale eye, SalmonEyebrowMale eyebrow, SalmonMouthMale mouth,bool isPale,List<string> randomEventNameList)
+    public void SetUpUI(List<string> playerStatusList,List<string> riverStatusList,List<string> statusincereace,int turn,string riverName,SalmonHair hair,SalmonColor color, SalmonEyeMale eye, SalmonEyebrowMale eyebrow, SalmonMouthMale mouth,bool isPale,SalmonSize size,List<string> randomEventNameList)
     {
         SetUpStatusUI(playerStatusList,statusincereace);
         SetUpRiverUI(turn,riverName,riverStatusList);
@@ -209,7 +209,7 @@ public class SeaUIManager : MonoBehaviour
             randomEventButtonList[i].text = randomEventNameList[i];
         }
 
-        maleIllust.SetUpIllust(playerIllust,hair,eye,color,eyebrow,mouth,isPale);
+        maleIllust.SetUpIllust(playerIllust,hair,eye,color,eyebrow,mouth,isPale,size);
     }
     //ステータス表示の設定
     void SetUpStatusUI(List<string> playerStatusList,List<string> statusincereace)

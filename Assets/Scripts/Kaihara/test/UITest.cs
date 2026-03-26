@@ -126,7 +126,7 @@ public class UITest : MonoBehaviour
             var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerSpeed,playerJump,playerStamina,playerAttack,playerIntelligence,playerColor,playerSize,playerShape);
             var riverStatusList = forUIStatusBuilder.RiverInformatinListBuild(a,b,c,d,e);
             var increaseStatusList = forUIStatusBuilder.TrainingStatuIcreaceList(increaseSpeed,increaseJump,increaseStamina,increaseAttack,increaseIntelligence);
-            seaUIManager.SetUpUI(playerStatusList,riverStatusList,increaseStatusList,seaTurn,riverName,salmonHair,salmonColor,salmonEye,salmonEyebrow,salmonMouth,isPale,new List<string>{"A","B","C"});
+            seaUIManager.SetUpUI(playerStatusList,riverStatusList,increaseStatusList,seaTurn,riverName,salmonHair,salmonColor,salmonEye,salmonEyebrow,salmonMouth,isPale,SalmonSize.Big,new List<string>{"A","B","C"});
         }
         //kキーでSeaUI非表示
         if (Keyboard.current.kKey.wasPressedThisFrame)
@@ -141,8 +141,8 @@ public class UITest : MonoBehaviour
             var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerSpeed,playerJump,playerStamina,playerAttack,playerIntelligence,playerColor,playerSize,playerShape);
             var partnerStatusList = forUIStatusBuilder.PartnersListBuild(weakestPer,weakestSuc,weakPer,weakSuc,normalPer,normalSuc,strongPer,strongSuc,strongestPer,strongestSuc);
             var riverStatusList = forUIStatusBuilder.RiverInformatinListBuild(a,b,c,d,e);
-            var femaleIllustList = forUIStatusBuilder.FemaleIllustList(weakestHair,weakestEye,weakestColor,weakestEyebrow,weakestMouth,weakHair,weakEye,weakColor,weakEyebrow,weakMouth,normalHair,normalEye,normalColor,normalEyebrow,normalMouth,strongHair,strongEye,strongColor,strongEyebrow,strongMouth,strongestHair,strongestEye,strongestColor,strongestEyebrow,strongestMouth);
-            courtingUIManager.SetUpUI(playerStatusList,partnerStatusList,femaleIllustList,SalmonHair.Long,SalmonEyeMale.Normal,SalmonColor.Orange,SalmonEyebrowMale.Normal,SalmonMouthMale.Normal,isPale,riverStatusList,courtingTimes,riverName);
+            var femaleIllustList = forUIStatusBuilder.FemaleIllustList(weakestHair,weakestEye,weakestColor,weakestEyebrow,weakestMouth,SalmonSize.Big,weakHair,weakEye,weakColor,weakEyebrow,weakMouth,SalmonSize.Normal,normalHair,normalEye,normalColor,normalEyebrow,normalMouth,SalmonSize.Small,strongHair,strongEye,strongColor,strongEyebrow,strongMouth,SalmonSize.Big,strongestHair,strongestEye,strongestColor,strongestEyebrow,strongestMouth,SalmonSize.Normal);
+            courtingUIManager.SetUpUI(playerStatusList,partnerStatusList,femaleIllustList,SalmonHair.Long,SalmonEyeMale.Normal,SalmonColor.Orange,SalmonEyebrowMale.Normal,SalmonMouthMale.Normal,isPale,SalmonSize.Big,riverStatusList,courtingTimes,riverName);
         }
         //iキーでCourtingUI非表示
         if (Keyboard.current.iKey.wasPressedThisFrame)
@@ -154,7 +154,7 @@ public class UITest : MonoBehaviour
         {
             namingUIManager.Show();
             var playerStatusList = forUIStatusBuilder.PlayerStatusListBuild(playerSpeed,playerJump,playerStamina,playerAttack,playerIntelligence,playerColor,playerSize,playerShape);
-            namingUIManager.SetUpUI(playerStatusList,salmonHair,salmonEye,salmonColor,salmonEyebrow,salmonMouth,isPale);
+            namingUIManager.SetUpUI(playerStatusList,salmonHair,salmonEye,salmonColor,salmonEyebrow,salmonMouth,isPale,SalmonSize.Big);
         }
         //mキーでNamingUI非表示
         if (Keyboard.current.mKey.wasPressedThisFrame)

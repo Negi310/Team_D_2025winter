@@ -88,10 +88,10 @@ public class NamingUIManager : MonoBehaviour
         }
         
     }
-    public void SetUpUI(List<string> playerStatusList,SalmonHair hair,SalmonEyeMale eye,SalmonColor color,SalmonEyebrowMale eyebrow,SalmonMouthMale mouth,bool isPale)
+    public void SetUpUI(List<string> playerStatusList,SalmonHair hair,SalmonEyeMale eye,SalmonColor color,SalmonEyebrowMale eyebrow,SalmonMouthMale mouth,bool isPale,SalmonSize size)
     {
         SetUpPlayerUI(playerStatusList);
-        maleIllust.SetUpIllust(playerIllust,hair,eye,color,eyebrow,mouth,isPale);
+        maleIllust.SetUpIllust(playerIllust,hair,eye,color,eyebrow,mouth,isPale,size);
     }
     //プレイヤーのステータスのUIの内容更新
     

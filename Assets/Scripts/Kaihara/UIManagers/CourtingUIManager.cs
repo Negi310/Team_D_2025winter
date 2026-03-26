@@ -175,7 +175,7 @@ public class CourtingUIManager : MonoBehaviour
         
     }
     //表示内容更新
-    public void SetUpUI(List<string> playerStatusList,List<(string personality,string successRate)> partnerStatusList,List<(SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth)> femaleIllustList,SalmonHair maleHair,SalmonEyeMale maleEye,SalmonColor maleColor,SalmonEyebrowMale maleEyebrow,SalmonMouthMale maleMouth,bool isPale,List<string> riverStatus ,int courtTimes,string riverName)
+    public void SetUpUI(List<string> playerStatusList,List<(string personality,string successRate)> partnerStatusList,List<(SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth,SalmonSize size)> femaleIllustList,SalmonHair maleHair,SalmonEyeMale maleEye,SalmonColor maleColor,SalmonEyebrowMale maleEyebrow,SalmonMouthMale maleMouth,bool isPale,SalmonSize size,List<string> riverStatus ,int courtTimes,string riverName)
     {
         //パートナーUIの内容更新
         SetUpPartnerUI(partnerStatusList,femaleIllustList);
@@ -183,12 +183,12 @@ public class CourtingUIManager : MonoBehaviour
         SetUpPlayerUI(playerStatusList);
         //川UIの内容更新
         SetUpRiverUI(courtTimes,riverName,riverStatus);
-        maleIllust.SetUpIllust(playerIllust,maleHair,maleEye,maleColor,maleEyebrow,maleMouth,isPale);
+        maleIllust.SetUpIllust(playerIllust,maleHair,maleEye,maleColor,maleEyebrow,maleMouth,isPale,size);
     }
 
 
     //パートナーUIの内容更新
-    void SetUpPartnerUI(List<(string personality,string successRate)> partnerStatusList,List<(SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth)> femaleIllustList)
+    void SetUpPartnerUI(List<(string personality,string successRate)> partnerStatusList,List<(SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth,SalmonSize size)> femaleIllustList)
     {
         //VE構成
         //親Button(class:partner-information)(パートナー一体につき一つ)
@@ -208,7 +208,7 @@ public class CourtingUIManager : MonoBehaviour
             //成功率を表示
             partnerUIList[i].successLabel.text = partnerStatusList[i].successRate + "%";
             //画像更新
-            femaleIllust.SetUpIllust(partnerUIList[i].illust,femaleIllustList[i].hair,femaleIllustList[i].eye,femaleIllustList[i].color,femaleIllustList[i].eyebrow,femaleIllustList[i].mouth);
+            femaleIllust.SetUpIllust(partnerUIList[i].illust,femaleIllustList[i].hair,femaleIllustList[i].eye,femaleIllustList[i].color,femaleIllustList[i].eyebrow,femaleIllustList[i].mouth,femaleIllustList[i].size);
         }
     }
 

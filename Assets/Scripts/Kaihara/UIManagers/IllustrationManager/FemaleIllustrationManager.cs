@@ -57,9 +57,25 @@ public class FemaleIllustrationManager : MonoBehaviour
         playerImage.Q<VisualElement>(className:"female-illustration_body-paint").style.backgroundImage = otherTextureList[1];
     }
     //変更適用
-    public void SetUpIllust(VisualElement playerImage,SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth) 
+    public void SetUpIllust(VisualElement playerImage,SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth,SalmonSize size) 
     {
-        
+        //サイズ調整
+        if(size == SalmonSize.Big)
+        {
+            playerImage.AddToClassList("male-illust_big");
+            playerImage.RemoveFromClassList("male-illust_small");
+
+        }
+        else if(size == SalmonSize.Small)
+        {
+            playerImage.RemoveFromClassList("male-illust_big");
+            playerImage.AddToClassList("male-illust_small");
+        }
+        else
+        {
+            playerImage.RemoveFromClassList("male-illust_big");
+            playerImage.RemoveFromClassList("male-illust_small");
+        }
         //VE8
         playerImage.Q<VisualElement>(className:"female-illustration_eyebrow").style.backgroundImage = eyebrowList[(int)eyebrow];
         //VE7

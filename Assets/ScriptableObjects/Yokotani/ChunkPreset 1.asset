@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2cb86bfd0ded2924092a2a8fd8f26dcd, type: 3}
-  m_Name: ChunkPreset
+  m_Name: ChunkPreset 1
   m_EditorClassIdentifier: Assembly-CSharp::ChunkPreset
   ChunkHeight: 10
-  ChunkPrefab: {fileID: 8552240408929365924, guid: b97caf050a79db74490e92bbc74fe1e5, type: 3}
+  ChunkPrefab: {fileID: 8552240408929365924, guid: ed8d96f1c035b634c8940f53eb597ed5, type: 3}
   LocalLeftBank:
   - {x: -3.8521237, y: 0.11559391}
   - {x: -2.9909875, y: 1.1429892}
@@ -50,7 +50,7 @@ MonoBehaviour:
   - {x: 1.5520339, y: 8.181924}
   - {x: 0.74248004, y: 8.958156}
   - {x: -0.10918403, y: 9.688375}
-  EntryType: 6
-  ExitType: 4
-  CurvinessScore: 0.506
-  NarrownessScore: 0.519
+  EntryType: 0
+  ExitType: 0
+  CurvinessScore: 0
+  NarrownessScore: 0

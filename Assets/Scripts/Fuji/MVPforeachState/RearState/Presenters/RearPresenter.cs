@@ -77,20 +77,7 @@ public class RearPresenter : IDisposable
         );
 
         // ★ Viewのセットアップを呼び出し
-        _view.SetUpUI(
-            playerStatusList: playerStatsStr,
-            riverStatusList: riverStatus, 
-            statusincereace: baseIncreases,
-            turn: _sessionContext.CurrentTurn,
-            riverName: _sessionContext.CurrentRiver.RiverName, 
-            hair: SalmonHair.Short, // 外見は必要に応じてCurrentSalmon等のデータに置き換えてください
-            color: SalmonColor.Orange,
-            eye: SalmonEyeMale.Normal,
-            eyebrow: SalmonEyebrowMale.Normal,
-            mouth: SalmonMouthMale.Normal,
-            isPale: false,
-            randomEventNameList: randomEventNames
-        );
+        
     }
     
     private void HandleExited()

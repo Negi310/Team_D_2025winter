@@ -98,8 +98,10 @@ public class CourtingUIManager : MonoBehaviour
         //親VEのリスト生成
         var parentList =  root.Query<Button>(className:"partner-information").ToList();
 
-        foreach (Button parent in parentList)
+        for (int i = 0; i < parentList.Count; i++)
         {
+            var parent = parentList[i];
+            int captureIndex = i;
             //孫VEを一旦リストに保存
             var groundChildVEList = parent.Q<VisualElement>(className:"partner-information_status").Children().ToList();
             //変更箇所をタプルにまとめる
@@ -117,7 +119,10 @@ public class CourtingUIManager : MonoBehaviour
                 root.Q<VisualElement>(className:"next-river-information").BringToFront();
             });
             //クリック時のイベント
-            parent.clicked += () =>{};
+            parent.clicked += () =>
+            {
+                OnPartnerClicked?.Invoke(captureIndex);
+            };
         }
     }
     //川の情報のUIの初期設定

@@ -71,7 +71,11 @@ public class UpstreamPresenter : ITickable, IDisposable
         _state.TransitionCheck(payload, _playerCtx.IsDead);
     }
 
-    private void HandleExited() => _view.Hide();
+    private void HandleExited()
+    {
+        _view.Hide();
+        _tickProvider.Unregister(this);
+    }
 
     public void Dispose()
     {

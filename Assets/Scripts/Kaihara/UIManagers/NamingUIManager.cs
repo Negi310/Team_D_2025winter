@@ -63,6 +63,7 @@ public class NamingUIManager : MonoBehaviour
     public void Hide()
     {
         root.style.display = DisplayStyle.None;
+        _nameInputField.value = string.Empty;
     }
 
     

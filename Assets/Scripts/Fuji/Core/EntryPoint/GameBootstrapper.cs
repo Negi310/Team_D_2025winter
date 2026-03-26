@@ -31,10 +31,11 @@ public class GameBootstrapper : MonoBehaviour
             saveData = saveDataResister.CreateInitialData();
             saveDataResister.Save(saveData);
         }
-        
-        _saveData = saveData;
-        var sessionContext = new SessionContext(saveData);
-
+        var SaveData = saveDataResister.CreateInitialData();
+        _saveData = SaveData;
+        saveDataResister.Save(_saveData);
+        var sessionContext = new SessionContext(_saveData);
+        Debug.Log(sessionContext.CurrentTurn);
         // ロジックを計算するModelの生成
         var logicInstaller = new LogicInstaller();
 

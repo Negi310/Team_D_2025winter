@@ -6,6 +6,7 @@ public class RearPresenter : IDisposable
 {
     private readonly RearState _state;
     private readonly RearModel _model;
+    private readonly ForUIStatusBuilder _builder;
     private readonly SessionContext _sessionContext;
     private readonly SeaUIManager _view;
     private readonly EventPool _eventPool;
@@ -13,10 +14,11 @@ public class RearPresenter : IDisposable
     // 今回生成されたイベント群（0-4:特訓, 5-7:ランダム）を保持する
     private EventData[] _currentEvents;
 
-    public RearPresenter(RearState state, RearModel model, SessionContext sessionContext, SeaUIManager view, EventPool eventPool)
+    public RearPresenter(RearState state, RearModel model, ForUIStatusBuilder builder, SessionContext sessionContext, SeaUIManager view, EventPool eventPool)
     {
         _state = state;
         _model = model;
+        _builder = builder;
         _sessionContext = sessionContext;
         _view = view;
         _eventPool = eventPool;
@@ -66,15 +68,21 @@ public class RearPresenter : IDisposable
         }
 
         // （※RiverStatusや外見など、必要に応じてコンテキストから実データを渡してください）
-        var riverStatusDummy = new List<string> { "10", "10", "10", "10" }; 
+        var riverStatus = _builder.RiverInformatinListBuild(
+            _sessionContext.CurrentRiver.DisplayDanger.ToString("F1"), 
+            _sessionContext.CurrentRiver.DisplayComplexity.ToString("F1"), 
+            _sessionContext.CurrentRiver.DisplayMeandering.ToString("F1"), 
+            _sessionContext.CurrentRiver.DisplayRichness.ToString("F1"), 
+            _sessionContext.CurrentRiver.DisplayToughness.ToString("F1")
+        );
 
         // ★ Viewのセットアップを呼び出し
         _view.SetUpUI(
             playerStatusList: playerStatsStr,
-            riverStatusList: riverStatusDummy, 
+            riverStatusList: riverStatus, 
             statusincereace: baseIncreases,
             turn: _sessionContext.CurrentTurn,
-            riverName: "次の川", 
+            riverName: _sessionContext.CurrentRiver.RiverName, 
             hair: SalmonHair.Short, // 外見は必要に応じてCurrentSalmon等のデータに置き換えてください
             color: SalmonColor.Orange,
             eye: SalmonEyeMale.Normal,

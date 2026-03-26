@@ -50,7 +50,7 @@ public class SaveDataResister
     
     public SaveData CreateInitialData()
     {
-        var defaultStats = new UpstreamStats(speed: 100f, jump: 5f, stamina: 10f, attack: 5f, intelligence: 5f);
+        var defaultStats = new UpstreamStats(speed: 100f, jump: 5f, stamina: 100f, attack: 5f, intelligence: 5f);
         var defaultTraits = new CourtshipTraits(size: 1.0f, colorValue: 0.5f, shapeValue: 0.5f);
         var initialSalmon = new SalmonData(defaultStats, defaultTraits) { Name = "初代" };
         var initialRiver = RiverGenerator.GenerateRiver(1);
@@ -58,10 +58,10 @@ public class SaveDataResister
         return new SaveData
         {
             Generation = 1,
-            Turn = 1,
+            Turn = 0,
             Salmon = initialSalmon,
             River =  initialRiver,
-            LastSavedStateName = nameof(ConversationState) // 最初はオープニング会話から
+            LastSavedStateName = nameof(NameState) // 最初はオープニング会話から
         };
     }
 

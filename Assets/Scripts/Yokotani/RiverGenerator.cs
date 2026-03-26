@@ -65,7 +65,7 @@ public class RiverGenerator
         profile.RivalDensity    = (weights[4] / totalWeight) * baseAmount;
         profile.AccidentDensity = (weights[5] / totalWeight) * baseAmount;
         profile.Curviness       = (weights[6] / totalWeight) * baseAmount;
-
+        
         // 4. 傾向から川の名前を命名
         profile.RiverName = GenerateRiverName(profile);
 

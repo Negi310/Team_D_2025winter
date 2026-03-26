@@ -40,4 +40,9 @@ public class SessionContext
     {
         CurrentSalmon = updatedSalmon;
     }
+
+    public void UpdateCurrentRiver(RiverData updatedRiver)
+    {
+        CurrentRiver = updatedRiver;
+    }
 }

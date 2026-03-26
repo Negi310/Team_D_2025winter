@@ -28,14 +28,14 @@ public class NamePresenter : IDisposable
         // 名前入力UIの初期化
         _view.Show();
         var playerStatusList = _builder.PlayerStatusListBuild(
-            _sessionContext.CurrentSalmon.UpstreamStats.Speed.ToString(),
-            _sessionContext.CurrentSalmon.UpstreamStats.Jump.ToString(),
-            _sessionContext.CurrentSalmon.UpstreamStats.Stamina.ToString(),
-            _sessionContext.CurrentSalmon.UpstreamStats.Attack.ToString(),
-            _sessionContext.CurrentSalmon.UpstreamStats.Intelligence.ToString(),
-            _sessionContext.CurrentSalmon.CourtshipTraits.Size.ToString(),
-            _sessionContext.CurrentSalmon.CourtshipTraits.ColorValue.ToString(),
-            _sessionContext.CurrentSalmon.CourtshipTraits.ShapeValue.ToString());
+            _sessionContext.CurrentSalmon.UpstreamStats.Speed.ToString("F1"),
+            _sessionContext.CurrentSalmon.UpstreamStats.Jump.ToString("F1"),
+            _sessionContext.CurrentSalmon.UpstreamStats.Stamina.ToString("F1"),
+            _sessionContext.CurrentSalmon.UpstreamStats.Attack.ToString("F1"),
+            _sessionContext.CurrentSalmon.UpstreamStats.Intelligence.ToString("F1"),
+            _sessionContext.CurrentSalmon.CourtshipTraits.Size.ToString("F1"),
+            _sessionContext.CurrentSalmon.CourtshipTraits.ColorValue.ToString("F1"),
+            _sessionContext.CurrentSalmon.CourtshipTraits.ShapeValue.ToString("F1"));
         //メソッドの引数追加につきエラーが出るため一旦引数を入れておきます　お手数ですが修正よろしくお願いします　貝原
         _view.SetUpUI(playerStatusList,SalmonHair.Normal,SalmonEyeMale.Normal,SalmonColor.Orange,SalmonEyebrowMale.Normal,SalmonMouthMale.Normal,false);
     }
@@ -43,6 +43,7 @@ public class NamePresenter : IDisposable
     private void HandleExited()
     {
         _view.Hide();
+        Debug.Log(_sessionContext.CurrentTurn);
     }
 
     private void HandleDecided(string inputName)

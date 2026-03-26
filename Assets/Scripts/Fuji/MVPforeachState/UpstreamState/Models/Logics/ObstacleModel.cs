@@ -17,7 +17,7 @@ public class ObstacleModel
         float startY = chunk.Position, endY = chunk.Position + chunk.Preset.ChunkHeight;
         
         int count = Mathf.Clamp(Mathf.RoundToInt(river.ObstacleDensity), 0, 6);
-
+        Debug.Log(river.ObstacleDensity);
         for (int i = 0; i < count; i++)
         {
             for (int attempt = 0; attempt < 20; attempt++)
@@ -110,9 +110,9 @@ public class ObstacleModel
                 
                 float rand = Random.value;
                 DrifterType type; float speed;
-                if (rand <= fishProb)       { type = DrifterType.Fish; speed = 2.0f; }   
-                else if (rand <= rivalProb) { type = DrifterType.RivalSalmon; speed = 5.0f; } 
-                else                        { type = DrifterType.Driftwood; speed = -4.0f; }
+                if (rand <= fishProb)       { type = DrifterType.Fish; speed = 1.0f; }   
+                else if (rand <= rivalProb) { type = DrifterType.RivalSalmon; speed = 2.5f; } 
+                else                        { type = DrifterType.Driftwood; speed = -3.0f; }
                 
                 drifters.Add(new DrifterData(type, startPos, speed, lane));
                 break; 

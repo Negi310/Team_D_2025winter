@@ -47,7 +47,7 @@ public class StateCompositeFactory
         {
             var composite = new CompositeDisposable();
             
-            composite.Add(new RearPresenter(state, logic.RearModel, context, seaUIManager, eventPool));
+            composite.Add(new RearPresenter(state, logic.RearModel, logic.ForUIStatusBuilder, context, seaUIManager, eventPool));
             //...
             
             return composite;

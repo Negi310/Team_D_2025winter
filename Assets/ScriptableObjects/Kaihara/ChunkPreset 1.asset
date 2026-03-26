@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb86bfd0ded2924092a2a8fd8f26dcd, type: 3}
+  m_Name: ChunkPreset 1
+  m_EditorClassIdentifier: Assembly-CSharp::ChunkPreset
+  ChunkHeight: 10
+  ChunkPrefab: {fileID: 1992792207311388293, guid: 9de262ad3dad22346b4ab5b2fed81c17, type: 3}
+  LocalLeftBank:
+  - {x: -6.0007687, y: 11.052309}
+  - {x: -7.203183, y: 11.496634}
+  - {x: -8.308863, y: 12.136904}
+  - {x: -9.262373, y: 12.992176}
+  - {x: -10.008051, y: 14.029392}
+  - {x: -10.198486, y: 15.2867365}
+  - {x: -10.403307, y: 16.542995}
+  - {x: -10.998369, y: 17.678364}
+  - {x: -11.692459, y: 18.75719}
+  - {x: -12.424972, y: 19.810442}
+  - {x: -13.166343, y: 20.855385}
+  LocalRightBank:
+  - {x: -3.2262058, y: 10.936202}
+  - {x: -3.7145524, y: 12.351526}
+  - {x: -4.883088, y: 13.210771}
+  - {x: -6.2566266, y: 13.790387}
+  - {x: -6.4788513, y: 15.211721}
+  - {x: -5.7245507, y: 16.466661}
+  - {x: -5.153817, y: 17.686491}
+  - {x: -6.4325304, y: 18.448887}
+  - {x: -7.783342, y: 19.099384}
+  - {x: -8.9743805, y: 20.008934}
+  - {x: -10.1179, y: 20.979116}
+  LocalCenterLine:
+  - {x: -4.7026935, y: 10.94159}
+  - {x: -5.6664824, y: 11.7074}
+  - {x: -6.606332, y: 12.503874}
+  - {x: -7.461515, y: 13.389149}
+  - {x: -8.023304, y: 14.476793}
+  - {x: -8.373402, y: 15.65736}
+  - {x: -8.882908, y: 16.774567}
+  - {x: -9.525742, y: 17.825823}
+  - {x: -10.20481, y: 18.853874}
+  - {x: -10.901695, y: 19.870316}
+  - {x: -11.60167, y: 20.882292}
+  EntryType: 0
+  ExitType: 0
+  CurvinessScore: 0
+  NarrownessScore: 0

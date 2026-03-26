@@ -63,11 +63,11 @@
                 <ui:Label text="Label" picking-mode="Ignore" class="main-salmon-status_status-information"/>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Button text="トレーニング" name="trainingbutton" class="training-button"/>
         <ui:Button text="ランダム&#10;イベント" name="randomeventbutton" selectable="false" focusable="true" enable-rich-text="true" class="random-event-button"/>
+        <ui:Button text="トレーニング" name="trainingbutton" class="training-button"/>
         <ui:Label text="Label" name="turn" class="turn-ui"/>
         <ui:VisualElement name="riverinformation" class="next-river-information next-river" style="flex-grow: 1;">
-            <ui:VisualElement name="riverstatus" style="flex-grow: 1; transition-duration: 0.1s;">
+            <ui:VisualElement name="riverstatus">
                 <ui:VisualElement style="flex-grow: 1;">
                     <ui:Label text="Label" class="next-river-information_status_name"/>
                     <ui:VisualElement class="next-river-information_status_value"/>
@@ -100,7 +100,7 @@
             <ui:Button text="知力" name="Button" class="training-tab_training-button"/>
             <ui:Button text="X" name="close" class="training-tab_cancel-button"/>
         </ui:VisualElement>
-        <ui:VisualElement name="randomtab" class="random-event-tab" style="flex-grow: 1; width: 48%; left: 26%;">
+        <ui:VisualElement name="randomtab" class="random-event-tab">
             <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 130%; position: absolute; height: 100%; left: -15%;"/>
             <ui:Button text="Button" class="random-event-tab_random-event-button"/>
             <ui:Button text="Button" class="random-event-tab_random-event-button"/>

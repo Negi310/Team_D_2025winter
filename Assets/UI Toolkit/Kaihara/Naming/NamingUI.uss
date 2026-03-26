@@ -26,6 +26,7 @@
     margin-left: 0;
     font-size: 40px;
     width: 85%;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
 }
 
 .naming-text-field > Button {
@@ -41,6 +42,11 @@
     transition-duration: 0.1s;
     transition-timing-function: ease-out;
     background-color: rgb(188, 188, 188);
+    font-size: 40px;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(95, 95, 95);
 }
 
 .naming-text-field > Button:hover {

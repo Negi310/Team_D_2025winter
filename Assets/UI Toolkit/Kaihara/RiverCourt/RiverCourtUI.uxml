@@ -19,8 +19,8 @@
                 <ui:VisualElement picking-mode="Ignore" class="female-illustration_eyebrow" style="flex-grow: 1;"/>
             </ui:VisualElement>
             <ui:VisualElement name="status" picking-mode="Ignore" class="partner-information_status">
-                <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
-                    <ui:Label text="性格" picking-mode="Ignore" class="partner-information_status_name"/>
+                <ui:VisualElement picking-mode="Ignore" name="VisualElement" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label text="性格" picking-mode="Ignore" name="Label" class="partner-information_status_name"/>
                     <ui:Label text="Label" picking-mode="Ignore" class="partner-information_status_value"/>
                 </ui:VisualElement>
                 <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1;">

@@ -4,6 +4,13 @@ public enum SalmonHair
     Long,
     Normal,
     Short
+    
+}
+public enum SalmonSize
+{
+    Big,
+    Normal,
+    Small
 }
 //カラー
 public enum SalmonColor

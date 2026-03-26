@@ -1,8 +1,6 @@
-
-
 .next-river-information {
     flex-grow: 0;
-    background-color: rgb(190, 254, 255);
+    background-color: rgb(125, 175, 236);
     position: absolute;
     flex-shrink: 0;
     flex-direction: row-reverse;
@@ -14,10 +12,10 @@
     border-right-width: 0;
     border-bottom-width: 0;
     border-left-width: 0;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
@@ -30,7 +28,7 @@
 
 .next-river-information > Label {
     width: 85%;
-    background-color: rgb(190, 254, 255);
+    background-color: rgb(255, 255, 255);
     margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
@@ -49,6 +47,11 @@
     border-right-color: rgb(38, 37, 114);
     border-top-color: rgb(38, 37, 114);
     border-bottom-color: rgb(38, 37, 114);
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+    border-top-left-radius: 15px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 15px;
 }
 
 .next-river-information > Button {
@@ -75,6 +78,8 @@
     border-right-color: rgb(38, 37, 114);
     border-top-color: rgb(38, 37, 114);
     border-bottom-color: rgb(38, 37, 114);
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .next-river-information > VisualElement {
@@ -84,7 +89,7 @@
     width: 50%;
     height: 300%;
     translate: 0 -135%;
-    background-color: rgb(190, 254, 255);
+    background-color: rgb(162, 194, 234);
     top: 100%;
     transition-duration: 0.1s;
     transition-timing-function: ease-out;
@@ -96,6 +101,10 @@
     border-right-width: 4px;
     border-bottom-width: 4px;
     border-left-width: 4px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .next-river-information.is-open > VisualElement {
@@ -121,15 +130,24 @@
     padding-left: 0;
     -unity-text-align: middle-center;
     width: 27%;
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
     border-left-color: rgb(38, 37, 114);
     border-right-color: rgb(38, 37, 114);
     border-top-color: rgb(38, 37, 114);
     border-bottom-color: rgb(38, 37, 114);
     font-size: 25px;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 0;
+    -unity-text-outline-color: rgb(164, 184, 251);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgb(59, 95, 195);
 }
 
 .next-river-information_status_value {

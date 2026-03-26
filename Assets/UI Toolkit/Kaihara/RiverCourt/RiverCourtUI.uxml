@@ -4,6 +4,7 @@
     <Style src="project://database/Assets/UI%20Toolkit/Kaihara/PlayerStatusBar.uss?fileID=7433441132597879392&amp;guid=7fd0783cafb10274da6b7d02d310a484&amp;type=3#PlayerStatusBar"/>
     <Style src="project://database/Assets/UI%20Toolkit/Kaihara/RiverCourt/RiverCourtLayout.uss?fileID=7433441132597879392&amp;guid=718b5c7cbd31b8d43832f4aa90c2483a&amp;type=3#RiverCourtLayout"/>
     <Style src="project://database/Assets/UI%20Toolkit/Kaihara/FemaleIllust.uss?fileID=7433441132597879392&amp;guid=f7bc04b5ee6f8e7459476765afe4d04c&amp;type=3#FemaleIllust"/>
+    <Style src="project://database/Assets/UI%20Toolkit/Kaihara/MaleIllust.uss?fileID=7433441132597879392&amp;guid=d8773a28e54b5b9409d22a37e789129c&amp;type=3#MaleIllust"/>
     <ui:VisualElement name="base" class="base">
         <ui:Button text="" name="partner" class="partner-information" style="top: 127px; left: 630px;">
             <ui:VisualElement name="background" picking-mode="Ignore" class="a partner-information_background"/>
@@ -120,6 +121,17 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:Button>
+        <ui:VisualElement name="illust" class="male-illustration_base male-salmon">
+            <ui:VisualElement class="male-illustration_body-paint"/>
+            <ui:VisualElement class="male-illustration_body-base"/>
+            <ui:VisualElement name="VisualElement" class="male-illustration_pale" style="flex-grow: 1;"/>
+            <ui:VisualElement class="male-illustration_mouth"/>
+            <ui:VisualElement name="VisualElement" class="male-illustration_eye-paint"/>
+            <ui:VisualElement class="male-illustration_eye-line"/>
+            <ui:VisualElement name="VisualElement" class="male-illustration_hair-paint"/>
+            <ui:VisualElement class="male-illustration_hair-line" style="flex-grow: 1;"/>
+            <ui:VisualElement name="VisualElement" class="male-illustration_eyebrow"/>
+        </ui:VisualElement>
         <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Textures/%E5%B7%9D%E8%83%8C%E6%99%AF.png?fileID=2800000&amp;guid=3b4029759ce30bf43af2ea92a076460a&amp;type=3#川背景&quot;); -unity-background-image-tint-color: rgba(255, 255, 255, 0.12);"/>
         <ui:VisualElement name="nextriverstatus" class="next-river-information next-river">
             <ui:VisualElement name="riverstatus" style="flex-grow: 1;">
@@ -147,7 +159,7 @@
             <ui:Button text="&gt;" name="riverstatusbutton"/>
             <ui:Label text="Label" name="rivername"/>
         </ui:VisualElement>
-        <ui:VisualElement name="playerstatus" class="main-salmon-status main-salmon">
+        <ui:VisualElement name="playerstatus" class="main-salmon-status main-salmon-status_layout">
             <ui:VisualElement style="flex-grow: 1;">
                 <ui:Label text="機動力" class="main-salmon-status_name--swim"/>
                 <ui:VisualElement class="main-salmon-status_value main-salmon-status_value--swim"/>

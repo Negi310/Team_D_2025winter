@@ -13,27 +13,27 @@ MonoBehaviour:
   m_Name: MateGenerationSettings
   m_EditorClassIdentifier: Assembly-CSharp::MateGenerationSettingsSO
   veryWeak:
-    tierName: 
-    minMultiplier: 0
-    maxMultiplier: 0
-    baseCourtshipDifficulty: 0
+    tierName: VeryWeak
+    minMultiplier: -5
+    maxMultiplier: 5
+    baseCourtshipDifficulty: 80
   weak:
-    tierName: 
-    minMultiplier: 0
-    maxMultiplier: 0
-    baseCourtshipDifficulty: 0
+    tierName: Weak
+    minMultiplier: -8
+    maxMultiplier: 8
+    baseCourtshipDifficulty: 68
   compromise:
-    tierName: 
-    minMultiplier: 0
-    maxMultiplier: 0
-    baseCourtshipDifficulty: 0
+    tierName: Compromise
+    minMultiplier: -10
+    maxMultiplier: 10
+    baseCourtshipDifficulty: 63
   normal:
-    tierName: 
-    minMultiplier: 0
-    maxMultiplier: 0
-    baseCourtshipDifficulty: 0
+    tierName: Normal
+    minMultiplier: -10
+    maxMultiplier: 10
+    baseCourtshipDifficulty: 30
   strong:
-    tierName: 
-    minMultiplier: 0
-    maxMultiplier: 0
-    baseCourtshipDifficulty: 0
+    tierName: Strong
+    minMultiplier: -7
+    maxMultiplier: 7
+    baseCourtshipDifficulty: 15

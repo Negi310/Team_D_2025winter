@@ -7,6 +7,9 @@ public class ConversationPresenter : IDisposable
     private readonly ConversationContext _context;        // 変数
     private readonly ConversationView _view;        // 画面描画と非同期のUI処理
     private readonly IPayload _payload;
+    
+    private string _resultMessage;
+    private bool _isShowingResult;
 
     public ConversationPresenter(
         ConversationState state, 
@@ -20,6 +23,7 @@ public class ConversationPresenter : IDisposable
         _context = context;
         _view = view;
         _payload = payload;
+        if (_payload is ConversationInitPayload conversationInitPayload) _context.MasterData = conversationInitPayload.EventData; // 会話イベントのマスターデータをContextにセット
 
         // State(ステートマシン)のイベントを購読
         _state.OnEnter += HandleEntered;
@@ -34,9 +38,17 @@ public class ConversationPresenter : IDisposable
     // Stateに入った時（会話イベント開始）
     private void HandleEntered()
     {
+        if (_payload is ConversationInitPayload payload)
+        {
+            _context.MasterData = payload.EventData;
+            _context.CurrentIndex = 0;
+
+            _resultMessage = _model.GenerateResultMessage(payload.EventData);
+            _isShowingResult = false;
+        }
         _view.ShowUI();
-        _view.SetupEnvironment(_context.MasterData.backgroundImage);
-        _view.PlayIntroAnimation(_context.MasterData.introAnimationTrigger);
+        _view.SetupEnvironment(_context.MasterData.LinkedConversation.backgroundImage);
+        _view.PlayIntroAnimation(_context.MasterData.LinkedConversation.introAnimationTrigger);
     }
 
     // 「次へ」ボタンが押された時
@@ -55,6 +67,15 @@ public class ConversationPresenter : IDisposable
                 _model.MoveToNextTurn(_context);
                 ShowCurrentTurn();
             }
+            else if (!_isShowingResult)
+            {
+                // 会話は終わったが、リザルトが未表示の場合
+                _isShowingResult = true;
+                _context.IsTyping = true; // リザルトも文字送りアニメーションさせる
+
+                // 話者名を「システム」等にして、保持していたリザルトメッセージを流し込む
+                _view.StartTyping("", _resultMessage, _context.MasterData.LinkedConversation.textSpeed);
+            }
             else
             {
                 // 次がなければ、Stateに「会話終わったよ」と報告して遷移を任せる
@@ -66,6 +87,7 @@ public class ConversationPresenter : IDisposable
     // Stateから抜ける時（会話イベント終了）
     private void HandleExited()
     {
+        _view.EndTyping();
         _view.HideUI();
     }
 
@@ -87,7 +109,7 @@ public class ConversationPresenter : IDisposable
         var turn = _model.GetCurrentTurn(_context);
         
         // Viewに文字送りを指示
-        _view.StartTyping(turn.SpeakerName, turn.Text, _context.MasterData.textSpeed);
+        _view.StartTyping(turn.SpeakerName, turn.Text, _context.MasterData.LinkedConversation.textSpeed);
     }
 
     // Viewから「文字送りが終わった（またはスキップされた）」と報告が来た時

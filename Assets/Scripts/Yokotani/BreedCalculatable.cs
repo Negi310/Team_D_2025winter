@@ -7,13 +7,15 @@ public class BreedCalculatable : IBreedingCalculator
         //川の遡上に関する能力値の継承
         UpstreamStats childUpstream = new UpstreamStats
         {
-            Power = Inherit(playerSalmon.UpstreamStats.Power,mateSalmon.UpstreamStats.Power),
+            Speed = Inherit(playerSalmon.UpstreamStats.Speed,mateSalmon.UpstreamStats.Speed),
 
             Jump = Inherit(playerSalmon.UpstreamStats.Jump,mateSalmon.UpstreamStats.Jump),
 
-            Cautiousness = Inherit(playerSalmon.UpstreamStats.Cautiousness,mateSalmon.UpstreamStats.Cautiousness),
-
-            Stamina = Inherit(playerSalmon.UpstreamStats.Stamina,mateSalmon.UpstreamStats.Stamina)
+            Stamina = Inherit(playerSalmon.UpstreamStats.Stamina,mateSalmon.UpstreamStats.Stamina),
+            
+            Attack = Inherit(playerSalmon.UpstreamStats.Attack,mateSalmon.UpstreamStats.Attack),
+            
+            Intelligence = Inherit(playerSalmon.UpstreamStats.Intelligence,mateSalmon.UpstreamStats.Intelligence)
         };
 
         //求愛に関する能力値の継承

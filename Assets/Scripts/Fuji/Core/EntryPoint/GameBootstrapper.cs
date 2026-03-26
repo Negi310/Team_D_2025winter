@@ -9,15 +9,19 @@ public class GameBootstrapper : MonoBehaviour
     [SerializeField] private NamingUIManager namingUIManager;
     [SerializeField] private SeaUIManager seaUIManager;
     [SerializeField] private ObstaclesView obstaclesView;
+    [SerializeField] private SalmonMove salmonMove;
+    [SerializeField] private UpstreamView upstreamView;
+    [SerializeField] private TitleView titleView;
     [SerializeField] private TickProvider tickProvider;
-    [SerializeField] private Transform playerTransform; // 鮭のTransform
 
     [Header("Master Data")]
     [SerializeField] private ConversationEvent conversationEvent; // テスト用の会話データ
     [SerializeField] private ChunkLevelData chunkLevelData;
     [SerializeField] private EventPool eventPool;
+    [SerializeField] private MateGenerationSettingsSO mateSetting;
     
     private GameRouter _router;
+    private SaveData _saveData;
 
     private void Awake()
     {
@@ -25,23 +29,24 @@ public class GameBootstrapper : MonoBehaviour
         if (!saveDataResister.TryLoad(out SaveData saveData))
         {
             saveData = saveDataResister.CreateInitialData();
-            saveDataResister.Save(saveData); 
+            saveDataResister.Save(saveData);
         }
-        
-        var sessionContext = new SessionContext(saveData);
-
+        var SaveData = saveDataResister.CreateInitialData();
+        _saveData = SaveData;
+        saveDataResister.Save(_saveData);
+        var sessionContext = new SessionContext(_saveData);
+        Debug.Log(sessionContext.CurrentTurn);
         // ロジックを計算するModelの生成
         var logicInstaller = new LogicInstaller();
 
         var stateCompositeFactory = new StateCompositeFactory(sessionContext, logicInstaller,
-            conversationView, treadmillView, obstaclesView,
-            courtingUIManager,namingUIManager, seaUIManager,
-            eventPool, chunkLevelData, playerTransform, tickProvider);
+            conversationView, treadmillView, obstaclesView, salmonMove, upstreamView,
+            courtingUIManager,namingUIManager, seaUIManager, titleView,
+            eventPool, chunkLevelData, mateSetting, tickProvider, _saveData.LastSavedStateName);
         // ModelとViewとContextの参照を渡す
         var stateMachine = new GameStateMachine();
         _router = new GameRouter(stateMachine, stateCompositeFactory, sessionContext, saveDataResister);
-        
-        saveDataResister.ResumeState(stateMachine, saveData.LastSavedStateName);
+        ((IStateChangable)stateMachine).ChangeState<TitleState>();
     }
 
     private void OnDestroy()

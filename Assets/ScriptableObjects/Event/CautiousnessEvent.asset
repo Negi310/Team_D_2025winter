@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89aa061def532054d838226e55e85ddd, type: 3}
-  m_Name: CoutionEvent
+  m_Name: CautiousnessEvent
   m_EditorClassIdentifier: Assembly-CSharp::EventSO
-  EventTitle: 
-  MainStat: 0
-  BaseGainAmount: 0
-  RandomBonusRange: {x: 0, y: 0}
-  LinkedConversation: {fileID: 0}
+  EventTitle: Cautiousness
+  MainStat: 2
+  BaseGainAmount: 5
+  RandomBonusRange: {x: 1, y: 1}
+  LinkedConversation: {fileID: 11400000, guid: 7486babf88c584f408247aa9db9bb10e, type: 2}

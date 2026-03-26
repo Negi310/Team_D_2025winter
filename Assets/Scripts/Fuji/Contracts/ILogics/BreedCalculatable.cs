@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class BreedCalculatable : IBreedingCalculator
 {
     public SalmonData GenerateChild(SalmonData playerSalmon,SalmonData mateSalmon)

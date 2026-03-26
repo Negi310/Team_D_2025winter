@@ -10,9 +10,16 @@
     height: 100%;
 }
 
-.main-salmon {
+.main-salmon-status_layout {
     top: 25%;
     left: 5%;
     width: 25%;
     height: 30%;
+}
+
+.male-salmon {
+    width: 15%;
+    height: 40%;
+    left: 10%;
+    top: 57%;
 }

@@ -24,7 +24,6 @@ public class MaleIllustrationManager : MonoBehaviour
 
 
     //立ち絵のVEなどの構造 UI Builder側はVE配置と識別用クラスの設定のみ 以下クラスはMaleSalmonIllust.ussにある　親VEには適宜レイアウト用のussのクラスで配置と大きさを設定
-    //色変更部はRenderTexture利用してシェーダーを適用　他はそのまま画像適用
     //親VE(className:"male-illustration_base")
     //|--VE(1)(className:"male-illustration_body-paint") 体の色が変わる部分
     //|--VE(2)(className:"male-illustration_body-base") 体の色が変わらない部分

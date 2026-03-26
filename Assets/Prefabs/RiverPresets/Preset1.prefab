@@ -46,138 +46,6 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!1 &2755462444551797448
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1237533729030314904}
-  - component: {fileID: 6983093755944005162}
-  m_Layer: 0
-  m_Name: Spline (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1237533729030314904
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2755462444551797448}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7903874354215207051}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6983093755944005162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2755462444551797448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineContainer
-  m_Spline:
-    m_EditModeType: 1
-    m_Knots: []
-    m_MetaData: []
-    m_Closed: 0
-    m_IntData:
-      m_Data: []
-    m_FloatData:
-      m_Data: []
-    m_Float4Data:
-      m_Data: []
-    m_ObjectData:
-      m_Data: []
-  m_Splines:
-  - m_EditModeType: 1
-    m_Knots:
-    - Position:
-        x: -0.742124
-        y: 0.1155939
-        z: 0
-      TangentIn:
-        x: -0
-        y: -0
-        z: -0.72305375
-      TangentOut:
-        x: 0
-        y: 0
-        z: 0.72305375
-      Rotation:
-        value:
-          x: -0.6148623
-          y: 0.34920534
-          z: 0.6148623
-          w: 0.34920534
-    - Position:
-        x: -4.445769
-        y: 6.325561
-        z: 0
-      TangentIn:
-        x: 0
-        y: 0
-        z: -0.88383424
-      TangentOut:
-        x: 0
-        y: 0
-        z: 0.88383424
-      Rotation:
-        value:
-          x: 0.4962068
-          y: 0.5037645
-          z: 0.49620703
-          w: -0.50376457
-    - Position:
-        x: -0.992124
-        y: 9.948309
-        z: 0
-      TangentIn:
-        x: -0
-        y: -0
-        z: -0.5005194
-      TangentOut:
-        x: 0
-        y: 0
-        z: 0.5005194
-      Rotation:
-        value:
-          x: 0.65000236
-          y: 0.27838275
-          z: 0.65000236
-          w: -0.27838275
-    m_MetaData:
-    - Mode: 0
-      Tension: 0.5
-    - Mode: 2
-      Tension: 0.5
-    - Mode: 0
-      Tension: 0.5
-    m_Closed: 0
-    m_IntData:
-      m_Data: []
-    m_FloatData:
-      m_Data: []
-    m_Float4Data:
-      m_Data: []
-    m_ObjectData:
-      m_Data: []
-  m_Knots:
-    m_KnotsLink: []
 --- !u!1 &3543134061011952664
 GameObject:
   m_ObjectHideFlags: 0
@@ -2265,7 +2133,8 @@ GameObject:
   - component: {fileID: 5734976392431247120}
   - component: {fileID: 2765342905696697378}
   - component: {fileID: 3073971385536489366}
-  m_Layer: 0
+  - component: {fileID: 976079736191230537}
+  m_Layer: 10
   m_Name: Tilemap (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3095,6 +2964,33 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!50 &976079736191230537
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7489092743278957300}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8552240408929365924
 GameObject:
   m_ObjectHideFlags: 0
@@ -3129,7 +3025,6 @@ Transform:
   - {fileID: 1761700393324178286}
   - {fileID: 423313102123976933}
   - {fileID: 3846822767970856040}
-  - {fileID: 1237533729030314904}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2902875277014062599

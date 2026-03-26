@@ -9,17 +9,22 @@ public class UpstreamPresenter : ITickable, IDisposable
     private readonly TickProvider _tickProvider;
     private readonly UpstreamPlayerContext _playerCtx;
     private readonly SessionContext _sessionCtx;
+    private readonly TreadmillContext _treadmillCtx;
+    private readonly SplineMathModel _splineMath;
 
     // その他のモデル群（TreadmillPresenterの中身をここに合わせて統合してもOKです）
 
     public UpstreamPresenter(
-        UpstreamState state, SalmonPlayer player, UpstreamView view,
-        UpstreamPlayerContext playerCtx, SessionContext sessionCtx, TickProvider tickProvider)
+        UpstreamState state, SalmonPlayer player, SplineMathModel splineMath, UpstreamView view,
+        UpstreamPlayerContext playerCtx, TreadmillContext treadmillContext, SessionContext sessionCtx, TickProvider tickProvider)
     {
         _state = state;
         _player = player;
+        _splineMath = splineMath;
         _view = view;
-        _playerCtx = playerCtx; _sessionCtx = sessionCtx;
+        _playerCtx = playerCtx;
+        _treadmillCtx = treadmillContext;
+        _sessionCtx = sessionCtx;
         _tickProvider = tickProvider;
         
         _state.OnEnter += HandleEntered;
@@ -48,10 +53,17 @@ public class UpstreamPresenter : ITickable, IDisposable
     {
         if (_playerCtx.IsDead) return;
 
-        // --- ここで地形生成(Treadmill)や障害物(Obstacle)のロジックを回す ---
+        float distanceFromCenter = 0f;
+        if (_treadmillCtx.GlobalCenterLine.Count > 0)
+        {
+            if (_splineMath.TryGetXAtY(_treadmillCtx.GlobalCenterLine, _playerCtx.Position.y, out float centerX))
+            {
+                distanceFromCenter = Mathf.Abs(_playerCtx.Position.x - centerX);
+            }
+        }
 
         // プレイヤーの更新（内部でRayを飛ばし、スタミナを計算する）
-        _player.Tick(deltaTime);
+        _player.Tick(deltaTime, distanceFromCenter);
 
         _view.UpdateDistance(_playerCtx.Position.y);
         

@@ -14,9 +14,9 @@ public class TickProvider : MonoBehaviour
 
     private void Update()
     {
-        foreach (var tickable in _tickables)
+        for (int i = _tickables.Count - 1; i >= 0; i--)
         {
-            tickable.Tick(Time.deltaTime);
+            _tickables[i].Tick(Time.deltaTime);
         }
     }
 }

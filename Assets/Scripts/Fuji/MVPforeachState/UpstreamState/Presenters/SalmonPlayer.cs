@@ -14,10 +14,13 @@ public class SalmonPlayer : IDisposable
     private UpstreamPlayerContext _playerCtx;
     private SalmonData _salmonData;
     private bool _isPlaying, _isJumping, _isInvincible, _isJustAfterJump;
+    
+    private float _currentDistanceFromCenter;
 
     public SalmonPlayer(SalmonMove view, UpstreamGameModel model)
     {
-        _view = view; _model = model;
+        _view = view;
+        _model = model;
         _view.OnTriggerHit += HandleTriggerHit;
         _view.OnJumpTriggered += HandleJumpTriggered;
     }
@@ -32,18 +35,24 @@ public class SalmonPlayer : IDisposable
         _view.SetPlayingState(true);
     }
 
-    public void Tick(float deltaTime)
+    public void Tick(float deltaTime, float distanceFromCenter)
     {
         if (!_isPlaying || _playerCtx.IsDead) return;
+        _currentDistanceFromCenter = distanceFromCenter;
         RayData sensorData = _view.GetSensorData();
+        if (!_isJumping && !_isInvincible && sensorData.ForwardRockDistance < 0.3f)
+        {
+            TakeDamage(20f);
+            return; // ダメージ処理に入ったら、このフレームの移動計算はスキップする
+        }
         // Modelから速度を計算し、View(SalmonMove)に注入する
-        float speedX = _model.CalculateHorizontalSpeed(_salmonData.UpstreamStats, sensorData);
-        float speedY = _model.CalculateForwardSpeed(_salmonData.UpstreamStats);
+        float speedX = _model.CalculateHorizontalSpeed(_salmonData.UpstreamStats, sensorData, _isInvincible);
+        float speedY = _model.CalculateForwardSpeed();
         _view.UpdateSpeeds(speedX, speedY);
-
+        
         if (!_isJumping)
         {
-            float drain = _model.CalculateRayBasedDrain(_salmonData.UpstreamStats, sensorData, deltaTime);
+            float drain = _model.CalculateDrain(_salmonData.UpstreamStats, sensorData, distanceFromCenter, deltaTime);
             DrainStamina(drain);
         }
 
@@ -57,7 +66,8 @@ public class SalmonPlayer : IDisposable
         _view.SetJumpingState(true);
 
         RayData sensorData = _view.GetSensorData();
-        float cost = _model.CalculateJumpCost(_salmonData.UpstreamStats, sensorData);
+        // ★修正: 保存しておいた距離をジャンプコスト計算に渡す
+        float cost = _model.CalculateJumpCost(_salmonData.UpstreamStats, sensorData, _currentDistanceFromCenter);
         
         if (sensorData.ForwardRockDistance < 5f) AddCombo(); else ResetCombo();
         DrainStamina(cost);
@@ -78,18 +88,18 @@ public class SalmonPlayer : IDisposable
 
     private void HandleTriggerHit(GameObject hitObject)
     {
+        Debug.Log("Hit: " + hitObject.name);
         if (_isJumping || _isInvincible) return;
-
         if (hitObject.TryGetComponent<DrifterView>(out var drifterView)) ProcessDrifterHit(drifterView.Data, hitObject);
-        else if (hitObject.TryGetComponent<FixedObstacleView>(out var obstacleView)) TakeDamage(20f);
     }
 
     private void ProcessDrifterHit(DrifterData drifter, GameObject hitObject)
     {
         if (drifter.Type == DrifterType.Fish)
         {
-            HealStamina(15f); AddCombo();
-            GameObject.Destroy(hitObject);
+            HealStamina(15f);
+            AddCombo();
+            hitObject.SetActive(false);
         }
         else if (drifter.Type == DrifterType.RivalSalmon)
         {
@@ -99,21 +109,23 @@ public class SalmonPlayer : IDisposable
             if (result == BattleResult.Win) { AddCombo(); }
             else if (result == BattleResult.Draw) { DrainStamina(5f); }
             else { TakeDamage(20f); }
-            GameObject.Destroy(hitObject);
+            hitObject.SetActive(false);
         }
         else if (drifter.Type == DrifterType.Driftwood)
         {
             TakeDamage(25f);
-            GameObject.Destroy(hitObject);
+            hitObject.SetActive(false);
         }
     }
 
     private void TakeDamage(float damage)
     {
-        DrainStamina(damage); ResetCombo();
+        if (_isInvincible) return;
+        DrainStamina(damage);
+        ResetCombo();
         _isInvincible = true;
-        Debug.Log($"Damage: {damage}");
-        _view.PlayDamageReaction(() => _isInvincible = false);
+        float invincibleTime = 1.5f;
+        _view.PlayDamageReaction(invincibleTime, () => _isInvincible = false);
     }
 
     private void DrainStamina(float amount)

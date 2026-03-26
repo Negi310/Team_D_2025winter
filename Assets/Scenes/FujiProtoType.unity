@@ -916,7 +916,7 @@ Transform:
   m_GameObject: {fileID: 1069907184}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -945,7 +945,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069907184}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -956,11 +956,11 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1408
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 384
-  m_Interpolate: 0
+    m_Bits: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -977,7 +977,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1644,8 +1644,8 @@ MonoBehaviour:
   _rockPrefab: {fileID: 1413684384566482171, guid: 40d98e69c883bdb48a0f3b91b365eb32, type: 3}
   _treePrefab: {fileID: 5339918066787797995, guid: b8fdea6d55dd12b4fa61b0aab78ac1b0, type: 3}
   _drifterPrefab: {fileID: 403303152151912270, guid: b6f05357854619e47957b6c97f953727, type: 3}
-  _rivalPrefab: {fileID: 403303152151912270, guid: b6f05357854619e47957b6c97f953727, type: 3}
-  _driftwoodPrefab: {fileID: 403303152151912270, guid: b6f05357854619e47957b6c97f953727, type: 3}
+  _rivalPrefab: {fileID: 8985090641045762242, guid: 0985004dd8ecb914dbfea9e254504117, type: 3}
+  _driftwoodPrefab: {fileID: 7549830845248355373, guid: 7eafb48f506bebd4d8d29ac51e1c1c20, type: 3}
 --- !u!4 &2085303817 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9193060796686479505, guid: 6730a6de6dd0cc940b9ba38142f4268d, type: 3}

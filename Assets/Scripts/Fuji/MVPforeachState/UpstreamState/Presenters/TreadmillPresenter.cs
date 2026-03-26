@@ -11,6 +11,7 @@ public class TreadmillPresenter: IDisposable, ITickable
     private readonly ObstacleModel _obstacleModel;
     private readonly TreadmillView _treadmillView;
     private readonly ObstaclesView _obstaclesView;
+    private readonly SessionContext _sessionContext;
     private readonly UpstreamPlayerContext _playerContext;
     private readonly TreadmillContext _treadmillContext;
     private readonly ObstacleContext _obstacleContext;
@@ -25,6 +26,7 @@ public class TreadmillPresenter: IDisposable, ITickable
         ObstacleModel obstacleModel,
         TreadmillView treadmillView,
         ObstaclesView obstaclesView,
+        SessionContext sessionContext,
         UpstreamPlayerContext playerContext,
         TreadmillContext treadmillContext,
         ObstacleContext obstacleContext,
@@ -38,6 +40,7 @@ public class TreadmillPresenter: IDisposable, ITickable
         _obstacleModel = obstacleModel;
         _treadmillView = treadmillView;
         _obstaclesView = obstaclesView;
+        _sessionContext = sessionContext;
         _playerContext = playerContext;
         _treadmillContext = treadmillContext;
         _obstacleContext = obstacleContext;
@@ -52,14 +55,19 @@ public class TreadmillPresenter: IDisposable, ITickable
     public void Tick(float deltaTime)
     {
         float playerY = _playerContext.Position.y;
-        var result = _model.UpdatePlayerPosition(_treadmillContext, _availablePresets, playerY);
-        if (result.SpawnedChunk != null || result.DespawnedChunk != null)
+        _model.UpdatePlayerPosition(_sessionContext, _treadmillContext, _availablePresets, playerY, out var spawnedChunks, out var despawnedChunks);
+        foreach (var chunk in spawnedChunks)
         {
-            _treadmillView.SpawnChunkVisually(result.SpawnedChunk);
-            _treadmillView.DespawnChunkVisually(result.DespawnedChunk);
-            _path.AddChunkSplines(_treadmillContext, result.SpawnedChunk.Preset, result.SpawnedChunk.Position);
+            _treadmillView.SpawnChunkVisually(chunk);
+            _path.AddChunkSplines(_treadmillContext, chunk.Preset, chunk.Position);
+            SpawnObstaclesForChunk(chunk);
+        }
+
+        // ★修正: foreach で回して破棄
+        foreach (var chunk in despawnedChunks)
+        {
+            _treadmillView.DespawnChunkVisually(chunk);
             _path.RemoveOldestChunkSplines(_treadmillContext);
-            SpawnObstaclesForChunk(result.SpawnedChunk);
         }
         
         var driftersToRemove = new List<DrifterData>();
@@ -113,7 +121,7 @@ public class TreadmillPresenter: IDisposable, ITickable
         _obstaclesView.Init(_poolManager);
         for (int i = 0; i < 2; i++)
         {
-            var chunk = _model.SpawnNextChunk(_treadmillContext, _availablePresets);
+            var chunk = _model.SpawnNextChunk(_sessionContext, _treadmillContext, _availablePresets);
             _treadmillView.SpawnChunkVisually(chunk);
             _path.AddChunkSplines(_treadmillContext, chunk.Preset, chunk.Position);
             SpawnObstaclesForChunk(chunk);
@@ -135,7 +143,7 @@ public class TreadmillPresenter: IDisposable, ITickable
     private void SpawnObstaclesForChunk(RuntimeChunkData chunk)
     {
         // 固定設置物の生成
-        var newObs = _obstacleModel.GenerateFixedObstacles(chunk, _treadmillContext.GlobalLeftBank, _treadmillContext.GlobalRightBank, 3, _obstacleContext.ActiveFixedObstacles);
+        var newObs = _obstacleModel.GenerateFixedObstacles(chunk, _treadmillContext.GlobalLeftBank, _treadmillContext.GlobalRightBank, _obstacleContext.ActiveFixedObstacles, _sessionContext.CurrentRiver);
         foreach (var obs in newObs)
         {
             _obstacleContext.ActiveFixedObstacles.Add(obs);
@@ -143,7 +151,7 @@ public class TreadmillPresenter: IDisposable, ITickable
         }
 
         // 漂流物の生成
-        var newDrifters = _obstacleModel.GenerateDrifters(chunk, _treadmillContext.GlobalLeftBank, _treadmillContext.GlobalRightBank, 2);
+        var newDrifters = _obstacleModel.GenerateDrifters(chunk, _treadmillContext.GlobalLeftBank, _treadmillContext.GlobalRightBank, _sessionContext.CurrentRiver);
         foreach (var drifter in newDrifters)
         {
             _obstacleContext.ActiveDrifters.Add(drifter);

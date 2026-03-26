@@ -33,7 +33,20 @@ public class SalmonMove : MonoBehaviour
 
     public RayData GetSensorData() => _raySensor.MeasureEnvironment();
     public void UpdateSpeeds(float speedX, float speedY) { _speedX = speedX; _speedY = speedY; }
-    public void SetJumpingState(bool isJumping) => _isJumping = isJumping;
+
+    public void SetJumpingState(bool isJumping)
+    {
+        _isJumping = isJumping;
+        
+        if (isJumping)
+        {
+            gameObject.layer = LayerMask.NameToLayer("PlayerJumping");
+        }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player"); // 元のレイヤー名に合わせてください
+        }
+    }
 
     public void SetPlayingState(bool isPlaying)
     {
@@ -63,14 +76,14 @@ public class SalmonMove : MonoBehaviour
 
         // ★ジャンプ中は横移動の入力を 0 にする
         float inputX = _isJumping ? 0f : Input.GetAxis("Horizontal");
-
+        
         // ★自動で前に進む（縦入力でわずかに加減速できるようにする）
         float inputY = Input.GetAxis("Vertical");
         float finalSpeedY = _speedY + (inputY * 0f); // ※完全自動が良い場合は _speedY だけにする
-
+        //Debug.Log(_speedX + " , " + finalSpeedY);
         // Rigidbodyのvelocityに代入（※Time.deltaTimeは不要です）
         Vector2 velocity = new Vector2(inputX * _speedX, finalSpeedY);
-        transform.Translate(velocity * Time.deltaTime);
+        _rb.linearVelocity = velocity;
     }
 
     private void OnTriggerEnter2D(Collider2D other) => OnTriggerHit?.Invoke(other.gameObject);
@@ -81,20 +94,24 @@ public class SalmonMove : MonoBehaviour
             .OnComplete(() => onComplete?.Invoke());
     }
 
-    public void PlayDamageReaction(Action onComplete)
+    public void PlayDamageReaction(float duration, Action onComplete)
     {
         _isTakingDamage = true;
         _rb.linearVelocity = Vector2.zero;
 
         // ★物理エンジンと競合しないよう、transformではなく _rb.DOMoveY を使う
-        _rb.DOMoveY(transform.position.y - 1.5f, 0.2f).SetEase(Ease.OutCubic);
+        _visualTransform.DOLocalMoveY(_visualTransform.localPosition.y - 1.0f, 0.2f)
+            .SetLoops(2, LoopType.Yoyo) // 行って帰ってくる（元の位置に戻る）
+            .SetEase(Ease.OutCubic)
+            .OnComplete(() => _isTakingDamage = false); // 被弾アニメが終わったらフラグを戻す
         
-        _renderer.DOColor(Color.red, 0.1f).SetLoops(6, LoopType.Yoyo)
+        int flashCount = Mathf.FloorToInt(duration / 0.1f) / 2;
+        
+        _renderer.DOColor(Color.red, 0.1f).SetLoops(flashCount * 2, LoopType.Yoyo)
             .OnComplete(() => 
             { 
                 _renderer.color = Color.white; 
-                _isTakingDamage = false; // 復帰
-                onComplete?.Invoke(); 
+                onComplete?.Invoke();
             });
     }
 }

@@ -6,44 +6,44 @@ public class UpstreamGameModel
     private const float MaxWidth = 10f;
     private const float ForwardRayLimit = 5f;
 
-    // 1. Rayの計測結果からスタミナ消費量を計算
-    public float CalculateRayBasedDrain(UpstreamStats stats, RayData sensor, float deltaTime)
-    {
-        float t = Mathf.InverseLerp(MaxWidth, MinWidth, sensor.TotalWidth);
-        float drain = 1f * (1f + t * 2f); // BaseDrain
+    public float CalculateForwardSpeed() => 3.0f; // 前方速度は一定
 
-        if (sensor.ForwardRockDistance < ForwardRayLimit) drain *= 0.5f; // 岩裏（逆流）
-        else if (sensor.ForwardNextRockDistance < ForwardRayLimit) drain *= 0.25f;
-        else if (sensor.ForwardSalmonDistance < ForwardRayLimit) drain *= 1.5f; // 急流
+    // 横移動速度（無敵時間中は1.5倍）
+    public float CalculateHorizontalSpeed(UpstreamStats stats, RayData sensor, bool isInvincible)
+    {
+        float widthPenalty = Mathf.InverseLerp(MinWidth, MaxWidth, sensor.TotalWidth);
+        float speed = (3.0f + (stats.Speed * 0.1f)) * widthPenalty;
+        return isInvincible ? speed * 1.5f : speed;
+    }
+
+    // ★修正: スタミナ消費（中心に近いほど流れが急＝消費大）
+    public float CalculateDrain(UpstreamStats stats, RayData sensor, float distanceFromCenter, float deltaTime)
+    {
+        // 中心(0m)なら1.5倍消費、端(3m以上)なら1.0倍消費に落ち着く
+        float centerPenalty = 1.0f + Mathf.Clamp01(1.0f - (distanceFromCenter / 3.0f)) * 0.5f;
+        float drain = 1.0f * centerPenalty;
+
+        if (sensor.ForwardRockDistance < ForwardRayLimit) drain *= 0.5f; 
+        else if (sensor.ForwardNextRockDistance < ForwardRayLimit) drain *= 0.75f;
+        else if (sensor.ForwardSalmonDistance < ForwardRayLimit) drain *= 1.5f;
 
         float statMultiplier = Mathf.Max(0.2f, 1.0f - (stats.Stamina * 0.02f));
         return drain * statMultiplier * deltaTime;
     }
 
-    // 2. 移動速度の計算（川幅やステータスを考慮）
-    public float CalculateHorizontalSpeed(UpstreamStats stats, RayData sensor)
-    {
-        // 狭いほど横に動きづらくなる
-        float widthPenalty = Mathf.InverseLerp(MinWidth, MaxWidth, sensor.TotalWidth);
-        return (3.0f + (stats.Speed * 0.1f)) * widthPenalty;
-    }
-
-    public float CalculateForwardSpeed(UpstreamStats stats)
-    {
-        return 2.0f + (stats.Speed * 0.2f);
-    }
-
-    // 3. ジャンプのスタミナ計算
-    public float CalculateJumpCost(UpstreamStats stats, RayData sensor)
+    // ★修正: ジャンプコスト（中心に近いほど流れに乗りやすく＝消費小）
+    public float CalculateJumpCost(UpstreamStats stats, RayData sensor, float distanceFromCenter)
     {
         float statDiscount = stats.Jump * 0.5f;
-        float cost = Mathf.Max(2.0f, 15.0f - statDiscount);
+        float baseCost = Mathf.Max(2.0f, 15.0f - statDiscount);
 
-        // 岩の裏（逆流）なら激安コンボ！
+        // 中心(0m)なら基本コストそのまま、端(3m以上)ならジャンプコスト1.5倍
+        float jumpPenalty = 1.0f + Mathf.Clamp01(distanceFromCenter / 3.0f) * 0.5f;
+        float cost = baseCost * jumpPenalty;
+
         return (sensor.ForwardRockDistance < ForwardRayLimit) ? cost * 0.1f : cost;
     }
 
-    // 4. ライバルとのバトル計算
     public BattleResult EvaluateRivalBattle(float myAttack)
     {
         float rivalStrength = Random.Range(5f, 15f);

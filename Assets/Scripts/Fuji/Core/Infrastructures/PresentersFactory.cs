@@ -83,10 +83,10 @@ public class StateCompositeFactory
             var obstacleContext = new ObstacleContext();
             var salmonPlayer = new SalmonPlayer(salmonMove, logic.UpstreamGameModel);
             composite.Add(new TreadmillPresenter(state, logic.TreadmillModel, logic.PoolManager, logic.RiverPath,
-                logic.ObstacleModel, treadmillView, obstaclesView, playerContext, treadmillContext, obstacleContext,
+                logic.ObstacleModel, treadmillView, obstaclesView, context, playerContext, treadmillContext, obstacleContext,
                 tickProvider, chunkLevelData));
             composite.Add(salmonPlayer);
-            composite.Add(new UpstreamPresenter(state, salmonPlayer, upstreamView, playerContext, context, tickProvider));
+            composite.Add(new UpstreamPresenter(state, salmonPlayer, logic.SplineMathModel, upstreamView, playerContext, treadmillContext, context, tickProvider));
             //composite.Add(new OtherStateSpecificPresenter(state));
             //...
             

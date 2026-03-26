@@ -7,6 +7,7 @@ public class SessionContext
     public int CurrentGeneration { get; private set; }
     public SalmonData CurrentSalmon { get; private set; }
     public int CurrentTurn { get; private set; }
+    public RiverData CurrentRiver { get; private set; }
 
     // 新しいゲームを始める時の初期化
     public SessionContext(SaveData data)
@@ -14,6 +15,7 @@ public class SessionContext
         CurrentGeneration = data.Generation;
         CurrentTurn = data.Turn;
         CurrentSalmon = data.Salmon;
+        CurrentRiver = data.River;
         //CurrentSalmon.UpstreamStats = new UpstreamStats(
             //20,
             //10,

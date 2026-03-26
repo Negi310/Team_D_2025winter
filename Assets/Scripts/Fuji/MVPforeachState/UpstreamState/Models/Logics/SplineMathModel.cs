@@ -3,28 +3,43 @@ using UnityEngine;
 
 public class SplineMathModel
 {
-    public bool TryGetXAtY(IReadOnlyList<Vector2> globalSpline, float targetY, ref int lastIndex, out float resultX)
+    public bool TryGetXAtY(IReadOnlyList<Vector2> globalSpline, float targetY, out float resultX)
     {
         resultX = 0f;
         if (globalSpline == null || globalSpline.Count < 2) return false;
-        if (lastIndex < 0 || lastIndex >= globalSpline.Count - 1) lastIndex = 0;
+        
+        int left = 0;
+        int right = globalSpline.Count - 2; // 線分の「始点」を探すため -2
 
-        for (int i = lastIndex; i < globalSpline.Count - 1; i++)
+        while (left <= right)
         {
-            if (Check(globalSpline[i], globalSpline[i + 1], targetY, out resultX))
+            int mid = left + (right - left) / 2;
+            Vector2 p1 = globalSpline[mid];
+            Vector2 p2 = globalSpline[mid + 1];
+
+            // ターゲットのY座標が、この線分の区間内にあるか？
+            if (targetY >= p1.y && targetY <= p2.y)
             {
-                lastIndex = i; return true;
+                if (Mathf.Abs(p2.y - p1.y) < 0.0001f) { resultX = p1.x; return true; }
+                float t = (targetY - p1.y) / (p2.y - p1.y);
+                resultX = p1.x + (p2.x - p1.x) * t;
+                return true;
+            }
+
+            // 区間外なら、半分を切り捨てる
+            if (targetY < p1.y)
+            {
+                right = mid - 1; // もっと手前にある
+            }
+            else
+            {
+                left = mid + 1;  // もっと奥にある
             }
         }
-        for (int i = 0; i < lastIndex; i++)
-        {
-            if (Check(globalSpline[i], globalSpline[i + 1], targetY, out resultX))
-            {
-                lastIndex = i; return true;
-            }
-        }
-        return false;
+
+        return false; // 範囲外
     }
+
 
     private bool Check(Vector2 p1, Vector2 p2, float targetY, out float resultX)
     {

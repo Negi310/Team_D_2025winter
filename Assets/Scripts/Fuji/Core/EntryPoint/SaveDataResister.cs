@@ -50,16 +50,18 @@ public class SaveDataResister
     
     public SaveData CreateInitialData()
     {
-        var defaultStats = new UpstreamStats(power: 10f, jump: 5f, cautiousness: 5f, stamina: 100f);
+        var defaultStats = new UpstreamStats(speed: 100f, jump: 5f, stamina: 100f, attack: 5f, intelligence: 5f);
         var defaultTraits = new CourtshipTraits(size: 1.0f, colorValue: 0.5f, shapeValue: 0.5f);
         var initialSalmon = new SalmonData(defaultStats, defaultTraits) { Name = "初代" };
-
+        var initialRiver = RiverGenerator.GenerateRiver(1);
+        
         return new SaveData
         {
             Generation = 1,
-            Turn = 1,
+            Turn = 0,
             Salmon = initialSalmon,
-            LastSavedStateName = nameof(ConversationState) // 最初はオープニング会話から
+            River =  initialRiver,
+            LastSavedStateName = nameof(NameState) // 最初はオープニング会話から
         };
     }
 
@@ -71,18 +73,8 @@ public class SaveDataResister
             Generation = context.CurrentGeneration,
             Turn = context.CurrentTurn,
             Salmon = context.CurrentSalmon,
+            River = context.CurrentRiver,
             LastSavedStateName = currentStateName
         };
-    }
-    
-    public void ResumeState(GameStateMachine stateMachine, string stateName)
-    {
-        var sm = (IStateChangable)stateMachine;
-        
-        if (stateName == nameof(UpstreamState)) sm.ChangeState<UpstreamState>();
-        else if (stateName == nameof(CourtshipState)) sm.ChangeState<CourtshipState>();
-        else if (stateName == nameof(RearState)) sm.ChangeState<RearState>();
-        //else sm.ChangeState<NameState>();
-        else sm.ChangeState<UpstreamState>(); // デフォルトは遡上状態にする
     }
 }

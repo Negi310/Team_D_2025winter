@@ -1,0 +1,1 @@
+public enum DrifterType { RivalSalmon, Fish, Driftwood }

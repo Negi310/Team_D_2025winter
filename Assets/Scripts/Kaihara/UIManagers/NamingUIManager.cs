@@ -11,6 +11,8 @@ public class NamingUIManager : MonoBehaviour
     
     //uiDocument
     [SerializeField]private UIDocument uiDocument;
+    //立ち絵設定
+    [SerializeField] private MaleIllustrationManager maleIllust;
     //rootVisualElement
     private VisualElement root;
     //プレイヤーのUIの孫VEのリスト
@@ -22,7 +24,9 @@ public class NamingUIManager : MonoBehaviour
     // 名前入力欄
     private TextField _nameInputField; 
     // 決定ボタン
-    private Button _decideButton;     
+    private Button _decideButton;
+    //プレイヤー立ち絵のVE
+    private VisualElement playerIllust;     
 
     //プレイヤーのステータスの最大値(いったん20)
     private const float playerStatusMax = 20;
@@ -32,18 +36,20 @@ public class NamingUIManager : MonoBehaviour
         root = uiDocument.rootVisualElement;
         _nameInputField = root.Q<TextField>("TextField");
         _decideButton = root.Q<Button>("Button");
-
+        
         //ボタンが押されたら、入力欄のテキストを取り出してPresenterへ叫ぶ
         _decideButton.clicked += () => OnDecideButtonClicked?.Invoke(_nameInputField.value);
         //UIの初期設定
         InitPlayerUI();
-        //非表示
-        Hide();
+        playerIllust = root.Q<VisualElement>(className:"male-illustration_base");
+        maleIllust.InitIllust(playerIllust);
         //VEの横幅取得のためレイアウト確定後に実行
         root.RegisterCallbackOnce<GeometryChangedEvent>(evt =>
         {
             //プレイヤーUIの孫VEの横幅取得
             defaultPlayerStatusValueWidth = Mathf.Floor(playerSwimUIList[0].resolvedStyle.width / playerSwimUIList[0].parent.resolvedStyle.width * 100);
+            //上記横幅取得が非表示の時できないためここで非表示 
+            Hide();
         });
     }
 
@@ -57,6 +63,7 @@ public class NamingUIManager : MonoBehaviour
     public void Hide()
     {
         root.style.display = DisplayStyle.None;
+        _nameInputField.value = string.Empty;
     }
 
     
@@ -82,9 +89,10 @@ public class NamingUIManager : MonoBehaviour
         }
         
     }
-    public void SetUpUI(List<string> playerStatusList)
+    public void SetUpUI(List<string> playerStatusList,SalmonHair hair,SalmonEyeMale eye,SalmonColor color,SalmonEyebrowMale eyebrow,SalmonMouthMale mouth,bool isPale,SalmonSize size)
     {
         SetUpPlayerUI(playerStatusList);
+        maleIllust.SetUpIllust(playerIllust,hair,eye,color,eyebrow,mouth,isPale,size);
     }
     //プレイヤーのステータスのUIの内容更新
     

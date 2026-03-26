@@ -45,4 +45,28 @@ public class ForUIStatusBuilder
         };
         return riverList;
     }
+    //各トレーニングのステータスの増減量をリストに
+    public List<string> TrainingStatuIcreaceList(string speed, string jump, string stamina, string attack, string intelligence)
+    {
+        return new List<string>
+        {
+            speed,jump,stamina,attack,intelligence
+        };
+    }
+    //メスの立ち絵のパーツの情報とかをリストに
+    public List<(SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth,SalmonSize size)> FemaleIllustList(SalmonHair weakestHair,SalmonEyeFemale weakestEye, SalmonColor weakestColor,SalmonEyebrowFemale weakestEyebrow,SalmonMouthFemale weakestMouth,SalmonSize weakestSize,SalmonHair weakHair,SalmonEyeFemale weakEye, SalmonColor weakColor,SalmonEyebrowFemale weakEyebrow,SalmonMouthFemale weakMouth,SalmonSize weakSize,SalmonHair normalHair,SalmonEyeFemale normalEye, SalmonColor normalColor,SalmonEyebrowFemale normalEyebrow,SalmonMouthFemale normalMouth,SalmonSize normalSize,SalmonHair strongHair,SalmonEyeFemale strongEye, SalmonColor strongColor,SalmonEyebrowFemale strongEyebrow,SalmonMouthFemale strongMouth,SalmonSize strongSize,SalmonHair strongestHair,SalmonEyeFemale strongestEye, SalmonColor strongestColor,SalmonEyebrowFemale strongestEyebrow,SalmonMouthFemale strongestMouth,SalmonSize strongestSize)
+    {
+        (SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth,SalmonSize size) weakest = (weakestHair,weakestEye,weakestColor,weakestEyebrow,weakestMouth,weakestSize);
+        (SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth,SalmonSize size) weak = (weakHair,weakEye,weakColor,weakEyebrow,weakMouth,weakSize);
+        (SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth,SalmonSize size) normal = (normalHair,normalEye,normalColor,normalEyebrow,normalMouth,normalSize);
+        (SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth,SalmonSize size) strong = (strongHair,strongEye,strongColor,strongEyebrow,strongMouth,strongSize);
+        (SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth,SalmonSize size) strongest = (strongestHair,strongestEye,strongestColor,strongestEyebrow,strongestMouth,strongestSize);
+        return new List<(SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth,SalmonSize size)>{weakest,weak,normal,strong,strongest};
+    }
+
+    //ランダムイベントの名前をリストに
+    public List<string> RandomEventNameList(string eventName1,string eventName2,string eventName3)
+    {
+        return new List<string>{eventName1,eventName2,eventName3};
+    }
 }

@@ -7,6 +7,7 @@ public class SessionContext
     public int CurrentGeneration { get; private set; }
     public SalmonData CurrentSalmon { get; private set; }
     public int CurrentTurn { get; private set; }
+    public RiverData CurrentRiver { get; private set; }
 
     // 新しいゲームを始める時の初期化
     public SessionContext(SaveData data)
@@ -14,6 +15,14 @@ public class SessionContext
         CurrentGeneration = data.Generation;
         CurrentTurn = data.Turn;
         CurrentSalmon = data.Salmon;
+        CurrentRiver = data.River;
+        //CurrentSalmon.UpstreamStats = new UpstreamStats(
+            //20,
+            //10,
+            //100,
+            //10,
+            //10
+        //);
     }
 
     // 次の世代へ引き継ぐメソッド（カプセル化により不正な上書きを防ぐ）
@@ -21,7 +30,7 @@ public class SessionContext
     {
         CurrentGeneration++;
         CurrentSalmon = childSalmon;
-        CurrentTurn = 1; // 世代が変わるのでターンはリセット
+        CurrentTurn = 0; // 世代が変わるのでターンはリセット
     }
     
     public void IncrementTurn() => CurrentTurn++;
@@ -30,5 +39,10 @@ public class SessionContext
     public void UpdateCurrentSalmon(SalmonData updatedSalmon)
     {
         CurrentSalmon = updatedSalmon;
+    }
+
+    public void UpdateCurrentRiver(RiverData updatedRiver)
+    {
+        CurrentRiver = updatedRiver;
     }
 }

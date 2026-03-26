@@ -9,6 +9,8 @@ public class ObstaclesView : MonoBehaviour
     [SerializeField] private GameObject _rockPrefab;
     [SerializeField] private GameObject _treePrefab;
     [SerializeField] private GameObject _drifterPrefab;
+    [SerializeField] private GameObject _rivalPrefab;
+    [SerializeField] private GameObject _driftwoodPrefab;
 
     private readonly Dictionary<FixedObstacleData, GameObject> _fixedObs = new();
     private readonly Dictionary<DrifterData, GameObject> _drifters = new();
@@ -20,13 +22,30 @@ public class ObstaclesView : MonoBehaviour
         GameObject prefab = data.Type == FixedObstacleType.Rock ? _rockPrefab : _treePrefab;
         GameObject obj = _poolManager.Get(prefab);
         obj.transform.position = new Vector3(data.Position.x, data.Position.y, 0f);
+        if (!obj.TryGetComponent<FixedObstacleView>(out var view))
+        {
+            view = obj.AddComponent<FixedObstacleView>();
+        }
+        view.Setup(data);
         _fixedObs.Add(data, obj);
     }
 
     public void SpawnDrifter(DrifterData data)
     {
-        GameObject obj = _poolManager.Get(_drifterPrefab);
+        GameObject prefab = data.Type switch
+        {
+            DrifterType.RivalSalmon => _rivalPrefab,
+            DrifterType.Fish => _drifterPrefab,
+            DrifterType.Driftwood => _driftwoodPrefab,
+            _ => _rivalPrefab
+        };
+        GameObject obj = _poolManager.Get(prefab);
         obj.transform.position = new Vector3(data.Position.x, data.Position.y, 0f);
+        if (!obj.TryGetComponent<DrifterView>(out var view))
+        {
+            view = obj.AddComponent<DrifterView>();
+        }
+        view.Setup(data);
         _drifters.Add(data, obj);
     }
 

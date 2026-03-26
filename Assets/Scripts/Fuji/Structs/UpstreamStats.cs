@@ -1,16 +1,18 @@
 [System.Serializable]
 public struct UpstreamStats 
 {
-    public float Power;
+    public float Speed;
     public float Jump;
-    public float Cautiousness; // 警戒心
     public float Stamina;
+    public float Attack;
+    public float Intelligence;
 
-    public UpstreamStats(float power, float jump, float cautiousness, float stamina)
+    public UpstreamStats(float speed, float jump, float stamina, float attack, float intelligence)
     {
-        Power = power;
+        Speed = speed;
         Jump = jump;
-        Cautiousness = cautiousness;
         Stamina = stamina;
+        Attack = attack;
+        Intelligence = intelligence;
     }
 }

@@ -1,0 +1,527 @@
+:root {
+}
+
+.main-salmon-statusbar > VisualElement {
+    height: 100%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.main-salmon-statusbar {
+    flex-grow: 0;
+    flex-direction: row;
+    width: 80%;
+    height: 20%;
+    flex-shrink: 0;
+    top: 50%;
+    left: 10%;
+    position: absolute;
+    border-left-color: rgb(38, 37, 114);
+    border-right-color: rgb(38, 37, 114);
+    border-top-color: rgb(38, 37, 114);
+    border-bottom-color: rgb(38, 37, 114);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.main-salmon-status_name--swim {
+    background-color: rgb(59, 95, 195);
+    width: 100%;
+    height: 35%;
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    -unity-text-align: middle-center;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-color: rgb(38, 37, 114);
+    border-right-color: rgb(38, 37, 114);
+    border-top-color: rgb(38, 37, 114);
+    border-bottom-color: rgb(38, 37, 114);
+    border-bottom-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    opacity: 1;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+}
+
+.main-salmon-status_name--court {
+    background-color: rgb(218, 82, 167);
+    width: 100%;
+    height: 35%;
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    -unity-text-align: middle-center;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-color: rgb(38, 37, 114);
+    border-right-color: rgb(38, 37, 114);
+    border-top-color: rgb(38, 37, 114);
+    border-bottom-color: rgb(38, 37, 114);
+    border-bottom-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+}
+
+.main-salmon-status_value {
+    width: 100%;
+    height: 65%;
+    background-color: rgb(255, 255, 255);
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    font-size: 50px;
+    -unity-text-align: middle-center;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-bottom-width: 0;
+    border-right-width: 0;
+    border-left-color: rgb(38, 37, 114);
+    border-right-color: rgb(38, 37, 114);
+    border-top-color: rgb(38, 37, 114);
+    border-bottom-color: rgb(38, 37, 114);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+}
+
+.main-salmon-status_increace {
+    position: absolute;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    font-size: 45px;
+    top: 35%;
+    right: 5%;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+    scale: 0 0;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+}
+
+.main-salmon-status_increace.is-open {
+    scale: 1 1;
+}
+
+.main-salmon-status_status-information {
+    position: absolute;
+    width: 150%;
+    height: 75%;
+    top: -80%;
+    left: 10%;
+    opacity: 0;
+    transition-property: opacity;
+    transition-timing-function: ease-out;
+    transition-duration: 0.1s;
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-left-color: rgb(38, 37, 114);
+    border-right-color: rgb(38, 37, 114);
+    border-top-color: rgb(38, 37, 114);
+    border-bottom-color: rgb(38, 37, 114);
+    background-color: rgb(255, 255, 255);
+    -unity-text-align: middle-center;
+    font-size: 35px;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+}
+
+.main-salmon-statusbar > VisualElement:hover > .main-salmon-status_status-information {
+    opacity: 1;
+}
+
+.random-event-button {
+    flex-grow: 0;
+    top: 75%;
+    left: auto;
+    width: 20%;
+    height: 20%;
+    flex-shrink: 0;
+    position: absolute;
+    right: 20%;
+    background-color: rgb(125, 175, 236);
+    transition-timing-function: ease-out;
+    transition-duration: 0.1s;
+    font-size: 55px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-text-align: middle-center;
+    border-left-color: rgb(38, 37, 114);
+    border-right-color: rgb(38, 37, 114);
+    border-top-color: rgb(38, 37, 114);
+    border-bottom-color: rgb(38, 37, 114);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+    -unity-font-style: normal;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(76, 119, 255);
+}
+
+.random-event-button:hover {
+    background-color: rgb(167, 207, 255);
+    scale: 1.05 1.05;
+}
+
+.random-event-button:active {
+    background-color: rgb(93, 140, 197);
+    scale: 0.97 0.97;
+}
+
+.training-button {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 20%;
+    height: 20%;
+    top: 75%;
+    left: 20%;
+    position: absolute;
+    right: auto;
+    background-color: rgb(124, 175, 236);
+    transition-timing-function: ease-out;
+    transition-duration: 0.1s;
+    font-size: 55px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-text-align: middle-center;
+    -unity-font-style: normal;
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-left-color: rgb(38, 37, 114);
+    border-right-color: rgb(38, 37, 114);
+    border-top-color: rgb(38, 37, 114);
+    border-bottom-color: rgb(38, 37, 114);
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(76, 119, 255);
+}
+
+.training-button:hover {
+    background-color: rgb(167, 207, 255);
+    scale: 1.05 1.05;
+}
+
+.training-button:active {
+    background-color: rgb(94, 141, 198);
+    scale: 0.97 0.97;
+}
+
+.turn-ui {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    width: 15%;
+    height: 20%;
+    -unity-text-align: middle-center;
+    font-size: 60px;
+    background-size: 100% 100%;
+    background-position-x: center;
+    background-position-y: center;
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-left-color: rgb(38, 37, 114);
+    border-right-color: rgb(38, 37, 114);
+    border-top-color: rgb(38, 37, 114);
+    border-bottom-color: rgb(38, 37, 114);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+}
+
+.training-tab {
+    flex-grow: 0;
+    position: absolute;
+    flex-shrink: 0;
+    flex-direction: row;
+    width: 70%;
+    height: 20%;
+    top: 75%;
+    left: 15%;
+    background-color: rgb(255, 255, 255);
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-left-color: rgb(38, 37, 114);
+    border-right-color: rgb(38, 37, 114);
+    border-top-color: rgb(38, 37, 114);
+    border-bottom-color: rgb(38, 37, 114);
+    opacity: 1;
+    scale: 0 1;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.training-tab.is-open {
+    scale: 1 1;
+}
+
+.training-tab_training-button {
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    flex-grow: 0;
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(97, 163, 230);
+    flex-shrink: 0;
+    width: 17%;
+    transition-timing-function: ease-out;
+    transition-duration: 0.1s;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(0, 51, 195);
+}
+
+.training-tab_training-button:hover {
+    background-color: rgb(128, 183, 240);
+    scale: 1.1 1.1;
+}
+
+.training-tab_training-button:active {
+    background-color: rgb(63, 127, 191);
+    scale: 0.95 0.95;
+    transition-timing-function: ease-out;
+    transition-duration: 0.05s;
+}
+
+.training-tab_cancel-button {
+    position: absolute;
+    width: 6%;
+    height: 35%;
+    right: -4%;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    top: -20%;
+    font-size: 55px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    -unity-font-style: bold;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+}
+
+.training-tab_cancel-button:hover {
+    scale: 1.05 1.05;
+    background-color: rgb(199, 199, 199);
+}
+
+.training-tab_cancel-button:active {
+    scale: 0.95 0.9;
+    background-color: rgb(125, 125, 125);
+    transition-timing-function: ease-out;
+    transition-duration: 0.05s;
+}
+
+.random-event-tab {
+    position: absolute;
+    flex-shrink: 0;
+    flex-direction: row;
+    height: 20%;
+    top: 75%;
+    background-color: rgb(255, 255, 255);
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-left-color: rgb(38, 37, 114);
+    border-right-color: rgb(38, 37, 114);
+    border-top-color: rgb(38, 37, 114);
+    border-bottom-color: rgb(38, 37, 114);
+    opacity: 1;
+    scale: 0 1;
+    flex-grow: 1;
+    width: 48%;
+    left: 26%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.random-event-tab.is-open {
+    scale: 1 1;
+}
+
+.random-event-tab_random-event-button {
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    flex-grow: 0;
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(97, 163, 230);
+    flex-shrink: 0;
+    width: 29%;
+    transition-timing-function: ease-out;
+    transition-duration: 0.1s;
+    -unity-font-definition: url("project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&guid=0c705f482f7b7364d81038f653160f2c&type=3#LightNovelPOPv2");
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(0, 51, 195);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.random-event-tab_random-event-button:hover {
+    background-color: rgb(128, 183, 240);
+    scale: 1.1 1.1;
+}
+
+.random-event-tab_random-event-button:active {
+    background-color: rgb(63, 127, 191);
+    scale: 0.95 0.95;
+    transition-timing-function: ease-out;
+    transition-duration: 0.05s;
+}
+
+.random-event-tab_cancel-button {
+    position: absolute;
+    width: 8%;
+    height: 35%;
+    right: -4%;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    top: -20%;
+    font-size: 55px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    -unity-font-style: bold;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+}
+
+.random-event-tab_cancel-button:hover {
+    scale: 1.05 1.05;
+    background-color: rgb(199, 199, 199);
+}
+
+.random-event-tab_cancel-button:active {
+    scale: 0.95 0.9;
+    background-color: rgb(125, 125, 125);
+    transition-timing-function: ease-out;
+    transition-duration: 0.05s;
+}
+
+.unity-button {
+}

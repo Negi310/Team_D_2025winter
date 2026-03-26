@@ -8,10 +8,15 @@ public class CourtingUIManager : MonoBehaviour
 {
     //uiDocument
     [SerializeField]private UIDocument uiDocument;
+    //立ち絵設定
+    [SerializeField] private MaleIllustrationManager maleIllust;
+    
+    //立ち絵設定
+    [SerializeField] private FemaleIllustrationManager femaleIllust;
     //rootVisualElement
     private VisualElement root;
-    //パートナー候補UIの性格のlabel1,成功率label1,imageのリスト
-    private List<(Label personalityLabel,Label successLabel,Image image)> partnerUIList = new List<(Label personalityLabel,Label successLabel,Image image)>();
+    //パートナー候補UIの性格のlabel1,成功率label1,VE3のリスト
+    private List<(Label personalityLabel,Label successLabel,VisualElement illust)> partnerUIList = new List<(Label personalityLabel,Label successLabel,VisualElement illust)>();
     //プレイヤーのUIの孫VEのリスト
     private List<VisualElement> playerSwimUIList = new List<VisualElement>();
     //プレイヤーのUIのlabel(2)のリスト
@@ -26,11 +31,19 @@ public class CourtingUIManager : MonoBehaviour
     private Label riverNameLabel;
     //残り求愛回数のlabel
     private Label courtingTimesLabel;
+    //プレイヤーの立ち絵
+    private VisualElement playerIllust;  
 
     //プレイヤーのステータスの最大値(いったん20)
     private const float playerStatusMax = 20;
     //川のステータスの最大値
     private const float riverStatusMax = 20;
+    
+    public event Action<int> OnPartnerHovered; // 何番目のパートナーにホバーしたか
+    public event Action<int> OnPartnerClicked; // 何番目のパートナーをクリック（求愛）したか
+    public event Action OnAnimationCompleted;  // 結果演出が終わった時の通知
+    
+    private Button riverstatusButton;
     void Awake()
     {
         //uiDocumentのrootVE取得
@@ -42,8 +55,9 @@ public class CourtingUIManager : MonoBehaviour
         InitPlayerUI();
         //川UIの初期設定
         InitRiverUI();
-        //非表示
-        Hide();
+
+        playerIllust = root.Q<VisualElement>(className:"male-illustration_base");
+        maleIllust.InitIllust(playerIllust);
         //VEの横幅取得のためレイアウト確定後に実行
         root.RegisterCallbackOnce<GeometryChangedEvent>(evt =>
         {
@@ -51,6 +65,8 @@ public class CourtingUIManager : MonoBehaviour
             defaultPlayerStatusValueWidth = Mathf.Floor(playerSwimUIList[0].resolvedStyle.width / playerSwimUIList[0].parent.resolvedStyle.width * 100);
             //川UIのひ孫VEの横幅取得
             defaultRiverStatusValueWidth = Mathf.Floor(riverUIList[0].resolvedStyle.width / riverUIList[0].parent.resolvedStyle.width * 100);
+            //上記横幅取得が非表示の時できないためここで非表示 
+            Hide();
         });
     }
 
@@ -64,40 +80,49 @@ public class CourtingUIManager : MonoBehaviour
     public void Hide()
     {
         root.style.display = DisplayStyle.None;
+        ResetUIState();
     }
 
     //パートナー候補UIの初期設定
     void InitPartnerUI()
     {
         //パートナー候補のUI
-        //親VE(class:partner-information)(パートナー一体につき一つ)
+        //親Button(class:partner-information)(パートナー一体につき一つ)
         //|--子VE(1)(class:partner-information_background)(ホバー時に拡大してホバー対象をわかりやすくする)
-        //|--image(クラスなし)(パートナーのイラスト表示用)
-        //|--子VE(2)(class:partner-information_status)(相性などの情報表示用　ホバー時にのみ見える)
+        //|--子VE(2)(class:female-illustration_base)(パートナーのイラスト表示用)
+        //|--子VE(3)(class:partner-information_status)(相性などの情報表示用　ホバー時にのみ見える)
         //   |--孫VE(クラスなし)(項目の並びの設定用 性格・成功率の順で配置)
         //   :  |--label(1)(class:partner-information_status_name)(項目の名前の表示)
         //      |--label(2)(class:partner-information_status_value)(項目の値の表示)
 
         //親VEのリスト生成
-        var parentVEList =  root.Query<VisualElement>(className:"partner-information").ToList();
-        //パートナー候補の数だけ実行し子VE(2)とimageのリストを生成
-        foreach (VisualElement parentVE in parentVEList)
+        var parentList =  root.Query<Button>(className:"partner-information").ToList();
+
+        for (int i = 0; i < parentList.Count; i++)
         {
+            var parent = parentList[i];
+            int captureIndex = i;
             //孫VEを一旦リストに保存
-            var groundChildVEList = parentVE.Q<VisualElement>(className:"partner-information_status").Children().ToList();
+            var groundChildVEList = parent.Q<VisualElement>(className:"partner-information_status").Children().ToList();
             //変更箇所をタプルにまとめる
-            (Label personalityLabel,Label successLabel,Image image) partnerTaple = (groundChildVEList[0].Q<Label>(className:"partner-information_status_value"),groundChildVEList[1].Q<Label>(className:"partner-information_status_value"),parentVE.Q<Image>());
+            (Label personalityLabel,Label successLabel,VisualElement illust) partnerTaple = (groundChildVEList[0].Q<Label>(className:"partner-information_status_value"),groundChildVEList[1].Q<Label>(className:"partner-information_status_value"),parent.Q<VisualElement>(className:"female-illustration_base"));
             // リストに追加していく
             partnerUIList.Add(partnerTaple);
+            //子VE(2)の初期設定
+            femaleIllust.InitIllust(partnerTaple.illust);
             //ホバー時のイベント設定
-            parentVE.RegisterCallback<MouseEnterEvent>(evt =>
+            parent.RegisterCallback<MouseEnterEvent>(evt =>
             {
                 //ホバー時に最前列に
-                parentVE.BringToFront();
+                parent.BringToFront();
                 //川の情報の方が前になるように
                 root.Q<VisualElement>(className:"next-river-information").BringToFront();
-                
             });
+            //クリック時のイベント
+            parent.clicked += () =>
+            {
+                OnPartnerClicked?.Invoke(captureIndex);
+            };
         }
     }
     //川の情報のUIの初期設定
@@ -128,7 +153,7 @@ public class CourtingUIManager : MonoBehaviour
             riverUIList.Add(groundchildVE.Q<VisualElement>(className:"next-river-information_status_value"));
         }
         //Buttonのイベント設定
-        var riverstatusButton = root.Q<VisualElement>(className:"next-river-information").Q<Button>();
+        riverstatusButton = root.Q<VisualElement>(className:"next-river-information").Q<Button>();
         riverstatusButton.clicked += () =>
         {
             //クラス変更で革のステータスの表示状況を切り替え
@@ -161,37 +186,40 @@ public class CourtingUIManager : MonoBehaviour
         
     }
     //表示内容更新
-    public void SetUpUI(List<string> playerStatusList,List<(string personality,string successRate)> partnerStatusList,List<string> riverStatus ,int courtTimes,string riverName)
+    public void SetUpUI(List<string> playerStatusList,List<(string personality,string successRate)> partnerStatusList,List<(SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth,SalmonSize size)> femaleIllustList,SalmonHair maleHair,SalmonEyeMale maleEye,SalmonColor maleColor,SalmonEyebrowMale maleEyebrow,SalmonMouthMale maleMouth,bool isPale,SalmonSize size,List<string> riverStatus ,int courtTimes,string riverName)
     {
         //パートナーUIの内容更新
-        SetUpPartnerUI(partnerStatusList);
+        SetUpPartnerUI(partnerStatusList,femaleIllustList);
         //プレイヤーUIの内容更新
         SetUpPlayerUI(playerStatusList);
         //川UIの内容更新
         SetUpRiverUI(courtTimes,riverName,riverStatus);
+        maleIllust.SetUpIllust(playerIllust,maleHair,maleEye,maleColor,maleEyebrow,maleMouth,isPale,size);
     }
 
 
     //パートナーUIの内容更新
-    void SetUpPartnerUI(List<(string personality,string successRate)> partnerStatusList)
+    void SetUpPartnerUI(List<(string personality,string successRate)> partnerStatusList,List<(SalmonHair hair, SalmonEyeFemale eye, SalmonColor color, SalmonEyebrowFemale eyebrow, SalmonMouthFemale mouth,SalmonSize size)> femaleIllustList)
     {
         //VE構成
-        //親VE(class:partner-information)(パートナー一体につき一つ)
+        //親Button(class:partner-information)(パートナー一体につき一つ)
         //|--子VE(1)(class:partner-information_background)(ホバー時に拡大してホバー対象をわかりやすくする)
-        //|--image(クラスなし)(パートナーのイラスト表示用)
-        //|--子VE(2)(class:partner-information_status)(相性などの情報表示用　ホバー時にのみ見える)
+        //|--子VE(2)(class:female-illustration_base)(パートナーのイラスト表示用)
+        //|--子VE(3)(class:partner-information_status)(相性などの情報表示用　ホバー時にのみ見える)
         //   |--孫VE(クラスなし)(項目の並びの設定用)
         //   :  |--label(1)(class:class:partner-information_status_name)(項目の名前の表示)
         //      |--label(2)(class:class:partner-information_status_value)(項目の値の表示)
 
         //UIの各種設定
-        //子VE(2)の数だけ(=パートナーの数だけ)実行
+        //子VE(3)の数だけ(=パートナーの数だけ)実行
         for(int i = 0; i < partnerUIList.Count; i++)
         {
             //性格を表示
             partnerUIList[i].personalityLabel.text = partnerStatusList[i].personality;
             //成功率を表示
             partnerUIList[i].successLabel.text = partnerStatusList[i].successRate + "%";
+            //画像更新
+            femaleIllust.SetUpIllust(partnerUIList[i].illust,femaleIllustList[i].hair,femaleIllustList[i].eye,femaleIllustList[i].color,femaleIllustList[i].eyebrow,femaleIllustList[i].mouth,femaleIllustList[i].size);
         }
     }
 
@@ -243,9 +271,22 @@ public class CourtingUIManager : MonoBehaviour
         //ひ孫VEの内容を更新
         for(int i = 0; i < riverStatus.Count; i++)
         {
-            Debug.Log(defaultRiverStatusValueWidth * float.Parse(riverStatus[i]) / riverStatusMax);
             riverUIList[i].style.width = new Length(defaultRiverStatusValueWidth * float.Parse(riverStatus[i]) / riverStatusMax, LengthUnit.Percent);
         }
         
+    }
+    
+    public void SetUpPartnerSuccessRate(int index, string successRate)
+    {
+        if (index >= 0 && index < partnerUIList.Count)
+        {
+            partnerUIList[index].successLabel.text = successRate + "%";
+        }
+    }
+    
+    private void ResetUIState()
+    {
+        riverstatusButton.parent.RemoveFromClassList("is-open");
+        riverstatusButton.text = ">"; // ボタンの矢印の向きを初期状態に戻す
     }
 }

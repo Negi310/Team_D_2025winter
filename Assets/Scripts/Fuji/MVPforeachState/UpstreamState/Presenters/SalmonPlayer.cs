@@ -145,13 +145,16 @@ public class SalmonPlayer : IDisposable
     {
         if (drifter.Type == DrifterType.Fish)
         {
+            AudioManager.I.PlaySE(SE.Name.BadReaction); // ★追加: 食べた音！
             _staminaBuffTimer = _settings.FishBuffDuration;
+            
+            hitObject.SetActive(false);
         }
         else if (drifter.Type == DrifterType.RivalSalmon)
         {
             float atk = _salmonData.UpstreamStats.Attack + (_isJustAfterJump ? _settings.JustJumpAttackBonus : 0f);
             var result = _model.EvaluateRivalBattle(atk);
-
+            Debug.Log(result);
             if (result == BattleResult.Win) { AddCombo(); }
             else if (result == BattleResult.Draw) { DrainStamina(_settings.RivalDrawDamage); }
             else { TakeDamage(_settings.RivalLoseDamage); }
@@ -159,6 +162,7 @@ public class SalmonPlayer : IDisposable
         else if (drifter.Type == DrifterType.Driftwood)
         {
             TakeDamage(_settings.DriftwoodDamage);
+            hitObject.SetActive(false);
         }
     }
 

@@ -74,7 +74,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning($"[AudioManager] BGM '{name}' not found.");
             return;
         }
-
+        Debug.Log($"[AudioManager] BGM '{name}' is playing.");
         StopAllCoroutines();
         StartCoroutine(FadeBGM(clip, fadeTime));
     }

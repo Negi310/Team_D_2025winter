@@ -150,6 +150,7 @@ public class SeaUIManager : MonoBehaviour
         {
             //クラス変更で川のステータスの表示状況を切り替え
             riverstatusButton.parent.EnableInClassList("is-open",!riverstatusButton.parent.ClassListContains("is-open"));
+            AudioManager.I.PlaySE(SE.Name.Hit);
             //ボタンの文字切り替え
             if(riverstatusButton.text == ">") riverstatusButton.text = "v";
             else riverstatusButton.text = ">";
@@ -174,6 +175,7 @@ public class SeaUIManager : MonoBehaviour
         trainingTabOpenButton.clicked += () =>
         {
             parentVE.AddToClassList("is-open");
+            AudioManager.I.PlaySE(SE.Name.Hit);
         };
         //button1のリスト保存
         trainingButtonList = parentVE.Query<Button>(className:"training-tab_training-button").ToList();
@@ -183,6 +185,7 @@ public class SeaUIManager : MonoBehaviour
         trainingCancelButon.clicked += () =>
         {
             parentVE.RemoveFromClassList("is-open");
+            AudioManager.I.PlaySE(SE.Name.Hit);
         };
 
         //ホバー時のイベント設定
@@ -212,6 +215,7 @@ public class SeaUIManager : MonoBehaviour
         randomEventTabOpenButton.clicked += () =>
         {
             parentVE2.AddToClassList("is-open");
+            AudioManager.I.PlaySE(SE.Name.Hit);
         };
         //button1のリスト保存
         randomEventButtonList = parentVE2.Query<Button>(className:"random-event-tab_random-event-button").ToList();
@@ -221,6 +225,7 @@ public class SeaUIManager : MonoBehaviour
         randomEventCancelButon.clicked += () =>
         {
             parentVE2.RemoveFromClassList("is-open");
+            AudioManager.I.PlaySE(SE.Name.Hit);
         };
         
         for(int i = 0; i < randomEventButtonList.Count; i++)

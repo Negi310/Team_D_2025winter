@@ -61,13 +61,15 @@ public class CourtshipPresenter : IDisposable
         
         UpdateUI();
         _view.Show();
+        AudioManager.I.PlayBGM(BGM.Name.Stage_3);
     }
 
     private void HandlePartnerClicked(int index)
     {
         if (_remainTimes <= 0 || _isProcessingClick) return; 
         _isProcessingClick = true;
-
+        
+        AudioManager.I.PlaySE(SE.Name.Click);
         _courtshipContext.SelectedMate = _courtshipContext.Candidates[index];
         bool isSuccess = _courtshipEvaluatable.EvaluateCourtship(_sessionContext.CurrentSalmon, _courtshipContext.SelectedMate);
 

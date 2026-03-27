@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c71d53cad29bac478c7f5aff4d0e2d4, type: 3}
+  m_Name: GameSetting
+  m_EditorClassIdentifier: Assembly-CSharp::GameSetting
+  InitialRiverPoints: 10
+  PointsPerGeneration: 2
+  RiverNormMax: 10
+  MatchBonusThreshold: 0.7
+  MatchBonusMultiplier: 2
+  MaxFixedObstaclesPerChunk: 6
+  RockRadius: 1
+  FallenTreeRadius: 2
+  DrifterDensityMultiplier: 0.5
+  MaxDriftersPerChunk: 2
+  FishSpeed: 1
+  RivalSpeed: 1.3
+  DriftwoodSpeed: -3
+  BlockedLaneChangeSpeed: 1.6
+  RivalLaneChangeSpeed: 0.3
+  DefaultLaneChangeSpeed: 0.2
+  BaseForwardSpeed: 3
+  BaseHorizontalSpeed: 3
+  HorizontalStatMultiplier: 0.1
+  InvincibleSpeedMultiplier: 1.5
+  BaseDrainRate: 10
+  BaseJumpCost: 1000
+  MinJumpCost: 2
+  JumpStatDiscountMultiplier: 0.5
+  FlowSpeedNorm: 5
+  JustJumpWindow: 0.5
+  RockDamage: 20
+  DriftwoodDamage: 25
+  RivalLoseDamage: 20
+  RivalDrawDamage: 5
+  FishBuffDuration: 5
+  InvincibleDuration: 1.5
+  RivalMinStrength: 5
+  RivalMaxStrength: 15
+  JustJumpAttackBonus: 10
+  CourtshipBaseRate: 0.5
+  CourtshipSizeWeight: 0.2
+  CourtshipColorWeight: 0.3
+  CourtshipShapeBonus: 0.2
+  CourtshipMinRate: 0.05
+  CourtshipMaxRate: 0.95
+  RiverMinWidth: 2
+  RiverMaxWidth: 10
+  RiverWidthSpeedPenalty: 1
+  CenterDistanceDrainPenalty: 1.5
+  CenterDistanceJumpPenalty: 1
+  ForwardRayLimit: 5
+  RockSlipstreamDrainMultiplier: 0.5
+  RockSlipstreamJumpMultiplier: 0
+  RockSideTorrentDrainMultiplier: 1.2
+  RivalSlipstreamDrainMultiplier: 0.8
+  StaminaToMaxStaminaRate: 10
+  SpeedToDrainReductionRate: 0.02
+  FishBuffDrainMultiplier: 0.5

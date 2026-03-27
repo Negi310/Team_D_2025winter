@@ -52,7 +52,7 @@ public class ConversationPresenter : IDisposable
 
         var ct = _sessionContext.CurrentSalmon.CourtshipTraits;
         var isPale = false;
-        
+        AudioManager.I.PlayBGM(BGM.Name.Stage_4);
         _view.ShowUI();
         _view.SetupEnvironment(_context.MasterData.LinkedConversation.backgroundImage);
         _view.SetupPlayerIllust(ct.Hair, ct.MaleEye, ct.Color, ct.MaleEyebrow, ct.MaleMouth, isPale, ct.Size);

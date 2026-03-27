@@ -69,23 +69,23 @@
         <ui:VisualElement name="riverinformation" class="next-river-information next-river" style="flex-grow: 1;">
             <ui:VisualElement name="riverstatus">
                 <ui:VisualElement style="flex-grow: 1;">
-                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:Label text="険しさ" class="next-river-information_status_name"/>
                     <ui:VisualElement class="next-river-information_status_value"/>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1;">
-                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:Label text="複雑さ" class="next-river-information_status_name"/>
                     <ui:VisualElement class="next-river-information_status_value"/>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1;">
-                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:Label text="豊かさ" class="next-river-information_status_name"/>
                     <ui:VisualElement class="next-river-information_status_value"/>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1;">
-                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:Label text="危なさ" class="next-river-information_status_name"/>
                     <ui:VisualElement class="next-river-information_status_value"/>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1;">
-                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:Label text="くねり" class="next-river-information_status_name"/>
                     <ui:VisualElement class="next-river-information_status_value"/>
                 </ui:VisualElement>
             </ui:VisualElement>

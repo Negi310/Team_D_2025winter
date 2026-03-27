@@ -17,21 +17,21 @@ public class LogicInstaller
     public SplineMathModel SplineMathModel { get; }
     public UpstreamGameModel UpstreamGameModel { get; }
 
-    public LogicInstaller()
+    public LogicInstaller(GameSetting setting)
     {
         ConversationModel = new ConversationModel();
         PoolManager = new PoolManager(new GameObject("PoolRoot").transform);
-        RiverDirector = new RiverDirector();
+        RiverDirector = new RiverDirector(setting);
         TreadmillModel = new TreadmillModel(RiverDirector);
         ForUIStatusBuilder = new ForUIStatusBuilder();
-        CourtshipEvaluator = new CourtshipEvaluator();
+        CourtshipEvaluator = new CourtshipEvaluator(setting);
         BreedingCalculator = new BreedCalculatable();
         MateGeneratable = new MateGeneratable();
         NameModel = new NameModel();
         RearModel = new RearModel();
         RiverPath = new RiverPath();
         SplineMathModel = new SplineMathModel();
-        ObstacleModel = new ObstacleModel(SplineMathModel);
-        UpstreamGameModel = new UpstreamGameModel();
+        ObstacleModel = new ObstacleModel(SplineMathModel, setting);
+        UpstreamGameModel = new UpstreamGameModel(setting);
     }
 }

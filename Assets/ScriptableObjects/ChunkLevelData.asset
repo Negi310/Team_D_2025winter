@@ -14,7 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChunkLevelData
   AvailableChunkPresets:
   - {fileID: 11400000, guid: 475c7b61122cf9748bfbe25f33484867, type: 2}
-  - {fileID: 11400000, guid: 475c7b61122cf9748bfbe25f33484867, type: 2}
-  - {fileID: 11400000, guid: 475c7b61122cf9748bfbe25f33484867, type: 2}
-  - {fileID: 11400000, guid: 475c7b61122cf9748bfbe25f33484867, type: 2}
-  - {fileID: 11400000, guid: 475c7b61122cf9748bfbe25f33484867, type: 2}
+  - {fileID: 11400000, guid: 8a945648167769944833f352d9cf536c, type: 2}
+  - {fileID: 11400000, guid: b3ec35c87233ed440af731a6ab677f98, type: 2}
+  - {fileID: 11400000, guid: 75bcd08d90319384987988adc5a127c3, type: 2}
+  - {fileID: 11400000, guid: 697ba215d52dccb4fa9d07837de7f2d4, type: 2}
+  - {fileID: 11400000, guid: 99102af74702e8747bdd8aa849270f43, type: 2}
+  - {fileID: 11400000, guid: 35cd0fe48ff0b2545a1a0a8660d7e05d, type: 2}
+  - {fileID: 11400000, guid: b4ba39620051f7640bc636a39f25a2d5, type: 2}
+  - {fileID: 11400000, guid: e2ea2f2a9200afe4f8032b9f44b42e38, type: 2}
+  - {fileID: 11400000, guid: 740177b64b7553f40a96403d2b2b4ef1, type: 2}
+  - {fileID: 11400000, guid: f61c39d0f5deee64eb82a631abe76458, type: 2}
+  - {fileID: 11400000, guid: c0cae530ee2d91d4fbd78f0a369108c4, type: 2}
+  - {fileID: 11400000, guid: b161ea37889afdc4586bf4565763d00e, type: 2}
+  - {fileID: 11400000, guid: 6729f79258119e847a7141de2915eb83, type: 2}
+  - {fileID: 11400000, guid: d8ac2a38b9c7f3540941362a14c7a2d0, type: 2}

@@ -56,13 +56,14 @@ public class RearModel
 
         void ApplyMod(StatModifier mod)
         {
+            // ★修正: Mathf.Max を使って、計算結果が1未満にならないようにブロック！
             switch (mod.TargetStatName)
             {
-                case "Speed": newStats.Speed += mod.Value; break;
-                case "Jump": newStats.Jump += mod.Value; break;
-                case "Stamina": newStats.Stamina += mod.Value; break;
-                case "Attack": newStats.Attack += mod.Value; break;
-                case "Intelligence": newStats.Intelligence += mod.Value; break; // ★追加
+                case "Speed": newStats.Speed = Mathf.Max(1f, newStats.Speed + mod.Value); break;
+                case "Jump": newStats.Jump = Mathf.Max(1f, newStats.Jump + mod.Value); break;
+                case "Stamina": newStats.Stamina = Mathf.Max(1f, newStats.Stamina + mod.Value); break;
+                case "Attack": newStats.Attack = Mathf.Max(1f, newStats.Attack + mod.Value); break;
+                case "Intelligence": newStats.Intelligence = Mathf.Max(1f, newStats.Intelligence + mod.Value); break;
             }
         }
 

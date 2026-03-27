@@ -25,6 +25,7 @@ public class RearPresenter : IDisposable
 
     private void HandleEntered()
     {
+        AudioManager.I.PlayBGM(BGM.Name.Stage_2);
         _view.Show();
         _sessionContext.IncrementTurn();
         _state.TransitionCheck(_sessionContext.CurrentTurn);
@@ -38,7 +39,7 @@ public class RearPresenter : IDisposable
             Mathf.FloorToInt(stats.Speed).ToString(), Mathf.FloorToInt(stats.Jump).ToString(),
             Mathf.FloorToInt(stats.Stamina).ToString(), Mathf.FloorToInt(stats.Attack).ToString(),
             Mathf.FloorToInt(stats.Intelligence).ToString(),
-            ct.Size.ToString(), ct.Color.ToString(), ct.GetShapeFeatureName(isMale: true)
+            ct.Color.ToString(), ct.Size.ToString(), ct.GetShapeFeatureName(isMale: true)
         );
 
         var baseIncreases = new List<string>();
@@ -69,7 +70,7 @@ public class RearPresenter : IDisposable
         EventData selectedEvent = _currentEvents[eventIndex];
         SalmonData updatedSalmon = _model.ApplyEventResult(_sessionContext.CurrentSalmon, selectedEvent);
         _sessionContext.UpdateCurrentSalmon(updatedSalmon);
-
+        AudioManager.I.PlaySE(SE.Name.Click);
         var payload = new ConversationInitPayload(selectedEvent);
         _state.TransitionCheck(payload);
     }

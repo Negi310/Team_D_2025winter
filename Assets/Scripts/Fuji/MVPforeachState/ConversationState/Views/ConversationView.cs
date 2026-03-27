@@ -142,7 +142,7 @@ public class ConversationView : MonoBehaviour
         _typingCts?.Cancel();
         _typingCts?.Dispose();
         _typingCts = new CancellationTokenSource();
-
+        
         TypeTextAsync(speed, _typingCts.Token).Forget();
     }
 
@@ -153,6 +153,7 @@ public class ConversationView : MonoBehaviour
             foreach (char c in _currentFullText)
             {
                 _dialogueLabel.text += c;
+                AudioManager.I.PlaySE(SE.Name.Hit);
                 // 設定された速度ごとに待機
                 await UniTask.Delay(TimeSpan.FromSeconds(speed), cancellationToken: token);
             }

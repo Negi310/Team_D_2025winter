@@ -7,8 +7,13 @@ public class SalmonMove : MonoBehaviour
     public event Action<GameObject> OnTriggerHit;
     public event Action OnJumpTriggered;
 
-    [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] private SpriteRenderer _renderer1;
+    [SerializeField] private SpriteRenderer _renderer2;
     [SerializeField] private Transform _visualTransform;
+    [SerializeField] private string _colorPropertyName = "_Color";
+    [SerializeField] private Material _colorMaterial;
+
+    private Color _color;
 
     private RayManager _raySensor;
     private Rigidbody2D _rb;
@@ -54,13 +59,12 @@ public class SalmonMove : MonoBehaviour
         if (!_isPlaying) _rb.linearVelocity = Vector2.zero; // 死んだらピタッと止まる
     }
 
-    // ==========================================
-    // 入力の受け付け (Update)
-    // ==========================================
-
-    // ==========================================
-    // 物理的な移動 (FixedUpdate)
-    // ==========================================
+    public void SetBodyColor(Color color)
+    {
+        _colorMaterial.color = color;
+        _color = color;
+    }
+    
     private void Update()
     {
         if (!_isPlaying || _isTakingDamage)
@@ -86,7 +90,12 @@ public class SalmonMove : MonoBehaviour
         _rb.linearVelocity = velocity;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) => OnTriggerHit?.Invoke(other.gameObject);
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!_isPlaying) return;
+        OnTriggerHit?.Invoke(other.gameObject);
+        Debug.Log(other.gameObject);
+    }
 
     public void PlayJumpAnimation(Action onComplete)
     {
@@ -107,10 +116,10 @@ public class SalmonMove : MonoBehaviour
         
         int flashCount = Mathf.FloorToInt(duration / 0.1f) / 2;
         
-        _renderer.DOColor(Color.red, 0.1f).SetLoops(flashCount * 2, LoopType.Yoyo)
-            .OnComplete(() => 
-            { 
-                _renderer.color = Color.white; 
+        _colorMaterial.DOColor(Color.red, 0.1f).SetLoops(flashCount * 2, LoopType.Yoyo)
+            .OnComplete(() =>
+            {
+                _colorMaterial.color = _color;
                 onComplete?.Invoke();
             });
     }
@@ -119,5 +128,12 @@ public class SalmonMove : MonoBehaviour
     {
         transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);
         if (_rb != null) _rb.linearVelocity = Vector2.zero; // 慣性もリセット
+        
+        _speedX = 0f;
+        _speedY = 0f;
+        if (Camera.main != null && Camera.main.TryGetComponent<CameraFollowY>(out var cam))
+        {
+            cam.ResetCamera();
+        }
     }
 }

@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class RiverDirector
 {
+    private readonly GameSetting _settings;
+
+    public RiverDirector(GameSetting settings)
+    {
+        _settings = settings;
+    }
+    
     public ChunkPreset GetNextChunkPreset(IReadOnlyList<ChunkPreset> availablePresets, RiverData currentRiver, ChunkConnector requiredEntry)
     {
         if (availablePresets.Count == 0) return null;
@@ -24,8 +31,8 @@ public class RiverDirector
         }
 
         // 2. 川のパラメータを 0.0 ~ 1.0 の割合に正規化（※上限は仮に10fとしています。ゲームバランスに合わせて調整してください）
-        float normalizedRiverCurve = Mathf.Clamp01(currentRiver.Curviness / 10f);
-        float normalizedRiverNarrow = Mathf.Clamp01(currentRiver.Narrowness / 10f);
+        float normalizedRiverCurve = Mathf.Clamp01(currentRiver.Curviness / _settings.RiverNormMax);
+        float normalizedRiverNarrow = Mathf.Clamp01(currentRiver.Narrowness / _settings.RiverNormMax);
 
         // 3. 各チャンクの「選ばれやすさ（Weight）」を計算する
         float[] weights = new float[validPresets.Count];
@@ -45,7 +52,7 @@ public class RiverDirector
             float weight = Mathf.Max(0.1f, matchScore); 
 
             // もし完全一致レベル(差がほとんどない)なら、確率にボーナス（2倍など）をかけて圧倒的に出やすくする
-            if (matchScore > 0.8f) weight *= 2.0f; 
+            if (matchScore > _settings.MatchBonusThreshold) weight *= _settings.MatchBonusMultiplier;
 
             weights[i] = weight;
             totalWeight += weight;

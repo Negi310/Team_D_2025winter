@@ -26,7 +26,7 @@ public class NamePresenter : IDisposable
     private void HandleEntered()
     {
         _view.Show();
-        
+        AudioManager.I.PlayBGM(BGM.Name.Stage_5);
         var us = _sessionContext.CurrentSalmon.UpstreamStats;
         var ct = _sessionContext.CurrentSalmon.CourtshipTraits;
 
@@ -45,6 +45,7 @@ public class NamePresenter : IDisposable
 
     private void HandleDecided(string inputName)
     {
+        AudioManager.I.PlaySE(SE.Name.Click);
         SalmonData namedSalmon = _model.ApplyNameToSalmon(_sessionContext.CurrentSalmon, inputName);
         _sessionContext.UpdateCurrentSalmon(namedSalmon);
         _state.TransitionCheck(true);

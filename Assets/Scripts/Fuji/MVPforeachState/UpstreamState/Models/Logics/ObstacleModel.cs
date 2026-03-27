@@ -5,8 +5,13 @@ public class ObstacleModel
 {
     private readonly SplineMathModel _math;
     private const float VisualMargin = 0f;
+    private readonly GameSetting _settings;
 
-    public ObstacleModel(SplineMathModel math) => _math = math;
+    public ObstacleModel(SplineMathModel math, GameSetting settings)
+    {
+        _math = math;
+        _settings = settings;
+    }
 
     // ==========================================
     // 固定設置物の生成
@@ -16,14 +21,13 @@ public class ObstacleModel
         var results = new List<FixedObstacleData>();
         float startY = chunk.Position, endY = chunk.Position + chunk.Preset.ChunkHeight;
         
-        int count = Mathf.Clamp(Mathf.RoundToInt(river.ObstacleDensity), 0, 6);
-        Debug.Log(river.ObstacleDensity);
+        int count = Mathf.Clamp(Mathf.RoundToInt(river.ObstacleDensity), 0, _settings.MaxFixedObstaclesPerChunk);
         for (int i = 0; i < count; i++)
         {
             for (int attempt = 0; attempt < 20; attempt++)
             {
                 FixedObstacleType type = Random.value > 0.5f ? FixedObstacleType.Rock : FixedObstacleType.FallenTree;
-                float physicalRadius = type == FixedObstacleType.Rock ? 1f : 2.0f;
+                float physicalRadius = type == FixedObstacleType.Rock ? _settings.RockRadius : _settings.FallenTreeRadius;
                 float requiredSpace = physicalRadius + VisualMargin;
 
                 float snappedY = Mathf.Floor(Random.Range(startY, endY)) + 0.5f;
@@ -84,7 +88,7 @@ public class ObstacleModel
         float startY = chunk.Position + 0.5f * chunk.Preset.ChunkHeight, endY = chunk.Position + 1.5f * chunk.Preset.ChunkHeight;
         
         float totalDensity = river.FishDensity + river.RivalDensity + river.AccidentDensity;
-        int count = Mathf.Clamp(Mathf.RoundToInt(totalDensity * 0.5f), 0, 5);
+        int count = Mathf.Clamp(Mathf.RoundToInt(totalDensity * _settings.DrifterDensityMultiplier), 0, _settings.MaxDriftersPerChunk);
         
         float fishProb = river.FishDensity / Mathf.Max(totalDensity, 1f);
         float rivalProb = fishProb + (river.RivalDensity / Mathf.Max(totalDensity, 1f));
@@ -110,9 +114,9 @@ public class ObstacleModel
                 
                 float rand = Random.value;
                 DrifterType type; float speed;
-                if (rand <= fishProb)       { type = DrifterType.Fish; speed = 1.0f; }   
-                else if (rand <= rivalProb) { type = DrifterType.RivalSalmon; speed = 2.5f; } 
-                else                        { type = DrifterType.Driftwood; speed = -3.0f; }
+                if (rand <= fishProb)       { type = DrifterType.Fish; speed = _settings.FishSpeed; }   
+                else if (rand <= rivalProb) { type = DrifterType.RivalSalmon; speed = _settings.RivalSpeed; } 
+                else                        { type = DrifterType.Driftwood; speed = _settings.DriftwoodSpeed; }
                 
                 drifters.Add(new DrifterData(type, startPos, speed, lane));
                 break; 
@@ -153,7 +157,7 @@ public class ObstacleModel
 
         if (drifter.Type == DrifterType.RivalSalmon || drifter.Type == DrifterType.Fish || isBlocked)
         {
-            float laneChangeSpeed = isBlocked ? 1.6f : (drifter.Type == DrifterType.RivalSalmon ? 0.5f : 0.2f);
+            float laneChangeSpeed = isBlocked ? _settings.BlockedLaneChangeSpeed : (drifter.Type == DrifterType.RivalSalmon ? _settings.RivalLaneChangeSpeed : _settings.DefaultLaneChangeSpeed);
             drifter.CurrentLane = Mathf.MoveTowards(drifter.CurrentLane, drifter.TargetLane, deltaTime * laneChangeSpeed);
             
             if (!isBlocked && Mathf.Abs(drifter.CurrentLane - drifter.TargetLane) < 0.05f)

@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Cysharp.Threading.Tasks; // ★追加
+using DG.Tweening;             // ★追加
 
 public class UpstreamView : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class UpstreamView : MonoBehaviour
     //private VisualElement _progressBackground;
     private Label _comboLabel;
     private Label _distanceLabel;
+    private Label _countdownLabel; // ★追加
 
     private void Awake()
     {
@@ -30,6 +33,8 @@ public class UpstreamView : MonoBehaviour
         _staminaBar = root.Q<VisualElement>("stamina-bar-fill");
         _comboLabel = root.Q<Label>("combo-label");
         _distanceLabel = root.Q<Label>("distance-label");
+        _countdownLabel = root.Q<Label>("countdown-label");
+        if (_countdownLabel != null) _countdownLabel.style.display = DisplayStyle.None;
         root.style.display = DisplayStyle.None;
     }
         
@@ -41,6 +46,7 @@ public class UpstreamView : MonoBehaviour
         UpdateStamina(maxStamina, maxStamina);
         UpdateCombo(0);
         _cameraFollow.ResetCamera();
+        _staminaBar.style.backgroundColor = new StyleColor(Color.green);
     }
 
     public void UpdateStamina(float current, float max)
@@ -70,12 +76,41 @@ public class UpstreamView : MonoBehaviour
 
     public void UpdateCombo(int combo)
     {
-        _comboLabel.text = combo > 1 ? $"{combo} COMBO!" : "";
+        _comboLabel.text = $"{combo} COMBO!";
     }
 
     public void UpdateDistance(float distance)
     {
         _distanceLabel.text = $"{Mathf.FloorToInt(distance)}m";
+    }
+    
+    public async UniTask PlayCountdownAsync()
+    {
+        if (_countdownLabel == null)
+        {
+            await UniTask.Delay(1000); // UIがセットされていなければ1秒待機するだけ
+            return;
+        }
+
+        _countdownLabel.style.display = DisplayStyle.Flex;
+        string[] texts = { "3", "2", "1", "GO!" };
+
+        foreach (var t in texts)
+        {
+            _countdownLabel.text = t;
+            
+            // 少しポップに弾けるアニメーション
+            float scale = 1.5f;
+            DOTween.To(() => scale, x => 
+            {
+                scale = x;
+                _countdownLabel.style.scale = new StyleScale(new Vector2(scale, scale));
+            }, 1f, 0.5f).SetEase(Ease.OutBack);
+
+            await UniTask.Delay(TimeSpan.FromSeconds(0.8f));
+        }
+
+        _countdownLabel.style.display = DisplayStyle.None;
     }
 
     public void Show() => _uiDocument.rootVisualElement.style.display = DisplayStyle.Flex;

@@ -161,7 +161,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="playerstatus" class="main-salmon-status main-salmon-status_layout">
             <ui:VisualElement style="flex-grow: 1;">
-                <ui:Label text="機動力" class="main-salmon-status_name--swim"/>
+                <ui:Label text="推進力" class="main-salmon-status_name--swim"/>
                 <ui:VisualElement class="main-salmon-status_value main-salmon-status_value--swim"/>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1;">

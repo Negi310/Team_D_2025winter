@@ -20,6 +20,8 @@ public class GameBootstrapper : MonoBehaviour
     [SerializeField] private ChunkLevelData chunkLevelData;
     [SerializeField] private EventPool eventPool;
     [SerializeField] private MateGenerationSettingsSO mateSetting;
+
+    [SerializeField] private GameSetting setting;
     
     private GameRouter _router;
     private SaveData _saveData;
@@ -38,12 +40,13 @@ public class GameBootstrapper : MonoBehaviour
         var sessionContext = new SessionContext(_saveData);
         //Debug.Log(sessionContext.CurrentTurn);
         // ロジックを計算するModelの生成
-        var logicInstaller = new LogicInstaller();
+        var logicInstaller = new LogicInstaller(setting);
 
         var stateCompositeFactory = new StateCompositeFactory(sessionContext, logicInstaller,
             conversationView, treadmillView, obstaclesView, salmonMove, upstreamView,
             courtingUIManager,namingUIManager, seaUIManager, titleView,
-            eventPool, chunkLevelData, mateSetting, tickProvider, _saveData.LastSavedStateName);
+            eventPool, chunkLevelData, mateSetting, tickProvider, _saveData.LastSavedStateName,
+            setting);
         // ModelとViewとContextの参照を渡す
         var stateMachine = new GameStateMachine(transitionManager);
         _router = new GameRouter(stateMachine, stateCompositeFactory, sessionContext, saveDataResister);

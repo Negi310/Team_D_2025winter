@@ -37,7 +37,7 @@ public class CourtingUIManager : MonoBehaviour
     private VisualElement playerIllust;  
 
     //プレイヤーのステータスの最大値(いったん20)
-    private const float playerStatusMax = 20;
+    private const float playerStatusMax = 100;
     //川のステータスの最大値
     private const float riverStatusMax = 20;
     
@@ -138,6 +138,7 @@ public class CourtingUIManager : MonoBehaviour
             parent.clicked += () =>
             {
                 OnPartnerClicked?.Invoke(captureIndex);
+                AudioManager.I.PlaySE(SE.Name.Hit);
             };
         }
     }
@@ -174,6 +175,7 @@ public class CourtingUIManager : MonoBehaviour
         {
             //クラス変更で革のステータスの表示状況を切り替え
             riverstatusButton.parent.EnableInClassList("is-open",!riverstatusButton.parent.ClassListContains("is-open"));
+            AudioManager.I.PlaySE(SE.Name.Hit);
             //ボタンの文字切り替え
             if(riverstatusButton.text == ">") riverstatusButton.text = "v";
             else riverstatusButton.text = ">";

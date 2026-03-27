@@ -7,15 +7,15 @@ public class BreedCalculatable : IBreedingCalculator
         //川の遡上に関する能力値の継承
         UpstreamStats childUpstream = new UpstreamStats
         {
-            Speed = Inherit(playerSalmon.UpstreamStats.Speed,mateSalmon.UpstreamStats.Speed),
+            Speed = Mathf.Max(1f,Inherit(playerSalmon.UpstreamStats.Speed,mateSalmon.UpstreamStats.Speed)),
 
-            Jump = Inherit(playerSalmon.UpstreamStats.Jump,mateSalmon.UpstreamStats.Jump),
+            Jump = Mathf.Max(1f,Inherit(playerSalmon.UpstreamStats.Jump,mateSalmon.UpstreamStats.Jump)),
 
-            Stamina = Inherit(playerSalmon.UpstreamStats.Stamina,mateSalmon.UpstreamStats.Stamina),
+            Stamina = Mathf.Max(1f,Inherit(playerSalmon.UpstreamStats.Stamina,mateSalmon.UpstreamStats.Stamina)),
             
-            Attack = Inherit(playerSalmon.UpstreamStats.Attack,mateSalmon.UpstreamStats.Attack),
+            Attack = Mathf.Max(1f,Inherit(playerSalmon.UpstreamStats.Attack,mateSalmon.UpstreamStats.Attack)),
             
-            Intelligence = Inherit(playerSalmon.UpstreamStats.Intelligence,mateSalmon.UpstreamStats.Intelligence)
+            Intelligence = Mathf.Max(1f,Inherit(playerSalmon.UpstreamStats.Intelligence,mateSalmon.UpstreamStats.Intelligence))
         };
 
         var pTraits = playerSalmon.CourtshipTraits;

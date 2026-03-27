@@ -29,7 +29,7 @@ public class NamingUIManager : MonoBehaviour
     private VisualElement playerIllust;     
 
     //プレイヤーのステータスの最大値(いったん20)
-    private const float playerStatusMax = 20;
+    private const float playerStatusMax = 100;
     void Awake()
     {
         //uiDocumentのrootVE取得

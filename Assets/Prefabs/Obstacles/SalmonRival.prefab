@@ -79,7 +79,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8985090641045762242}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -130,6 +130,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -970455759
       objectReference: {fileID: 0}
+    - target: {fileID: 940146063536117168, guid: 6730a6de6dd0cc940b9ba38142f4268d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 1770475690697554102, guid: 6730a6de6dd0cc940b9ba38142f4268d, type: 3}
       propertyPath: m_SortingLayer
       value: 5
@@ -174,6 +178,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -970455759
       objectReference: {fileID: 0}
+    - target: {fileID: 8411616032932586286, guid: 6730a6de6dd0cc940b9ba38142f4268d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 9193060796686479505, guid: 6730a6de6dd0cc940b9ba38142f4268d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

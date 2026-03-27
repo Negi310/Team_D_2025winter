@@ -17,9 +17,9 @@ public class RiverData
     // ==========================================
     // UI表示用パラメータ（5項目：プレイヤーに見せる用）
     // ==========================================
-    public float DisplayToughness => FlowSpeed + Narrowness;      // 険しさ
-    public float DisplayComplexity => ObstacleDensity;            // 複雑さ
-    public float DisplayRichness => FishDensity + RivalDensity;   // 豊かさ
-    public float DisplayDanger => AccidentDensity;                // 危なさ
-    public float DisplayMeandering => Curviness;                  // くねり
+    public float DisplayToughness => (FlowSpeed + Narrowness) / 2;      // 険しさ
+    public float DisplayComplexity => ObstacleDensity;                  // 複雑さ
+    public float DisplayRichness => (FishDensity + RivalDensity) / 2;   // 豊かさ
+    public float DisplayDanger => AccidentDensity;                      // 危なさ
+    public float DisplayMeandering => Curviness;                        // くねり
 }

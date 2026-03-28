@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c71d53cad29bac478c7f5aff4d0e2d4, type: 3}
   m_Name: GameSetting
   m_EditorClassIdentifier: Assembly-CSharp::GameSetting
-  InitialRiverPoints: 10
+  InitialRiverPoints: 40
   PointsPerGeneration: 2
   RiverNormMax: 10
   MatchBonusThreshold: 0.7
@@ -32,8 +32,8 @@ MonoBehaviour:
   BaseHorizontalSpeed: 3
   HorizontalStatMultiplier: 0.1
   InvincibleSpeedMultiplier: 1.5
-  BaseDrainRate: 10
-  BaseJumpCost: 1000
+  BaseDrainRate: 40
+  BaseJumpCost: 40
   MinJumpCost: 2
   JumpStatDiscountMultiplier: 0.5
   FlowSpeedNorm: 5
@@ -60,9 +60,9 @@ MonoBehaviour:
   CenterDistanceJumpPenalty: 1
   ForwardRayLimit: 5
   RockSlipstreamDrainMultiplier: 0.5
-  RockSlipstreamJumpMultiplier: 0
-  RockSideTorrentDrainMultiplier: 1.2
-  RivalSlipstreamDrainMultiplier: 0.8
+  RockSlipstreamJumpMultiplier: 0.1
+  RockSideTorrentDrainMultiplier: 1.5
+  RivalSlipstreamDrainMultiplier: 0.7
   StaminaToMaxStaminaRate: 10
   SpeedToDrainReductionRate: 0.02
   FishBuffDrainMultiplier: 0.5

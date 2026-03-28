@@ -136,7 +136,7 @@
         <ui:VisualElement name="nextriverstatus" class="next-river-information next-river">
             <ui:VisualElement name="riverstatus" style="flex-grow: 1;">
                 <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
-                    <ui:Label text="Label" class="next-river-information_status_name"/>
+                    <ui:Label text="推進力" class="next-river-information_status_name"/>
                     <ui:VisualElement class="next-river-information_status_value"/>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1; flex-direction: row;">

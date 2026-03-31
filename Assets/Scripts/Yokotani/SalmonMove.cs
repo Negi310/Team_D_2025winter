@@ -99,7 +99,7 @@ public class SalmonMove : MonoBehaviour
 
     public void PlayJumpAnimation(Action onComplete)
     {
-        _visualTransform.DOScale(1.5f, 0.4f).SetLoops(2, LoopType.Yoyo).SetEase(Ease.OutQuad)
+        _visualTransform.DOScale(1.5f, 0.3f).SetLoops(2, LoopType.Yoyo).SetEase(Ease.OutQuad)
             .OnComplete(() => onComplete?.Invoke());
     }
 

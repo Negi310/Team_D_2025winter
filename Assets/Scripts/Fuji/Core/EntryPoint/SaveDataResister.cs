@@ -50,7 +50,7 @@ public class SaveDataResister
     
     public SaveData CreateInitialData()
     {
-        var defaultStats = new UpstreamStats(speed: 100f, jump: 5f, stamina: 100f, attack: 5f, intelligence: 5f);
+        var defaultStats = new UpstreamStats(speed: 10f, jump: 10f, stamina: 10f, attack: 10f, intelligence: 10f);
         var defaultTraits = new CourtshipTraits(SalmonSize.Normal, SalmonColor.Orange, SalmonHair.Normal, 0, 0, 0);
         var initialSalmon = new SalmonData(defaultStats, defaultTraits) { Name = "初代" };
         var initialRiver = RiverGenerator.GenerateRiver(1);

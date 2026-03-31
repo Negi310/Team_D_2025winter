@@ -33,15 +33,15 @@ MonoBehaviour:
   HorizontalStatMultiplier: 0.1
   InvincibleSpeedMultiplier: 1.5
   BaseDrainRate: 40
-  BaseJumpCost: 40
+  BaseJumpCost: 80
   MinJumpCost: 2
-  JumpStatDiscountMultiplier: 0.5
+  JumpStatDiscountMultiplier: 2
   FlowSpeedNorm: 5
   JustJumpWindow: 0.5
   RockDamage: 20
   DriftwoodDamage: 25
   RivalLoseDamage: 20
-  RivalDrawDamage: 5
+  RivalDrawDamage: 10
   FishBuffDuration: 5
   InvincibleDuration: 1.5
   RivalMinStrength: 5
@@ -56,12 +56,12 @@ MonoBehaviour:
   RiverMinWidth: 2
   RiverMaxWidth: 10
   RiverWidthSpeedPenalty: 1
-  CenterDistanceDrainPenalty: 1.5
-  CenterDistanceJumpPenalty: 1
+  CenterDistanceDrainPenalty: 2
+  CenterDistanceJumpPenalty: 2
   ForwardRayLimit: 5
   RockSlipstreamDrainMultiplier: 0.5
   RockSlipstreamJumpMultiplier: 0.1
-  RockSideTorrentDrainMultiplier: 1.5
+  RockSideTorrentDrainMultiplier: 3
   RivalSlipstreamDrainMultiplier: 0.7
   StaminaToMaxStaminaRate: 10
   SpeedToDrainReductionRate: 0.02

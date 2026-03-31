@@ -100,7 +100,7 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
 
-        _bgmSource.volume = 1f;
+        _bgmSource.volume = 0.25f;
     }
 
     public void StopBGM()

@@ -21,7 +21,7 @@ public class ObstaclesView : MonoBehaviour
     {
         GameObject prefab = data.Type == FixedObstacleType.Rock ? _rockPrefab : _treePrefab;
         GameObject obj = _poolManager.Get(prefab);
-        obj.transform.position = new Vector3(data.Position.x, data.Position.y, 0f);
+        obj.transform.position = new Vector3(data.Position.x, data.Position.y, data.Position.y * 0.01f);
         if (!obj.TryGetComponent<FixedObstacleView>(out var view))
         {
             view = obj.AddComponent<FixedObstacleView>();
@@ -54,7 +54,7 @@ public class ObstaclesView : MonoBehaviour
     {
         foreach (var kvp in _drifters)
         {
-            kvp.Value.transform.position = new Vector3(kvp.Key.Position.x, kvp.Key.Position.y, kvp.Key.Position.y * 0.01f);
+            kvp.Value.transform.position = new Vector3(kvp.Key.Position.x, kvp.Key.Position.y, 0f);
         }
     }
 

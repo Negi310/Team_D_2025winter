@@ -8,7 +8,9 @@ using DG.Tweening; // DOTweenを使用
 public class ConversationView : MonoBehaviour
 {
     [SerializeField] private UIDocument _uiDocument;
-    //[SerializeField] private Animator _characterAnimator;
+    
+    // ★追加: 立ち絵設定用のマネージャー
+    [SerializeField] private MaleIllustrationManager _maleIllust;
 
     // Presenterへ通知するイベント
     public event Action OnNextButtonClicked;
@@ -20,8 +22,10 @@ public class ConversationView : MonoBehaviour
     private VisualElement _rootContainer;
     private Label _speakerNameLabel;
     private Label _dialogueLabel;
-    private VisualElement _backgroundElement;
     private Button _nextButton;
+    
+    // ★追加: プレイヤー立ち絵のVE
+    private VisualElement _playerIllust;
 
     // 文字送り用
     private CancellationTokenSource _typingCts;
@@ -35,11 +39,24 @@ public class ConversationView : MonoBehaviour
         _rootContainer = _root.Q<VisualElement>("ConversationContainer"); // ウィンドウ全体
         _speakerNameLabel = _root.Q<Label>("Speaker");
         _dialogueLabel = _root.Q<Label>("DialogueText");
-        _backgroundElement = _root.Q<VisualElement>("BackGround");
-        _nextButton = _root.Q<VisualElement>("NextButton").Q<Button>();
+        
+        // （構成によってNextButton自体がボタンか、中にボタンがあるかで取得）
+        var nextButtonEl = _root.Q<VisualElement>("NextButton");
+        _nextButton = nextButtonEl as Button ?? nextButtonEl?.Q<Button>();
 
         // ボタンのクリックイベントをPresenterへ横流しする
-        _nextButton.clicked += () => OnNextButtonClicked?.Invoke();
+        if (_nextButton != null)
+        {
+            _nextButton.clicked += () => OnNextButtonClicked?.Invoke();
+        }
+
+        // ★追加: 立ち絵のVE取得と初期設定
+        _playerIllust = _root.Q<VisualElement>(className:"male-illustration_base");
+        Debug.Log(_playerIllust != null);
+        if (_maleIllust != null && _playerIllust != null)
+        {
+            _maleIllust.InitIllust(_playerIllust);
+        }
 
         // 初期状態は透明にしておく
         _rootContainer.style.opacity = 0f;
@@ -50,13 +67,21 @@ public class ConversationView : MonoBehaviour
     {
         if (bg != null)
         {
-            // UI Toolkitでの背景画像セットアップ
-            _backgroundElement.style.backgroundImage = new StyleBackground(bg);
+            // ★変更: 背景要素を使わず、直接 _rootContainer の背景に設定する
+            _rootContainer.style.backgroundImage = new StyleBackground(bg);
         }
         // BGMの処理は省略（AudioSource等で再生）
     }
     
-    
+    // ★追加: プレイヤーのイラストを適用するメソッド（Presenterから呼ぶ）
+    public void SetupPlayerIllust(SalmonHair hair, SalmonEyeMale eye, SalmonColor color, SalmonEyebrowMale eyebrow, SalmonMouthMale mouth, bool isPale, SalmonSize size)
+    {
+        if (_maleIllust != null && _playerIllust != null)
+        {
+            _maleIllust.SetUpIllust(_playerIllust, hair, eye, color, eyebrow, mouth, isPale, size);
+            Debug.Log(_playerIllust != null);
+        }
+    }
 
     // --- DOTweenを使ったUI演出 ---
     public void ShowUI()
@@ -73,13 +98,16 @@ public class ConversationView : MonoBehaviour
 
     public void HideUI()
     {
-        _root.style.display = DisplayStyle.None;
         DOTween.To(
             () => _rootContainer.style.opacity.value,
             x => _rootContainer.style.opacity = x,
             0f, // 目標値 (透明)
             0.5f
-        ).SetEase(Ease.InQuad);
+        ).SetEase(Ease.InQuad).OnComplete(() => 
+        {
+            // ★修正: アニメーションが完全に終わってから非表示にする
+            _root.style.display = DisplayStyle.None;
+        });
     }
 
     // --- UniTaskを使ったアニメーション待機 ---
@@ -114,7 +142,7 @@ public class ConversationView : MonoBehaviour
         _typingCts?.Cancel();
         _typingCts?.Dispose();
         _typingCts = new CancellationTokenSource();
-
+        
         TypeTextAsync(speed, _typingCts.Token).Forget();
     }
 
@@ -125,6 +153,7 @@ public class ConversationView : MonoBehaviour
             foreach (char c in _currentFullText)
             {
                 _dialogueLabel.text += c;
+                AudioManager.I.PlaySE(SE.Name.Hit);
                 // 設定された速度ごとに待機
                 await UniTask.Delay(TimeSpan.FromSeconds(speed), cancellationToken: token);
             }

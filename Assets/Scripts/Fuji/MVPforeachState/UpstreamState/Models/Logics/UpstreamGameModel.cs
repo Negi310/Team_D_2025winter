@@ -2,51 +2,62 @@ using UnityEngine;
 
 public class UpstreamGameModel
 {
-    private const float MinWidth = 2f;
-    private const float MaxWidth = 10f;
-    private const float ForwardRayLimit = 5f;
+    private readonly GameSetting _settings;
+    
+    public UpstreamGameModel(GameSetting settings) => _settings = settings;
 
-    public float CalculateForwardSpeed() => 3.0f; // 前方速度は一定
+    public float CalculateForwardSpeed() => _settings.BaseForwardSpeed; 
 
-    // 横移動速度（無敵時間中は1.5倍）
+    // 横移動速度（川幅による影響を考慮）
     public float CalculateHorizontalSpeed(UpstreamStats stats, RayData sensor, bool isInvincible)
     {
-        float widthPenalty = Mathf.InverseLerp(MinWidth, MaxWidth, sensor.TotalWidth);
-        float speed = (3.0f + (stats.Speed * 0.1f)) * widthPenalty;
-        return isInvincible ? speed * 1.5f : speed;
+        // 川幅が狭いほど横移動しづらくなるペナルティ
+        float widthFactor = Mathf.InverseLerp(_settings.RiverMinWidth, _settings.RiverMaxWidth, sensor.TotalWidth);
+        float widthPenalty = Mathf.Lerp(1.0f - _settings.RiverWidthSpeedPenalty, 1.0f, widthFactor);
+        
+        float speed = (_settings.BaseHorizontalSpeed + (stats.Speed * _settings.HorizontalStatMultiplier)) * widthPenalty;
+        return isInvincible ? speed * _settings.InvincibleSpeedMultiplier : speed;
     }
 
-    // ★修正: スタミナ消費（中心に近いほど流れが急＝消費大）
-    public float CalculateDrain(UpstreamStats stats, RayData sensor, float distanceFromCenter, float deltaTime)
+    public float CalculateDrain(UpstreamStats stats, RayData sensor, float distanceFromCenter, float deltaTime, float flowSpeed)
     {
-        // 中心(0m)なら1.5倍消費、端(3m以上)なら1.0倍消費に落ち着く
-        float centerPenalty = 1.0f + Mathf.Clamp01(1.0f - (distanceFromCenter / 3.0f)) * 0.5f;
-        float drain = 1.0f * centerPenalty;
+        // 川の中心からの距離ペナルティ（中心に近いほど流れが急なので消費増）
+        float centerPenalty = 1.0f + Mathf.Clamp01(1.0f - (distanceFromCenter / 3.0f)) * _settings.CenterDistanceDrainPenalty;
+        float drain = _settings.BaseDrainRate * centerPenalty;
 
-        if (sensor.ForwardRockDistance < ForwardRayLimit) drain *= 0.5f; 
-        else if (sensor.ForwardNextRockDistance < ForwardRayLimit) drain *= 0.75f;
-        else if (sensor.ForwardSalmonDistance < ForwardRayLimit) drain *= 1.5f;
+        // 前方の状況による水流変化（スリップストリームと激流）
+        if (sensor.ForwardRockDistance < _settings.ForwardRayLimit) 
+            drain *= _settings.RockSlipstreamDrainMultiplier;       // 岩の裏（安全地帯）
+        else if (sensor.ForwardNextRockDistance < _settings.ForwardRayLimit) 
+            drain *= _settings.RockSideTorrentDrainMultiplier;      // 岩の横の押し出し（激流）
+        else if (sensor.ForwardSalmonDistance < _settings.ForwardRayLimit) 
+            drain *= _settings.RivalSlipstreamDrainMultiplier;      // ライバルの裏（スリップストリーム）
 
-        float statMultiplier = Mathf.Max(0.2f, 1.0f - (stats.Stamina * 0.02f));
-        return drain * statMultiplier * deltaTime;
+        // 川自体の流速による影響
+        float flowMultiplier = Mathf.Max(0.5f, flowSpeed / _settings.FlowSpeedNorm);
+        
+        // スピードステータスによる「水流を受け流す」スタミナ消費抑制
+        float statMultiplier = Mathf.Max(0.2f, 1.0f - (stats.Speed * _settings.SpeedToDrainReductionRate));
+        
+        return drain * statMultiplier * flowMultiplier * deltaTime;
     }
 
-    // ★修正: ジャンプコスト（中心に近いほど流れに乗りやすく＝消費小）
     public float CalculateJumpCost(UpstreamStats stats, RayData sensor, float distanceFromCenter)
     {
-        float statDiscount = stats.Jump * 0.5f;
-        float baseCost = Mathf.Max(2.0f, 15.0f - statDiscount);
+        float statDiscount = stats.Jump * _settings.JumpStatDiscountMultiplier;
+        float baseCost = Mathf.Max(_settings.MinJumpCost, _settings.BaseJumpCost - statDiscount);
 
-        // 中心(0m)なら基本コストそのまま、端(3m以上)ならジャンプコスト1.5倍
-        float jumpPenalty = 1.0f + Mathf.Clamp01(distanceFromCenter / 3.0f) * 0.5f;
+        // 川の中心から遠い（流れに乗れない）ほどジャンプ消費増
+        float jumpPenalty = 1.0f + Mathf.Clamp01(distanceFromCenter / 3.0f) * _settings.CenterDistanceJumpPenalty;
         float cost = baseCost * jumpPenalty;
 
-        return (sensor.ForwardRockDistance < ForwardRayLimit) ? cost * 0.1f : cost;
+        // 岩の裏から飛ぶ時は恩恵で安く飛べる
+        return (sensor.ForwardRockDistance < _settings.ForwardRayLimit) ? cost * _settings.RockSlipstreamJumpMultiplier : cost;
     }
 
     public BattleResult EvaluateRivalBattle(float myAttack)
     {
-        float rivalStrength = Random.Range(5f, 15f);
+        float rivalStrength = Random.Range(_settings.RivalMinStrength, _settings.RivalMaxStrength);
         if (myAttack > rivalStrength + 5f) return BattleResult.Win;
         if (myAttack >= rivalStrength) return BattleResult.Draw;
         return BattleResult.Lose;

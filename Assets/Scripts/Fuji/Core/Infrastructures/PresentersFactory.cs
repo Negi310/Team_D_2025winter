@@ -16,7 +16,8 @@ public class StateCompositeFactory
         SeaUIManager seaUIManager, TitleView titleView,
         EventPool eventPool, ChunkLevelData chunkLevelData,
         MateGenerationSettingsSO _mateSetting,
-        TickProvider tickProvider, string initialStateName)
+        TickProvider tickProvider, string initialStateName,
+        GameSetting setting)
     {
         Register<TitleState>((state, payload) =>
         {
@@ -58,7 +59,7 @@ public class StateCompositeFactory
             var composite = new CompositeDisposable();
             var conversationContext = new ConversationContext();
             //conversationContext.MasterData = conversationEvent; // 会話イベントのマスターデータをContextにセット
-            composite.Add(new ConversationPresenter(state, logic.ConversationModel, conversationContext, conversationView, payload));
+            composite.Add(new ConversationPresenter(state, logic.ConversationModel, context, conversationContext, conversationView, payload));
             //composite.Add(new OtherStateSpecificPresenter(state));
             //...
             
@@ -81,7 +82,7 @@ public class StateCompositeFactory
             var playerContext = new UpstreamPlayerContext();
             var treadmillContext = new TreadmillContext();
             var obstacleContext = new ObstacleContext();
-            var salmonPlayer = new SalmonPlayer(salmonMove, logic.UpstreamGameModel);
+            var salmonPlayer = new SalmonPlayer(salmonMove, logic.UpstreamGameModel, setting);
             composite.Add(new TreadmillPresenter(state, logic.TreadmillModel, logic.PoolManager, logic.RiverPath,
                 logic.ObstacleModel, treadmillView, obstaclesView, context, playerContext, treadmillContext, obstacleContext,
                 tickProvider, chunkLevelData));

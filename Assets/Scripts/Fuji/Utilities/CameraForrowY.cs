@@ -53,4 +53,19 @@ public class CameraFollowY : MonoBehaviour
         transform.position = new Vector3(currentPos.x, startY, currentPos.z);
         _maxYReached = startY;
     }
+    
+    public void ResetCamera()
+    {
+        if (_target == null) return;
+
+        // SmoothDampの慣性（Velocity）をゼロにする
+        _currentVelocity = Vector3.zero;
+
+        // カメラをプレイヤーの初期位置へ瞬間移動させる
+        float startY = _target.position.y + _yOffset;
+        transform.position = new Vector3(transform.position.x, startY, transform.position.z);
+        
+        // ★最高到達点の記憶をリセット！
+        _maxYReached = startY; 
+    }
 }

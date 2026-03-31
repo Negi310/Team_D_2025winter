@@ -54,6 +54,8 @@ public class TreadmillPresenter: IDisposable, ITickable
     // Dispatcherから毎フレーム呼ばれる
     public void Tick(float deltaTime)
     {
+        if (!_playerContext.IsRunning) return;
+        
         float playerY = _playerContext.Position.y;
         _model.UpdatePlayerPosition(_sessionContext, _treadmillContext, _availablePresets, playerY, out var spawnedChunks, out var despawnedChunks);
         foreach (var chunk in spawnedChunks)
@@ -67,7 +69,7 @@ public class TreadmillPresenter: IDisposable, ITickable
         foreach (var chunk in despawnedChunks)
         {
             _treadmillView.DespawnChunkVisually(chunk);
-            _path.RemoveOldestChunkSplines(_treadmillContext);
+            _path.RemoveOldestChunkSplines(_treadmillContext, chunk.Preset.LocalLeftBank.Length); // ←ここを変更！
         }
         
         var driftersToRemove = new List<DrifterData>();
@@ -130,7 +132,11 @@ public class TreadmillPresenter: IDisposable, ITickable
 
     private void HandleExited()
     {
-
+        _treadmillView.ClearAll();
+        _obstaclesView.ClearAll();
+        
+        _treadmillContext.Clear();
+        _obstacleContext.Clear();
     }
 
     public void Dispose()

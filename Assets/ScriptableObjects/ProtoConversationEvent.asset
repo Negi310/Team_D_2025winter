@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5235472fe645d014798668b7d03cfa86, type: 3}
   m_Name: ProtoConversationEvent
   m_EditorClassIdentifier: Assembly-CSharp::ConversationEvent
-  backgroundImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  backgroundImage: {fileID: 1746628457225903270, guid: 84672250071a2d24b8df1a352e39d405, type: 3}
   textSpeed: 0.05
   introAnimationTrigger: Enter
   turns:

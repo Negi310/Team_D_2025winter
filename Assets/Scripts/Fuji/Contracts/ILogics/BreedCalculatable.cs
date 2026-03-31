@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class BreedCalculatable : IBreedingCalculator
 {
     public SalmonData GenerateChild(SalmonData playerSalmon,SalmonData mateSalmon)
@@ -5,30 +7,35 @@ public class BreedCalculatable : IBreedingCalculator
         //川の遡上に関する能力値の継承
         UpstreamStats childUpstream = new UpstreamStats
         {
-            Speed = Inherit(playerSalmon.UpstreamStats.Speed,mateSalmon.UpstreamStats.Speed),
+            Speed = Mathf.Max(1f,Inherit(playerSalmon.UpstreamStats.Speed,mateSalmon.UpstreamStats.Speed)),
 
-            Jump = Inherit(playerSalmon.UpstreamStats.Jump,mateSalmon.UpstreamStats.Jump),
+            Jump = Mathf.Max(1f,Inherit(playerSalmon.UpstreamStats.Jump,mateSalmon.UpstreamStats.Jump)),
 
-            Stamina = Inherit(playerSalmon.UpstreamStats.Stamina,mateSalmon.UpstreamStats.Stamina),
+            Stamina = Mathf.Max(1f,Inherit(playerSalmon.UpstreamStats.Stamina,mateSalmon.UpstreamStats.Stamina)),
             
-            Attack = Inherit(playerSalmon.UpstreamStats.Attack,mateSalmon.UpstreamStats.Attack),
+            Attack = Mathf.Max(1f,Inherit(playerSalmon.UpstreamStats.Attack,mateSalmon.UpstreamStats.Attack)),
             
-            Intelligence = Inherit(playerSalmon.UpstreamStats.Intelligence,mateSalmon.UpstreamStats.Intelligence)
+            Intelligence = Mathf.Max(1f,Inherit(playerSalmon.UpstreamStats.Intelligence,mateSalmon.UpstreamStats.Intelligence))
         };
 
+        var pTraits = playerSalmon.CourtshipTraits;
+        var mTraits = mateSalmon.CourtshipTraits;
         //求愛に関する能力値の継承
-        CourtshipTraits childCourtship = new CourtshipTraits
-        {
-            Size = Inherit(playerSalmon.CourtshipTraits.Size,mateSalmon.CourtshipTraits.Size),
+        int pSizeInt = (int)pTraits.Size;
+        int mSizeInt = (int)mTraits.Size;
+        int childSizeInt = Mathf.RoundToInt((pSizeInt + mSizeInt) / 2f + Random.Range(-0.5f, 0.5f));
+        SalmonSize childSize = (SalmonSize)Mathf.Clamp(childSizeInt, 0, 2);
 
-            ColorValue = Inherit(playerSalmon.CourtshipTraits.ColorValue,mateSalmon.CourtshipTraits.ColorValue),
+        CourtshipTraits childCourtship = new CourtshipTraits(
+            childSize,
+            Random.value > 0.5f ? pTraits.Color : mTraits.Color,
+            Random.value > 0.5f ? pTraits.Hair : mTraits.Hair,
+            Random.value > 0.5f ? pTraits.EyeIndex : mTraits.EyeIndex,
+            Random.value > 0.5f ? pTraits.EyebrowIndex : mTraits.EyebrowIndex,
+            Random.value > 0.5f ? pTraits.MouthIndex : mTraits.MouthIndex
+        );
 
-            ShapeValue = Inherit(playerSalmon.CourtshipTraits.ShapeValue,mateSalmon.CourtshipTraits.ShapeValue)
-        };
-
-        SalmonData child = new SalmonData(childUpstream, childCourtship);
-
-        return child;
+        return new SalmonData(childUpstream, childCourtship);
     }
 
     private float Inherit(float a, float b)

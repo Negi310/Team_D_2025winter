@@ -5,7 +5,7 @@ public class TreadmillContext
 {
     public float CurrentTopY = 0f; // 全プリセットの長さの合計地点（次に生成する場所）
     public float SpawnTriggerY = 0f; // ひとつ前のプリセットの長さの合計地点（生成タイミング）
-    public float SpawnDistance = 2f; // 画面下から消えるまでの猶予
+    public float SpawnDistance = 0f; // 画面下から消えるまでの猶予
     public LinkedList<RuntimeChunkData> ActiveChunks = new();
     public List<Vector2> GlobalLeftBank { get; }
     public List<Vector2> GlobalRightBank { get; }
@@ -21,5 +21,15 @@ public class TreadmillContext
         GlobalLeftBank = new List<Vector2>(50);
         GlobalRightBank = new List<Vector2>(50);
         GlobalCenterLine = new List<Vector2>(50);
+    }
+    
+    public void Clear()
+    {
+        CurrentTopY = 0f;
+        SpawnTriggerY = 0f;
+        ActiveChunks.Clear();
+        GlobalLeftBank.Clear();
+        GlobalRightBank.Clear();
+        GlobalCenterLine.Clear();
     }
 }

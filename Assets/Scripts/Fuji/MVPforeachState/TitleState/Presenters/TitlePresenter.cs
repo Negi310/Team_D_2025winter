@@ -27,6 +27,7 @@ public class TitlePresenter : IDisposable
 
     private void HandleEntered()
     {
+        AudioManager.I.PlayBGM(BGM.Name.Stage_1);
         _isTransitioning = false;
         _view.Show();
     }
@@ -34,6 +35,7 @@ public class TitlePresenter : IDisposable
     private void HandleStartButtonPressed()
     {
         if (_isTransitioning) return; // 連打防止
+        AudioManager.I.PlaySE(SE.Name.Click);
         _isTransitioning = true;
         _state.TransitionCheck(_initialStateName);
     }

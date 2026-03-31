@@ -14,26 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MateGenerationSettingsSO
   veryWeak:
     tierName: VeryWeak
-    minMultiplier: -5
-    maxMultiplier: 5
+    minMultiplier: 0
+    maxMultiplier: 0.8
     baseCourtshipDifficulty: 80
   weak:
     tierName: Weak
-    minMultiplier: -8
-    maxMultiplier: 8
+    minMultiplier: 0.5
+    maxMultiplier: 1.3
     baseCourtshipDifficulty: 68
   compromise:
     tierName: Compromise
-    minMultiplier: -10
-    maxMultiplier: 10
+    minMultiplier: 1.2
+    maxMultiplier: 2
     baseCourtshipDifficulty: 63
   normal:
     tierName: Normal
-    minMultiplier: -10
-    maxMultiplier: 10
+    minMultiplier: 2
+    maxMultiplier: 2.5
     baseCourtshipDifficulty: 30
   strong:
     tierName: Strong
-    minMultiplier: -7
-    maxMultiplier: 7
+    minMultiplier: 3
+    maxMultiplier: 3.5
     baseCourtshipDifficulty: 15

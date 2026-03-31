@@ -4,6 +4,8 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 using UnityEngine.InputSystem.HID;
+using DG.Tweening;
+
 public class CourtingUIManager : MonoBehaviour
 {
     //uiDocument
@@ -35,7 +37,7 @@ public class CourtingUIManager : MonoBehaviour
     private VisualElement playerIllust;  
 
     //プレイヤーのステータスの最大値(いったん20)
-    private const float playerStatusMax = 20;
+    private const float playerStatusMax = 100;
     //川のステータスの最大値
     private const float riverStatusMax = 20;
     
@@ -74,13 +76,27 @@ public class CourtingUIManager : MonoBehaviour
     public void Show()
     {
         root.style.display = DisplayStyle.Flex;
+        DOTween.To(
+            () => root.style.opacity.value,
+            x => root.style.opacity = x,
+            1f, // 目標値 (不透明)
+            0.5f // かける秒数
+        ).SetEase(Ease.OutQuad);
     }
     
     //UIの非表示
     public void Hide()
     {
-        root.style.display = DisplayStyle.None;
-        ResetUIState();
+        DOTween.To(
+            () => root.style.opacity.value,
+            x => root.style.opacity = x,
+            0f, // 目標値 (透明)
+            0.5f
+        ).SetEase(Ease.InQuad).OnComplete(() =>
+        {
+            root.style.display = DisplayStyle.None;
+            ResetUIState();
+        });
     }
 
     //パートナー候補UIの初期設定
@@ -122,6 +138,7 @@ public class CourtingUIManager : MonoBehaviour
             parent.clicked += () =>
             {
                 OnPartnerClicked?.Invoke(captureIndex);
+                AudioManager.I.PlaySE(SE.Name.Hit);
             };
         }
     }
@@ -158,6 +175,7 @@ public class CourtingUIManager : MonoBehaviour
         {
             //クラス変更で革のステータスの表示状況を切り替え
             riverstatusButton.parent.EnableInClassList("is-open",!riverstatusButton.parent.ClassListContains("is-open"));
+            AudioManager.I.PlaySE(SE.Name.Hit);
             //ボタンの文字切り替え
             if(riverstatusButton.text == ">") riverstatusButton.text = "v";
             else riverstatusButton.text = ">";

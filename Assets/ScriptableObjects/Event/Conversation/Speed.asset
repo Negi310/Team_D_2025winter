@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5235472fe645d014798668b7d03cfa86, type: 3}
+  m_Name: Speed
+  m_EditorClassIdentifier: Assembly-CSharp::ConversationEvent
+  backgroundImage: {fileID: 1746628457225903270, guid: 84672250071a2d24b8df1a352e39d405, type: 3}
+  textSpeed: 0.05
+  introAnimationTrigger: Enter
+  turns:
+  - SpeakerName: "\u30B7\u30E3\u30B1\u30FC\u30C0\u30FC"
+    Text: "\u4ECA\u65E5\u306F\u53CD\u5FA9\u6A2A\u6CF3\u304E\u7DF4\u7FD2\u3060\uFF01"
+    TextSpeed: 0.05
+    BackgroundImage: {fileID: 1746628457225903270, guid: 84672250071a2d24b8df1a352e39d405, type: 3}
+    AnimationTrigger: 
+  - SpeakerName: "\u30B7\u30E3\u30B1"
+    Text: "\u9811\u5F35\u308A\u307E\u3059\uFF01"
+    TextSpeed: 0.05
+    BackgroundImage: {fileID: 1746628457225903270, guid: 84672250071a2d24b8df1a352e39d405, type: 3}
+    AnimationTrigger: 
+  - SpeakerName: "\u30B7\u30E3\u30B1\u30FC\u30C0\u30FC"
+    Text: "60\u79D25\u30BB\u30C3\u30C8!"
+    TextSpeed: 0.05
+    BackgroundImage: {fileID: 1746628457225903270, guid: 84672250071a2d24b8df1a352e39d405, type: 3}
+    AnimationTrigger: 
+  - SpeakerName: "\u30B7\u30E3\u30B1"
+    Text: "\u306F\u3044!"
+    TextSpeed: 0.05
+    BackgroundImage: {fileID: 1746628457225903270, guid: 84672250071a2d24b8df1a352e39d405, type: 3}
+    AnimationTrigger: 
+  - SpeakerName: "\u30B7\u30E3\u30B1\u30FC\u30C0\u30FC"
+    Text: "\u826F\u3044\u52D5\u304D\u3060"
+    TextSpeed: 0.05
+    BackgroundImage: {fileID: 1746628457225903270, guid: 84672250071a2d24b8df1a352e39d405, type: 3}
+    AnimationTrigger: 
+  - SpeakerName: "\u30B7\u30E3\u30B1"
+    Text: "\u529B\u304C\u3064\u3044\u305F\u6C17\u304C\u3057\u307E\u3059\uFF01"
+    TextSpeed: 0.05
+    BackgroundImage: {fileID: 1746628457225903270, guid: 84672250071a2d24b8df1a352e39d405, type: 3}
+    AnimationTrigger: 

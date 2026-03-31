@@ -13,13 +13,14 @@ public class RiverPath
         }
     }
 
-    public void RemoveOldestChunkSplines(TreadmillContext context, int pointsPerChunk = 10)
+    // ★修正: pointsPerChunk のデフォルト(10)を廃止し、正確な数を受け取って削除する
+    public void RemoveOldestChunkSplines(TreadmillContext context, int countToRemove)
     {
-        if (context.GlobalLeftBank.Count >= pointsPerChunk)
+        if (context.GlobalLeftBank.Count >= countToRemove)
         {
-            context.GlobalLeftBank.RemoveRange(0, pointsPerChunk);
-            context.GlobalRightBank.RemoveRange(0, pointsPerChunk);
-            context.GlobalCenterLine.RemoveRange(0, pointsPerChunk);
+            context.GlobalLeftBank.RemoveRange(0, countToRemove);
+            context.GlobalRightBank.RemoveRange(0, countToRemove);
+            context.GlobalCenterLine.RemoveRange(0, countToRemove);
         }
     }
     
@@ -27,7 +28,6 @@ public class RiverPath
     {
         float targetY = currentY + lookAheadDistance;
         
-        // ★修正: dummy を削除し、引数を3つにしました
         bool hasLeft = math.TryGetXAtY(globalLeft, targetY, out float leftX);
         bool hasRight = math.TryGetXAtY(globalRight, targetY, out float rightX);
 

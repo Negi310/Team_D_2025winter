@@ -16,4 +16,4 @@ MonoBehaviour:
   MainStat: 1
   BaseGainAmount: 5
   RandomBonusRange: {x: 1, y: 1}
-  LinkedConversation: {fileID: 11400000, guid: 7486babf88c584f408247aa9db9bb10e, type: 2}
+  LinkedConversation: {fileID: 11400000, guid: 71f698d2dc36b264b8a6236e8dedef5c, type: 2}

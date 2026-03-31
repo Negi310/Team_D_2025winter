@@ -50,7 +50,7 @@ MonoBehaviour:
   - {x: 1.6692489, y: 7.706576}
   - {x: 1.9421768, y: 8.680301}
   - {x: 2.040816, y: 9.688375}
-  EntryType: 0
-  ExitType: 0
-  CurvinessScore: 0
-  NarrownessScore: 0
+  EntryType: 9
+  ExitType: 7
+  CurvinessScore: 0.162
+  NarrownessScore: 0.52

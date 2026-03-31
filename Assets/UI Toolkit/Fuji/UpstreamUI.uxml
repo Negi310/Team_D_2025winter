@@ -1,7 +1,7 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1; align-self: stretch; align-items: stretch; width: 1576px; height: 0; transform-origin: center; flex-direction: row;">
-        <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(22, 22, 22); width: 0; align-items: center; justify-content: space-around; align-self: stretch; flex-direction: column; -unity-text-align: upper-left; position: relative; height: 888px; top: auto; overflow: visible;">
-            <ui:Label text="Label" name="combo-label" style="position: relative; top: 409px; left: -6px; height: 120px; width: 262px; font-size: 61px; color: rgb(214, 135, 80); -unity-font-definition: url(&quot;project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&amp;guid=0c705f482f7b7364d81038f653160f2c&amp;type=3#LightNovelPOPv2&quot;); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(236, 216, 72);"/>
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-self: stretch; align-items: stretch; width: 1918px; height: 0; transform-origin: center; flex-direction: row;">
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(22, 22, 22); width: 0; align-items: center; justify-content: space-around; align-self: stretch; flex-direction: column; -unity-text-align: upper-left; position: relative; height: 1080px; top: auto; overflow: visible;">
+            <ui:Label text="Label" name="combo-label" style="position: relative; top: 688px; left: -6px; height: 127px; width: 262px; font-size: 61px; color: rgb(214, 135, 80); -unity-font-definition: url(&quot;project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&amp;guid=0c705f482f7b7364d81038f653160f2c&amp;type=3#LightNovelPOPv2&quot;); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(236, 216, 72);"/>
             <ui:Label text="Label" name="distance-label" style="font-size: 63px; position: relative; top: 263px; left: -53px; color: rgb(255, 255, 255); width: 169px; bottom: 303px; right: 213px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&amp;guid=0c705f482f7b7364d81038f653160f2c&amp;type=3#LightNovelPOPv2&quot;); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(241, 187, 183);"/>
             <ui:Label text="スタミナ" style="position: relative; background-color: rgba(255, 254, 254, 0); width: 256px; left: -2px; top: -276px; color: rgb(255, 251, 213); font-size: 54px; -unity-text-outline-color: rgba(236, 218, 43, 0.69); -unity-text-outline-width: 2px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&amp;guid=0c705f482f7b7364d81038f653160f2c&amp;type=3#LightNovelPOPv2&quot;);"/>
             <ui:VisualElement name="VisualElement" style="flex-grow: 0; width: 87%; bottom: 392px; left: -2px; height: 75px; background-color: rgb(96, 89, 89); -unity-background-image-tint-color: rgb(236, 206, 206); padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px;">
@@ -10,9 +10,9 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement style="flex-grow: 1; width: 604px; height: 886px;">
-            <ui:Label text="A" name="countdown-label" style="height: 881px; -unity-text-align: middle-center; font-size: 448px; -unity-text-outline-width: 3px; -unity-text-outline-color: rgb(67, 56, 56); color: rgb(241, 210, 201); -unity-font-definition: url(&quot;project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&amp;guid=0c705f482f7b7364d81038f653160f2c&amp;type=3#LightNovelPOPv2&quot;);"/>
+        <ui:VisualElement style="flex-grow: 1; width: 604px; height: 1079px;">
+            <ui:Label text="A" name="countdown-label" style="height: 1072px; -unity-text-align: middle-center; font-size: 448px; -unity-text-outline-width: 3px; -unity-text-outline-color: rgb(67, 56, 56); color: rgb(241, 210, 201); -unity-font-definition: url(&quot;project://database/Assets/Fonts/LightNovelPOPv2.otf?fileID=12800000&amp;guid=0c705f482f7b7364d81038f653160f2c&amp;type=3#LightNovelPOPv2&quot;);"/>
         </ui:VisualElement>
-        <ui:VisualElement style="flex-grow: 1; width: 0; height: 887px; background-color: rgb(22, 22, 22);"/>
+        <ui:VisualElement style="flex-grow: 1; width: 0; height: 1081px; background-color: rgb(22, 22, 22);"/>
     </ui:VisualElement>
 </ui:UXML>

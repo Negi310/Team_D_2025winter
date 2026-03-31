@@ -54,7 +54,7 @@ public class ObstaclesView : MonoBehaviour
     {
         foreach (var kvp in _drifters)
         {
-            kvp.Value.transform.position = new Vector3(kvp.Key.Position.x, kvp.Key.Position.y, 0f);
+            kvp.Value.transform.position = new Vector3(kvp.Key.Position.x, kvp.Key.Position.y, kvp.Key.Position.y * 0.01f);
         }
     }
 

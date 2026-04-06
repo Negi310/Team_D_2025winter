@@ -28,7 +28,7 @@ MonoBehaviour:
   BlockedLaneChangeSpeed: 1.6
   RivalLaneChangeSpeed: 0.3
   DefaultLaneChangeSpeed: 0.2
-  BaseForwardSpeed: 3
+  BaseForwardSpeed: 9
   BaseHorizontalSpeed: 3
   HorizontalStatMultiplier: 0.1
   InvincibleSpeedMultiplier: 1.5

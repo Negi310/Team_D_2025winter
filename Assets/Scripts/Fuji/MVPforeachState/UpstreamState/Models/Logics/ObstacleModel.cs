@@ -31,8 +31,7 @@ public class ObstacleModel
                 float requiredSpace = physicalRadius + VisualMargin;
 
                 float snappedY = Mathf.Floor(Random.Range(startY, endY)) + 0.5f;
-
-                // ★修正: dummy を削除し、引数を3つにしました
+                
                 if (!_math.TryGetXAtY(leftBank, snappedY, out float leftX) ||
                     !_math.TryGetXAtY(rightBank, snappedY, out float rightX))
                 {
@@ -98,8 +97,7 @@ public class ObstacleModel
             for (int attempt = 0; attempt < 10; attempt++)
             {
                 float snappedY = Mathf.Floor(Random.Range(startY, endY)) + 0.5f;
-                
-                // ★修正: dummy を削除し、引数を3つにしました
+            
                 if (!_math.TryGetXAtY(leftBank, snappedY, out float leftX) ||
                     !_math.TryGetXAtY(rightBank, snappedY, out float rightX)) continue;
                 
@@ -167,8 +165,7 @@ public class ObstacleModel
         }
 
         float newY = drifter.Position.y + (currentSpeed * deltaTime);
-
-        // ★修正: dummy を削除し、引数を3つにしました
+        
         bool hasLeft = _math.TryGetXAtY(globalLeft, newY, out float leftX);
         bool hasRight = _math.TryGetXAtY(globalRight, newY, out float rightX);
 
